@@ -1,0 +1,174 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: Gonzalo V
+ * Date: 07/07/2017
+ * Time: 12:22 PM
+ */
+
+use Proyecto\Core\App;
+use Proyecto\Auth\Autenticar;
+//use Proyecto\Model\Alimento;
+
+if(!Autenticar::userLogged()) {
+    header('Location: ' . App::$urlPath . '/login');
+    exit;
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--link rel="icon" href="../../favicon.ico"-->
+
+    <title>CuantasKcal - Home</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="<?= App::$urlPath;?>/bootstrap/css/bootstrap-theme.css">
+    <link href="<?= App::$urlPath;?>/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?= App::$urlPath;?>/css/estilo1.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="<?= App::$urlPath;?>/bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!--link href="navbar-fixed-top.css" rel="stylesheet"-->
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><!--script src='../../assets/js/ie8-responsive-file-warning.js'></--script><![endif]-->
+
+    <!-- Dice que es para evitar falsos positivos de bug en IE por lo tanto el de abajo lo comento
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <!--script src='<?= App::$urlPath;?>/bootstrap/js/html5shiv.min.js'></script-->
+    <!--script src='<?= App::$urlPath;?>/bootstrap/js/respond.min.js'></script-->
+    <!--[endif]-->
+</head>
+<body>
+<div class="contenedorGral">
+    <header>
+        <h1 class="hidden">Cuántas Kcal</h1>
+    </header>
+    <!-- Fixed navbar -->
+    <nav id="navbar_principal" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand comforta verde" href="#">CuántasKcal</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" class="verde">Home</a></li>
+                    <li><a href="#" class="verde">About</a></li>
+                    <li><a href="#" class="verde">Blog</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" class="verde">Ayuda</a></li>
+                    <li><a href="#" class="verde">Contacto</a></li>
+                    <!--li><a href="#" class="verde">Fixed top <span class="sr-only">(current)</span></a></li-->
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div id="containerMain" class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <h2 class="marginVertical-40 text-danger">
+                    Eliminar Articulo
+                </h2>
+                <h2 class="verde marginVertical-40">
+                    <?= $artic->getTitulo(); ?>
+                </h2>
+                <div class="divDeBlog">
+                    <div class="row">
+                        <!--div class="col-xs-12 col-sm-12 col-md-9 tituloBlog">
+                            <h2><a href="#" class="text24px">Nuggets de Coliflor</a></h2>
+                        </div-->
+                        <div class="col-sm-10">
+                            <figure class="contimagenart">
+                                <!--img src="<--?= App::$urlPath;?--><!--?php-->
+                                <img src="<?php
+
+                                            $datoaux = $artic->getImagen1();
+
+                                            if(isset($datoaux)) {
+                                                //if($_SESSION['imagenedit'] == 'db'){
+                                                  //  echo App::$urlPath . $datoaux;
+                                                //} else {
+                                                    echo App::$urlPath . $datoaux;
+                                                //}
+
+                                            }
+
+                                            ?>" alt="<?= $artic->getTitulo(); ?>" >
+                            </figure>
+                            <div class="texto16px">
+                                <?= $artic->getTexto(); ?>
+                            </div>
+                            <?php
+                                $datoAuxiliar = $artic->getFirma();
+                                if(isset($datoAuxiliar)) {
+
+                                        echo "<p>";
+                                        echo $datoAuxiliar;
+                                        echo "</p>";
+                                }
+                            ?>
+                        </div>
+                        <div class="col-sm-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3">
+                <!-- ACA van a ir los Botones para Insertar el artículo o volver para editarlo -->
+                <div class="marginVertical-20">
+                    <form method="post" enctype="multipart/form-data" action="<?= App::$urlPath;?>/abm/abm_articulos/eliminar">
+                        <input type="hidden" name="IDARTICULO" value="<?= $artic->getIdarticulo(); ?>">
+                        <input type="submit" class="btn btn-danger btn-block btn-lg" value="CONFIRMA ELIMINAR">
+                    </form>
+                </div>
+                <div class="marginVertical-20">
+                    <!--form method="post" enctype="multipart/form-data" action="<?= App::$urlPath;?>/abm/abm_articulos"-->
+                    <!--form method="post" enctype="multipart/form-data" action="<?= App::$urlPath;?>/abm/abm_articulos/editar"-->
+                    <a href="<?= App::$urlPath;?>/abm/abm_articulos" class='marginVertical-20' style='text-decoration: none;' ><button type="button" class="btn btn-info btn-block btn-lg">VOLVER ABM</button></a>
+                    <!--form method="post" enctype="multipart/form-data" action="<?= App::$urlPath;?>/abm/abm_articulos">
+                        <input type="submit" class="btn btn-info btn-block btn-lg" value="VOLVER">
+                    </form-->
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    <footer class="footer">
+        <div class="container">
+            <p class="comforta text-center marginVertical-20">CuantasKcal - Todos los derechos reservados - 2017</p>
+        </div>
+    </footer>
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="<?= App::$urlPath;?>/js/jquery.min.js"><\/script>')</script>
+<script src="<?= App::$urlPath;?>/public/bootstrap/js/bootstrap.js"></script>
+<!--script src="../public/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+<script src="../js/testAjax.js"></script>
+<script src="../js/buscarDeNuevo.js"></script>
+<scriptsrc="../js/agregarCampo.js"></script-->
+</body>
+</html>
+

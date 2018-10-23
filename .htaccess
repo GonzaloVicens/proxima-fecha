@@ -1,0 +1,48 @@
+# Verificamos que el mod_rewrite esté presente.
+# El mod_rewrite es el módulo de reescritura de
+# urls del Apache. Es fundamental para las urls
+# amigables.
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    #ErrorDocument 404 /santiago/proyecto/views/error/404.php
+     ErrorDocument 404 views/error/404.html
+
+    # Encendemos el motor de reescritura de urls.
+    RewriteEngine On
+
+    # Redirect Trailing Slashes If Not A Folder...
+    # RewriteCond define una condición para una reescritura.
+    # Si el RewriteCond se cumple, se ejecuta el RewriteRule que esté a continuación.
+    # %{REQUEST_FILENAME} Nos da el nombre de la url que se está pidiendo.
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Flags:
+    # L: Indica que si la regla aplica, entonces no hace falta seguir parseando. Similar al die de php.
+    # R: Indica que es un redireccionamiento. 301 es un redireccionamiento permanente.
+    #   Muy importante para motores de búsqueda.
+    #   De dejar R solo, se asume por default 302, que es redireccionamiento temporal.
+    # Sintaxis de RewriteRule
+    # RewriteRule regexDeLaUrlActual rutaADondeRecireccionar [flags]
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+    # -d: Pregunta si es un directorio.
+    # -f: Pregunta si es un arcivo (file).
+    # Es decir, si la url pedida no matchea con ningún archivo ni directorio, entonces
+    # se aplica la reescritura.
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteRule ^ http://www.cuantaskcal.com/index.php [L]
+    #RewriteRule ^ /cuantascalorias.7.0/public_html/index.php [L]
+    #RewriteRule ^ /localhost/cuantascalorias.7.0/public_html/index.php [L]
+    #RewriteRule ^ http://www.cuantaskcal.com/ [L]
+     #RewriteRule ^ public_html/index.php [L]
+     RewriteRule ^ index.php [L]
+
+    #Allow Authorization header
+    # Este header es necesario para trabajar con tokens en ciertos escenarios standards.
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+</IfModule>
