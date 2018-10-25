@@ -1,4 +1,4 @@
-<?php
+s<?php
 // Este archivo va a definir TODAS las rutas/urls de la app.
 // Es importante ya que con el .htaccess hicimos que todas las urls redireccionen al index.php
 
@@ -10,8 +10,21 @@ Route::addRoute('GET', '/registrarse', 'HomeController@registrarse');
 Route::addRoute('GET', '/miusuario', 'HomeController@miusuario');
 
 
+Route::addRoute('GET' , '/error404'                      , 'HomeController@error404');
+Route::addRoute('GET' , '/desloguear'                    , 'UsuarioController@desloguear');
+Route::addRoute('POST', '/usuarios/crearEquipo'          , 'UsuarioController@crearEquipo');
+Route::addRoute('GET' , '/usuarios/{usuario_id}'         , 'UsuarioController@ver');
+Route::addRoute('POST', '/registrar'                     , 'UsuarioController@registrar');
+Route::addRoute('GET' , '/equipos/{equipo_id}'           , 'EquipoController@verEquipo');
+Route::addRoute('GET' , '/equipos'                       , 'EquipoController@verEquipos');
+
+
+
+/**
+
+
 Route::addRoute('GET', '/about', 'MainController@about');
-/*Route::addRoute('GET', '/blog', 'MainController@blog');*/
+/*Route::addRoute('GET', '/blog', 'MainController@blog');
 
 Route::addRoute('GET', '/ayuda', 'MainController@ayuda');
 Route::addRoute('GET', '/contacto', 'MainController@contacto');
@@ -63,3 +76,4 @@ Route::addRoute('POST', '/abm/abm_articulos/volver-a-editar', 'ABMController@ver
 Route::addRoute('POST', '/abm/abm_articulos/eliminar', 'ABMController@eliminarArticuloPost');
 Route::addRoute('POST', '/abm/abm_alimentos/eliminar', 'ABMController@eliminarAlimentoPost');
 
+*/
