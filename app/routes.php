@@ -1,4 +1,4 @@
-s<?php
+<?php
 // Este archivo va a definir TODAS las rutas/urls de la app.
 // Es importante ya que con el .htaccess hicimos que todas las urls redireccionen al index.php
 
