@@ -1,4 +1,8 @@
 <?php
+namespace Proyecto\Model;
+
+use Proyecto\DB\DBConnection;
+
 
 /**
  * Implementación de la clase Torneo
@@ -65,7 +69,7 @@ class Torneo
         $query = "SELECT NOMBRE, DEPORTE_ID, TIPO_TORNEO_ID, CANTIDAD_EQUIPOS, FECHA_INICIO, SEDE_ID FROM TORNEOS WHERE TORNEO_ID = :torneo_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['torneo_id' => $this->torneo_id]);
-        if ($datos = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->nombre = $datos['NOMBRE'];
             $this->deporte_id = $datos['DEPORTE_ID'];
             $this->tipo_torneo_id= $datos['TIPO_TORNEO_ID'];
@@ -83,7 +87,7 @@ class Torneo
         $query = "SELECT EQUIPO_ID FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['torneo_id' => $this->torneo_id]);
-        while ($datos = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->equipos[] = New Equipo($datos['EQUIPO_ID']);
         };
     }
@@ -108,7 +112,7 @@ class Torneo
         $query = "SELECT A.EQUIPO_ID , B.NOMBRE FROM EQUIPOS_TORNEO A, EQUIPOS B WHERE A.EQUIPO_ID = B.EQUIPO_ID AND A.TORNEO_ID = :torneo_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['torneo_id' => $this->torneo_id]);
-        while ($datos = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             if($datos['EQUIPO_ID'] == $equipoID) {
                 $resaltado = "id='EquipoResaltado'";
             }else{
@@ -119,7 +123,7 @@ class Torneo
 
         }       ;
         echo "</tbody>";
-		echo "</table>";
+        echo "</table>";
     }
 
 

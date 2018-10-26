@@ -31,8 +31,6 @@ class HomeController //implements JsonSerializable
 
     public function loguin()
     {
-
-
         if(Autenticar::login($_POST['usuario'], $_POST['password'])){
             //if(Autenticar::login($_POST){
             $_SESSION['NOMBRE'] = $_POST['usuario'];
@@ -101,6 +99,18 @@ class HomeController //implements JsonSerializable
     {
         View::render('web/miusuario',[], 3);
     }
+
+
+    /**
+     * Método que renderiza la vista de erorr en caso que algo falle
+     */
+    public function error404()
+    {
+        View::render('web/error404',[], 3);
+    }
+
+
+
 
 }
 
