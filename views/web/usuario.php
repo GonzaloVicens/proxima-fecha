@@ -13,10 +13,10 @@ use Proyecto\Core\App;
             <div class="col-md-4 p-3">
 
                     <?php
-                    if(isset($usuario) and file_exists('images/usuarios/'.$usuario->getUsuarioId() . '.jpg')){
-                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'> <img class='w-100 rounded-circle' src='images/usuarios/".$usuario->getUsuarioId() . ".jpg' alt='foto perfil' /></div>";
+                    if(isset($usuario) and file_exists('../img/usuarios/'.$usuario->getUsuarioId() . '.jpg')){
+                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'> <img class='w-100 rounded-circle' src='../img/usuarios/".$usuario->getUsuarioId() . ".jpg' alt='foto perfil' /></div>";
                     }else {
-                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='hover-camera rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='img/usuarios/vicensG.jpg' alt='foto perfil' /></div></div>";
+                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='hover-camera rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/vicensG.jpg' alt='foto perfil' /></div></div>";
                     }
                 ?>
 

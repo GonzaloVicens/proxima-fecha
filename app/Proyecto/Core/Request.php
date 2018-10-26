@@ -20,11 +20,20 @@ class Request
     /** @var string La URL a partir de la carpeta public. */
     protected static $routeUrl;
 
-    /** @var array Los datos recibidos por POST. */
-    protected static $postData = [];
+
+    /**
+     * @var array   Los datos llegados por POST o PUT.
+     */
+    protected static $data;
+
+    protected static $files ;
 
     /** @var string El verbo de la petición HTTP. */
     protected static $method;
+
+
+
+
 
     /**
      * Parsea la url pedida por el usuario, y registra
@@ -47,7 +56,7 @@ class Request
 
         //Le saco el primer caracter porque me tira una ruta con doble barra en la mitad
         $name = $_SERVER['REQUEST_URI'];
-        $name = substr($name,1);
+        //$name = substr($name,1);
 
         //echo '<br>' . $name;
 
@@ -55,7 +64,6 @@ class Request
         // Armamos con los datos de $_SERVER la ruta
         // del archivo ficticio que nos están pidiendo.
         $requestedPath = $_SERVER['DOCUMENT_ROOT'] . $name;
-
         // Obtenemos la ruta quitando el public path al
         // requested path.
         self::$routeUrl = str_replace($publicPath, '', $requestedPath);
@@ -64,6 +72,8 @@ class Request
         //echo "<br><br>El requested path es: " . $requestedPath . "<br>";
         //echo "<br><br>El public path es: " . $publicPath . "<br>";
         //echo "Finalmente, la url de la ruta es... " . self::$routeUrl;
+
+        self::parseData();
     }
 
     /**
@@ -82,4 +92,29 @@ class Request
     {
         return self::$method;
     }
+
+
+    public static function parseData()
+    {
+        self::$data = $_POST;
+        self::$files = $_FILES;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public static function getData()
+    {
+        return self::$data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getFiles()
+    {
+        return self::$files;
+    }
+
 }

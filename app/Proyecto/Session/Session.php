@@ -1,64 +1,76 @@
 <?php
 namespace Proyecto\Session;
 
-/**
- * Class Session
- * @package Proyecto\Session
- *
- * Administra las sesiones.
- */
 class Session
 {
     /**
-     * Inicio de la sesión.
+     * @var bool
+     */
+    protected static $sessionStarted = false;
+
+    /**
+     *
      */
     public static function start()
     {
-        session_start();
+        if(!self::$sessionStarted) {
+            session_start();
+            self::$sessionStarted = true;
+        }
     }
 
     /**
-     * Destruye la sesión.
+     *
      */
     public static function destroy()
     {
-        session_destroy();
+        if(self::$sessionStarted) {
+            session_destroy();
+            self::$sessionStarted = false;
+        }
     }
 
     /**
-     * Guarda un valor en la sesión.
-     *
      * @param $prop
      * @param $value
      */
     public static function set($prop, $value)
     {
+        self::start();
         $_SESSION[$prop] = $value;
     }
 
     /**
-     * Verifica si un valor existe en la sesión.
-     *
+     * @param $prop
+     * @return null
+     */
+    public static function get($prop)
+    {
+        self::start();
+        if(self::has($prop)) {
+            return $_SESSION[$prop];
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * @param $prop
      * @return bool
      */
     public static function has($prop)
     {
+        self::start();
         return isset($_SESSION[$prop]);
     }
 
     /**
-     * Obtiene un valor en la sesión. Si no existe,
-     * retorna null.
-     *
      * @param $prop
-     * @return mixed|null
+     * @return bool
      */
-    public static function get($prop)
+    public static function clearValue($prop)
     {
-        if(self::has($prop)) {
-            return $_SESSION[$prop];
-        }
-        return null;
+        self::start();
+        unset($_SESSION[$prop]);
     }
 }

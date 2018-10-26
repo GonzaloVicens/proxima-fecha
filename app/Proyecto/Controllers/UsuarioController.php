@@ -4,11 +4,12 @@ namespace Proyecto\Controllers;
 use Proyecto\View\View;
 use Proyecto\Core\Request;
 use Proyecto\Core\Route;
+use Proyecto\Core\App;
 use Proyecto\Model\Usuario;
 //use Proyecto\Model\Chat;
 //use Proyecto\Model\Posteo;
 use Proyecto\Model\Equipo;
-use Proyecto\Tools\Session;
+use Proyecto\Session\Session;
 use Proyecto\Tools\FormValidator;
 use Proyecto\Exceptions\UsuarioNoGrabadoException;
 use Proyecto\Exceptions\EquipoNoGrabadoException;
@@ -22,11 +23,10 @@ class UsuarioController
 
     /**
      * Método que contorla la validación del usuario que se intenta loguear al sistema
-     * @param Request $request
      **/
-    public function loguear(Request $request)
+    public function loguear()
     {
-        $inputs = $request->getData();
+        $inputs = Request::getData();
 
         if (isset($inputs ["usuario"]) && !empty($inputs ["usuario"]) && isset($inputs ["password"]) && !empty($inputs ["password"])) {
             $usuario = New Usuario($inputs ['usuario'], $inputs ['password']);
@@ -39,12 +39,12 @@ class UsuarioController
             Session::set('errorLogin', $error);
             Session::clearValue('usuario');
             Session::clearValue('logueado');
-            header("Location: ../public");
+            header('Location: ' . App::$urlPath . '/');
         } else {
             Session::clearValue('errorLogin');
             Session::set('usuario',$usuario);
             Session::set('logueado','S');
-            header("Location: usuarios/".$usuario->getUsuarioID());
+            header('Location: ' . App::$urlPath .'/usuarios/'.$usuario->getUsuarioID());
         }
     }
 
@@ -56,9 +56,9 @@ class UsuarioController
      */
     public function desloguear(Request $request)
     {
-    Session::clearValue('logueado');
-    Session::clearValue('usuario');
-    header("Location: ../public");
+        Session::clearValue('logueado');
+        Session::clearValue('usuario');
+        header('Location: ' . App::$urlPath . '/');
     }
 
 
@@ -75,23 +75,17 @@ class UsuarioController
         if ($usuario_id ){
             if (Usuario::existeUsuario($usuario_id)) {
                 $usuario = new Usuario($usuario_id);
-
-                View::render('modulos/header',compact('ruta'));
-                View::render('modulos/usuario', compact('ruta','usuario','usuario_id'));
-                View::render('modulos/footer',compact('ruta'));
-
+                View::render('web/usuario',compact('usuario','usuario_id'), 3);
             } else{
-                header("Location: ../error404");
+                header('Location: ' . App::$urlPath . '/error404');
             };
         } else {
             if (Session::has("usuario")) {
                 $usuario = Session::get('usuario');
                 $usuario_id = $usuario->getUsuarioID();
-                View::render('modulos/header', compact('ruta'));
-                View::render('modulos/usuario', compact('ruta', 'usuario', 'usuario_id'));
-                View::render('modulos/footer', compact('ruta'));
+                View::render('web/usuario',compact('usuario','usuario_id'), 3);
             } else {
-                header("Location: ../error404");
+                header('Location: ' . App::$urlPath . '/error404');
             };
         };
     }

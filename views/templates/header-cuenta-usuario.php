@@ -26,6 +26,6 @@ use Proyecto\Core\App;
         </a>
     </div>
     <div class="navbar-nav ml-md-auto text-light">
-        <a class="btn btn-outline-light btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="<?= App::$urlPath;?>/">Cerrar Sesión</a>
+        <a class="btn btn-outline-light btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="<?= App::$urlPath;?>/desloguear">Cerrar Sesión</a>
     </div>
 </header>

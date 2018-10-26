@@ -4,19 +4,17 @@ s<?php
 
 use Proyecto\Core\Route;
 
-Route::addRoute('GET', '/', 'HomeController@index');
-Route::addRoute('POST', '/', 'HomeController@loguin');
-Route::addRoute('GET', '/registrarse', 'HomeController@registrarse');
-Route::addRoute('GET', '/miusuario', 'HomeController@miusuario');
-
-
-Route::addRoute('GET' , '/error404'                      , 'HomeController@error404');
-Route::addRoute('GET' , '/desloguear'                    , 'UsuarioController@desloguear');
-Route::addRoute('POST', '/usuarios/crearEquipo'          , 'UsuarioController@crearEquipo');
-Route::addRoute('GET' , '/usuarios/{usuario_id}'         , 'UsuarioController@ver');
-Route::addRoute('POST', '/registrar'                     , 'UsuarioController@registrar');
-Route::addRoute('GET' , '/equipos/{equipo_id}'           , 'EquipoController@verEquipo');
-Route::addRoute('GET' , '/equipos'                       , 'EquipoController@verEquipos');
+Route::addRoute('GET' , '/'                             , 'HomeController@index');
+Route::addRoute('POST', '/'                             , 'UsuarioController@loguear');
+Route::addRoute('GET' , '/registrarse'                  , 'HomeController@registrarse');
+Route::addRoute('GET' , '/miusuario'                    , 'HomeController@miusuario');
+Route::addRoute('GET' , '/error404'                     , 'HomeController@error404');
+Route::addRoute('GET' , '/desloguear'                   , 'UsuarioController@desloguear');
+Route::addRoute('GET' , '/usuarios/{usuario_id}'        , 'UsuarioController@ver');
+Route::addRoute('POST', '/usuarios/crearEquipo'         , 'UsuarioController@crearEquipo');
+Route::addRoute('POST', '/registrar'                    , 'UsuarioController@registrar');
+Route::addRoute('GET' , '/equipos/{equipo_id}'          , 'EquipoController@verEquipo');
+Route::addRoute('GET' , '/equipos'                      , 'EquipoController@verEquipos');
 
 
 

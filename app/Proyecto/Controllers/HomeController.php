@@ -29,6 +29,9 @@ class HomeController //implements JsonSerializable
 
     }
 
+    /** COMENTADO POR FACUNDO EL 25/10
+     * SE CAMBIA POR EL UsuarioController@loguear
+     *
     public function loguin()
     {
         if(Autenticar::login($_POST['usuario'], $_POST['password'])){
@@ -77,10 +80,10 @@ class HomeController //implements JsonSerializable
                 header("Location: ../index.php?seccion=miusuario&usuario_id=".$usuario->getUsuarioID());
             }
         }
-            */
+            *
 
     }
-
+    */
 
     public function about()
     {

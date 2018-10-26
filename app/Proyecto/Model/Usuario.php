@@ -1,5 +1,5 @@
 <?php
-namespace Proyeco\Model;
+namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
 use Proyecto\Tools\Hash;

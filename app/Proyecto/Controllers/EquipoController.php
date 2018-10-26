@@ -7,7 +7,7 @@ use Proyecto\Model\Equipo;
 //use Proyecto\Model\Mensaje;
 //use Proyecto\Model\Posteo;
 //use Proyecto\Model\Usuario;
-use Proyecto\Tools\Session;
+use Proyecto\Session\Session;
 
 class EquipoController
 {
@@ -27,7 +27,6 @@ class EquipoController
      */
     public function verEquipo()
     {
-        $ruta = "../";
         $routeParams = Route::getRouteParams();
         $equipo_id = $routeParams['usuario_id'];
         if (Equipo::existeEquipo($equipo_id)) {
@@ -35,15 +34,8 @@ class EquipoController
             $equipo->setJugadores();
             Session::set("equipo_idActual",$equipo->getEquipoId());
 
-
-            View::render('web/equipo',['equpo'=> $equipo ,'equipo_id' => $equipo_id], 3);
-/*
-            View::render('modulos/header',compact('ruta'));
-            View::render('modulos/equipo', compact('ruta','equipo','equipo_id'));
-            View::render('modulos/footer',compact('ruta'));
-*/
+            View::render('web/equipo',compact('equipo','equipo_id'), 3);
         } else{
-            // header("Location: ../error404");
             View::render('web/error404',[], 3);
         };
     }
