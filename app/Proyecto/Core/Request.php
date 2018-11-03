@@ -63,11 +63,25 @@ class Request
 
         // Armamos con los datos de $_SERVER la ruta
         // del archivo ficticio que nos están pidiendo.
-        $requestedPath = $_SERVER['DOCUMENT_ROOT'] . $name;
+
+        ////Comentario Gonzalo 03/11
+        ///////$requestedPath = $_SERVER['DOCUMENT_ROOT'] . $name; NO ME ANDA SI LO DEJO ASI
+        /// Agrego dos líneas debajo
+        $documentRootSinBarraFinal = substr($_SERVER['DOCUMENT_ROOT'], 0, -1);
+        $requestedPath = $documentRootSinBarraFinal . $name;
+
         // Obtenemos la ruta quitando el public path al
         // requested path.
+
+        ////Comentario Gonzalo 03/11
+        /////tb tengo que agregar esta linea de debajo
+        $publicPath = substr($publicPath, 0, -1);
+
         self::$routeUrl = str_replace($publicPath, '', $requestedPath);
-        self::$routeUrl = '/' . self::$routeUrl;
+
+        ////Comentario Gonzalo 03/11
+        /////Y tengo que comentar la línea de debajo
+        /////self::$routeUrl = '/' . self::$routeUrl;
 
         //echo "<br><br>El requested path es: " . $requestedPath . "<br>";
         //echo "<br><br>El public path es: " . $publicPath . "<br>";
