@@ -15,6 +15,9 @@ Route::addRoute('POST', '/usuarios/crearEquipo'         , 'UsuarioController@cre
 Route::addRoute('POST', '/registrar'                    , 'UsuarioController@registrar');
 Route::addRoute('GET' , '/equipos/{equipo_id}'          , 'EquipoController@verEquipo');
 Route::addRoute('GET' , '/equipos'                      , 'EquipoController@verEquipos');
+Route::addRoute('GET' , '/crear-torneo'                 , 'HomeController@crearTorneo');
+Route::addRoute('GET' , '/ver-torneo'                   , 'HomeController@verTorneo');
+Route::addRoute('GET' , '/agregar-equipos'              , 'HomeController@agregarEquipos');
 
 
 

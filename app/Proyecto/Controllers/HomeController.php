@@ -104,6 +104,29 @@ class HomeController //implements JsonSerializable
     }
 
 
+
+    
+    public function crearTorneo()
+    {
+        View::render('web/crear-torneo',[], 3);
+
+    }
+
+
+    public function verTorneo()
+    {
+        View::render('web/ver-torneo',[], 3);
+
+    }
+
+
+    public function agregarEquipos()
+    {
+        View::render('web/agregar-equipos',[], 3);
+
+    }
+
+
     /**
      * Método que renderiza la vista de erorr en caso que algo falle
      */
@@ -111,8 +134,6 @@ class HomeController //implements JsonSerializable
     {
         View::render('web/error404',[], 3);
     }
-
-
 
 
 }
