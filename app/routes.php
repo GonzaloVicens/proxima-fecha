@@ -17,6 +17,7 @@ Route::addRoute('GET' , '/equipos/{equipo_id}'          , 'EquipoController@verE
 Route::addRoute('GET' , '/equipos'                      , 'EquipoController@verEquipos');
 Route::addRoute('GET' , '/crear-torneo'                 , 'HomeController@crearTorneo');
 Route::addRoute('GET' , '/ver-torneo'                   , 'HomeController@verTorneo');
+Route::addRoute('GET' , '/editar-torneo'                , 'HomeController@editarTorneo');
 Route::addRoute('GET' , '/agregar-equipos'              , 'HomeController@agregarEquipos');
 
 

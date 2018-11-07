@@ -1,138 +1,85 @@
 @font-face {
   src: url("../fontawesome/webfonts/fa-solid-900.ttf");
-  font-family: FontAwesome;
-}
-
-/* line 26, ../scss/estilo.scss */
+  font-family: FontAwesome; }
 * {
-  font-family: 'Segoe UI', 'Helvetica', 'Roboto', Arial, sans-serif;
-}
+  font-family: 'Segoe UI', 'Helvetica', 'Roboto', Arial, sans-serif; }
 
-/* line 30, ../scss/estilo.scss */
 .logoHeader {
-  height: 70px;
-}
+  height: 70px; }
 
-/* line 34, ../scss/estilo.scss */
 .logoHeader2 {
-  height: 50px;
-}
+  height: 50px; }
 
-/* line 38, ../scss/estilo.scss */
 .fondoHeader {
-  background-color: #F6F6F6;
-}
+  background-color: #F6F6F6; }
 
-/* line 42, ../scss/estilo.scss */
 .fondoFull {
   background-image: url("../img/portada.jpg");
   background-size: cover;
-  height: 350px;
-}
+  height: 350px; }
 
-/* line 48, ../scss/estilo.scss */
 .fondoFormHome {
-  background-color: rgba(0, 156, 88, 0.9);
-}
+  background-color: rgba(0, 156, 88, 0.9); }
 
-/* line 52, ../scss/estilo.scss */
 .alto140px {
-  height: 140px;
-}
+  height: 140px; }
 
-/* line 56, ../scss/estilo.scss */
 .naranjaFecha {
-  color: orange;
-}
+  color: #FFA500; }
 
-/* line 60, ../scss/estilo.scss */
 .sombraTexto {
-  text-shadow: #2f2f2f 2px 2px 2px;
-}
+  text-shadow: #2f2f2f 2px 2px 2px; }
 
-/* line 64, ../scss/estilo.scss */
 .fondoNaranjaFecha {
-  background-color: orange;
-}
+  background-color: #FFA500; }
 
-/* line 68, ../scss/estilo.scss */
 .porcentaje60 {
-  width: 70%;
-}
+  width: 70%; }
 
-/* line 73, ../scss/estilo.scss */
 .fontSize {
-  font-size: 1.3em;
-}
+  font-size: 1.3em; }
 
-/* line 77, ../scss/estilo.scss */
 .vinietasCheck {
-  list-style-image: url("../img/icons/checkIcon20px.png") !important;
-}
+  list-style-image: url("../img/icons/checkIcon20px.png") !important; }
 
-/* line 81, ../scss/estilo.scss */
 .alto70 {
-  height: 70px;
-}
+  height: 70px; }
 
-/* line 85, ../scss/estilo.scss */
 .fondoFooter {
-  background-color: #006b33;
-}
+  background-color: #006B33; }
 
-/* line 89, ../scss/estilo.scss */
 .fontSize14 {
-  font-size: 14px;
-}
+  font-size: 14px; }
 
-/* line 93, ../scss/estilo.scss */
 .basefooter {
-  background-color: #003d1c;
-  height: 40px;
-}
+  background-color: #003D1C;
+  height: 40px; }
 
-/* line 98, ../scss/estilo.scss */
 .shadow_bottom {
-  box-shadow: 0 2px 2px #ebebeb;
-}
+  box-shadow: 0 2px 2px #ebebeb; }
 
-/* line 102, ../scss/estilo.scss */
 .pfgreen {
-  color: #006b33;
-}
+  color: #006B33; }
 
-/* line 106, ../scss/estilo.scss */
 .fondoHeader2 {
-  background-color: #006b33;
-}
+  background-color: #006B33; }
 
-/* line 111, ../scss/estilo.scss */
 .fondoFutbol {
-  background-image: url("../img/patterns/futbolpattern.jpg");
-}
+  background-image: url("../img/patterns/futbolpattern.jpg"); }
 
-/* line 115, ../scss/estilo.scss */
 .fondoBlanco {
-  background-color: #ffffff;
-}
+  background-color: #ffffff; }
 
-/* line 119, ../scss/estilo.scss */
 .overflowhidden {
-  overflow: hidden !important;
-}
+  overflow: hidden !important; }
 
-/* line 123, ../scss/estilo.scss */
 .border-verdepf {
-  border: 1px solid #006B33;
-}
+  border: 1px solid #006B33; }
 
-/* line 127, ../scss/estilo.scss */
 .hover-camera {
   position: relative;
-  transition: background-color 4s ease-in-out;
-}
+  transition: background-color 4s ease-in-out; }
 
-/* line 133, ../scss/estilo.scss */
 .hover-camera:hover::before,
 .hover-camera:hover::after {
   position: absolute;
@@ -145,38 +92,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-}
+  text-align: center; }
 
-/* line 149, ../scss/estilo.scss */
 .hover-camera:hover::before {
   content: "\f030";
   font-size: 3em;
   font-family: "FontAwesome";
   top: -10%;
   color: rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.4);
-}
+  background-color: rgba(0, 0, 0, 0.4); }
 
-/* line 158, ../scss/estilo.scss */
 .hover-camera:hover::after {
   font-family: "Arial", sans-serif;
   content: 'Cambiar Foto';
   top: 10%;
-  color: rgba(0, 0, 0, 0.5);
-}
+  color: rgba(0, 0, 0, 0.5); }
 
-/* line 166, ../scss/estilo.scss */
 .clase2 {
-  color: #006b33;
-}
+  color: #006B33; }
 
-/* line 170, ../scss/estilo.scss */
 .nombreUser {
-  color: #006b33;
-}
+  color: #006B33; }
 
-/* line 174, ../scss/estilo.scss */
 .editar_user::after {
   position: absolute;
   content: '\f044';
@@ -188,26 +125,18 @@
   right: 20px;
   top: 10px;
   cursor: pointer;
-  color: #bbbbbb;
-}
+  color: #bbbbbb; }
 
-/* line 188, ../scss/estilo.scss */
 .editar_user:hover::after {
-  color: #FFCD5E;
-}
+  color: #FFCD5E; }
 
-/* line 192, ../scss/estilo.scss */
 .h-16rem {
-  height: 16rem;
-}
+  height: 16rem; }
 
-/* line 196, ../scss/estilo.scss */
 .copa, .escudo, .buscar {
   height: 10rem;
-  border-radius: 10px;
-}
+  border-radius: 10px; }
 
-/* line 202, ../scss/estilo.scss */
 .copa::before, .escudo::before, .buscar::before {
   display: flex;
   justify-content: center;
@@ -215,109 +144,80 @@
   height: 10rem;
   font-family: "FontAwesome";
   color: rgba(244, 183, 70, 0.8);
-  font-size: 7rem;
-}
+  font-size: 7rem; }
 
-/* line 210, ../scss/estilo.scss */
 .accion:hover .copa::before, .accion:hover .escudo::before, .accion:hover .buscar::before {
-  color: #f4b746;
-}
+  color: #f4b746; }
 
-/* line 215, ../scss/estilo.scss */
 a.accion, div.accion {
   text-decoration: none;
-  color: red;
-}
-/* line 220, ../scss/estilo.scss */
-a.accion:hover, div.accion:hover {
-  color: #006b33;
-  cursor: pointer;
-  box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.2) !important;
-  transition: all .1s ease-in-out;
-}
-/* line 226, ../scss/estilo.scss */
-a.accion:hover h3.h4, div.accion:hover h3.h4 {
-  color: #18c25d;
-  text-decoration: underline;
-  transition: all .1s ease-in-out;
-}
-/* line 234, ../scss/estilo.scss */
-a.accion h3.h4, div.accion h3.h4 {
-  color: #006b33;
-  text-decoration: none;
-}
-/* line 239, ../scss/estilo.scss */
-a.accion div:hover, div.accion div:hover {
-  text-decoration: none;
-}
+  color: red; }
+  a.accion:hover, div.accion:hover {
+    color: #006B33;
+    cursor: pointer;
+    box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.2) !important;
+    transition: all .1s ease-in-out; }
+    a.accion:hover h3.h4, div.accion:hover h3.h4 {
+      color: #18C25D;
+      text-decoration: underline;
+      transition: all .1s ease-in-out; }
+  a.accion h3.h4, div.accion h3.h4 {
+    color: #006B33;
+    text-decoration: none; }
+  a.accion div:hover, div.accion div:hover {
+    text-decoration: none; }
 
-/* line 243, ../scss/estilo.scss */
 .copa::before {
-  content: '\f091';
-}
+  content: '\f091'; }
 
-/* line 247, ../scss/estilo.scss */
 .escudo::before {
-  content: '\f3ed';
-}
+  content: '\f3ed'; }
 
-/* line 251, ../scss/estilo.scss */
 .buscar::before {
-  content: '\f002';
-}
+  content: '\f002'; }
 
-/* line 256, ../scss/estilo.scss */
 .awesome {
-  color: #000000;
-}
+  color: #000000; }
 
-/* line 260, ../scss/estilo.scss */
 .classNaranja {
-  color: #eeee55;
-}
+  color: #eeee55; }
 
-/* line 264, ../scss/estilo.scss */
 .colorGris1 {
-  color: #bdbdbd;
-}
+  color: #BDBDBD; }
 
-/* line 269, ../scss/estilo.scss */
 .colorGris2 {
-  color: #909090;
-}
+  color: #909090; }
 
-/* line 273, ../scss/estilo.scss */
 .fontSize1-6rem {
-  font-size: 1.6rem;
-}
+  font-size: 1.6rem; }
 
-/* line 277, ../scss/estilo.scss */
 .fontSize1-5rem {
-  font-size: 1.5rem;
-}
+  font-size: 1.5rem; }
 
-/* line 281, ../scss/estilo.scss */
 .fontSize1-4rem {
-  font-size: 1.4rem;
-}
+  font-size: 1.4rem; }
 
-/* line 285, ../scss/estilo.scss */
 .fontSize1-3rem {
-  font-size: 1.3rem;
-}
+  font-size: 1.3rem; }
 
-/* line 289, ../scss/estilo.scss */
 .inputNoStyle {
   background: none;
-  border: none;
-}
+  border: none; }
 
-/* line 294, ../scss/estilo.scss */
 .minWidth100 {
-  min-width: 100%;
-}
+  min-width: 100%; }
 
-/* line 298, ../scss/estilo.scss */
 button.btn.btn-outline-warning:hover {
-  color: #1c6d11;
-}
+  color: #1c6d11; }
+
+#eliminar_torneo.btn.btn-link.naranjaFecha {
+  padding: 0;
+  border: none; }
+
+#modal_eliminar_torneo input#InputSiEliminar {
+  width: 50%; }
+
+.hoverVerde:hover {
+  color: #18C25D; }
+
+/*# sourceMappingURL=estilo.css.map */

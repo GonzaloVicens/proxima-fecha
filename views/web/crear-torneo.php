@@ -13,7 +13,7 @@ use Proyecto\Core\App;
             <div class="col-md-3">
             </div>
             <div class="col-md-6">
-                <h2 class="mt-5 mb-4 pfgreen">Crear Torneo o Liga</h2>
+                <h2 class="mt-5 mb-4 pfgreen">Crear <span class="font-weight-normal">Torneo o Liga</span></h2>
                 <form>
                     <div class="form-group">
                        <label for="nombre">Nombre Torneo / Liga</label>
@@ -47,6 +47,11 @@ use Proyecto\Core\App;
                     <div class="form-group">
                         <label for="fechainicio">Fecha de Inicio</label>
                         <input type="text" name='fechainicio' class="form-control" id="fechainicio">
+                    </div>
+                    <div class="form-group">
+                        <!-- este campo no sería obligatorio - y no revisé en el DER si existe este dato, si no existe sacar este bloque -->
+                        <label for="fechafinalizacion">Fecha Finalización</label>
+                        <input type="text" name='fechafinalizacion' class="form-control" id="fechafinalizacion">
                     </div>
                     <button type="submit" class="btn btn-lg btn-outline-success">Crear</button>
                     <!--button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button-->

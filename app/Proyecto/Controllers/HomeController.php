@@ -127,6 +127,13 @@ class HomeController //implements JsonSerializable
     }
 
 
+    public function editarTorneo()
+    {
+        View::render('web/editar-torneo',[], 3);
+
+    }
+
+
     /**
      * Método que renderiza la vista de erorr en caso que algo falle
      */

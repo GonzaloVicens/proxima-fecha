@@ -67,7 +67,6 @@ $font-size-1-3rem: 1.3rem;
 
 .porcentaje60{
   width: 70%;
-
 }
 
 .fontSize{
@@ -297,4 +296,25 @@ a.accion, div.accion {
 
 button.btn.btn-outline-warning:hover{
   color:$bgcol_verde4;
+}
+
+//comment
+
+#eliminar_torneo{
+  &.btn.btn-link.naranjaFecha{
+    padding: 0;
+    border: none;
+  }
+}
+
+#modal_eliminar_torneo{
+  input#InputSiEliminar{
+    width: 50%;
+  }
+}
+
+.hoverVerde{
+  &:hover{
+    color: $bgcol_verde3;
+  }
 }
