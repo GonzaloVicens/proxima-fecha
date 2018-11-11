@@ -93,7 +93,7 @@ use Proyecto\Core\App;
                 </div>
             </div>
             <div class="col-md-4 text-center">
-                <div class="accion h-16rem border m-auto w-75 rounded py-4 shadow-sm">
+                <div id='buscar' class="accion h-16rem border m-auto w-75 rounded py-4 shadow-sm">
                     <h3 class="h4">Buscar</h3>
                     <div class="buscar"></div>
                 </div>

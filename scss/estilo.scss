@@ -3,8 +3,13 @@ $bgcol_verde:#006B33;
 $bgcol_verde2:#003D1C;
 $bgcol_verde3:#18C25D;
 $bgcol_verde4:#1c6d11;
+$bgcol_verde5:#00CD5E;
+$col_gris5:#F9F9F9;
+$col_gris3:#eeeeee;
 $col_gris1:#BDBDBD;
 $col_gris2:#909090;
+$col_gris4:#666666;
+$col_blanco:#ffffff;
 $FA:'FontAwesome';
 $font-size-1-6rem: 1.6rem;
 $font-size-1-5rem: 1.5rem;
@@ -139,9 +144,7 @@ $font-size-1-3rem: 1.3rem;
   font-size: 1.5rem;
 
   @include flexcenter;
-  //display:flex;
-  //justify-content: center;
-  //align-items: center;
+
   text-align: center;
 }
 
@@ -199,11 +202,11 @@ $font-size-1-3rem: 1.3rem;
 }
 
 .copa::before, .escudo::before, .buscar::before{
-    @include flexcenter;
-    height: 10rem;
-    font-family: $FA;
-    color: rgba(244, 183, 70, .8);
-    font-size: 7rem;
+  @include flexcenter;
+  height: 10rem;
+  font-family: $FA;
+  color: rgba(244, 183, 70, .8);
+  font-size: 7rem;
 }
 
 .accion:hover .copa::before, .accion:hover .escudo::before, .accion:hover .buscar::before{
@@ -298,8 +301,6 @@ button.btn.btn-outline-warning:hover{
   color:$bgcol_verde4;
 }
 
-//comment
-
 #eliminar_torneo{
   &.btn.btn-link.naranjaFecha{
     padding: 0;
@@ -316,5 +317,169 @@ button.btn.btn-outline-warning:hover{
 .hoverVerde{
   &:hover{
     color: $bgcol_verde3;
+  }
+}
+
+.verde3{
+  color:$bgcol_verde3;
+}
+
+.table_container{
+
+  border:1px solid $col_gris1;
+  width: 530px;
+  margin: 2em 0 1.4em;
+  border-radius: 5px;
+
+  .header_table_jornada{
+    width: 100%;
+    padding: 10px 15px 3px;
+    background-color: $bgcol_verde;
+    border-radius: 4px 4px 0 0;
+
+    h5{
+      font-size: .95rem;
+      font-weight: 600;
+      color: $col_blanco;
+
+      span{
+        font-weight: normal;
+        padding-left: .5rem;
+        font-size: .9rem;
+      }
+    }
+  }
+
+  .jornada_table{
+
+    width: 100%;
+
+    td.equipos{
+      line-height: 2.5;
+      font-size: .9rem;
+      width: 45%;
+      padding: 0 .5em;
+      color:$col_gris4;
+      overflow: hidden;
+    }
+
+    td.versus{
+      background-color: $bgcol_verde5;
+      color: $col_blanco;
+      font-weight: 500;
+      padding: 0 .8em;
+      font-style: italic;
+      width: 10%;
+      text-align: center;
+    }
+
+    tr{
+      border-bottom: 1px solid $col_gris1;
+
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.table_container2{
+
+  border:1px solid $col_gris1;
+  width: 80%;
+  margin: 1.2em 0 1.4em;
+  border-radius: 5px;
+
+  .jornada_table{
+
+    width: 100%;
+
+    td {
+      line-height: 2.5;
+      font-size: .9rem;
+      width: 45%;
+
+      a{
+        padding: 0 2em;
+        height: 100%;
+        width: 100%;
+        display: block;
+        text-decoration: none;
+        color: $bgcol_verde;
+        font-weight: 600;
+
+        span{
+          padding-left: 10px;
+          font-weight: normal;
+          color: $col_gris4;
+        }
+
+        &:hover{
+          background-color: $col_gris3;
+          transition: background-color .1s ease-in;
+        }
+      }
+    }
+
+    tr{
+      border-bottom: 1px solid $col_gris1;
+
+      &:nth-child(odd){
+        td{
+          a{
+              background-color: $col_gris5;
+              &:hover{
+                background: $col_gris3;
+              }
+          }
+        }
+      }
+
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.fixture-completo{
+
+
+  .table_container{
+
+    border:1px solid $col_gris1;
+    width: 95%;
+    margin: 2em 0 1.4em;
+    border-radius: 5px;
+
+    .jornada_table {
+
+      tr{
+        height: 44px;
+        max-height: 44px;
+      }
+
+      td.versus {
+        width: 14%;
+        padding: 0 .1em;
+        font-size: .9em;
+      }
+
+      td.equipos {
+        width: 43%;
+        max-width: 43%;
+        height: 44px;
+        line-height: 44px;
+        max-height: 44px;
+
+        .nombre_equipo{
+          height: 44px;
+          max-height: 44px;
+          width: 100%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
   }
 }

@@ -120,6 +120,20 @@ class HomeController //implements JsonSerializable
     }
 
 
+    public function verProximaFecha()
+    {
+        View::render('web/ver-proxima-fecha',[], 3);
+
+    }
+
+
+    public function verFixtureCompleto()
+    {
+        View::render('web/ver-fixture-completo',[], 3);
+
+    }
+
+
     public function agregarEquipos()
     {
         View::render('web/agregar-equipos',[], 3);
