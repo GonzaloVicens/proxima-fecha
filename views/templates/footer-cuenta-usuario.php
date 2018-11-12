@@ -38,7 +38,7 @@ use Proyecto\Core\App;
 <div class="modal fade bd-example-modal-lg" id='modal_agregar_equipo' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form>
+            <form method='post' action='<?= App::$urlPath;?>/usuarios/crearEquipo' enctype="multipart/form-data">
                 <div class="modal-header fondoHeader2 text-white">
                     <h5 class="modal-title">Crear Equipo</h5>
                     <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">
@@ -52,11 +52,11 @@ use Proyecto\Core\App;
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="InputNombreEquipo">Nombre Equipo</label>
-                                    <input type="text" class="form-control" id="InputNombreEquipo" aria-describedby="emailHelp" placeholder="Elige el nombre de tu equipo">
+                                    <input name="nombre" type="text" class="form-control" id="InputNombreEquipo" aria-describedby="emailHelp" placeholder="Elige el nombre de tu equipo">
                                 </div>
                                 <div class="form-group">
                                     <label for="InputEscudo">Escudo</label>
-                                    <input type="file" class="form-control" id="InputEscudo" placeholder="Elige tu escudo">
+                                    <input type="file" class="form-control" name="foto" id="InputEscudo" placeholder="Elige tu escudo">
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@ use Proyecto\Core\App;
                 <div class="modal-footer">
                     <!--button type="submit" class="btn btn-primary">Submit</button-->
                     <!--button-- type="submit" class="btn btn-primary">Crear Equipo</button-->
-                    <button type="button" class="btn btn-success">Crear Equipo</button>
+                    <button type="submit" class="btn btn-success">Crear Equipo</button>
                     <!--button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button-->
                     <button type="button" class="btn btn-secondary cancelar">Cancelar</button>
                 </div>

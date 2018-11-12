@@ -1,8 +1,7 @@
 <?php
-$equipo_id = null;
-if (isset($_GET['equipo_id'])){
-	$equipo_id = $_GET['equipo_id'];
-} ;
+use Proyecto\Model\Equipo;
+use Proyecto\Session\Session;
+
 
 if (Equipo::existeEquipo($equipo_id)) {
 	$equipo = new Equipo($equipo_id);
@@ -13,9 +12,9 @@ if (Equipo::existeEquipo($equipo_id)) {
 
 	<main>
 		<?php
-		echo "<div style='background-image: url(images/equipos/" . $equipo_id . "_portada.jpg)'>";
+		echo "<div style='background-image: url(../img/equipos/" . $equipo_id . "_portada.jpg)'>";
 		echo "<div>";
-		echo "<img src='images/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
+		echo "<img src='../img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
 		echo "<h2 class='mayusculas negrita'>" . $equipo->getNombre() . "</h2>";
 		echo "</div>";
 		if ( $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
@@ -63,10 +62,10 @@ if (Equipo::existeEquipo($equipo_id)) {
 
 					</div>
 					<div class="tresCol">
-						<h3> Proximo Partido - Fecha 6 </h3>
-						<img src="images/equipos/1_logo_100.jpg" alt="Logo del Equipo"/>
+						<h3> FALTA CAMBIAR ESTO Proximo Partido - Fecha 6 </h3>
+						<img src="../img/equipos/1_logo_100.jpg" alt="Logo del Equipo"/>
 						<p>VS</p>
-						<img src="images/equipos/9_logo_100.jpg" alt="Logo del Equipo"/>
+						<img src="../img/equipos/9_logo_100.jpg" alt="Logo del Equipo"/>
 						<p>PHP Futbol Club</p>
 						<p>Array de 1 Indice</p>
 						<p>Fecha y Hora: 12/11/2016 - 21:00hs</p>
@@ -109,10 +108,10 @@ if (Equipo::existeEquipo($equipo_id)) {
 					?>
 					<div>
 						<div>
-							<h3> Último Partido - Fecha 5 </h3>
-							<img src="images/equipos/1_logo_100.jpg" alt="Logo del Equipo"/>
+							<h3> HAY QUE CAMBIAR ESTO Último Partido - Fecha 5 </h3>
+							<img src="../img/equipos/1_logo_100.jpg" alt="Logo del Equipo"/>
 							<p>4 - 2</p>
-							<img src="images/equipos/6_logo_100.jpg" alt="Logo del Equipo"/>
+							<img src="../img/equipos/6_logo_100.jpg" alt="Logo del Equipo"/>
 							<p>PHP Futbol Club</p>
 							<p>Puerto 7</p>
 							<a href="#" title="Ver Todos">Ver Resultados de Todos los Partidos Jugados</a>
@@ -120,8 +119,7 @@ if (Equipo::existeEquipo($equipo_id)) {
 					</div>
 					<?php } ?>
 					<div id="Fravega">
-						<a href="#" title="Fravega"><img style="margin: 0px" src="images/fravega.png"
-														 alt="Fravega"/></a>
+						<a href="#" title="Fravega"><img style="margin: 0px" src="../img/fravega.png" alt="Fravega"/></a>
 					</div>
 				</div>
 			</div>
@@ -162,6 +160,6 @@ if (Equipo::existeEquipo($equipo_id)) {
 		</div>
 	<?php };
 } else {
-	header("Location: index.php?seccion=error404");
+	header("Location: /error404");
 }
 ?>

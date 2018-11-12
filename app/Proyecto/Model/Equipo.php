@@ -179,10 +179,10 @@ class Equipo
                 $boton = "";
             }
 
-            if(file_exists('../public/images/usuarios/'.$datos['JUGADOR_ID'] . '.jpg')){
-                $rutaImagen = "../images/usuarios/".$datos['JUGADOR_ID']. ".jpg";
+            if(file_exists('img/usuarios/'.$datos['JUGADOR_ID'] . '.jpg')){
+                $rutaImagen = "../img/usuarios/".$datos['JUGADOR_ID']. ".jpg";
             }else {
-                $rutaImagen = "../images/usuarios/UserJugador.jpg";
+                $rutaImagen = "../img/usuarios/UserJugador.jpg";
             }
 
 

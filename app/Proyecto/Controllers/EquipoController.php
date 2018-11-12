@@ -28,7 +28,7 @@ class EquipoController
     public function verEquipo()
     {
         $routeParams = Route::getRouteParams();
-        $equipo_id = $routeParams['usuario_id'];
+        $equipo_id = $routeParams['equipo_id'];
         if (Equipo::existeEquipo($equipo_id)) {
             $equipo = new Equipo($equipo_id);
             $equipo->setJugadores();

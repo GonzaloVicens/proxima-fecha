@@ -54,7 +54,7 @@ class UsuarioController
      * Método que controla el cierre de sesión
      * @param Request $request
      */
-    public function desloguear(Request $request)
+    public function desloguear()
     {
         Session::clearValue('logueado');
         Session::clearValue('usuario');
@@ -75,6 +75,7 @@ class UsuarioController
         if ($usuario_id ){
             if (Usuario::existeUsuario($usuario_id)) {
                 $usuario = new Usuario($usuario_id);
+
                 View::render('web/usuario',compact('usuario','usuario_id'), 3);
             } else{
                 header('Location: ' . App::$urlPath . '/error404');
@@ -127,11 +128,72 @@ class UsuarioController
         }
     }
 
+    /**
+     * Método que controla la creación de un equipo
+     */
+    public function crearEquipo(){
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+
+            $inputs = Request::getData();
+
+            $nombre = $inputs['nombre'];
+
+            $equipo_id = Equipo::CrearEquipo($nombre, $usuario_id);
+
+            $files = Request::getFiles();
+
+            if (isset($files ['foto']['tmp_name']) && !empty($files ['foto']['tmp_name'])){
+                $archivo_tmp = $files ['foto']['tmp_name'];
+
+
+                $original = imagecreatefromjpeg($archivo_tmp);
+                $ancho = imagesx( $original );
+                $alto = imagesy( $original );
+
+                // Copia 200 px
+                $alto_max= 200;
+                $ancho_max = round( $ancho *  $alto_max / $alto );
+
+                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
+
+                imagecopyresampled( $copia, $original,
+                                    0,0, 0,0,
+                                $ancho_max,$alto_max,
+                                $ancho,$alto);
+
+                $nombre_nuevo = App::$rootPath . "/img/equipos/$equipo_id"."_logo_200.jpg";
+                imagejpeg( $copia , $nombre_nuevo);
+
+                // Copia 100 px
+                $alto_max= 100;
+                $ancho_max = round( $ancho *  $alto_max / $alto );
+
+                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
+                imagecopyresampled( $copia, $original,
+                                    0,0, 0,0,
+                                    $ancho_max,$alto_max,
+                                    $ancho,$alto);
+
+                $nombre_nuevo = App::$rootPath . "/img/equipos/$equipo_id"."_logo_100.jpg";
+                imagejpeg( $copia , $nombre_nuevo);
+
+            }
+            echo (App::$rootPath );
+            header('Location: ' . App::$urlPath . '/equipos/'.$equipo_id);
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+
+
+    }
+
 
     /**
      * Método que controla la creación de un posteo
      * @param Request $request
-     */
+     *
     public function crear(Request $request)
     {
         if (Session::has("usuario")){

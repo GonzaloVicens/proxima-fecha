@@ -119,7 +119,7 @@ class Torneo
                 $resaltado = "";
             };
             echo "<tr ". $resaltado.">";
-            echo "<td><a href='index.php?seccion=miequipo&equipo_id=".$datos['EQUIPO_ID']."' title='Ver Equipo'>". $datos['NOMBRE'] . "</a></td ><td>15</td><td>5</td><td>5</td><td>0</td><td>0</td><td>27</td><td>8</td><td>19</td></tr>";
+            echo "<td><a href='../equipos/".$datos['EQUIPO_ID']."' title='Ver Equipo'>". $datos['NOMBRE'] . "</a></td ><td>15</td><td>5</td><td>5</td><td>0</td><td>0</td><td>27</td><td>8</td><td>19</td></tr>";
 
         }       ;
         echo "</tbody>";

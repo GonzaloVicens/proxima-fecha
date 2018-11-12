@@ -6,17 +6,20 @@
  * Time: 02:47 AM
  */
 use Proyecto\Core\App;
+use Proyecto\Model\Usuario;
+use Proyecto\Session\Session;
+
+if (Usuario::existeUsuario($usuario_id)) {
 ?>
 <main class="py-4 mb-4">
     <div class="container">
         <div class="row border-bottom">
             <div class="col-md-4 p-3">
-
-                    <?php
-                    if(isset($usuario) and file_exists('../img/usuarios/'.$usuario->getUsuarioId() . '.jpg')){
+                <?php
+                    if(isset($usuario) and file_exists('img/usuarios/'.$usuario->getUsuarioId() . '.jpg')){
                         echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'> <img class='w-100 rounded-circle' src='../img/usuarios/".$usuario->getUsuarioId() . ".jpg' alt='foto perfil' /></div>";
                     }else {
-                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='hover-camera rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/vicensG.jpg' alt='foto perfil' /></div></div>";
+                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='hover-camera rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' /></div></div>";
                     }
                 ?>
 
@@ -24,52 +27,43 @@ use Proyecto\Core\App;
             <div class="col-md-8 pl-4">
                 <ul class="list-unstyled">
                     <span class="editar_user"></span>
-                    <li class='nombreUser mt-4 mb-3'><h2>Gonzalo Vicens</h2><?php //echo $usuario->getNombreCompleto()?></li>
+                    <li class='nombreUser mt-4 mb-3'><h2><?= $usuario->getNombreCompleto()?></h2></li>
                     <li><span class='font-weight-bold text-dark'>Equipos</span>
                         <ul class="list-unstyled">
-                            <li  class="text-secondary">Todavía no sos parte de ningún equipo.</li>
                             <?php
-                            /*if($usuario->tieneEquipo()){
+                            if($usuario->tieneEquipo()){
                                 foreach ($usuario->getEquipos() as $equipo) {
-
-                                    echo "<li><a class='negrita' href='index.php?seccion=miequipo&equipo_id=".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
+                                    echo "<li class='text-secondary'><a class='negrita' href='../equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
                                 }
                             }else{
-                                echo "<li>Todavía no sos parte de ningún equipo.</li>";
-
-                            }*/
-                            ?>
+                                echo "<li class='text-secondary'>Todavía no sos parte de ningún equipo.</li>";
+                            }?>
                         </ul>
                     </li>
                     <li><span class='font-weight-bold text-dark'>Torneos en los que participa</span>
                         <ul class="list-unstyled">
-                            <li  class="text-secondary">No participa en ningún torneo</li>
                             <?php
-                            /*
                             if($usuario->tieneTorneo()){
                                 foreach ($usuario->getTorneos() as $torneo) {
-                                    echo "<li>" . $torneo->getNombre() ." </li>";
+                                    echo "<li class='text-secondary'><a class='negrita' href='../torneos/".$torneo->getTorneoID() ."' title='Ver Torneo'>" . $torneo->getNombre()  ."</a></li>";
                                 }
                             }else{
-                                echo "<li>No participa en ningún torneo</li>";
+                                echo "<li class='text-secondary'>No participa en ningún torneo</li>";
                             }
-                            */
+
                             ?>
                         </ul>
                     </li>
                     <li><span class='font-weight-bold text-dark'>Torneos creados</span>
                         <ul class="list-unstyled">
-                            <li class="text-secondary">No ha creado ningún torneo</li>
                             <?php
-                            /*
                             if($usuario->tieneTorneoPropio()){
                                 foreach ($usuario->getTorneosPropios() as $torneo) {
-                                    echo "<li>" . $torneo->getNombre() ." </li>";
+                                    echo "<li class='text-secondary'><a class='negrita' href='../torneos/".$torneo->getTorneoID() ."' title='Ver Torneo'>" . $torneo->getNombre()  ."</a></li>";
                                 }
                             }else{
-                                echo "<li>No ha creado ningún torneo</li>";
-                            }
-                            */
+                                echo "<li class='text-secondary'>No ha creado ningún torneo</li>";
+                            };
                             ?>
                         </ul>
                     </li>
@@ -101,4 +95,9 @@ use Proyecto\Core\App;
         </div>
     </div>
 </main>
+<?php
+} else {
+    header("Location: /error404");
+}
+?>
 
