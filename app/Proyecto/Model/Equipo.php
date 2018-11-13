@@ -171,7 +171,7 @@ class Equipo
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            IF ($datos['JUGADOR_ID'] == $this->capitan_id){
+            IF (($datos['JUGADOR_ID'] == $this->capitan_id) &&  (Session::has("usuario"))){
                 $idCapitan = "id='capitan'";
                 $boton = "<a href='#mensajeModal' class='mayuscula'>Enviar Mensaje</a>";
             } else {
