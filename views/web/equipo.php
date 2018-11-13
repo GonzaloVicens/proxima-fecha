@@ -17,7 +17,7 @@ if (Equipo::existeEquipo($equipo_id)) {
 		echo "<img src='../img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
 		echo "<h2 class='mayusculas negrita'>" . $equipo->getNombre() . "</h2>";
 		echo "</div>";
-		if ( $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
+		if ( (Session::has("usuario")) && ($equipo->getCapitanID() == Session::get("usuario")->getUsuarioID())) {
 			echo "<div><a href='#registroEquipo' title='actualizar portada'>Actualizar Portada</a></div>";
 		};
 		echo "</div>";
@@ -81,9 +81,10 @@ if (Equipo::existeEquipo($equipo_id)) {
 					<h3 class="mayusculas">Integrantes del Equipo</h3>
 					<?php
 					$equipo->printJugadoresEnUL();
-					if (! $equipo->participaEnTorneo() && $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
-						echo "<div><a href='#AgregarCompanero' title='Agregar Compañero'>Agregar Compañero</a></div>";
-					}	?>
+					if  (Session::has("usuario")){
+						if (! $equipo->participaEnTorneo() && $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
+							echo "<div><a href='#AgregarCompanero' title='Agregar Compañero'>Agregar Compañero</a></div>";
+					}}	?>
 
 					<div>
 						<div id="mensajeModal">
@@ -127,7 +128,8 @@ if (Equipo::existeEquipo($equipo_id)) {
 	</main>
 
 	<?php
-	if (! $equipo->participaEnTorneo() && $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
+
+	if (!($equipo->participaEnTorneo()) && Session::has("usuario") && $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID() ) {
 		?>
 		<div id="registroAgregar">
 			<div>
