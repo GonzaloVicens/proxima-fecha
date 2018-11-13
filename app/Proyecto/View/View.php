@@ -38,12 +38,12 @@ class View
         }
 
         // Si no hay un usuario conectado no puedo mostrar el template de "Cerrar Sesión"
-        if(($contexto == 3) &&  !(Session::has("usuario"))){
+        if(($contexto == 3) &&  !(Session::has("logueado"))){
             $contexto = 2;
         }
 
         //Si voy al home con el usuario conectado no debería aparecer el "Registrarse".
-        if(($contexto == 1) &&  (Session::has("usuario"))){
+        if(($contexto == 1) &&  (Session::has("logueado"))){
             $contexto = 3;
         }
 
