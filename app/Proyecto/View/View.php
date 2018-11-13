@@ -3,7 +3,7 @@
 namespace Proyecto\View;
 
 use Proyecto\Core\App;
-
+use Proyecto\Session\Session;
 /**
  * Class View
  * @package Proyecto\View
@@ -37,7 +37,17 @@ class View
             ${$varName} = $value;
         }
 
-        // Incluimos el header.
+        // Si no hay un usuario conectado no puedo mostrar el template de "Cerrar Sesión"
+        if(($contexto == 3) &&  !(Session::has("usuario"))){
+            $contexto = 2;
+        }
+
+        //Si voy al home con el usuario conectado no debería aparecer el "Registrarse".
+        if(($contexto == 1) &&  (Session::has("usuario"))){
+            $contexto = 3;
+        }
+
+            // Incluimos el header.
         //require App::getViewsPath() . '/templates/header.php';
 
         if($contexto == 1){

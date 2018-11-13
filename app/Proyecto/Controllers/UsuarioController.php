@@ -75,7 +75,6 @@ class UsuarioController
         if ($usuario_id ){
             if (Usuario::existeUsuario($usuario_id)) {
                 $usuario = new Usuario($usuario_id);
-
                 View::render('web/usuario',compact('usuario','usuario_id'), 3);
             } else{
                 header('Location: ' . App::$urlPath . '/error404');
@@ -180,12 +179,11 @@ class UsuarioController
                 imagejpeg( $copia , $nombre_nuevo);
 
             }
-            echo (App::$rootPath );
             header('Location: ' . App::$urlPath . '/equipos/'.$equipo_id);
+
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         };
-
 
     }
 

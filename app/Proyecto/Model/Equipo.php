@@ -3,6 +3,7 @@ namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
 use Proyecto\Exceptions\EquipoNoGrabadoException;
+use Proyecto\Session\Session;
 
 /**
  * Implementación de la clase Equipo

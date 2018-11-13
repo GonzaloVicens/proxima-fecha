@@ -9,6 +9,8 @@
 
 namespace Proyecto\Controllers;
 use Proyecto\View\View;
+use Proyecto\Session\Session;
+
 use Proyecto\Auth\Autenticar;
 use Proyecto\Core\App;
 use Proyecto\Model\Mensaje;
@@ -24,77 +26,18 @@ class HomeController //implements JsonSerializable
     {
 
         //$ultimaspub = Articulo::traerUltimosTres();
-
         View::render('web/home', [], 1);
-
     }
 
-    /** COMENTADO POR FACUNDO EL 25/10
-     * SE CAMBIA POR EL UsuarioController@loguear
-     *
-    public function loguin()
-    {
-        if(Autenticar::login($_POST['usuario'], $_POST['password'])){
-            //if(Autenticar::login($_POST){
-            $_SESSION['NOMBRE'] = $_POST['usuario'];
-            header('Location: ' . App::$urlPath . '/about');
-        } else {
-            $_SESSION['_error'] = "Usuario y/o password incorrectos.";
-            $_SESSION['_input'] = $_POST;
-            //print_r($_SESSION['_input']);
-            //die;
-            header('Location: ' . App::$urlPath . '/');
-        }
-
-
-        /*
-        Session::start();
-        if (isset($_POST["usuario"]) && !empty($_POST["usuario"]) && isset($_POST["password"]) && !empty($_POST["password"])) {
-            $usuario = New Usuario($_POST['usuario'], $_POST['password']);
-            $error = $usuario->validarUsuario();
-        } else {
-            $error = "No ha ingresado el usuario o la contraseña";
-        }
-
-        if(isset($_POST['ajax'])) {
-            if ($error){
-                echo json_encode([
-                    'status' => 1,
-                    'data' => $error
-                ]);
-            } else {
-                echo json_encode([
-                    'status' => 0,
-                ]);
-            }
-        } else {
-            if ($error){
-                Session::set('errorLogin', $error);
-                Session::clear('usuario');
-                Session::clear('logueado');
-                header("Location: ../index.php");
-            } else {
-                Session::clear('errorLogin');
-                Session::set('usuario',$usuario);
-                Session::set('logueado','S');
-                header("Location: ../index.php?seccion=miusuario&usuario_id=".$usuario->getUsuarioID());
-            }
-        }
-            *
-
-    }
-    */
 
     public function about()
     {
-
-        View::render('web/about');
-
+        View::render('web/about', [], 3);
     }
 
     public function registrarse()
     {
-        View::render('web/registrarse',[], 2);
+        View::render('web/registrarse',[], 3);
     }
 
 
@@ -103,48 +46,38 @@ class HomeController //implements JsonSerializable
         View::render('web/miusuario',[], 3);
     }
 
-
-
-    
     public function crearTorneo()
     {
         View::render('web/crear-torneo',[], 3);
-
     }
 
 
     public function verTorneo()
     {
         View::render('web/ver-torneo',[], 3);
-
     }
-
 
     public function verProximaFecha()
     {
         View::render('web/ver-proxima-fecha',[], 3);
-
     }
 
 
     public function verFixtureCompleto()
     {
         View::render('web/ver-fixture-completo',[], 3);
-
     }
 
 
     public function agregarEquipos()
     {
         View::render('web/agregar-equipos',[], 3);
-
     }
 
 
     public function editarTorneo()
     {
         View::render('web/editar-torneo',[], 3);
-
     }
 
 
@@ -153,7 +86,7 @@ class HomeController //implements JsonSerializable
      */
     public function error404()
     {
-        View::render('web/error404',[], 3);
+        View::render('web/error404',[], 2);
     }
 
 

@@ -56,7 +56,7 @@ use Proyecto\Core\App;
                                 </div>
                                 <div class="form-group">
                                     <label for="InputEscudo">Escudo</label>
-                                    <input type="file" class="form-control" name="foto" id="InputEscudo" placeholder="Elige tu escudo">
+                                    <input type="file" class="form-control" name="foto" id="InputEscudo" placeholder="Elige tu escudo" accept="image/jpeg">
                                 </div>
                             </div>
                         </div>

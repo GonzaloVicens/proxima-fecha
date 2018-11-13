@@ -70,6 +70,7 @@ if (Usuario::existeUsuario($usuario_id)) {
                 </ul>
             </div>
         </div>
+        <?php if  (Session::has("usuario")){ ?>
         <div class="row pt-5">
             <div class="col-md-12 mb-3">
                 <h2>Acciones</h2>
@@ -93,6 +94,7 @@ if (Usuario::existeUsuario($usuario_id)) {
                 </div>
             </div>
         </div>
+        <?php }?>
     </div>
 </main>
 <?php
