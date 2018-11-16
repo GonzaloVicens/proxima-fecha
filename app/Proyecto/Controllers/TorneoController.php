@@ -4,36 +4,37 @@ use Proyecto\View\View;
 use Proyecto\Core\Route;
 use Proyecto\Core\Request;
 use Proyecto\Model\Equipo;
+use Proyecto\Model\Torneo;
 //use Proyecto\Model\Mensaje;
 //use Proyecto\Model\Posteo;
 use Proyecto\Model\Usuario;
 use Proyecto\Session\Session;
 use Proyecto\Core\App;
-class EquipoController
+class TorneoController
 {
 
 
     /**
-     * Método que muestra los equipos existentes
+     * Método que muestra los torneos existentes
      */
-    public function verEquipos()
+    public function verTorneos()
     {
-        View::render('web/equipos',[], 3);
+        View::render('web/torneos',[], 3);
     }
 
 
     /**
-     * Método que renderiza la vista de un Equipo en partícular
+     * Método que renderiza la vista de un Torneo en partícular
      */
     public function ver()
     {
         $routeParams = Route::getRouteParams();
-        $equipo_id = $routeParams['equipo_id'];
-        if (Equipo::existeEquipo($equipo_id)) {
-            $equipo = new Equipo($equipo_id);
-            $equipo->setJugadores();
-            Session::set("equipo_idActual",$equipo->getEquipoId());
-            View::render('web/equipo',compact('equipo','equipo_id'), 3);
+        $torneo_id = $routeParams['torneo_id'];
+        if (Torneo::existeTorneo($torneo_id)) {
+            $torneo = new Torneo($torneo_id);
+            $torneo->setEquipos();
+            Session::set("torneo_idActual",$torneo->getTorneoId());
+            View::render('web/ver-torneo',compact('torneo','torneo_id'), 3);
         } else{
             View::render('web/error404',[], 2);
         };
@@ -41,7 +42,7 @@ class EquipoController
 
 
     /**
-     * Método que controla la creación de un equipo
+     * Método que controla la creación de un torneo
      */
     public function registrar(){
         if (Session::has("usuario")) {
@@ -51,48 +52,12 @@ class EquipoController
             $inputs = Request::getData();
 
             $nombre = $inputs['nombre'];
+            $deporte = $inputs['deporte'];
 
-            $equipo_id = Equipo::CrearEquipo($nombre, $usuario_id);
+//            $torneo_id = Torneo::CrearTorneo($nombre, $deporte , $usuario_id);
 
-            $files = Request::getFiles();
-
-            if (isset($files ['foto']['tmp_name']) && !empty($files ['foto']['tmp_name'])){
-                $archivo_tmp = $files ['foto']['tmp_name'];
-
-
-                $original = imagecreatefromjpeg($archivo_tmp);
-                $ancho = imagesx( $original );
-                $alto = imagesy( $original );
-
-                // Copia 200 px
-                $alto_max= 200;
-                $ancho_max = round( $ancho *  $alto_max / $alto );
-
-                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
-
-                imagecopyresampled( $copia, $original,
-                    0,0, 0,0,
-                    $ancho_max,$alto_max,
-                    $ancho,$alto);
-
-                $nombre_nuevo = App::$rootPath . "/img/equipos/$equipo_id"."_logo_200.jpg";
-                imagejpeg( $copia , $nombre_nuevo);
-
-                // Copia 100 px
-                $alto_max= 100;
-                $ancho_max = round( $ancho *  $alto_max / $alto );
-
-                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
-                imagecopyresampled( $copia, $original,
-                    0,0, 0,0,
-                    $ancho_max,$alto_max,
-                    $ancho,$alto);
-
-                $nombre_nuevo = App::$rootPath . "/img/equipos/$equipo_id"."_logo_100.jpg";
-                imagejpeg( $copia , $nombre_nuevo);
-
-            }
-            header('Location: ' . App::$urlPath . '/equipos/'.$equipo_id);
+            //header('Location: ' . App::$urlPath . '/torneos/'.$torneo_id);
+            header('Location: ' . App::$urlPath . '/torneos/1');
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         };
@@ -101,14 +66,14 @@ class EquipoController
 
     /**
      * Método que agrega un jugador en el equipo
-     */
+     *
     public function agregarJugador()
     {
         $inputs = Request::getData();
 
         if (isset($inputs["equipo"]) && !empty($inputs ["equipo"]) ){
-            $equipo_id = $inputs ['equipo'];
-            $equipo = new Equipo($equipo_id);
+            $torneo_id = $inputs ['equipo'];
+            $equipo = new Equipo($torneo_id);
 
             if (isset($inputs ["jugador"]) && !empty($inputs ["jugador"])) {
 
@@ -128,7 +93,7 @@ class EquipoController
                 Session::set("errorAgregarJugador",  " Ingrese un jugador");
             }
         }
-        View::render('web/equipo',compact('equipo','equipo_id'), 3);
+        View::render('web/equipo',compact('equipo','torneo_id'), 3);
     }
 
     /**

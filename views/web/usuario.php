@@ -76,7 +76,7 @@ if (Usuario::existeUsuario($usuario_id)) {
                 <h2>Acciones</h2>
             </div>
             <div class="col-md-4 text-center">
-                <a href="<?= App::$urlPath;?>/crear-torneo" class="d-block accion h-16rem border  m-auto w-75 rounded py-4 shadow-sm">
+                <a href="<?= App::$urlPath;?>/usuarios/crear-torneo" class="d-block accion h-16rem border  m-auto w-75 rounded py-4 shadow-sm">
                     <h3 class="h4">Crear Torneo</h3>
                     <div class="copa"></div>
                 </a>

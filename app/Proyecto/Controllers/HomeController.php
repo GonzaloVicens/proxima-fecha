@@ -46,16 +46,8 @@ class HomeController //implements JsonSerializable
         View::render('web/miusuario',[], 3);
     }
 
-    public function crearTorneo()
-    {
-        View::render('web/crear-torneo',[], 3);
-    }
 
 
-    public function verTorneo()
-    {
-        View::render('web/ver-torneo',[], 3);
-    }
 
     public function verProximaFecha()
     {

@@ -94,9 +94,9 @@ class UsuarioController
      * Método que controla el registro de nuevos usuarios en el sistema.
      * @param Request $request
      */
-    public function registrar(Request $request)
+    public function registrar()
     {
-        $inputs = $request->getData();
+        $inputs = Request::getData();
         $error =0;
         $errorActual = "";
 
@@ -106,7 +106,7 @@ class UsuarioController
         if ( !empty($formValidator->getCamposError()) ){
             Session::set("camposError",$formValidator->getCamposError());
             Session::set("campos",$formValidator->getCampos());
-            header("Location: ../public#registroModal");
+            header('Location: ' . App::$urlPath . '/');
         } else {
             Session::clearValue("camposError");
             Session::clearValue("campos");
@@ -115,77 +115,32 @@ class UsuarioController
                 $usuario_id = Usuario::CrearUsuario($inputs);
             } catch ( UsuarioNoGrabadoException $exc){
                 echo "<pre>";
-                print_r($exc.getMessage());
+                print_r($exc->getMessage());
                 echo "</pre>";
-                header("Location: error404");
+                header('Location: ' . App::$urlPath . '/error404');
             }
 
             $usuario = New Usuario($usuario_id);
             Session::set('usuario',$usuario);
             Session::set('logueado','S');
-            header("Location: usuarios/".$usuario_id);
+            View::render('web/usuario',compact('usuario'), 3);
         }
     }
 
+
+
+
     /**
-     * Método que controla la creación de un equipo
+     * Método que muestra el formulario para crear el Torneo
      */
-    public function crearEquipo(){
-        if (Session::has("usuario")) {
-            $usuario = Session::get('usuario');
-            $usuario_id = $usuario->getUsuarioID();
-
-            $inputs = Request::getData();
-
-            $nombre = $inputs['nombre'];
-
-            $equipo_id = Equipo::CrearEquipo($nombre, $usuario_id);
-
-            $files = Request::getFiles();
-
-            if (isset($files ['foto']['tmp_name']) && !empty($files ['foto']['tmp_name'])){
-                $archivo_tmp = $files ['foto']['tmp_name'];
-
-
-                $original = imagecreatefromjpeg($archivo_tmp);
-                $ancho = imagesx( $original );
-                $alto = imagesy( $original );
-
-                // Copia 200 px
-                $alto_max= 200;
-                $ancho_max = round( $ancho *  $alto_max / $alto );
-
-                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
-
-                imagecopyresampled( $copia, $original,
-                                    0,0, 0,0,
-                                $ancho_max,$alto_max,
-                                $ancho,$alto);
-
-                $nombre_nuevo = App::$rootPath . "/img/equipos/$equipo_id"."_logo_200.jpg";
-                imagejpeg( $copia , $nombre_nuevo);
-
-                // Copia 100 px
-                $alto_max= 100;
-                $ancho_max = round( $ancho *  $alto_max / $alto );
-
-                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
-                imagecopyresampled( $copia, $original,
-                                    0,0, 0,0,
-                                    $ancho_max,$alto_max,
-                                    $ancho,$alto);
-
-                $nombre_nuevo = App::$rootPath . "/img/equipos/$equipo_id"."_logo_100.jpg";
-                imagejpeg( $copia , $nombre_nuevo);
-
-            }
-            header('Location: ' . App::$urlPath . '/equipos/'.$equipo_id);
-
-        } else {
-            header('Location: ' . App::$urlPath . '/error404');
-        };
-
+    public function verCrearTorneo()
+    {
+        View::render('web/crear-torneo',[], 3);
     }
+
+
+
+
 
 
     /**

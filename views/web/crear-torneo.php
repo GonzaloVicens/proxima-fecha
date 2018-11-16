@@ -14,10 +14,10 @@ use Proyecto\Core\App;
             </div>
             <div class="col-md-6">
                 <h2 class="mt-5 mb-4 pfgreen">Crear <span class="font-weight-normal">Torneo o Liga</span></h2>
-                <form>
+                <form method='post' action='<?= App::$urlPath;?>/usuarios/crear-torneo' >
                     <div class="form-group">
                        <label for="nombre">Nombre Torneo / Liga</label>
-                       <input type="text" class="form-control" id="nombre" placeholder="Nombre del torneo">
+                       <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del torneo">
                     </div>
                     <div class="form-group">
                        <label for="deporte">Deporte</label>

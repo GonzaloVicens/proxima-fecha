@@ -5,18 +5,19 @@
 use Proyecto\Core\Route;
 
 Route::addRoute('GET' , '/'                             , 'HomeController@index');
-Route::addRoute('POST', '/'                             , 'UsuarioController@loguear');
 Route::addRoute('GET' , '/registrarse'                  , 'HomeController@registrarse');
-Route::addRoute('GET' , '/miusuario'                    , 'HomeController@miusuario');
 Route::addRoute('GET' , '/error404'                     , 'HomeController@error404');
+Route::addRoute('POST', '/'                             , 'UsuarioController@loguear');
 Route::addRoute('GET' , '/desloguear'                   , 'UsuarioController@desloguear');
 Route::addRoute('GET' , '/usuarios/{usuario_id}'        , 'UsuarioController@ver');
-Route::addRoute('POST', '/usuarios/crearEquipo'         , 'UsuarioController@crearEquipo');
-Route::addRoute('POST', '/registrar'                    , 'UsuarioController@registrar');
-Route::addRoute('GET' , '/equipos/{equipo_id}'          , 'EquipoController@verEquipo');
+Route::addRoute('POST', '/usuarios/registrar'           , 'UsuarioController@registrar');
+Route::addRoute('POST', '/usuarios/crear-equipo'        , 'EquipoController@registrar');
+Route::addRoute('GET' , '/usuarios/crear-torneo'        , 'UsuarioController@verCrearTorneo');
+Route::addRoute('POST', '/usuarios/crear-torneo'        , 'TorneoController@registrar');
+Route::addRoute('GET' , '/equipos/{equipo_id}'          , 'EquipoController@ver');
+Route::addRoute('POST', '/equipos/agregar-jugador'      , 'EquipoController@agregarJugador');
 Route::addRoute('GET' , '/equipos'                      , 'EquipoController@verEquipos');
-Route::addRoute('GET' , '/crear-torneo'                 , 'HomeController@crearTorneo');
-Route::addRoute('GET' , '/ver-torneo'                   , 'HomeController@verTorneo');
+Route::addRoute('GET' , '/torneos/{torneo_id}'          , 'TorneoController@ver');
 Route::addRoute('GET' , '/ver-proxima-fecha'            , 'HomeController@verProximaFecha');
 Route::addRoute('GET' , '/ver-fixture-completo'         , 'HomeController@verFixtureCompleto');
 Route::addRoute('GET' , '/editar-torneo'                , 'HomeController@editarTorneo');

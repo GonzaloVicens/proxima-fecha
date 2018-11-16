@@ -61,6 +61,13 @@ class Torneo
     }
 
 
+    public static function existeTorneo($torneo_id){
+        $query = "SELECT 'X' FROM TORNEOS WHERE TORNEO_ID = :torneo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $torneo_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
 
     public function setTorneo($torneo)
     {

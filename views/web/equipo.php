@@ -1,7 +1,7 @@
 <?php
 use Proyecto\Model\Equipo;
 use Proyecto\Session\Session;
-
+use Proyecto\Core\App;
 
 if (Equipo::existeEquipo($equipo_id)) {
 	$equipo = new Equipo($equipo_id);
@@ -140,7 +140,7 @@ if (Equipo::existeEquipo($equipo_id)) {
 							<a href='#' title='Volver' id='cruzCerrarAgregar'><span class='oculto'>Volver</span></a>
 						</div>
 						<div id='cuerpoAgregarCompanero'>
-							<form class='formRegistro' action="php/agregarJugador.php" method="post">
+							<form class='formRegistro' action="<?= App::$urlPath;?>/equipos/agregarJugador"  method="post">
 								<input type="hidden" name="equipo" value="<?php echo $equipo_id?>"/>
 								<label>Jugador<input id="jugador" type="text" name="jugador"/></label>
 								<input type="hidden" name="ajax" />

@@ -38,7 +38,7 @@ use Proyecto\Core\App;
 <div class="modal fade bd-example-modal-lg" id='modal_agregar_equipo' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form method='post' action='<?= App::$urlPath;?>/usuarios/crearEquipo' enctype="multipart/form-data">
+            <form method='post' action='<?= App::$urlPath;?>/usuarios/crear-equipo' enctype="multipart/form-data">
                 <div class="modal-header fondoHeader2 text-white">
                     <h5 class="modal-title">Crear Equipo</h5>
                     <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">

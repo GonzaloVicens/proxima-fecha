@@ -14,7 +14,7 @@ use Proyecto\Core\App;
             </div>
             <div class="col-md-6">
                 <h2 class="mt-5 mb-4 pfgreen">Registrarse</h2>
-                <form>
+                <form class='formRegistro' action="<?= App::$urlPath;?>/usuarios/registrar"  method="post">
                     <div class="form-group">
                        <label for="usuario">Usuario</label>
                        <input type="text" class="form-control" id="usuario" placeholder="Elige tu usuario">
