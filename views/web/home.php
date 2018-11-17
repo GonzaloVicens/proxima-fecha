@@ -8,6 +8,7 @@
  */
 
 use Proyecto\Core\App;
+use Proyecto\Session\Session;
 
 ?>
 <section class="pt-4 bg-image-full fondoFull img-fluid ">
@@ -37,6 +38,12 @@ use Proyecto\Core\App;
                 </div-->
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
+            <?php
+            if (Session::has('errorLogin')) {
+            echo("<h3> " . Session::get('errorLogin') . " </h3>");
+            Session::clearValue('errorLogin');
+            };
+            ?>
         </div>
     </div>
     </div>

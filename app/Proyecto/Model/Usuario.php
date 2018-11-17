@@ -234,7 +234,8 @@ class Usuario
             'apellido'    => ucfirst($vUsuario['apellido']),
             'email'       => $vUsuario['email'],
             'activo'      => '1',
-            'telefono'   => $vUsuario['telefono'],
+            //'telefono'   => $vUsuario['telefono'],
+            'telefono'   => null,
             'ultima_vez' => date("Y-m-d")
         ];
 

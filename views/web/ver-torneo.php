@@ -51,6 +51,9 @@ use Proyecto\Core\App;
                 <p class="d-none">
                     <button href="#" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</button>
                 </p>
+
+
+
             </div>
         </div>
     </div>

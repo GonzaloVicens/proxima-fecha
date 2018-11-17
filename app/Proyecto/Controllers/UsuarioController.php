@@ -34,7 +34,6 @@ class UsuarioController
         } else {
             $error = "No ha ingresado el usuario o la contraseña";
         }
-
         if ($error){
             Session::set('errorLogin', $error);
             Session::clearValue('usuario');
@@ -104,6 +103,7 @@ class UsuarioController
 
         // Si hay algún campo en error, vuelvo al formulario, indicando que hay errores;
         if ( !empty($formValidator->getCamposError()) ){
+            print_r($formValidator->getCamposError());
             Session::set("camposError",$formValidator->getCamposError());
             Session::set("campos",$formValidator->getCampos());
             header('Location: ' . App::$urlPath . '/');
