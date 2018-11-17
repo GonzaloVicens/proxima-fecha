@@ -24,9 +24,14 @@ class HomeController //implements JsonSerializable
 
     public function index()
     {
-
-        //$ultimaspub = Articulo::traerUltimosTres();
-        View::render('web/home', [], 1);
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            header('Location: ' . App::$urlPath . '/usuarios/' . $usuario_id );
+            View::render('web/usuario',compact('usuario','usuario_id'), 3);
+        } else {
+            View::render('web/home', [], 1);
+        };
     }
 
 
@@ -39,14 +44,6 @@ class HomeController //implements JsonSerializable
     {
         View::render('web/registrarse',[], 3);
     }
-
-
-    public function miusuario()
-    {
-        View::render('web/miusuario',[], 3);
-    }
-
-
 
 
     public function verProximaFecha()

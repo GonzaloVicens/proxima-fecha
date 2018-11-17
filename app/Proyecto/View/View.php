@@ -42,11 +42,6 @@ class View
             $contexto = 2;
         }
 
-        //Si voy al home con el usuario conectado no debería aparecer el "Registrarse".
-        if(($contexto == 1) &&  (Session::has("logueado"))){
-            $contexto = 3;
-        }
-
             // Incluimos el header.
         //require App::getViewsPath() . '/templates/header.php';
 
