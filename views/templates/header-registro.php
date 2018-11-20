@@ -14,16 +14,18 @@ use Proyecto\Core\App;
     <meta charset="utf-8">
     <link href="<?= App::$urlPath;?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/estilo.css" rel="stylesheet">
+    <link href="<?= App::$urlPath;?>/css/header_nav.css" rel="stylesheet">
+    <link href="<?= App::$urlPath;?>/css/miequipo.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>
-<header class="navbar navbar-expand flex-column flex-md-row pl-5 pr-5 shadow_bottom fondoHeader2">
+<header class="navbar navbar-expand flex-row shadow_bottom fondoHeader2">
     <div class="flexbox">
-        <a class="navbar-brand mr-0 mr-md-2" href="<?= App::$urlPath;?>/" aria-label="Bootstrap">
-            <img src="<?= App::$urlPath;?>/img/LOGOPF-Sin-Fondo.png" class="logoHeader2 mr-3" height="10">
+        <a class="navbar-brand mr-0 mr-3" href="<?= App::$urlPath;?>/" aria-label="Bootstrap">
+            <img src="<?= App::$urlPath;?>/img/LOGOPF-Sin-Fondo.png" class="logoHeader3 mr-3">
         </a>
     </div>
-    <div class="navbar-nav ml-md-auto text-light">
-        <a class="btn btn-outline-light btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="<?= App::$urlPath;?>/">VOLVER</a>
+    <div class="navbar-nav ml-auto text-light">
+        <a class="btn btn-outline-light d-inline-block ml-3" href="<?= App::$urlPath;?>/">VOLVER</a>
     </div>
 </header>

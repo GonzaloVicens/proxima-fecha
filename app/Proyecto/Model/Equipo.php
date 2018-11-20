@@ -167,7 +167,7 @@ class Equipo
 
     public function printJugadoresEnUL()
     {
-        echo"<ul>";
+        echo"<ul class='lista_jugadores list-group'>";
         $query = "SELECT A.JUGADOR_ID, B.NOMBRE , B.APELLIDO FROM JUGADORES A, USUARIOS B WHERE A.JUGADOR_ID = B.USUARIO_ID AND A.EQUIPO_ID = :equipo_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
@@ -187,7 +187,7 @@ class Equipo
             }
 
 
-            echo "<li><a href='../usuarios/".$datos['JUGADOR_ID']."' title='Ver'><img src='$rutaImagen' alt='Foto del Jugador " . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "'/></a><a href='../usuarios/".$datos['JUGADOR_ID']."' title='Ver'><span ".$idCapitan.">" . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "</span></a>".$boton ."</li>";
+            echo "<li class='li-listado-jugadores-img list-group-item'><a href='../usuarios/".$datos['JUGADOR_ID']."' title='Ver'><img src='$rutaImagen' alt='Foto del Jugador " . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "'/></a><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/". $datos['JUGADOR_ID'] ."' title='Ver'><span ".$idCapitan."></span><span class='nombre_apellido_jugador'>" . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "</span><span class='ml-3 font-italic colorGris2 hoverVerde'> ". $datos['JUGADOR_ID'] . "</span></a>". $boton ."</li>";
         }
         echo "</ul>";
     }

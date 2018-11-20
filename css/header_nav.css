@@ -1,0 +1,51 @@
+.logoHeader3 {
+  height: 40px; }
+
+nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav.userdropdown li a img {
+  width: 38px;
+  height: 38px;
+  margin-right: 10px; }
+nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 button.navbar-toggler {
+  padding: 4px 6px;
+  border-color: #18C25D; }
+  nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 button.navbar-toggler .hamburguer i {
+    cursor: pointer; }
+    nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 button.navbar-toggler .hamburguer i.fa-bars:before {
+      color: #FFCD5E; }
+
+@media (max-width: 991px) {
+  nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav.userdropdown {
+    margin-right: auto !important;
+    justify-content: flex-start; }
+    nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav.userdropdown img {
+      display: none; }
+    nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav.userdropdown a.nav-link {
+      position: relative;
+      display: inline-block; }
+      nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav.userdropdown a.nav-link.dropdown-toggle::after {
+        position: absolute;
+        top: 50%;
+        right: -20px;
+        display: block; } }
+@media (min-width: 992px) {
+  nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 {
+    height: 60px;
+    padding-top: 2px;
+    padding-bottom: 2px; }
+    nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item a.nav-link {
+      position: relative;
+      height: 60px;
+      line-height: 60px;
+      padding-top: 0;
+      padding-bottom: 0;
+      display: flex; }
+      nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item a.nav-link.dropdown-toggle::after {
+        position: absolute;
+        top: 50%;
+        right: -5%; }
+    nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav.userdropdown {
+      margin-left: auto; }
+      nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav.userdropdown a.nav-link {
+        margin-right: 20px; } }
+
+/*# sourceMappingURL=header_nav.css.map */

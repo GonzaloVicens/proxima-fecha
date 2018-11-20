@@ -1,0 +1,144 @@
+$col_naranja1:#FFCD5E;
+$col_verde1:#18C25D;
+
+.logoHeader3{
+    height: 40px;
+}
+
+nav {
+  &.navbar {
+    &.navbar-expand-lg {
+      &.navbar-white {
+        &.navbar-dark {
+          &.fondoHeader2 {
+            .navbar-nav {
+              &.userdropdown {
+                li{
+                  a{
+                    img{
+                      width: 38px;
+                      height: 38px;
+                      margin-right: 10px;
+                    }
+                  }
+                }
+              }
+            }
+
+            button{
+              &.navbar-toggler{
+                padding:4px 6px;
+                border-color: $col_verde1;
+                .hamburguer{
+
+                  i{
+                    cursor: pointer;
+                    &.fa-bars:before{
+                      color: $col_naranja1;
+
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 991px) {
+  nav {
+    &.navbar {
+      &.navbar-expand-lg {
+        &.navbar-white {
+          &.navbar-dark {
+            &.fondoHeader2 {
+
+              .navbar-nav{
+                &.userdropdown{
+
+                  margin-right: auto !important;
+                  justify-content: flex-start;
+                  img{
+                    display: none;
+                  }
+
+                  a {
+                    &.nav-link {
+                      position: relative;
+                      display: inline-block;
+
+                      &.dropdown-toggle::after {
+                        position: absolute;
+                        top: 50%;
+                        right: -20px;
+                        display: block;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  nav {
+    &.navbar {
+      &.navbar-expand-lg {
+        &.navbar-white {
+          &.navbar-dark {
+            &.fondoHeader2 {
+
+              height: 60px;
+              padding-top: 2px;
+              padding-bottom: 2px;
+
+              div.collapse.navbar-collapse {
+                ul {
+                  li.nav-item {
+                    a {
+                      &.nav-link {
+                        position: relative;
+                        height: 60px;
+                        line-height: 60px;
+                        padding-top: 0;
+                        padding-bottom: 0;
+                        display: flex;
+
+                        &.dropdown-toggle::after {
+                          position: absolute;
+                          top: 50%;
+                          right: -5%;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              .navbar-nav{
+                &.userdropdown{
+                    margin-left: auto;
+
+                    a{
+                      &.nav-link{
+                        margin-right: 20px;
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

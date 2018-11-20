@@ -1,0 +1,353 @@
+$col_naranja1:#FFCD5E;
+$col_verde1:#18C25D;
+$bgcol_verde5:#00CD5E;
+$bgcol_verde:#006B33;
+$bgcol_naranja:#FFA500;
+$col_gris5:#F9F9F9;
+$col_gris3:#eeeeee;
+
+section{
+  &.portada{
+    position: relative;
+    height: 220px;
+    div{
+      &.escudo_y_nombre{
+        position: absolute;
+        bottom: -10%;
+
+        img{
+          height: 180px;
+          width: 180px;
+        }
+      }
+    }
+
+  }
+}
+
+.main_miequipo{
+  .tabs_miequipo{
+    #nav-tab{
+      a{
+        &.nav-item{
+          &.nav-link{
+            &.active{
+              font-weight: 500;
+              color: $bgcol_verde;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content{
+    #nav-proximafecha{
+
+      &> div{
+        &.pf_miequipo{
+
+          border-bottom: 1px solid #DEE2E6;;
+          padding-bottom: 3.6em;
+          align-items: baseline;
+          justify-content: center;
+
+          .nombreEquipo{
+            width: 33%;
+            font-size: 1.3rem;
+          }
+
+          .vs{
+            width: 8%;
+            text-align: center;
+            font-weight: bold;
+            font-style: italic;
+            color:$bgcol_naranja;
+            font-size: 1.6em;
+            text-shadow: $bgcol_verde 1px 1px;
+            //border:1px solid red;
+          }
+          .escudoequipo{
+            //border:1px solid red;
+            width: 13%;
+            text-align: center;
+            img{
+              width: 100%;
+              //height: 100px;
+              border:1px solid $bgcol_verde;
+            }
+          }
+        }
+      }
+
+      .datospf_miequipo{
+        margin-top: .9em;
+        width: 100%;
+        li{
+          width: 33.3333%;
+          text-align: center;
+          font-weight: 500;
+          span{
+            font-weight: normal;
+          }
+        }
+      }
+    }
+
+    #nav-posiciones{
+      .posiciones_table {
+        overflow: hidden;
+        border-radius: 10px;
+        border: 1px solid #DEE2E6;
+        //margin-bottom: 10px;
+        width: 90%;
+
+        table{
+          width: 100%;
+          tr {
+
+            color: $bgcol_verde;
+            &:nth-child(even) {
+              background-color: $col_gris5;
+            }
+            border-bottom: 1px solid #DEE2E6;;
+            th {
+              font-weight: 500;
+
+              &:first-child {
+                text-align: left;
+              }
+            }
+
+            td,
+            th {
+              width: 7%;
+              padding: 8px;
+              text-align: center;
+            }
+
+            td {
+
+              &.nombre_tablaposiciones {
+                font-weight: 500;
+                color: $bgcol_verde;
+                width: 44%;
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.lista_jugadores{
+
+  width: 70%;
+  li{
+    &:nth-child(odd){
+      background-color: $col_gris5;
+    }
+    img{
+      border-radius:50%;
+      height: 50px;
+      width: 50px;
+      margin-right: 20px;
+    }
+
+    a{
+      text-decoration: none;
+      .nombre_apellido_jugador{
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.aside_miequipo{
+  h3,
+  h4,
+  h5{
+    &.text-white{
+      &.rounded{
+        background-color: $bgcol_verde5;
+        font-size: 1rem;
+      }
+    }
+  }
+  .table_resultado_container{
+      border-radius: 5px;
+      border:1px solid #DEE2E6;
+      margin-bottom: 10px;
+
+     .resultado-encuentro {
+        font-size: .9rem;
+        margin-bottom: 0;
+        tr{
+          td {
+            padding: 8px;
+            border:none;
+
+            &.marcador{
+              width: 40px;
+              padding-left: 3px;
+              padding-right: 3px;
+              background-color: $bgcol_verde5;
+              color: #ffffff;
+              overflow: hidden;
+            }
+          }
+        }
+     }
+  }
+  .table_container2{
+    width: 100%;
+  }
+}
+
+
+/*
+.logoHeader3{
+    height: 40px;
+}
+
+nav {
+  &.navbar {
+    &.navbar-expand-lg {
+      &.navbar-white {
+        &.navbar-dark {
+          &.fondoHeader2 {
+            .navbar-nav {
+              &.userdropdown {
+                li{
+                  a{
+                    img{
+                      width: 38px;
+                      height: 38px;
+                      margin-right: 10px;
+                    }
+                  }
+                }
+              }
+            }
+
+            button{
+              &.navbar-toggler{
+                padding:4px 6px;
+                border-color: $col_verde1;
+                .hamburguer{
+
+                  i{
+                    cursor: pointer;
+                    &.fa-bars:before{
+                      color: $col_naranja1;
+
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 991px) {
+  nav {
+    &.navbar {
+      &.navbar-expand-lg {
+        &.navbar-white {
+          &.navbar-dark {
+            &.fondoHeader2 {
+
+              .navbar-nav{
+                &.userdropdown{
+
+                  margin-right: auto !important;
+                  justify-content: flex-start;
+                  img{
+                    display: none;
+                  }
+
+                  a {
+                    &.nav-link {
+                      position: relative;
+                      display: inline-block;
+
+                      &.dropdown-toggle::after {
+                        position: absolute;
+                        top: 50%;
+                        right: -20px;
+                        display: block;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  nav {
+    &.navbar {
+      &.navbar-expand-lg {
+        &.navbar-white {
+          &.navbar-dark {
+            &.fondoHeader2 {
+
+              height: 60px;
+              padding-top: 2px;
+              padding-bottom: 2px;
+
+              div.collapse.navbar-collapse {
+                ul {
+                  li.nav-item {
+                    a {
+                      &.nav-link {
+                        position: relative;
+                        height: 60px;
+                        line-height: 60px;
+                        padding-top: 0;
+                        padding-bottom: 0;
+                        display: flex;
+
+                        &.dropdown-toggle::after {
+                          position: absolute;
+                          top: 50%;
+                          right: -5%;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              .navbar-nav{
+                &.userdropdown{
+                    margin-left: auto;
+
+                    a{
+                      &.nav-link{
+                        margin-right: 20px;
+                      }
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+*/
