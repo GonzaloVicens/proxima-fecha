@@ -18,8 +18,68 @@
   background-size: cover;
   height: 350px; }
 
-.fondoFormHome {
-  background-color: rgba(0, 156, 88, 0.9); }
+@media (max-width: 768px) {
+  .container-form-home {
+    width: 100%; } }
+.container-form-home {
+  width: 85%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff; }
+  .container-form-home form {
+    padding: 0;
+    height: 312px;
+    box-shadow: -3px -4px 3px #BDBDBD inset; }
+    .container-form-home form .form-header {
+      padding: 12px 24px;
+      margin-bottom: 6px;
+      background: #0b8a44;
+      background: -moz-linear-gradient(left, #0b8a44 0%, #08ce64 100%);
+      background: -webkit-linear-gradient(left, #0b8a44 0%, #08ce64 100%);
+      background: -o-linear-gradient(left, #0b8a44 0%, #08ce64 100%);
+      background: -ms-linear-gradient(left, #0b8a44 0%, #08ce64 100%);
+      background: linear-gradient(to right, #0b8a44 0%, #08ce64 100%); }
+      .container-form-home form .form-header p {
+        margin: 0;
+        color: #ffffff;
+        font-weight: 400;
+        text-align: left; }
+    .container-form-home form .form-container {
+      padding: 12px 24px 16px; }
+      .container-form-home form .form-container div.form-footer div.rta_fail_login .div_rta {
+        height: 46px; }
+        .container-form-home form .form-container div.form-footer div.rta_fail_login .div_rta p {
+          color: #ff0000;
+          height: 46px;
+          line-height: 46px; }
+      .container-form-home form .form-container div.form-footer div.rta_fail_login .d-flex.justify-content-around a {
+        color: #909090;
+        font-size: .8em; }
+    .container-form-home form button {
+      background-color: #00CD5E;
+      border: none;
+      color: #ffffff;
+      width: 100%; }
+      .container-form-home form button:hover {
+        background-color: #006B33;
+        color: white; }
+      .container-form-home form button:active, .container-form-home form button:focus {
+        background-color: #006B33 !important;
+        color: white; }
+    .container-form-home form .form-group {
+      margin-bottom: 1.4em;
+      margin-top: .8em; }
+      .container-form-home form .form-group label {
+        color: #FFA500;
+        font-weight: 400; }
+      .container-form-home form .form-group input.form-control {
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #006B33;
+        padding: 0px;
+        font-size: .9em;
+        color: grey; }
 
 .alto140px {
   height: 140px; }

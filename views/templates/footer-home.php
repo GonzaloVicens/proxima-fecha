@@ -114,6 +114,7 @@ use Proyecto\Core\App;
 </div-->
 </body>
 <script src="<?= App::$urlPath;?>/js/jquery-3.3.1.min.js"></script>
+<script src="<?= App::$urlPath;?>/js/login-form.js"></script>
 <script src="<?= App::$urlPath;?>/bootstrap/js/bootstrap.min.js"></script>
 <script>
 

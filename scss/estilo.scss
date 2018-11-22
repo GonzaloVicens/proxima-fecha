@@ -50,10 +50,120 @@ $font-size-1-3rem: 1.3rem;
   height: 350px;
 }
 
-.fondoFormHome {
-  background-color: rgba(0, 156, 88, 0.9);
+@media (max-width: 768px) {
+
+  .container-form-home {
+
+    width: 100%;
+
+  }
 }
 
+.container-form-home{
+
+  width: 85%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: $col_blanco;
+  //border: 1px solid $bgcol_verde;
+  .fondoFormHome {
+      //background-color: rgba(0, 156, 88, 0.9);
+   }
+  form{
+
+    padding: 0;
+    height: 312px;
+    box-shadow: -3px -4px 3px $col_gris1 inset;
+
+    .form-header{
+      padding:12px 24px;
+      margin-bottom: 6px;
+      //background-color: $bgcol_verde;
+      background: rgba(11,138,68,1);
+      background: -moz-linear-gradient(left, rgba(11,138,68,1) 0%, rgba(8,206,100,1) 100%);
+      background: -webkit-linear-gradient(left, rgba(11,138,68,1) 0%, rgba(8,206,100,1) 100%);
+      background: -o-linear-gradient(left, rgba(11,138,68,1) 0%, rgba(8,206,100,1) 100%);
+      background: -ms-linear-gradient(left, rgba(11,138,68,1) 0%, rgba(8,206,100,1) 100%);
+      background: linear-gradient(to right, rgba(11,138,68,1) 0%, rgba(8,206,100,1) 100%);
+        p{
+          margin: 0;
+          color: $col_blanco;
+          //color: $bgcol_verde;
+          font-weight: 400;
+          text-align: left;
+        }
+    }
+
+    .form-container{
+      padding: 12px 24px 16px;
+
+      div.form-footer{
+
+        div.rta_fail_login{
+
+        .div_rta{
+            height: 46px;
+            p{
+              color: #ff0000;
+              //margin-top: 10px;
+              height: 46px;
+              line-height: 46px;
+            }
+        }
+
+          .d-flex.justify-content-around{
+
+            a{
+              color: $col_gris2;
+              font-size: .8em;
+            }
+          }
+        }
+      }
+    }
+
+
+    button{
+      background-color: $bgcol_verde5;
+      //border: 1px solid $bgcol_verde;
+      border: none;
+      color: $col_blanco;
+      width: 100%;
+      &:hover{
+        background-color: $bgcol_verde;
+        color: white;
+      }
+
+      &:active,
+      &:focus{
+        background-color: $bgcol_verde !important;
+        color: white;
+      }
+    }
+
+    .form-group{
+      margin-bottom: 1.4em;
+      margin-top: .8em;
+      label{
+        //display: none;
+        color: $bgcol_naranja;
+        font-weight: 400;
+      }
+      input{
+        &.form-control{
+          background-color: transparent;
+          border: none;
+          border-radius: 0;
+          border-bottom: 1px solid $bgcol_verde;
+          padding: 0px;
+          font-size: .9em;
+          color: grey
+
+        }
+      }
+    }
+  }
+}
 .alto140px {
   height: 140px;
 }
