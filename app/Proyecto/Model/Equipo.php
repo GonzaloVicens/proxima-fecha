@@ -11,7 +11,7 @@ use Proyecto\Session\Session;
 class Equipo
 {
     /**
-     * @var string
+     * @var integer
      */
     protected $equipo_id;
     /**

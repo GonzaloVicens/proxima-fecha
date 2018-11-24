@@ -7,6 +7,7 @@
  */
 use Proyecto\Core\App;
 use Proyecto\Model\Deporte;
+use Proyecto\Model\Sede;
 use Proyecto\Model\TipoTorneo;
 ?>
 <main class="py-4 mb-4">
@@ -42,9 +43,10 @@ use Proyecto\Model\TipoTorneo;
                         <input type="text" name='fechainicio' class="form-control" id="fechainicio">
                     </div>
                     <div class="form-group">
-                        <!-- este campo no sería obligatorio - y no revisé en el DER si existe este dato, si no existe sacar este bloque -->
-                        <label for="fechafinalizacion">Fecha Finalización</label>
-                        <input type="text" name='fechafinalizacion' class="form-control" id="fechafinalizacion">
+                        <label for="sede">Sede</label>
+                        <select name="sede" class="form-control">
+                            <?=Sede::printOptionsSedes()?>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-lg btn-outline-success">Crear</button>
                     <!--button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button-->
