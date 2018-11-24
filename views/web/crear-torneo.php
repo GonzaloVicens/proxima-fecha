@@ -39,8 +39,8 @@ use Proyecto\Model\TipoTorneo;
                         <input type="text" name='cantidad' class="form-control" id="cantidad"><!--No utilizo type='number' porque no todos los browser lo toman Ok -->
                     </div>
                     <div class="form-group">
-                        <label for="fechainicio">Fecha de Inicio</label>
-                        <input type="text" name='fechainicio' class="form-control" id="fechainicio">
+                        <label for="fechainicio">Fecha de Inicio (DD/MM/YYYY) </label>
+                        <input type="date" name='fechaInicio' class="form-control" id="fechainicio">
                     </div>
                     <div class="form-group">
                         <label for="sede">Sede</label>

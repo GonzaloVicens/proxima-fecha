@@ -43,8 +43,20 @@ class Usuario
     protected $telefono;
     protected $ultimaVez;
     protected $password;
+
+    /**
+     * @var array of Equipo
+     */
     protected $equipos;
+
+    /**
+     * @var array of Torneo
+     */
     protected $torneos;
+
+    /**
+     * @var array of Torneo
+     */
     protected $torneosPropios;
 
 
@@ -103,6 +115,7 @@ class Usuario
             }
         }
     }
+
     public function setEquipo($equipo)
     {
         $this->equipos[] = New Equipo($equipo);
@@ -131,7 +144,7 @@ class Usuario
 
     public function setTorneosPropios(){
         $this->torneosPropios = [];
-        $query = "SELECT DISTINCT A.TORNEO_ID FROM TORNEOS A, ORGANIZADORES B WHERE A.TORNEO_ID = B.TORNEO_ID AND B.ACTIVO = 1 AND B.ORGANIZADOR_ID =  :usuario_id ";
+        $query = "SELECT DISTINCT TORNEO_ID FROM ORGANIZADORES  WHERE ACTIVO = 1 AND ORGANIZADOR_ID =  :usuario_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $this->usuario_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {

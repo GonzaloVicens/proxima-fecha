@@ -34,7 +34,12 @@ class TorneoController
             $torneo = new Torneo($torneo_id);
             $torneo->setEquipos();
             Session::set("torneo_idActual",$torneo->getTorneoId());
-            View::render('web/ver-torneo',compact('torneo','torneo_id'), 3);
+            if (Session::has("usuario")) {
+                $usuario = Session::get('usuario');
+                View::render('web/ver-torneo',compact('torneo','torneo_id', 'usuario'), 3);
+            }else {
+                View::render('web/ver-torneo',compact('torneo','torneo_id'), 3);
+            }
         } else{
             View::render('web/error404',[], 2);
         };
@@ -53,48 +58,20 @@ class TorneoController
 
             $nombre = $inputs['nombre'];
             $deporte = $inputs['deporte'];
+            $tipoTorneo = $inputs['tipoTorneo'];
+            $cantidad = $inputs['cantidad'];
+            $fechaInicio = $inputs['fechaInicio'];
+            $sedeId = $inputs['sede'];
 
-//            $torneo_id = Torneo::CrearTorneo($nombre, $deporte , $usuario_id);
+            $torneo_id = Torneo::CrearTorneo($nombre , $deporte, $tipoTorneo, $cantidad, $fechaInicio, $sedeId, $usuario_id);
+            header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
 
-            //header('Location: ' . App::$urlPath . '/torneos/'.$torneo_id);
-            header('Location: ' . App::$urlPath . '/torneos/1');
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         };
     }
 
 
-    /**
-     * Método que agrega un jugador en el equipo
-     *
-    public function agregarJugador()
-    {
-        $inputs = Request::getData();
-
-        if (isset($inputs["equipo"]) && !empty($inputs ["equipo"]) ){
-            $torneo_id = $inputs ['equipo'];
-            $equipo = new Equipo($torneo_id);
-
-            if (isset($inputs ["jugador"]) && !empty($inputs ["jugador"])) {
-
-                $jugador_id = $inputs ['jugador'];
-
-                if ($equipo->existeJugador($jugador_id)) {
-                    Session::set("errorAgregarJugador", $jugador_id . " ya es un jugador del equipo");
-                } else {
-                    if (Usuario::existeUsuario($jugador_id)) {
-                        $equipo->insertarJugador($jugador_id);
-                        Session::clearValue("errorAgregarJugador");
-                    } else {
-                        Session::set("errorAgregarJugador", $jugador_id . " no existe en el sistema");
-                    }
-                };
-            } else {
-                Session::set("errorAgregarJugador",  " Ingrese un jugador");
-            }
-        }
-        View::render('web/equipo',compact('equipo','torneo_id'), 3);
-    }
 
     /**
      * Método que ordena el Insert de un mensaje si hay datos, y vuelve a la ubicación original;

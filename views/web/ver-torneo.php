@@ -12,17 +12,17 @@ use Proyecto\Core\App;
         <div class="row">
             <div class="col-md-10">
                 <!-- El h2 debajo tendría que tener contenido dinámico, según se trate de Torneo o Liga-->
-                <h3 class="mt-4 mb-2 colorGris2 font-weight-normal "><i class="fas fa-trophy"></i> Torneo</h3>
+                <h3 class="mt-4 mb-2 colorGris2 font-weight-normal "><i class="fas fa-trophy"></i><?= $torneo->getDescrTipoTorneo() ?></h3>
             </div>
             <div class="col-md-2">
                 <!--button class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</button-->
             </div>
             <div class="col-md-8">
                 <!-- Nombre de Torneo Debajo, tendría que ser dinámico -->
-                <h2 class="mb-4 pfgreen h1">Torneo Federal de Arroyo Dulce</h2>
-                <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha de Inicio: <span>14/12/18</span></p>
-                <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha Finalización: <span class="font-italic">No definida aún</span></p>
-                <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span>8</span></p>
+                <h2 class="mb-4 pfgreen h1"><?= $torneo->getNombre() ?></h2>
+                <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha de Inicio: <span><?= $torneo->getFechaInicio() ?></span></p>
+                <p class="text-muted"><i class="far fa-calendar-alt"></i> Sede: <span class="font-italic"><?= $torneo->getDescrSede() ?></span></p>
+                <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span><?= $torneo->getCantidadEquipos() ?></span></p>
                 <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
                 <!-- Listado de Equipos que Ya Participan Debajo, tendría que ser dinámico -->
                 <ul>

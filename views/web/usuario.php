@@ -59,7 +59,7 @@ if (Usuario::existeUsuario($usuario_id)) {
                             <?php
                             if($usuario->tieneTorneoPropio()){
                                 foreach ($usuario->getTorneosPropios() as $torneo) {
-                                    echo "<li class='text-secondary'><a class='negrita' href='../torneos/".$torneo->getTorneoID() ."' title='Ver Torneo'>" . $torneo->getNombre()  ."</a></li>";
+                                    echo "<li class='text-secondary'><a class='negrita' href='../torneos/" . $torneo->getTorneoID() ."' title='Ver Torneo'>" .   $torneo->getNombre()  ."</a></li>";
                                 }
                             }else{
                                 echo "<li class='text-secondary'>No ha creado ningún torneo</li>";

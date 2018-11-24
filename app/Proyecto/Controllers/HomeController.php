@@ -27,7 +27,6 @@ class HomeController //implements JsonSerializable
         if (Session::has("usuario")) {
             $usuario = Session::get('usuario');
             $usuario_id = $usuario->getUsuarioID();
-            header('Location: ' . App::$urlPath . '/usuarios/' . $usuario_id );
             View::render('web/usuario',compact('usuario','usuario_id'), 3);
         } else {
             View::render('web/home', [], 1);

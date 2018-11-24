@@ -66,7 +66,7 @@ class TipoTorneo
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            echo "<div><input type='radio' name='tipo' value='".$datos['TIPO_TORNEO_ID']."' id='tipoTorneo".$datos['TIPO_TORNEO_ID']."'> <label for='tipoTorneo".$datos['TIPO_TORNEO_ID']."'>". $datos['DESCRIPCION']."</label></div>";
+            echo "<div><input type='radio' name='tipoTorneo' value='".$datos['TIPO_TORNEO_ID']."' id='tipoTorneo".$datos['TIPO_TORNEO_ID']."'> <label for='tipoTorneo".$datos['TIPO_TORNEO_ID']."'>". $datos['DESCRIPCION']."</label></div>";
         }       ;
     }
 }

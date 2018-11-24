@@ -2,6 +2,7 @@
 namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
+use Proyecto\Exceptions\TorneoNoGrabadoException;
 
 
 /**
@@ -47,6 +48,37 @@ class Torneo
      */
     protected $equipos;
 
+    /**
+     * @var array of Usuario;
+     */
+    protected $organizadores;
+
+
+    /**
+     * @return int
+     */
+    public function getCantidadEquipos()
+    {
+        return $this->cantidad_equipos;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDeporteId()
+    {
+        return $this->deporte_id;
+    }
+
+    /**
+     * @param int $deporte_id
+     */
+    public function setDeporteId($deporte_id)
+    {
+        $this->deporte_id = $deporte_id;
+    }
+
+
 
 
     /**
@@ -85,8 +117,42 @@ class Torneo
             $this->sede_id= $datos['SEDE_ID'];
         };
         $this->equipos = [];
+        $this->organizadores = [];
     }
 
+
+    public static function CrearTorneo($nombreParam , $deporteId, $tipoTorneoId, $cantidadEquipos, $fechaInicio, $sedeId, $organizador_id){
+
+        if (!$sedeId) {
+            $sedeId = 1;
+        }
+        $torneo= [
+            'nombre' => $nombreParam,
+            'deporte_id'   =>  $deporteId,
+            'tipo_torneo_id'   =>  $tipoTorneoId,
+            'cantidad_equipos'   =>  $cantidadEquipos,
+            'fecha_inicio'   =>  $fechaInicio,
+            'sede_id'   =>  $sedeId
+        ];
+
+        $script = "INSERT INTO TORNEOS VALUES (null, :nombre, :deporte_id, :tipo_torneo_id, :cantidad_equipos, STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'), :sede_id)";
+        $stmt = DBConnection::getStatement($script );
+        if($stmt->execute($torneo)) {
+            $torneoID = DBConnection::getConnection()->lastInsertId();
+
+            $organizador= [
+                'torneo_id' => $torneoID,
+                'organizador_id'   =>  $organizador_id
+            ];
+            $script = "INSERT INTO ORGANIZADORES VALUES (:torneo_id, :organizador_id, 1)";
+            $stmt = DBConnection::getStatement($script );
+            $stmt->execute($organizador);
+
+            return $torneoID;
+        } else {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        }
+    }
 
     public function setEquipos()
     {
@@ -108,6 +174,26 @@ class Torneo
 
     public function getNombre(){
         return $this->nombre;
+    }
+
+    /**
+    * @return date
+    */
+    public function getFechaInicio()
+    {
+        return $this->fecha_inicio;
+    }
+
+
+    public function getDescrTipoTorneo(){
+        $tipoTorneo = new TipoTorneo($this->tipo_torneo_id);
+        return $tipoTorneo->getDescripcion();
+    }
+
+    public function getDescrSede()
+    {
+        $sede = new Sede($this->sede_id);
+        return $sede->getNombre();
     }
 
     public function printTabla($equipoID){
