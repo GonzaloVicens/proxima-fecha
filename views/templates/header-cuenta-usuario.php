@@ -10,6 +10,16 @@ use Proyecto\Core\App;
 use Proyecto\Model\Usuario;
 use Proyecto\Session\Session;
 
+if (Session::has('logueado') && Session::get('logueado')=='S') {
+    $usuarioLogueado = true;
+    if (Session::has('usuario')){
+        $usuario = Session::get('usuario');
+    };
+}else{
+    $usuarioLogueado = false;
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>

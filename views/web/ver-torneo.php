@@ -6,6 +6,13 @@
  * Time: 02:47 AM
  */
 use Proyecto\Core\App;
+
+use Proyecto\Model\Torneo;
+use Proyecto\Session\Session;
+
+if (Session::has('torneo')){
+    $torneo = Session::get('torneo');
+}
 ?>
 <main class="py-4 mb-4">
     <div class="container">
@@ -23,16 +30,17 @@ use Proyecto\Core\App;
                 <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha de Inicio: <span><?= $torneo->getFechaInicio() ?></span></p>
                 <p class="text-muted"><i class="far fa-calendar-alt"></i> Sede: <span class="font-italic"><?= $torneo->getDescrSede() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span><?= $torneo->getCantidadEquipos() ?></span></p>
+
+            <?php if ( $torneo->tieneEquipos() ){ ?>
                 <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
-                <!-- Listado de Equipos que Ya Participan Debajo, tendría que ser dinámico -->
                 <ul>
-                    <li>Cambaceres de Don Torcuato</li>
-                    <li>La Runfla de Pagani</li>
-                    <li>Los Messi</li>
-                    <li>Joya Nunca taxi</li>
+                    <?= $torneo->printEquiposEnLi() ?>
                 </ul>
                 <!-- Agregar clase d-none o d-block de acuerdo a si quedan equipos por agregar o no -->
-                <p class="text-muted font-italic d-block">Resta agregar 4 equipos aún</p>
+                <?php }
+                if ($torneo->getLugaresLibres() > 0 ){ ?>
+                <p class="text-muted font-italic d-block">Resta agregar <?= $torneo->getLugaresLibres() ?> equipos aún</p>
+                <?php } ?>
             </div>
             <div class="col-md-4">
                 <h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>

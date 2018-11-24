@@ -220,5 +220,17 @@ class Torneo
     }
 
 
+    public  function printEquiposEnLi(){
+        foreach ($this->equipos as $equipo) {
+             echo "<li>" . $equipo->getNombre()  . "</li>";
+        }
+    }
 
+    public function tieneEquipos(){
+        return !empty($this->equipos[0]);
+    }
+
+    public function getLugaresLibres(){
+        return $this->cantidad_equipos - count($this->equipos);
+    }
 }

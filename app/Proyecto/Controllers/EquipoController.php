@@ -18,7 +18,7 @@ class EquipoController
      */
     public function verEquipos()
     {
-        View::render('web/equipos',[], 3);
+        View::render('web/ver-equipos',[], 3);
     }
 
 
@@ -38,7 +38,7 @@ class EquipoController
             if (Session::has("usuario")) {
                 $usuario = Session::get('usuario');
             };
-            View::render('web/equipo',compact('equipo','equipo_id','usuario'), 3);
+            View::render('web/ver-equipo',compact('equipo','equipo_id','usuario'), 3);
         } else{
             View::render('web/error404',[], 2);
         };
@@ -133,7 +133,7 @@ class EquipoController
                 Session::set("errorAgregarJugador",  " Ingrese un jugador");
             }
         }
-        View::render('web/equipo',compact('equipo','equipo_id'), 3);
+        View::render('web/ver-equipo',compact('equipo','equipo_id'), 3);
     }
 
     /**

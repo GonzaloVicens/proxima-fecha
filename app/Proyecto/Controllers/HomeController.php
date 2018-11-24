@@ -11,12 +11,6 @@ namespace Proyecto\Controllers;
 use Proyecto\View\View;
 use Proyecto\Session\Session;
 
-use Proyecto\Auth\Autenticar;
-use Proyecto\Core\App;
-use Proyecto\Model\Mensaje;
-//use Proyecto\Model\Alimento;
-//use Proyecto\Model\Articulo;
-//use \JsonSerializable;
 
 class HomeController //implements JsonSerializable
 {
@@ -28,7 +22,7 @@ class HomeController //implements JsonSerializable
             $usuario = Session::get('usuario');
             $usuario_id = $usuario->getUsuarioID();
 
-            View::render('web/usuario',compact('usuario','usuario_id'), 3);
+            View::render('web/ver-usuario',compact('usuario','usuario_id'), 3);
         } else {
             View::render('web/home', [], 1);
         };
@@ -43,30 +37,6 @@ class HomeController //implements JsonSerializable
     public function registrarse()
     {
         View::render('web/registrarse',[], 3);
-    }
-
-
-    public function verProximaFecha()
-    {
-        View::render('web/ver-proxima-fecha',[], 3);
-    }
-
-
-    public function verFixtureCompleto()
-    {
-        View::render('web/ver-fixture-completo',[], 3);
-    }
-
-
-    public function agregarEquipos()
-    {
-        View::render('web/agregar-equipos',[], 3);
-    }
-
-
-    public function editarTorneo()
-    {
-        View::render('web/editar-torneo',[], 3);
     }
 
 

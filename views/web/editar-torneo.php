@@ -6,6 +6,10 @@
  * Time: 02:47 AM
  */
 use Proyecto\Core\App;
+
+if (Session::has('torneo')){
+    $torneo = Session::get('torneo');
+}
 ?>
 <main class="py-4 mb-4">
     <div class="container">

@@ -16,10 +16,10 @@ Route::addRoute('GET' , '/equipos/{equipo_id}'          , 'EquipoController@ver'
 Route::addRoute('POST', '/equipos/agregar-jugador'      , 'EquipoController@agregarJugador');
 Route::addRoute('GET' , '/equipos'                      , 'EquipoController@verEquipos');
 Route::addRoute('GET' , '/torneos/{torneo_id}'          , 'TorneoController@ver');
-Route::addRoute('GET' , '/ver-proxima-fecha'            , 'HomeController@verProximaFecha');
-Route::addRoute('GET' , '/ver-fixture-completo'         , 'HomeController@verFixtureCompleto');
-Route::addRoute('GET' , '/editar-torneo'                , 'HomeController@editarTorneo');
-Route::addRoute('GET' , '/agregar-equipos'              , 'HomeController@agregarEquipos');
+Route::addRoute('GET' , '/ver-proxima-fecha'            , 'TorneoController@verProximaFecha');
+Route::addRoute('GET' , '/ver-fixture-completo'         , 'TorneoController@verFixtureCompleto');
+Route::addRoute('GET' , '/editar-torneo'                , 'TorneoController@editarTorneo');
+Route::addRoute('GET' , '/agregar-equipos'              , 'TorneoController@agregarEquipos');
 Route::addRoute('GET' , '/registrarse'                  , 'HomeController@registrarse');
 Route::addRoute('GET' , '/error404'                     , 'HomeController@error404');
 Route::addRoute('GET' , '/{sarasa}'                     , 'HomeController@error404');

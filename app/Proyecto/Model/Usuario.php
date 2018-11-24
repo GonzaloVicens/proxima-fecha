@@ -321,7 +321,7 @@ class Usuario
      * @param $amigo_id
      * @return mixed
      */
-    public function esAmigoDe ($amigo_id){
+        public function esAmigoDe ($amigo_id){
         $query = "SELECT 'X' FROM AMIGOS WHERE (USUARIO_ID = :usuario_id AND AMIGO_ID = :amigo_id) OR (USUARIO_ID = :amigo_id AND AMIGO_ID = :usuario_id)";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $this->usuario_id, 'amigo_id' => $amigo_id]);

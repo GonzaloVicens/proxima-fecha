@@ -74,7 +74,7 @@ class UsuarioController
         if ($usuario_id ){
             if (Usuario::existeUsuario($usuario_id)) {
                 $usuario = new Usuario($usuario_id);
-                View::render('web/usuario',compact('usuario','usuario_id'), 3);
+                View::render('web/ver-usuario',compact('usuario','usuario_id'), 3);
             } else{
                 header('Location: ' . App::$urlPath . '/error404');
             };
@@ -82,7 +82,7 @@ class UsuarioController
             if (Session::has("usuario")) {
                 $usuario = Session::get('usuario');
                 $usuario_id = $usuario->getUsuarioID();
-                View::render('web/usuario',compact('usuario','usuario_id'), 3);
+                View::render('web/ver-usuario',compact('usuario','usuario_id'), 3);
             } else {
                 header('Location: ' . App::$urlPath . '/error404');
             };
@@ -123,7 +123,7 @@ class UsuarioController
             $usuario = New Usuario($usuario_id);
             Session::set('usuario',$usuario);
             Session::set('logueado','S');
-            View::render('web/usuario',compact('usuario','usuario_id'), 3);
+            View::render('web/ver-usuario',compact('usuario','usuario_id'), 3);
         }
     }
 

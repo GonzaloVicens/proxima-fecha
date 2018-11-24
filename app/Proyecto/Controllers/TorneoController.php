@@ -33,13 +33,8 @@ class TorneoController
         if (Torneo::existeTorneo($torneo_id)) {
             $torneo = new Torneo($torneo_id);
             $torneo->setEquipos();
-            Session::set("torneo_idActual",$torneo->getTorneoId());
-            if (Session::has("usuario")) {
-                $usuario = Session::get('usuario');
-                View::render('web/ver-torneo',compact('torneo','torneo_id', 'usuario'), 3);
-            }else {
-                View::render('web/ver-torneo',compact('torneo','torneo_id'), 3);
-            }
+            Session::set("torneo",$torneo);
+            View::render('web/ver-torneo',[], 3);
         } else{
             View::render('web/error404',[], 2);
         };
@@ -65,6 +60,59 @@ class TorneoController
 
             $torneo_id = Torneo::CrearTorneo($nombre , $deporte, $tipoTorneo, $cantidad, $fechaInicio, $sedeId, $usuario_id);
             header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
+
+
+    public function verProximaFecha()
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            View::render('web/ver-proxima-fecha',compact('usuario','usuario_id'), 3);
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
+
+
+    public function verFixtureCompleto()
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            View::render('web/ver-fixture-completo',compact('usuario','usuario_id'), 3);
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+
+    }
+
+
+    public function agregarEquipos()
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            View::render('web/agregar-equipos',compact('usuario','usuario_id'), 3);
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
+
+
+    public function editarTorneo()
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            View::render('web/editar-torneo',compact('usuario','usuario_id'), 3);
 
         } else {
             header('Location: ' . App::$urlPath . '/error404');
