@@ -4,9 +4,10 @@
 
 use Proyecto\Core\Route;
 
-Route::addRoute('GET' , '/'                             , 'HomeController@index');
 Route::addRoute('GET' , '/registrarse'                  , 'HomeController@registrarse');
 Route::addRoute('GET' , '/error404'                     , 'HomeController@error404');
+Route::addRoute('GET' , '/{sarasa}'                     , 'HomeController@error404');
+Route::addRoute('GET' , '/'                             , 'HomeController@index');
 Route::addRoute('POST', '/'                             , 'UsuarioController@loguear');
 Route::addRoute('GET' , '/desloguear'                   , 'UsuarioController@desloguear');
 Route::addRoute('GET' , '/usuarios/{usuario_id}'        , 'UsuarioController@ver');

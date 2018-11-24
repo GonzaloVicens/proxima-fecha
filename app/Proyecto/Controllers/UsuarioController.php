@@ -123,7 +123,7 @@ class UsuarioController
             $usuario = New Usuario($usuario_id);
             Session::set('usuario',$usuario);
             Session::set('logueado','S');
-            View::render('web/usuario',compact('usuario'), 3);
+            View::render('web/usuario',compact('usuario','usuario_id'), 3);
         }
     }
 
@@ -135,7 +135,14 @@ class UsuarioController
      */
     public function verCrearTorneo()
     {
-        View::render('web/crear-torneo',[], 3);
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            View::render('web/crear-torneo',compact('usuario','usuario_id'), 3);
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+
     }
 
 
