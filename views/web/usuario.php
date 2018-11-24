@@ -8,7 +8,6 @@
 use Proyecto\Core\App;
 use Proyecto\Model\Usuario;
 use Proyecto\Session\Session;
-
 if (Usuario::existeUsuario($usuario_id)) {
 ?>
 <main class="py-4 mb-4">
@@ -99,7 +98,7 @@ if (Usuario::existeUsuario($usuario_id)) {
 </main>
 <?php
 } else {
-    header("Location: /error404");
+    header("Location: error404");
 }
 ?>
 

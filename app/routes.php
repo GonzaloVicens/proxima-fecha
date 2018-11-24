@@ -22,6 +22,7 @@ Route::addRoute('GET' , '/editar-torneo'                , 'HomeController@editar
 Route::addRoute('GET' , '/agregar-equipos'              , 'HomeController@agregarEquipos');
 Route::addRoute('GET' , '/registrarse'                  , 'HomeController@registrarse');
 Route::addRoute('GET' , '/error404'                     , 'HomeController@error404');
+Route::addRoute('GET' , '/{sarasa}'                     , 'HomeController@error404');
 
 
 
