@@ -6,6 +6,8 @@
  * Time: 02:47 AM
  */
 use Proyecto\Core\App;
+use Proyecto\Model\Deporte;
+use Proyecto\Model\TipoTorneo;
 ?>
 <main class="py-4 mb-4">
     <div class="container">
@@ -22,23 +24,14 @@ use Proyecto\Core\App;
                     <div class="form-group">
                        <label for="deporte">Deporte</label>
                        <select name="deporte" class="form-control">
-                           <option value="1">Futbol</option>
-                           <option value="2">Básquet</option>
-                           <option value="3">Tenis</option>
-                           <option value="4">Voley</option>
-                           <option value="5">Hockey</option>
-                           <option value="6">Handball</option>
+                        <?=Deporte::printOptionsDeportes()?>
                        </select>
                         <!--input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingresá tu nombre"-->
                     </div>
                     <div class="form-group">
                         <label>Tipo de Competición</label><br>
-                         <div>
-                            <input type="radio" name='tipo' value='t' id="torneo"> <label for="torneo">Torneo</label>
-                         </div>
-                        <div>
-                            <input type="radio" name='tipo' value='l' id="liga"> <label for="liga">Liga</label>
-                        </div>
+                        <?=TipoTorneo::printRadiosTiposTorneos()?>
+
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad Equipos</label>
