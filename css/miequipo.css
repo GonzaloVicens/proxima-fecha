@@ -8,6 +8,16 @@ section.portada {
       height: 180px;
       width: 180px; }
 
+.main_miequipo #cambiar_fotoportada {
+  float: right;
+  margin: 10px 20px 0 0;
+  text-align: center; }
+  .main_miequipo #cambiar_fotoportada a {
+    font-size: .9rem;
+    text-decoration: none; }
+  .main_miequipo #cambiar_fotoportada i.fa-camera {
+    font-size: 1rem;
+    margin-right: 2px; }
 .main_miequipo .tabs_miequipo #nav-tab a.nav-item.nav-link.active {
   font-weight: 500;
   color: #006B33; }

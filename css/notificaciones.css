@@ -1,0 +1,18 @@
+.notificaciones .fecha {
+  color: #18C25D;
+  font-style: italic;
+  font-size: .8rem;
+  margin-right: .6rem; }
+.notificaciones i.fas.fa-bell:before {
+  font-size: 1.5rem;
+  color: #ebebeb;
+  padding: .5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #18C25D;
+  margin-right: .4rem;
+  display: block;
+  text-align: center; }
+
+/*# sourceMappingURL=notificaciones.css.map */

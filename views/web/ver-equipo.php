@@ -23,7 +23,7 @@ if (Equipo::existeEquipo($equipo_id)) {
                     echo "        <h2 class='mt-5 ml-3 text-white'>" . $equipo->getNombre() . "</h2>";
                     echo "    </div>";
                     if ( (Session::has("usuario")) && ($equipo->getCapitanID() == Session::get("usuario")->getUsuarioID())) {
-                        echo "<div><a href='#registroEquipo' title='actualizar portada'>actualizar portada</a></div>";
+                        echo "<div id='cambiar_fotoportada'><a href='#' title='actualizar portada' class='colorGris1 hoverVerde'><i class='fas fa-camera'></i> actualizar portada</a></div>";
                     };
                     echo "</section>";
                     ?>
@@ -38,7 +38,7 @@ if (Equipo::existeEquipo($equipo_id)) {
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-proximafecha" role="tabpanel" aria-labelledby="nav-proximafecha-tab">
-                        <?php
+                            <?php
                             echo "<div class='d-flex mt-5 pf_miequipo'>";
                             echo "    <h4 class='mt-5 pfgreen nombreEquipo text-right'>" . $equipo->getNombre() . "</h4>";
                             echo "    <div class='d-inline-block fondoHeader2 rounded-circle ml-3  escudoequipo'>";
@@ -50,7 +50,7 @@ if (Equipo::existeEquipo($equipo_id)) {
                             echo "    </div>";
                             echo "    <h4 class='mt-5 pfgreen nombreEquipo text-left'>Preprocesor Futbol Club </h4>";
                             echo "</div>";
-                        ?>
+                            ?>
                             <div class="datospf_miequipo colorGris2">
                                 <ul class="d-flex list-unstyled">
                                     <li class="fecha_miequipo border-right"><i class="far fa-calendar"></i> Fecha: <span>12/12/2019</span></li>

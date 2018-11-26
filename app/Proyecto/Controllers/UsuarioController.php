@@ -147,6 +147,17 @@ class UsuarioController
 
 
 
+    public function notificaciones()
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            View::render('web/notificaciones',compact('usuario','usuario_id'), 3);
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
+
 
 
 

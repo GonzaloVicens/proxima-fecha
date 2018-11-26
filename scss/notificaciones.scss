@@ -1,0 +1,38 @@
+@import "colors.scss";
+
+.notificaciones{
+
+  .fecha {
+    color: $col_verde1;
+    font-style: italic;
+    font-size: .8rem;
+    margin-right: .6rem;
+  }
+  i{
+    &.fas {
+      &.fa-bell {
+
+        &:before {
+          font-size: 1.5rem;
+          color: #ebebeb;
+          padding: .5rem;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          background-color: $col_verde1;
+          margin-right: .4rem;
+          display: block;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  //styles here
+}
+
+@media (min-width: 992px) {
+  //styles here
+}
