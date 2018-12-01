@@ -17,6 +17,7 @@ use Proyecto\Core\App;
     <link href="<?= App::$urlPath;?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/contact.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/estilo.css" rel="stylesheet">
+    <link href="<?= App::$urlPath;?>/css/preguntas-frecuentes.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>

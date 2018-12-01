@@ -39,6 +39,10 @@ class HomeController //implements JsonSerializable
         View::render('web/registrarse',[], 3);
     }
 
+    public function preguntasFrecuentes()
+    {
+        View::render('web/preguntas-frecuentes',[], 3);
+    }
 
     /**
      * Método que renderiza la vista de erorr en caso que algo falle

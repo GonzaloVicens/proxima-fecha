@@ -1,0 +1,8 @@
+@mixin hover-txt($color) {
+  color: $color;
+  transition: color .2s ease-in-out;
+}
+
+@mixin transitions($prop, $time) {
+  transition: $prop $time ease-in-out;
+}

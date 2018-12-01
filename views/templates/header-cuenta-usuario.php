@@ -31,6 +31,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
     <link href="<?= App::$urlPath;?>/css/header_nav.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/miequipo.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/notificaciones.css" rel="stylesheet">
+    <link href="<?= App::$urlPath;?>/css/preguntas-frecuentes.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/fontawesome/css/all.css" rel="stylesheet">
 </head>
 <header>
@@ -122,9 +123,9 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <?php
                             if(isset($usuario) and file_exists('img/usuarios/'.$usuario->getUsuarioId() . '.jpg')){
-                                echo "<span class='d-block m-auto text-center rounded-circle overflowhidden'> <img class='rounded-circle' src='../img/usuarios/".$usuario->getUsuarioId() . ".jpg' alt='foto perfil' /></span>";
+                                echo "<span class='d-block m-auto text-center rounded-circle overflowhidden'> <img class='rounded-circle' src='" . App::$urlPath . "/img/usuarios/".$usuario->getUsuarioId() . ".jpg' alt='foto perfil' /></span>";
                             }else {
-                                echo "<span class='d-block m-auto text-center rounded-circle overflowhidden'> <img class='rounded-circle' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' /></span>";
+                                echo "<span class='d-block m-auto text-center rounded-circle overflowhidden'> <img class='rounded-circle' src='" . App::$urlPath . "/img/usuarios/UserJugador.jpg' alt='foto perfil' /></span>";
                             }
                             ?>
                             <div>

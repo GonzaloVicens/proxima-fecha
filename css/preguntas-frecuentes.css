@@ -1,0 +1,61 @@
+.preguntas-frecuentes .fecha {
+  color: #18C25D;
+  font-style: italic;
+  font-size: .8rem;
+  margin-right: .6rem; }
+.preguntas-frecuentes .card .card-header {
+  background-color: transparent;
+  padding: 0; }
+  .preguntas-frecuentes .card .card-header .faq .faq-link {
+    position: relative;
+    padding: 12px 20px;
+    height: 65px;
+    line-height: 39px;
+    display: block;
+    text-align: left;
+    font-size: 20px;
+    color: #006B33; }
+    .preguntas-frecuentes .card .card-header .faq .faq-link:hover {
+      color: #18C25D;
+      transition: color .2s ease-in-out; }
+    .preguntas-frecuentes .card .card-header .faq .faq-link:after {
+      font-family: 'FontAwesome';
+      content: '\f105';
+      display: block;
+      width: 25px;
+      height: 40%;
+      color: #909090;
+      position: absolute;
+      right: 15px;
+      top: 30%;
+      font-size: 25px;
+      line-height: 25px;
+      text-align: center; }
+    .preguntas-frecuentes .card .card-header .faq .faq-link.arrowdown:after {
+      transform: rotate(90deg);
+      transition: all .3s ease-in-out;
+      color: #18C25D; }
+  .preguntas-frecuentes .card .card-header i.fas.fa-question:before {
+    font-size: 1.5rem;
+    color: #ebebeb;
+    padding: .5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: #18C25D;
+    margin-right: .4rem;
+    display: block;
+    text-align: center; }
+.preguntas-frecuentes i.fas.fa-question:before {
+  font-size: 1.5rem;
+  color: #ebebeb;
+  padding: .5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #18C25D;
+  margin-right: .4rem;
+  display: block;
+  text-align: center; }
+
+/*# sourceMappingURL=preguntas-frecuentes.css.map */

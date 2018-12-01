@@ -1,0 +1,108 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.preguntas-frecuentes{
+
+  .fecha {
+    color: $col_verde1;
+    font-style: italic;
+    font-size: .8rem;
+    margin-right: .6rem;
+  }
+
+  .card {
+    .card-header {
+      background-color: transparent;
+      padding: 0;
+
+      .faq {
+
+        .faq-link {
+          position: relative;
+          padding: 12px 20px;
+          height: 65px;
+          line-height: 39px;
+          display: block;
+          text-align: left;
+          font-size: 20px;
+          color: $bgcol_verde;
+
+          &:hover {
+            @include hover-txt($bgcol_verde3)
+          }
+
+          &:after {
+            font-family: 'FontAwesome';
+            content: '\f105';
+            display: block;
+            width: 25px;
+            height: 40%;
+            color: $col_gris2;
+            position: absolute;
+            right: 15px;
+            top: 30%;
+            font-size: 25px;
+            //border: 1px solid red;
+            line-height: 25px;
+            text-align: center;
+          }
+
+          &.arrowdown {
+              &:after {
+                transform: rotate(90deg);
+                transition: all .3s ease-in-out;
+                color: $bgcol_verde3;
+            }
+          }
+        }
+      }
+
+      i{
+        &.fas {
+          &.fa-question {
+
+            &:before {
+              font-size: 1.5rem;
+              color: #ebebeb;
+              padding: .5rem;
+              width: 2.5rem;
+              height: 2.5rem;
+              border-radius: 50%;
+              background-color: $col_verde1;
+              margin-right: .4rem;
+              display: block;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+      i{
+        &.fas {
+          &.fa-question {
+
+            &:before {
+              font-size: 1.5rem;
+              color: #ebebeb;
+              padding: .5rem;
+              width: 2.5rem;
+              height: 2.5rem;
+              border-radius: 50%;
+              background-color: $col_verde1;
+              margin-right: .4rem;
+              display: block;
+              text-align: center;
+            }
+          }
+        }
+      }
+}
+
+@media (max-width: 991px) {
+  //styles here
+}
+
+@media (min-width: 992px) {
+  //styles here
+}

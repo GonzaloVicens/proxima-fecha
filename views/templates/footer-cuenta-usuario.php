@@ -178,56 +178,5 @@ use Proyecto\Core\App;
 </body>
 <script src="<?= App::$urlPath;?>/js/jquery-3.3.1.min.js"></script>
 <script src="<?= App::$urlPath;?>/bootstrap/js/bootstrap.min.js"></script>
-<script>
-
-    $('#agregar_equipo').click(function () {
-
-        $('#modal_agregar_equipo').modal();
-
-    });
-
-    $('#modal_agregar_equipo .cancelar').click(function () {
-
-        $('#modal_agregar_equipo').modal('hide');
-
-    });
-
-
-    $('#cambiar_fotoportada').click(function () {
-
-        $('#modal_cambiar_fotoportada').modal();
-
-    });
-
-    $('#modal_cambiar_fotoportada .cancelar').click(function () {
-
-        $('#modal_cambiar_fotoportada').modal('hide');
-
-    });
-
-    $('#buscar').click(function () {
-
-        $('#modal_buscar').modal();
-
-    });
-
-    $('#modal_buscar .cancelar').click(function () {
-
-        $('#modal_buscar').modal('hide');
-
-    });
-
-    $('#eliminar_torneo').click(function () {
-
-        $('#modal_eliminar_torneo').modal();
-
-    });
-
-    $('#modal_eliminar_torneo .cancelar').click(function () {
-
-        $('#modal_eliminar_torneo').modal('hide');
-
-    });
-
-</script>
+<script src="<?= App::$urlPath;?>/js/modals-arrows.js"></script>
 </html>

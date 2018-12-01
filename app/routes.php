@@ -22,6 +22,7 @@ Route::addRoute('GET' , '/ver-proxima-fecha'            , 'TorneoController@verP
 Route::addRoute('GET' , '/ver-fixture-completo'         , 'TorneoController@verFixtureCompleto');
 Route::addRoute('GET' , '/editar-torneo'                , 'TorneoController@editarTorneo');
 Route::addRoute('GET' , '/agregar-equipos'              , 'TorneoController@agregarEquipos');
+Route::addRoute('GET' , '/preguntas-frecuentes'          , 'HomeController@preguntasFrecuentes');
 Route::addRoute('GET' , '/registrarse'                  , 'HomeController@registrarse');
 Route::addRoute('GET' , '/error404'                     , 'HomeController@error404');
 Route::addRoute('GET' , '/{sarasa}'                     , 'HomeController@error404');
