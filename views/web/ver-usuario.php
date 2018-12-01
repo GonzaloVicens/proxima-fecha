@@ -32,7 +32,7 @@ if (Usuario::existeUsuario($usuario_id)) {
                             <?php
                             if($usuario->tieneEquipo()){
                                 foreach ($usuario->getEquipos() as $equipo) {
-                                    echo "<li class='text-secondary'><a class='negrita' href='../equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
+                                    echo "<li class='text-secondary'><a class='negrita' href='". App::$urlPath ."/equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
                                 }
                             }else{
                                 echo "<li class='text-secondary'>Todavía no sos parte de ningún equipo.</li>";
@@ -44,7 +44,7 @@ if (Usuario::existeUsuario($usuario_id)) {
                             <?php
                             if($usuario->tieneTorneo()){
                                 foreach ($usuario->getTorneos() as $torneo) {
-                                    echo "<li class='text-secondary'><a class='negrita' href='../torneos/".$torneo->getTorneoID() ."' title='Ver Torneo'>" . $torneo->getNombre()  ."</a></li>";
+                                    echo "<li class='text-secondary'><a class='negrita' href='" . App::$urlPath . "/torneos/".$torneo->getTorneoID() ."' title='Ver Torneo'>" . $torneo->getNombre()  ."</a></li>";
                                 }
                             }else{
                                 echo "<li class='text-secondary'>No participa en ningún torneo</li>";

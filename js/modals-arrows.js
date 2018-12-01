@@ -56,11 +56,12 @@ $(document).ready(function(){
             $('.faq .btn.btn-link.faq-link').removeClass('arrowdown');
             $(this).toggleClass('arrowdown');
         }
-
-
-            //$('.faq .btn.btn-link.faq-link').removeClass('arrowdown');
-
-            //var test = $(this).hasClass('arrowdown');
     })
+
+    $(window).resize(function(){
+        var ancho = $('.d-inline-block.fondoHeader2.rounded-circle.ml-3.escudoequipo img.rounded-circle').css('width');
+        console.log(ancho);
+        $('.d-inline-block.fondoHeader2.rounded-circle.ml-3.escudoequipo img.rounded-circle').css('height', ancho);
+    });
 
 });

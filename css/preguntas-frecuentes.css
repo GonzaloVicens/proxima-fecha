@@ -30,7 +30,8 @@
       top: 30%;
       font-size: 25px;
       line-height: 25px;
-      text-align: center; }
+      text-align: center;
+      transition: all .3s ease-in-out; }
     .preguntas-frecuentes .card .card-header .faq .faq-link.arrowdown:after {
       transform: rotate(90deg);
       transition: all .3s ease-in-out;

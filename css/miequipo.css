@@ -5,6 +5,7 @@ section.portada {
     position: absolute;
     bottom: -10%; }
     section.portada div.escudo_y_nombre img {
+      display: inline-block;
       height: 180px;
       width: 180px; }
 
@@ -42,6 +43,7 @@ section.portada {
     text-align: center; }
     .main_miequipo .tab-content #nav-proximafecha > div.pf_miequipo .escudoequipo img {
       width: 100%;
+      display: inline-block;
       border: 1px solid #006B33; }
 .main_miequipo .tab-content #nav-proximafecha .datospf_miequipo {
   margin-top: .9em;

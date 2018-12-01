@@ -70,7 +70,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                                 <?php
                                 if($usuario->tieneTorneo()){
                                     foreach ($usuario->getTorneos() as $torneo) {
-                                        echo "<li class='dropdown-item'><a href='../torneos/".$torneo->getTorneoID() ."' title='Ver Torneo'>" . $torneo->getNombre()  ."</a></li>";
+                                        echo "<li class='dropdown-item'><a href='". App::$urlPath . "/torneos/".$torneo->getTorneoID() ."' title='Ver Torneo'>" . $torneo->getNombre()  ."</a></li>";
                                     }
                                 }else{
                                     echo "<li class='dropdown-item no-options'>No participa <br>en ningún torneo</li>";
@@ -89,7 +89,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                                 <?php
                                 if($usuario->tieneEquipo()){
                                     foreach ($usuario->getEquipos() as $equipo) {
-                                        echo "<li class='dropdown-item'><a href='../equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
+                                        echo "<li class='dropdown-item'><a href='" . App::$urlPath ."/equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
                                     }
                                 }else{
                                     echo "<li class='dropdown-item no-options'>Todavía no sos parte <br>de ningún equipo.</li>";
