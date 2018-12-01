@@ -50,7 +50,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                         echo "<img class='fotoChica' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' />";
                     }
 
-                    echo "<a href='" .$contacto->getUsuarioId() ."' class='negrita'>" . $contacto->getNombreCompleto() ."</a><a href='../chats/" . Session::get("usuario")->getUsuarioId() . "/". $contacto->getUsuarioId() ."' title='Ver Chat'>Ver Chat</a>";
+                    echo "<a href='" .$contacto->getUsuarioId() ."' class='negrita'>" . $contacto->getNombreCompleto() ."</a><a href='../mensajes/" . Session::get("usuario")->getUsuarioId() . "/". $contacto->getUsuarioId() ."' title='Ver Chat'>Ver Chat</a>";
                     if ( $usuario->tieneMensajesSinLeerDe($contacto->getUsuarioId())){
                         echo("<span> Tiene Mensajes Nuevos </span>");
                     }

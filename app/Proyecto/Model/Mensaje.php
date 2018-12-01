@@ -51,11 +51,6 @@ class Mensaje
     /**
      * @var string
      */
-    protected $mensaje_original_id ;
-
-    /**
-     * @var string
-     */
     protected $fecha ;
 
     /**
@@ -83,7 +78,6 @@ class Mensaje
             $this->torneo_id = $datos['TORNEO_ID'];
             $this->fecha_id = $datos['FECHA_ID'];
             $this->partido_id = $datos['PARTIDO_ID'];
-            $this->mensaje_original_id = $datos['MENSAJE_ORIGINAL_ID'];
             $this->fecha = $datos['FECHA'];
             $this->hora = $datos['HORA'];
         } else {
@@ -106,7 +100,6 @@ class Mensaje
             $this->torneo_id = $datos['TORNEO_ID'];
             $this->fecha_id = $datos['FECHA_ID'];
             $this->partido_id = $datos['PARTIDO_ID'];
-            $this->mensaje_original_id = $datos['MENSAJE_ORIGINAL_ID'];
             $this->fecha = $datos['FECHA'];
             $this->hora = $datos['HORA'];
             $this->leido = $datos['LEIDO'];
@@ -152,19 +145,40 @@ class Mensaje
      * @throws MensajeNoGrabadoException
      */
     public static function CrearMensaje($vMensaje){
+
+        if (empty($vMensaje['torneo_id'])){
+            $vMensaje['torneo_id'] = 0;
+        }
+
+        if (empty($vMensaje['fecha_id'])){
+            $vMensaje['fecha_id'] = 0;
+        }
+
+        if (empty($vMensaje['partido_id'])){
+            $vMensaje['partido_id'] = 0;
+        }
+
+
+        if (empty($vMensaje['fecha'])){
+            $vMensaje['fecha'] = date('Y/m/d');
+        }
+
+        if (empty($vMensaje['hora'])){
+            $vMensaje['hora'] = date('H:i:s');
+        }
+
         $mensaje= [
             'emisor_id' => $vMensaje['usuario_id'],
-            'receptor_id'   =>  $vMensaje['amigo_id'],
+            'receptor_id'   =>  $vMensaje['contacto_id'],
             'mensaje'     => $vMensaje['mensaje'],
             'torneo_id'   =>  $vMensaje['torneo_id'],
             'fecha_id'   =>  $vMensaje['fecha_id'],
             'partido_id'   =>  $vMensaje['partido_id'],
-            'mensaje_original_id'   =>  $vMensaje['mensaje_original_id'],
             'fecha'   =>  $vMensaje['fecha'],
             'hora'   =>  $vMensaje['hora'],
         ];
 
-        $script = "INSERT INTO MENSAJES VALUES (null, :mensaje, :emisor_id, :receptor_id, :torneo_id, :fecha_id, :partido_id :mensaje_original_id, :fecha, :hora, 'N')";
+        $script = "INSERT INTO MENSAJES VALUES (null, :mensaje, :emisor_id, :receptor_id, :torneo_id, :fecha_id, :partido_id , :fecha, :hora, 'N')";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($mensaje)) {
             return DBConnection::getConnection()->lastInsertId();
@@ -182,7 +196,7 @@ class Mensaje
      */
     public static function GetConversacion ($emisor, $receptor)
     {
-        $query = "SELECT MENSAJE_ID, EMISOR_ID, RECEPTOR_ID,  MENSAJE , TORNEO_ID, FECHA_ID, PARTIDO_ID, MENSAJE_ORIGINAL_ID, FECHA, HORA, LEIDO FROM MENSAJES WHERE (EMISOR_ID = :emisor_id AND RECEPTOR_ID = :receptor_id ) OR (EMISOR_ID = :receptor_id AND RECEPTOR_ID = :emisor_id ) ORDER BY MENSAJE_ID ";
+        $query = "SELECT MENSAJE_ID, EMISOR_ID, RECEPTOR_ID,  MENSAJE , TORNEO_ID, FECHA_ID, PARTIDO_ID, FECHA, HORA, LEIDO FROM MENSAJES WHERE (EMISOR_ID = :emisor_id AND RECEPTOR_ID = :receptor_id ) OR (EMISOR_ID = :receptor_id AND RECEPTOR_ID = :emisor_id ) ORDER BY MENSAJE_ID ";
 
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['emisor_id' => $emisor, 'receptor_id' => $receptor]);

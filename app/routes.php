@@ -4,29 +4,30 @@
 
 use Proyecto\Core\Route;
 
-Route::addRoute('GET' , '/'                                 , 'HomeController@index');
-Route::addRoute('POST', '/'                                 , 'UsuarioController@loguear');
-Route::addRoute('GET' , '/desloguear'                       , 'UsuarioController@desloguear');
-Route::addRoute('GET' , '/usuarios/notificaciones'          , 'UsuarioController@notificaciones');
-Route::addRoute('GET' , '/usuarios/{usuario_id}'            , 'UsuarioController@ver');
-Route::addRoute('POST', '/usuarios/registrar'               , 'UsuarioController@registrar');
-Route::addRoute('POST', '/usuarios/crear-equipo'            , 'EquipoController@registrar');
-Route::addRoute('GET' , '/usuarios/crear-torneo'            , 'UsuarioController@verCrearTorneo');
-Route::addRoute('POST', '/usuarios/crear-torneo'            , 'TorneoController@registrar');
-Route::addRoute('GET' , '/usuarios/notificaciones'          , 'UsuarioController@notificaciones');
-Route::addRoute('GET' , '/equipos/{equipo_id}'              , 'EquipoController@ver');
-Route::addRoute('POST', '/equipos/agregar-jugador'          , 'EquipoController@agregarJugador');
-Route::addRoute('GET' , '/equipos'                          , 'EquipoController@verEquipos');
-Route::addRoute('GET' , '/torneos/{torneo_id}'              , 'TorneoController@ver');
-Route::addRoute('GET' , '/ver-proxima-fecha'                , 'TorneoController@verProximaFecha');
-Route::addRoute('GET' , '/ver-fixture-completo'             , 'TorneoController@verFixtureCompleto');
-Route::addRoute('GET' , '/editar-torneo'                    , 'TorneoController@editarTorneo');
-Route::addRoute('GET' , '/agregar-equipos'                  , 'TorneoController@agregarEquipos');
-Route::addRoute('GET' , '/preguntas-frecuentes'             , 'HomeController@preguntasFrecuentes');
-Route::addRoute('GET' , '/registrarse'                      , 'HomeController@registrarse');
-Route::addRoute('GET' , '/error404'                         , 'HomeController@error404');
-Route::addRoute('GET' , '/chats/{usuario_id}/{contacto_id}' , 'UsuarioController@mostrarMensajes');
-Route::addRoute('GET' , '/{sarasa}'                         , 'HomeController@error404');
+Route::addRoute('GET' , '/'                                    , 'HomeController@index');
+Route::addRoute('POST', '/'                                    , 'UsuarioController@loguear');
+Route::addRoute('GET' , '/desloguear'                          , 'UsuarioController@desloguear');
+Route::addRoute('GET' , '/usuarios/notificaciones'             , 'UsuarioController@notificaciones');
+Route::addRoute('GET' , '/usuarios/{usuario_id}'               , 'UsuarioController@ver');
+Route::addRoute('POST', '/usuarios/agregarMensaje'             , 'UsuarioController@agregarMensaje');
+Route::addRoute('POST', '/usuarios/crear-equipo'               , 'EquipoController@registrar');
+Route::addRoute('GET' , '/usuarios/crear-torneo'               , 'UsuarioController@verCrearTorneo');
+Route::addRoute('POST', '/usuarios/crear-torneo'               , 'TorneoController@registrar');
+Route::addRoute('GET' , '/usuarios/notificaciones'             , 'UsuarioController@notificaciones');
+Route::addRoute('POST', '/usuarios/registrar'                  , 'UsuarioController@registrar');
+Route::addRoute('GET' , '/equipos/{equipo_id}'                 , 'EquipoController@ver');
+Route::addRoute('POST', '/equipos/agregar-jugador'             , 'EquipoController@agregarJugador');
+Route::addRoute('GET' , '/equipos'                             , 'EquipoController@verEquipos');
+Route::addRoute('GET' , '/torneos/{torneo_id}'                 , 'TorneoController@ver');
+Route::addRoute('GET' , '/ver-proxima-fecha'                   , 'TorneoController@verProximaFecha');
+Route::addRoute('GET' , '/ver-fixture-completo'                , 'TorneoController@verFixtureCompleto');
+Route::addRoute('GET' , '/editar-torneo'                       , 'TorneoController@editarTorneo');
+Route::addRoute('GET' , '/agregar-equipos'                     , 'TorneoController@agregarEquipos');
+Route::addRoute('GET' , '/preguntas-frecuentes'                , 'HomeController@preguntasFrecuentes');
+Route::addRoute('GET' , '/registrarse'                         , 'HomeController@registrarse');
+Route::addRoute('GET' , '/error404'                            , 'HomeController@error404');
+Route::addRoute('GET' , '/mensajes/{usuario_id}/{contacto_id}' , 'UsuarioController@mostrarMensajes');
+Route::addRoute('GET' , '/{sarasa}'                            , 'HomeController@error404');
 
 
 

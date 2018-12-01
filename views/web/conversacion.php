@@ -32,7 +32,8 @@ if (Session::has("usuario") && Session::get("usuario")->getUsuarioId() == $usuar
 			};
 			?>
 			</ol>
-			<form id='formChat' action='../../agregarChat' method='post'>
+
+			<form id='formChat' action= <?=App::$urlPath . '/usuarios/agregarMensaje' ?> method='post'>
 				<input type='hidden' name='usuario_id' value='<?php echo $usuarioActual->getUsuarioId() ?>'/>
 				<input type='hidden' name='contacto_id' value='<?php echo $contactoActual->getUsuarioId() ?>'/>
 				<textarea name='mensaje' rows='3' cols='50' id='mensaje'></textarea>

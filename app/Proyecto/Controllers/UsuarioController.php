@@ -103,7 +103,6 @@ class UsuarioController
 
         // Si hay algún campo en error, vuelvo al formulario, indicando que hay errores;
         if ( !empty($formValidator->getCamposError()) ){
-            print_r($formValidator->getCamposError());
             Session::set("camposError",$formValidator->getCamposError());
             Session::set("campos",$formValidator->getCampos());
             header('Location: ' . App::$urlPath . '/');
@@ -191,236 +190,14 @@ class UsuarioController
 
 
     /**
-     * Método que controla la creación de un posteo
-     * @param Request $request
-     *
-    public function crear(Request $request)
-    {
-        if (Session::has("usuario")){
-            $inputs = $request->getData();
-            $files = $request->getFiles();
-
-            try {
-                $nombre = $inputs['nombre'];
-                $capitan = $inputs['capitan'];
-                $equipo_id = Equipo::CrearEquipo($nombre, $capitan);
-
-            } catch (EquipoNoGrabadoException $exc){
-                echo "<pre>";
-                print_r($exc.getMessage());
-                echo "</pre>";
-                header("Location: ../error404");
-            }
-
-            if (isset($files['foto']['tmp_name']) && !empty($files['foto']['tmp_name'])) {
-                $archivo_tmp = $files['foto']['tmp_name'];
-
-                $original = imagecreatefromjpeg($archivo_tmp);
-                $ancho = imagesx($original);
-                $alto = imagesy($original);
-
-                // Copia 200 px
-                $alto_max= 200;
-                $ancho_max = round( $ancho *  $alto_max / $alto );
-
-                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
-
-                imagecopyresampled( $copia, $original,
-                    0,0, 0,0,
-                    $ancho_max,$alto_max,
-                    $ancho,$alto);
-
-                $nombre_nuevo = "../../public/images/equipos/$equipo_id"."_logo_200.jpg";
-                imagejpeg( $copia , $nombre_nuevo);
-
-                // Copia 100 px
-                $alto_max= 100;
-                $ancho_max = round( $ancho *  $alto_max / $alto );
-                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
-                imagecopyresampled( $copia, $original,
-                    0,0, 0,0,
-                    $ancho_max,$alto_max,
-                    $ancho,$alto);
-                $nombre_nuevo = "../../public/images/equipos/$equipo_id"."_logo_100.jpg";
-                imagejpeg( $copia , $nombre_nuevo);
-            }
-            header('Location: ../equipo/'.$equipo_id);
-        } else {
-            header("Location: ../public");
-        }
-    }
-
-
-
-    /**
-     * Método que muestra el usuario que recibe como parámetro
-     *
-    public function verPosteos()
-    {
-
-        $ruta = "";
-        $routeParams = Route::getRouteParams();
-        $usuario_id = $routeParams['usuario_id'];
-        if (Usuario::existeusuario($usuario_id)) {
-            $usuarioActual = new Usuario($usuario_id);
-            View::render('modulos/header',compact('ruta'));
-            $posteos = Posteo::GetPosteos( $usuario_id);
-            View::render('modulos/home', compact('ruta','posteos'));
-
-            View::render('modulos/footer',compact('ruta'));
-
-        } else{
-            header("Location: ../error404");
-        };
-    }
-
-    /**
-     * Método que agrega al amigo de un usuario.
-     *
-    public function agregarAmigo(Request $request)
-    {
-        if (Session::has("usuario")){
-            $inputs = $request->getData();
-            $contacto_id = "";
-            if (!empty($inputs['contacto_id'])) {
-                $contacto_id = $inputs['contacto_id'];
-            };
-            if (!empty($inputs['usuario_id'])){
-                $usuario = New Usuario($inputs['usuario_id']);
-
-                try {
-                    $usuario->agregarAmigo($contacto_id );
-                } catch ( AmigoNoGrabadoException $exc){
-                    echo "<pre>";
-		    		print_r($exc.getMessage());
-			    	echo "</pre>";
-                    header("Location: ../error404");
-                }
-            };
-            header("Location: usuarios/".$contacto_id);
-        } else {
-            header("Location: ../public");
-        }
-
-    }
-
-
-    /**
-     * Método que elimina al amigo de un usuario.
-     *
-    public function eliminarAmigo(Request $request)
-    {
-        if (Session::has("usuario")){
-            $inputs = $request->getData();
-            $contacto_id = "";
-            if (!empty($inputs['contacto_id'])) {
-                $contacto_id = $inputs['contacto_id'];
-            };
-            if (!empty($inputs['usuario_id'])){
-                $usuario = New Usuario($inputs['usuario_id']);
-                $usuario->eliminarAmigo($contacto_id );
-            };
-            header("Location: usuarios/".$contacto_id);
-        } else {
-            header("Location: ../public");
-        }
-
-    }
-
-
-
-
-
-    /**
-     * Método que controla la actualización de la foto del perfil de usuario.
-     * @param Request $request
-     *
-    public function actualizarFotoPerfil(Request $request)
-    {
-        if (Session::has("usuario")){
-            $inputs = $request->getData();
-            $files = $request->getFiles();
-
-            $usuario = $inputs['usuario'];
-            if (isset($files['foto']['tmp_name']) && !empty($files ['foto']['tmp_name'])){
-                $archivo_tmp = $files ['foto']['tmp_name'];
-                $original = imagecreatefromjpeg($archivo_tmp);
-                $ancho = imagesx( $original );
-                $alto = imagesy( $original );
-
-                $alto_max= 200;
-                $ancho_max = round( $ancho *  $alto_max / $alto );
-
-                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
-                imagecopyresampled( $copia, $original,
-                                    0,0, 0,0,
-                                    $ancho_max,$alto_max,
-                                    $ancho,$alto);
-
-                $nombre_nuevo = "../views/images/usuarios/$usuario".".jpg";
-                imagejpeg( $copia , $nombre_nuevo);
-            }
-            header("Location: ../usuarios/".$usuario);
-         } else {
-            header("Location: ../public");
-        }
-    }
-
-    /**
-     * Método que controla la actualización de los datos de un usuario
-     * @param Request $request
-     *
-    public function actualizar(Request $request)
-    {
-        if (Session::has("usuario")){
-            $inputs = $request->getData();
-            $error =0;
-            $errorActual = "";
-            $usuario = Session::get('usuario');
-            $usuario_id = $usuario->getUsuarioID();
-
-            $formValidator = new FormValidator( $inputs);
-
-            // Si hay algún campo en error, vuelvo al formulario, indicando que hay errores;
-            if ( !empty($formValidator->getCamposError()) ){
-                Session::set("camposError",$formValidator->getCamposError());
-                Session::set("campos",$inputs);
-
-                header("Location: ../usuarios/$usuario_id#registroModal");
-
-            } else {
-                Session::clearValue("camposError");
-                Session::clearValue("campos");
-                $inputs['usuario'] = $usuario_id ;
-
-
-                try {
-                    Usuario::ActualizarUsuario($inputs);
-                } catch ( UsuarioNoGrabadoException  $exc){
-                    echo "<pre>";
-				    print_r($exc.getMessage());
-				    echo "</pre>";
-                    header("Location: ../error404" );
-                }
-                header("Location: ../usuarios/".$usuario_id );
-            }
-        } else {
-            header("Location: ../public");
-        }
-
-    }
-
-
-
-    /**
      * Método que ordena el Insert de un Mensaje si hay datos, y vuelve a la ubicación original;
      * @param Request $request
      *
-     *
-    public function agregarMensaje(Request $request)
+     */
+    public function agregarMensaje()
     {
         if (Session::has("usuario")) {
-            $inputs = $request->getData();
+            $inputs = Request::getData();
             if (!empty($inputs['mensaje'])) {
                 try {
                     $mensajeID = Mensaje::CrearMensaje($inputs);
@@ -431,11 +208,11 @@ class UsuarioController
                     header("Location: ../error404");
                 }
             };
-            header("Location: ../public/mensajes/" . $inputs['usuario_id'] . "/" . $inputs['contacto_id']);
+            header("Location: ../mensajes/" . $inputs['usuario_id'] . "/" . $inputs['contacto_id']);
         } else {
-            header("Location: ../public");
+            header('Location: ' . App::$urlPath . '/error404');
         }
     }
-     * */
+
 }
 
