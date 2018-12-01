@@ -6,7 +6,7 @@ use Proyecto\Core\Request;
 use Proyecto\Core\Route;
 use Proyecto\Core\App;
 use Proyecto\Model\Usuario;
-//use Proyecto\Model\Chat;
+use Proyecto\Model\Mensaje;
 //use Proyecto\Model\Posteo;
 use Proyecto\Model\Equipo;
 use Proyecto\Session\Session;
@@ -15,7 +15,7 @@ use Proyecto\Exceptions\UsuarioNoGrabadoException;
 use Proyecto\Exceptions\EquipoNoGrabadoException;
 //use Proyecto\Exceptions\AmigoNoGrabadoException;
 //use Proyecto\Exceptions\MensajesNoLeidosException;
-//use Proyecto\Exceptions\ChatNoGrabadoException;
+//use Proyecto\Exceptions\MensajeNoGrabadoException;
 
 
 class UsuarioController
@@ -159,6 +159,35 @@ class UsuarioController
     }
 
 
+    /**
+     * Método que muestra el chat entre el usuario conectado y el amigo elegido
+     */
+    public function mostrarMensajes()
+    {
+        if (Session::has("usuario")){
+            $routeParams = Route::getRouteParams();
+            $usuario_id = $routeParams['usuario_id'];
+            $contacto_id = $routeParams['contacto_id'];
+            if (Usuario::existeUsuario($usuario_id) && Usuario::existeUsuario($contacto_id))  {
+                $usuarioActual = new Usuario($usuario_id);
+                $contactoActual = new Usuario($contacto_id);
+                $mensajes = $usuarioActual->getMensajesCon($contacto_id);
+                View::render('web/conversacion', compact('mensajes','usuarioActual','contactoActual'),3);
+
+                try {
+                    $usuarioActual->leerMensajes($contacto_id);
+                } catch (MensajesNoLeidosException $err)   {
+                    alert($err.message);
+                    header('Location: ' . App::$urlPath . '/error404');
+                }
+            } else{
+                header('Location: ' . App::$urlPath . '/error404');
+            };
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        }
+    }
+
 
 
     /**
@@ -252,15 +281,15 @@ class UsuarioController
     {
         if (Session::has("usuario")){
             $inputs = $request->getData();
-            $amigo_id = "";
-            if (!empty($inputs['amigo_id'])) {
-                $amigo_id = $inputs['amigo_id'];
+            $contacto_id = "";
+            if (!empty($inputs['contacto_id'])) {
+                $contacto_id = $inputs['contacto_id'];
             };
             if (!empty($inputs['usuario_id'])){
                 $usuario = New Usuario($inputs['usuario_id']);
 
                 try {
-                    $usuario->agregarAmigo($amigo_id );
+                    $usuario->agregarAmigo($contacto_id );
                 } catch ( AmigoNoGrabadoException $exc){
                     echo "<pre>";
 		    		print_r($exc.getMessage());
@@ -268,7 +297,7 @@ class UsuarioController
                     header("Location: ../error404");
                 }
             };
-            header("Location: usuarios/".$amigo_id);
+            header("Location: usuarios/".$contacto_id);
         } else {
             header("Location: ../public");
         }
@@ -283,15 +312,15 @@ class UsuarioController
     {
         if (Session::has("usuario")){
             $inputs = $request->getData();
-            $amigo_id = "";
-            if (!empty($inputs['amigo_id'])) {
-                $amigo_id = $inputs['amigo_id'];
+            $contacto_id = "";
+            if (!empty($inputs['contacto_id'])) {
+                $contacto_id = $inputs['contacto_id'];
             };
             if (!empty($inputs['usuario_id'])){
                 $usuario = New Usuario($inputs['usuario_id']);
-                $usuario->eliminarAmigo($amigo_id );
+                $usuario->eliminarAmigo($contacto_id );
             };
-            header("Location: usuarios/".$amigo_id);
+            header("Location: usuarios/".$contacto_id);
         } else {
             header("Location: ../public");
         }
@@ -382,61 +411,27 @@ class UsuarioController
     }
 
 
-    /**
-     * Método que muestra el chat entre el usuario conectado y el amigo elegido
-     *
-    public function mostrarChats(Request $request)
-    {
-        if (Session::has("usuario")){
-            $ruta = "../../";
-            $routeParams = Route::getRouteParams();
-            $usuario_id = $routeParams['usuario_id'];
-            $amigo_id = $routeParams['amigo_id'];
-            if (Usuario::existeUsuario($usuario_id) && Usuario::existeUsuario($amigo_id))  {
-                View::render('modulos/header',compact('ruta'));
-                $usuarioActual = new Usuario($usuario_id);
-                $amigoActual = new Usuario($amigo_id);
-                $chats = $usuarioActual->getChatsCon($amigo_id);
-                View::render('modulos/conversacion', compact('ruta','chats','usuarioActual','amigoActual'));
-                View::render('modulos/footer',compact('ruta'));
-
-                try {
-                    $usuarioActual->leerChats($amigo_id);
-                } catch (MensajesNoLeidosException $err)   {
-                    alert($err.message);
-                    header("Location: ../error404");
-                }
-
-            } else{
-                header("Location: ../error404");
-            };
-        } else {
-            header("Location: ../public");
-        }
-
-    }
-
 
     /**
-     * Método que ordena el Insert de un Chat si hay datos, y vuelve a la ubicación original;
+     * Método que ordena el Insert de un Mensaje si hay datos, y vuelve a la ubicación original;
      * @param Request $request
      *
      *
-    public function agregarChat(Request $request)
+    public function agregarMensaje(Request $request)
     {
         if (Session::has("usuario")) {
             $inputs = $request->getData();
             if (!empty($inputs['mensaje'])) {
                 try {
-                    $chatID = Chat::CrearChat($inputs);
-                } catch (ChatNoGrabadoException $exc) {
+                    $mensajeID = Mensaje::CrearMensaje($inputs);
+                } catch (MensajeNoGrabadoException $exc) {
                     echo "<pre>";
                     print_r($exc.getMessage());
                     echo "</pre>";
                     header("Location: ../error404");
                 }
             };
-            header("Location: ../public/chats/" . $inputs['usuario_id'] . "/" . $inputs['amigo_id']);
+            header("Location: ../public/mensajes/" . $inputs['usuario_id'] . "/" . $inputs['contacto_id']);
         } else {
             header("Location: ../public");
         }

@@ -6,7 +6,7 @@ use Proyecto\Tools\Hash;
 use Proyecto\Exceptions\UsuarioNoGrabadoException;
 use Proyecto\Exceptions\AmigoNoGrabadoException;
 use Proyecto\Exceptions\MensajesNoLeidosException;
-//use Proyecto\Model\Chat;
+use Proyecto\Model\Mensaje;
 use Proyecto\Model\Equipo;
 /**
  * Implementación de la clase Usuario
@@ -58,6 +58,12 @@ class Usuario
      * @var array of Torneo
      */
     protected $torneosPropios;
+
+
+    /**
+     * @var array of Usuario
+     */
+    protected $contactos;
 
 
     /**
@@ -357,11 +363,11 @@ class Usuario
 
 
     /**
-     * Devuelve un array con todos los Amigos que tengan el usuario
+     * Devuelve un array con todos los Usuarios con los que el usuario haya compartido mensajes
      * @param $posteo
      * @return array
      */
-    public function getAmigos ()
+    public function getConversaciones ()
     {
         $query = "SELECT AMIGO_ID FROM AMIGOS WHERE USUARIO_ID = :usuario_id UNION SELECT USUARIO_ID AS AMIGO_ID FROM AMIGOS WHERE  AMIGO_ID = :usuario_id";
         $stmt = DBConnection::getStatement($query);
@@ -375,24 +381,24 @@ class Usuario
     }
 
     /**
-     * Devuelve un array con todos los Chats entre el usuario y su amigo pasado por parámetro
-     * @param $amigo_id
+     * Devuelve un array con todos los Mensajes entre el usuario y su contacto pasado por parámetro
+     * @param $contacto_id
      * @return array
      */
-    public function getChatsCon ($amigo_id)
+    public function getMensajesCon ($contacto_id)
     {
-        return Chat::GetConversacion($this->usuario_id , $amigo_id) ;
+        return Mensaje::GetConversacion($this->usuario_id , $contacto_id) ;
     }
 
     /**
-     * Actualiza los chats marcando que ya ha leído los suyos.
+     * Actualiza los mensajes marcando que ya ha leído los suyos.
      * @param $amigo_id
      * @throws MensajesNoLeidosException
      */
 
-    public function leerChats ($amigo_id)
+    public function leerMensajes ($amigo_id)
     {
-        return Chat::leerChats($this->usuario_id , $amigo_id) ;
+        return Mensaje::leerMensajes($this->usuario_id , $amigo_id) ;
     }
 
     /**
@@ -400,9 +406,9 @@ class Usuario
      * @param $amigo_id
      * @return boolean
      */
-    public function tieneMensajesDe ($amigo_id)
+    public function tieneMensajesSinLeerDe ($contacto_id)
     {
-        return Chat::HayChatsSinLeer($this->usuario_id , $amigo_id) ;
+        return Mensaje::HayMensajesSinLeer($this->usuario_id , $contacto_id) ;
     }
 
     public static function BuscarUsuarios($dato )
@@ -425,8 +431,9 @@ class Usuario
      */
     public function tieneMensajesSinLeer ()
     {
-        return Chat::HayChatsSinLeer($this->usuario_id , $this->usuario_id ) ;
+        return Mensaje::HayMensajesSinLeer($this->usuario_id , $this->usuario_id ) ;
     }
+
 
 
     public static function imprimirUsuariosEnTabla()
@@ -519,5 +526,17 @@ class Usuario
     }
 
 
+
+    public function tieneContactos(){
+        Return Mensaje::HayMensajesDeUsuario($this->getUsuarioID());
+    }
+
+
+    public function getContactos(){
+        if ( empty($this->contactos[0])){
+           $this->contactos = Mensaje::GetContactosDeMensajesDeUsuario ($this->usuario_id);
+        };
+        return $this->contactos;
+    }
 
 }
