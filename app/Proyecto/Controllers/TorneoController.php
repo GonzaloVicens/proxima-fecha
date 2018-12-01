@@ -29,10 +29,10 @@ class TorneoController
     public function ver()
     {
         $routeParams = Route::getRouteParams();
-        $torneo_id = $routeParams['torneo_id'];
-        if (Torneo::existeTorneo($torneo_id)) {
-            $torneo = new Torneo($torneo_id);
-            $torneo->setEquipos();
+            $torneo_id = $routeParams['torneo_id'];
+            if (Torneo::existeTorneo($torneo_id)) {
+                $torneo = new Torneo($torneo_id);
+                $torneo->setEquipos();
             Session::set("torneo",$torneo);
             View::render('web/ver-torneo',[], 3);
         } else{

@@ -19,7 +19,7 @@ class DBConnection
 	/**
 	 * Abre la conexión a la base de datos.
 	 */
-	private static function openConnection() 
+	private static function openConnection()
 	{
 		// Definimos los valores de la conexión.
 		// Normalmente estos valores salgan de un archivo

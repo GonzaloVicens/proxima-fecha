@@ -19,6 +19,14 @@ use Proyecto\Core\App;
     <link href="<?= App::$urlPath;?>/css/estilo.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/preguntas-frecuentes.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/fontawesome/css/all.css" rel="stylesheet">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9226700858522421",
+            enable_page_level_ads: true
+        });
+    </script>
+
 </head>
 <body>
 <header class="navbar navbar-expand flex-column flex-md-row fondoHeader pl-5 pr-5">

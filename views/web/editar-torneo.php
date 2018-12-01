@@ -6,6 +6,7 @@
  * Time: 02:47 AM
  */
 use Proyecto\Core\App;
+use Proyecto\Session\Session;
 
 if (Session::has('torneo')){
     $torneo = Session::get('torneo');
