@@ -24,36 +24,61 @@
       <file leaf-file-name="ver-equipo.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/web/ver-equipo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="22" column="78" lean-forward="true" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
+            <state relative-caret-position="150">
+              <caret line="20" column="101" lean-forward="false" selection-start-line="20" selection-start-column="101" selection-end-line="20" selection-end-column="101" />
+              <folding>
+                <marker date="1543698197868" expanded="true" signature="793:865" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="portada6-3.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img/equipos/portada6-3.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preguntas-frecuentes.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scss/preguntas-frecuentes.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="47" column="44" lean-forward="false" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="escudo2.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img/icons/escudo2.png">
+      <file leaf-file-name="preguntas-frecuentes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/web/preguntas-frecuentes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="miequipo.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scss/miequipo.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="portada6-4.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img/equipos/portada6-4.jpg">
           <provider selected="true" editor-type-id="images">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="escudo3.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img/icons/escudo3.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="escudoConLaurel.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img/icons/escudoConLaurel.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="facebook-flat-vector.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img/icons/facebook-flat-vector.png">
+      <file leaf-file-name="escudolaurel-gris.jpg" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/img/icons/escudolaurel-gris.jpg">
           <provider selected="true" editor-type-id="images">
             <state />
           </provider>
@@ -66,7 +91,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ver-usuario.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ver-usuario.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/web/ver-usuario.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="371">
@@ -117,7 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>margin</find>
       <find>$bgcol_naranja</find>
       <find>hover</find>
       <find>$bgcol_verde5</find>
@@ -147,6 +171,7 @@
       <find>h5</find>
       <find>btn btn-link</find>
       <find>escudo</find>
+      <find>portada</find>
     </findStrings>
     <replaceStrings>
       <replace>VS</replace>
@@ -203,13 +228,13 @@
         <option value="$PROJECT_DIR$/views/templates/footer-cuenta-usuario.php" />
         <option value="$PROJECT_DIR$/views/templates/footer-home.php" />
         <option value="$PROJECT_DIR$/views/templates/footer-registro.php" />
-        <option value="$PROJECT_DIR$/views/web/preguntas-frecuentes.php" />
         <option value="$PROJECT_DIR$/scss/preguntas-frecuentes.scss" />
         <option value="$PROJECT_DIR$/js/modals-arrows.js" />
-        <option value="$PROJECT_DIR$/scss/miequipo.scss" />
-        <option value="$PROJECT_DIR$/views/web/ver-equipo.php" />
         <option value="$PROJECT_DIR$/views/templates/header-cuenta-usuario.php" />
         <option value="$PROJECT_DIR$/views/web/ver-usuario.php" />
+        <option value="$PROJECT_DIR$/views/web/preguntas-frecuentes.php" />
+        <option value="$PROJECT_DIR$/scss/miequipo.scss" />
+        <option value="$PROJECT_DIR$/views/web/ver-equipo.php" />
       </list>
     </option>
   </component>
@@ -361,7 +386,43 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="usuarios" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="icons" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EscudosDeFutbol" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -638,19 +699,19 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\scss" />
-      <recent name="C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\views\web" />
-      <recent name="C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\js" />
-      <recent name="C:\wamp\www\proxima-fecha-master\proxima-fecha\trunk\views\web" />
-      <recent name="C:\wamp\www\SeminarioFinal\trunk\Version_Final\views\templates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\img" />
       <recent name="C:\wamp\www\SeminarioFinal\trunk\Version_Final\views\web\VistasAnterioresODeOtroProyecto" />
       <recent name="C:\wamp\www\SeminarioFinal\trunk\Version_Final\app\Proyecto\Model\OtrosModelsNoUsadosEnEsteProyecto" />
       <recent name="C:\wamp\www\SeminarioFinal\trunk\Version_Final\app\Proyecto\Exceptions\OtrosExceptionsNoUsados" />
       <recent name="C:\wamp\www\SeminarioFinal\trunk\Version_Final\app\Proyecto\Controllers\ControllersNoUsadosODeOtrosProyectos" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\img\equipos" />
+      <recent name="C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\scss" />
+      <recent name="C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\views\web" />
+      <recent name="C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\js" />
+      <recent name="C:\wamp\www\proxima-fecha-master\proxima-fecha\trunk\views\web" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -777,12 +838,12 @@
       <workItem from="1542760126547" duration="4629000" />
       <workItem from="1542844297906" duration="10685000" />
       <workItem from="1543584764320" duration="15184000" />
-      <workItem from="1543663092329" duration="12902000" />
+      <workItem from="1543663092329" duration="22014000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="306828000" />
+    <option name="totallyTimeSpent" value="315940000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -839,26 +900,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/img/icons/tournament icon png.psd">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img/icons/tournament icon png.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img/icons/league-icon.psd">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img/icons/Icono Liga.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/web/registrarse.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
@@ -1107,22 +1148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/web/preguntas-frecuentes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="50" column="299" lean-forward="true" selection-start-line="50" selection-start-column="299" selection-end-line="50" selection-end-column="299" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scss/preguntas-frecuentes.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="47" column="44" lean-forward="false" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/web/equipos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1164,30 +1189,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img/icons/escudolaurel-gris.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/img/icons/escudo+laurel.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scss/miequipo.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="88" column="36" lean-forward="false" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/web/ver-equipo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="22" column="78" lean-forward="true" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/templates/header-cuenta-usuario.php">
@@ -1224,6 +1228,68 @@
           <caret line="46" column="114" lean-forward="false" selection-start-line="46" selection-start-column="114" selection-end-line="46" selection-end-column="114" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/EscudosDeFutbol/ArrayDe1Indice.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scss/preguntas-frecuentes.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="47" column="44" lean-forward="false" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/Scripts_Creacion_FINAL.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="135" column="23" lean-forward="true" selection-start-line="135" selection-start-column="23" selection-end-line="135" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/equipos/portada6-3.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/web/ver-equipo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="20" column="101" lean-forward="false" selection-start-line="20" selection-start-column="101" selection-end-line="20" selection-end-column="101" />
+          <folding>
+            <marker date="1543698197868" expanded="true" signature="793:865" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/web/preguntas-frecuentes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scss/miequipo.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/equipos/portada6-4.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/icons/escudolaurel-gris.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>

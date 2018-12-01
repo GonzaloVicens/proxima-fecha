@@ -1,6 +1,7 @@
 section.portada {
   position: relative;
-  height: 220px; }
+  height: 220px;
+  background-repeat: no-repeat; }
   section.portada div.escudo_y_nombre {
     position: absolute;
     bottom: -10%; }

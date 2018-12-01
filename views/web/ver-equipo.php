@@ -15,11 +15,16 @@ if (Equipo::existeEquipo($equipo_id)) {
             <div class="row">
                 <div class="col-md-9">
                     <?php
-                    echo "<section class='portada mb-5' style='background-image: url(../img/equipos/" . $equipo_id . "_portada.jpg);background-repeat:no-repeat;'>";
+                    if(isset($equipo) and file_exists('img/equipos/'. $equipo->getEquipoId() . '_portada.jpg')) {
+                        echo "<section class='portada mb-5' style='background-image: url(" . App::$urlPath . "/img/equipos/" . $equipo_id . "_portada.jpg);'>";
+                    } else {
+                        echo "<section class='portada mb-5' style='background-image: url(" . App::$urlPath . "/img/equipos/portada6-4.jpg);'>";
+                    }
+                    //echo "<section class='portada mb-5' style='background-image: url(../img/equipos/" . $equipo_id . "_portada.jpg);background-repeat:no-repeat;'>";
+
                     echo "    <div class='escudo_y_nombre d-flex align-items-center'>";
                     echo "        <div class='d-inline-block p-1 fondoHeader2 rounded-circle ml-3'>";
-                    //echo "            <img class='rounded-circle' src='../img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
-                    if(isset($equipo) and file_exists('img/equipos/'.$equipo->getEquipoId() . '.jpg')) {
+                    if(isset($equipo) and file_exists('img/equipos/'. $equipo->getEquipoId() . '_logo_200.jpg')) {
                         echo "<img class='rounded-circle' src='" . App::$urlPath . "/img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
                     } else {
                         echo "<img class='rounded-circle' src='" . App::$urlPath . "/img/icons/escudolaurel-gris.jpg' alt='Logo del Equipo'/>";
@@ -48,7 +53,7 @@ if (Equipo::existeEquipo($equipo_id)) {
                             echo "    <h4 class='mt-5 pfgreen nombreEquipo text-right'>" . $equipo->getNombre() . "</h4>";
                             echo "    <div class='d-inline-block fondoHeader2 rounded-circle ml-3  escudoequipo'>";
                             //echo "        <img class='rounded-circle' src='../img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
-                            if(isset($equipo) and file_exists('img/equipos/'.$equipo->getEquipoId() . '.jpg')) {
+                            if(isset($equipo) and file_exists('img/equipos/'. $equipo->getEquipoId() . '_logo_200.jpg')) {
                                 echo "<img class='rounded-circle' src='../img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
                             } else {
                                 echo "<img class='rounded-circle' src='../img/icons/escudolaurel-gris.jpg' alt='Logo del Equipo'/>";
