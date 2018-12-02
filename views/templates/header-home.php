@@ -15,9 +15,7 @@ use Proyecto\Core\App;
     <title>proximafecha</title>
     <meta charset="utf-8">
     <link href="<?= App::$urlPath;?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= App::$urlPath;?>/css/contact.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/estilo.css" rel="stylesheet">
-    <link href="<?= App::$urlPath;?>/css/preguntas-frecuentes.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/fontawesome/css/all.css" rel="stylesheet">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>

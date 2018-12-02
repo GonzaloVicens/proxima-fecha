@@ -6,3 +6,9 @@
 @mixin transitions($prop, $time) {
   transition: $prop $time ease-in-out;
 }
+
+@mixin flexcenter{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}

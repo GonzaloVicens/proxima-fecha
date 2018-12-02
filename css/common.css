@@ -1,34 +1,24 @@
 /*
-Error: Undefined variable: "$col_verde1".
-        on line 5 of scss/preguntas-frecuentes.scss
+Error: Undefined variable: "$col_blanco".
+        on line 48 of scss/common.scss
 
-1: 
-2: .preguntas-frecuentes{
-3: 
-4:   .fecha {
-5:     color: $col_verde1;
-6:     font-style: italic;
-7:     font-size: .8rem;
-8:     margin-right: .6rem;
-9:   }
-10: 
+43: .container-form-home{
+44: 
+45:   width: 85%;
+46:   border-radius: 10px;
+47:   overflow: hidden;
+48:   background-color: $col_blanco;
+49:   //border: 1px solid $bgcol_verde;
+50:   .fondoFormHome {
+51:       //background-color: rgba(0, 156, 88, 0.9);
+52:    }
+53:   form{
 
 Backtrace:
-scss/preguntas-frecuentes.scss:5
+scss/common.scss:48
 C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/script/tree/node.rb:50:in `perform'
 C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/stack.rb:135:in `with_frame'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:444:in `block (2 levels) in visit_rule'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:444:in `map'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:444:in `block in visit_rule'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:442:in `visit_rule'
 C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/base.rb:36:in `visit'
 C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
 C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/stack.rb:79:in `block in with_base'
@@ -79,4 +69,4 @@ C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/sass-listen-4.0.0/lib/sass-listen/interna
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$col_verde1\".\A         on line 5 of scss/preguntas-frecuentes.scss\A \A 1: \A 2: .preguntas-frecuentes{\A 3: \A 4:   .fecha {\A 5:     color: $col_verde1;\A 6:     font-style: italic;\A 7:     font-size: .8rem;\A 8:     margin-right: .6rem;\A 9:   }\A 10: "; }
+  content: "Error: Undefined variable: \"$col_blanco\".\A         on line 48 of scss/common.scss\A \A 43: .container-form-home{\A 44: \A 45:   width: 85%;\A 46:   border-radius: 10px;\A 47:   overflow: hidden;\A 48:   background-color: $col_blanco;\A 49:   //border: 1px solid $bgcol_verde;\A 50:   .fondoFormHome {\A 51:       //background-color: rgba(0, 156, 88, 0.9);\A 52:    }\A 53:   form{"; }

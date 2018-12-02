@@ -214,5 +214,10 @@ class UsuarioController
         }
     }
 
+    public function editarUsuario()
+    {
+        View::render('web/editar-mis-datos',[], 3);
+    }
+
 }
 

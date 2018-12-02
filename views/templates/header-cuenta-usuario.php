@@ -28,10 +28,6 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
     <meta charset="utf-8">
     <link href="<?= App::$urlPath;?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/estilo.css" rel="stylesheet">
-    <link href="<?= App::$urlPath;?>/css/header_nav.css" rel="stylesheet">
-    <link href="<?= App::$urlPath;?>/css/miequipo.css" rel="stylesheet">
-    <link href="<?= App::$urlPath;?>/css/notificaciones.css" rel="stylesheet">
-    <link href="<?= App::$urlPath;?>/css/preguntas-frecuentes.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/fontawesome/css/all.css" rel="stylesheet">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -43,16 +39,6 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
 
 </head>
 <header>
-    <!--header class="navbar navbar-expand flex-column flex-md-row pl-5 pr-5 shadow_bottom fondoHeader2">
-    <div class="flexbox">
-        <a class="navbar-brand mr-0 mr-md-2" href="<?= App::$urlPath;?>/" aria-label="Bootstrap">
-            <img src="<?= App::$urlPath;?>/img/LOGOPF-Sin-Fondo.png" class="logoHeader2 mr-3">
-        </a>
-    </div>
-    <div class="navbar-nav ml-md-auto text-light">
-        <a class="btn btn-outline-light btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="<?= App::$urlPath;?>/desloguear">Cerrar Sesión</a>
-    </div>
-</header-->
     <header class="shadow_bottom">
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-white navbar-dark fondoHeader2">

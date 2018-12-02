@@ -58,10 +58,37 @@ $(document).ready(function(){
         }
     })
 
+    var ancho = $('.d-inline-block.fondoHeader2.rounded-circle.ml-3.escudoequipo img.rounded-circle').css('width');
+    $('.d-inline-block.fondoHeader2.rounded-circle.ml-3.escudoequipo img.rounded-circle').css('height', ancho);
+
     $(window).resize(function(){
         var ancho = $('.d-inline-block.fondoHeader2.rounded-circle.ml-3.escudoequipo img.rounded-circle').css('width');
-        console.log(ancho);
         $('.d-inline-block.fondoHeader2.rounded-circle.ml-3.escudoequipo img.rounded-circle').css('height', ancho);
+    });
+
+    $('.usuario div div.hover-camera.rounded-circle').click(function () {
+
+        $('#modal_cambiar_fotoperfil').modal();
+
+    });
+
+    $('#modal_cambiar_fotoperfil .cancelar').click(function () {
+
+        $('#modal_cambiar_fotoperfil').modal('hide');
+
+    });
+
+    $('.editar-mis-datos #edit_pass').click(function () {
+
+        $('.editar-mis-datos .edit-pass-field').toggleClass('d-none');
+
+    });
+
+
+    $('.editar-mis-datos #cambiar-foto-perfil').click(function () {
+
+        $('.editar-mis-datos #cambiar-foto-perfil-input').click();
+
     });
 
 });

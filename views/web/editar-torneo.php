@@ -21,7 +21,7 @@ if (Session::has('torneo')){
             <div class="col-md-3">
             </div>
             <div class="col-md-6">
-                <h2 class="mt-5 mb-4 pfgreen">Crear <span class="font-weight-normal">Torneo o Liga</span></h2>
+                <h2 class="mt-5 mb-4 pfgreen">Editar <span class="font-weight-normal">Torneo o Liga</span></h2>
                 <form method='post' action='<?= App::$urlPath;?>/usuarios/editar-torneo' >
                     <input type="hidden" name="torneo_id" id="torneo_id"  value='<?= $torneo->getTorneoID() ?>'>
                     <div class="form-group">
@@ -54,7 +54,7 @@ if (Session::has('torneo')){
                             <?=Sede::printOptionsSedes()?>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-lg btn-outline-success">Crear</button>
+                    <button type="submit" class="btn btn-outline-success">Enviar</button>
                     <!--button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button-->
                 </form>
             </div>

@@ -175,6 +175,40 @@ use Proyecto\Core\App;
         </div>
     </div>
 </div>
+
+<div class="modal fade bd-example-modal-lg" id='modal_cambiar_fotoperfil' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header fondoHeader2 text-white">
+                    <h5 class="modal-title">Actualizar foto de perfil</h5>
+                    <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="modal-body my-3 pt-4 pb-5">
+                                <form>
+                                    <label for="BuscarImagen">Buscar imagen:</label>
+                                    <div class="input-group">
+                                        <input class="py-2" type="file" id="BuscarImagen">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-secondary cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
 <script src="<?= App::$urlPath;?>/js/jquery-3.3.1.min.js"></script>
 <script src="<?= App::$urlPath;?>/bootstrap/js/bootstrap.min.js"></script>
