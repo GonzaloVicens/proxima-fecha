@@ -12,7 +12,8 @@ Route::addRoute('GET' , '/usuarios/{usuario_id}'               , 'UsuarioControl
 Route::addRoute('POST', '/usuarios/agregarMensaje'             , 'UsuarioController@agregarMensaje');
 Route::addRoute('POST', '/usuarios/crear-equipo'               , 'EquipoController@registrar');
 Route::addRoute('GET' , '/usuarios/crear-torneo'               , 'UsuarioController@verCrearTorneo');
-Route::addRoute('POST', '/usuarios/crear-torneo'               , 'TorneoController@registrar');
+Route::addRoute('GET' , '/usuarios/editar-torneo'              , 'TorneoController@editarTorneo');
+Route::addRoute('POST', '/usuarios/editar-torneo'              , 'TorneoController@actualizar');
 Route::addRoute('GET' , '/usuarios/notificaciones'             , 'UsuarioController@notificaciones');
 Route::addRoute('POST', '/usuarios/registrar'                  , 'UsuarioController@registrar');
 Route::addRoute('GET' , '/equipos/{equipo_id}'                 , 'EquipoController@ver');
@@ -21,7 +22,6 @@ Route::addRoute('GET' , '/equipos'                             , 'EquipoControll
 Route::addRoute('GET' , '/torneos/{torneo_id}'                 , 'TorneoController@ver');
 Route::addRoute('GET' , '/ver-proxima-fecha'                   , 'TorneoController@verProximaFecha');
 Route::addRoute('GET' , '/ver-fixture-completo'                , 'TorneoController@verFixtureCompleto');
-Route::addRoute('GET' , '/editar-torneo'                       , 'TorneoController@editarTorneo');
 Route::addRoute('GET' , '/agregar-equipos'                     , 'TorneoController@agregarEquipos');
 Route::addRoute('GET' , '/preguntas-frecuentes'                , 'HomeController@preguntasFrecuentes');
 Route::addRoute('GET' , '/registrarse'                         , 'HomeController@registrarse');

@@ -45,7 +45,7 @@ if (Session::has('torneo')){
             <div class="col-md-4">
                 <h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>
                 <p>
-                    <a href="<?= App::$urlPath;?>/editar-torneo" class="naranjaFecha hoverVerde"><i class="far fa-edit"></i> Modificar Datos del Torneo</a>
+                    <a href="<?= App::$urlPath;?>/usuarios/editar-torneo" class="naranjaFecha hoverVerde"><i class="far fa-edit"></i> Modificar Datos del Torneo</a>
                 </p>
                 <p>
                     <a href="<?= App::$urlPath;?>/agregar-equipos" class="naranjaFecha hoverVerde"><i class="fas fa-plus-circle"></i> Agregar Equipo</a>

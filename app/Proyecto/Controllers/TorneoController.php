@@ -120,6 +120,31 @@ class TorneoController
     }
 
 
+    /**
+     * Método que controla la actualización de un torneo
+     */
+    public function actualizar(){
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+
+            $inputs = Request::getData();
+
+            $torneo_id = $inputs['torneo_id'];
+            $nombre = $inputs['nombre'];
+            $deporte = $inputs['deporte'];
+            $tipoTorneo = $inputs['tipoTorneo'];
+            $cantidad = $inputs['cantidad'];
+            $fechaInicio = $inputs['fechaInicio'];
+            $sedeId = $inputs['sede'];
+
+            $torneo_id = Torneo::CrearTorneo($nombre , $deporte, $tipoTorneo, $cantidad, $fechaInicio, $sedeId, $usuario_id);
+            header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
 
     /**
      * Método que ordena el Insert de un mensaje si hay datos, y vuelve a la ubicación original;

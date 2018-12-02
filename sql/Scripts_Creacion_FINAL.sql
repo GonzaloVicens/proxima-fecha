@@ -1657,7 +1657,7 @@ INSERT INTO SEDES  VALUES (1, 'Sin Definir', 'ARG', 'BUE', 'N/A', 'Sin Definir',
 INSERT INTO SEDES  VALUES (2, 'La Popular', 'ARG', 'BUE', '1752', 'Costa Rica', 80, '4655-2212', NULL);
 INSERT INTO SEDES  VALUES (3, 'Complejo Norte', 'ARG', 'BUE', '1222', 'Av Juan B Justo', 1101, '2344-5312', 'Entre Venezuela y Bolivar');
 
-INSERT INTO TORNEOS  VALUES (1, 'Torneo DaVinci', 1, 'L', 2, NULL, 2);
+INSERT INTO TORNEOS  VALUES (1, 'Torneo DaVinci', 1, 'L', 10, NULL, 2);
 INSERT INTO TORNEOS  VALUES (2, 'Roland Garros', 4, 'C', 32,  '2016-12-01', 2);
 
 INSERT INTO USUARIOS  VALUES ('pf_admin',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', 'Admin', 'ProximaFecha', 'contacto@proximafecha.com', '1', '4655-1231',  '2016-10-01');
