@@ -47,18 +47,8 @@ class TorneoController
     public function registrar(){
         if (Session::has("usuario")) {
             $usuario = Session::get('usuario');
-            $usuario_id = $usuario->getUsuarioID();
-
             $inputs = Request::getData();
-
-            $nombre = $inputs['nombre'];
-            $deporte = $inputs['deporte'];
-            $tipoTorneo = $inputs['tipoTorneo'];
-            $cantidad = $inputs['cantidad'];
-            $fechaInicio = $inputs['fechaInicio'];
-            $sedeId = $inputs['sede'];
-
-            $torneo_id = Torneo::CrearTorneo($nombre , $deporte, $tipoTorneo, $cantidad, $fechaInicio, $sedeId, $usuario_id);
+            $torneo_id = Torneo::CrearTorneo($inputs, $usuario->getUsuarioId());
             header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
 
         } else {
@@ -94,20 +84,32 @@ class TorneoController
     }
 
 
-    public function agregarEquipos()
+    public function verAgregarEquipos()
     {
         $puedeAgregarEquipos = false;
         if (Session::has("usuario")) {
             $usuario = Session::get('usuario');
             if (Session::has("torneo")) {
                 $torneo = Session::get('torneo');
+                $torneo->actualizar();
                 $puedeAgregarEquipos = $usuario->puedeAgregarEquiposEnTorneo($torneo->getTorneoID());
-
             }
         };
 
         if ($puedeAgregarEquipos ){
-            View::render('web/agregar-equipos',compact('usuario','torneo'), 3);
+            if (Session::has('resultados')){
+                $resultados = Session::get('resultados');
+                Session::clearValue('resultados');
+            }
+            if (Session::has('inputsBusqueda')){
+                $inputsBusqueda = Session::get('inputsBusqueda');
+                Session::clearValue('inputsBusqueda');
+            } else {
+                $inputsBusqueda = [];
+                $inputsBusqueda['nombre']= "";
+                $inputsBusqueda['id']= "";
+            }
+            View::render('web/agregar-equipos',compact('usuario','torneo','resultados','inputsBusqueda' ), 3);
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         };
@@ -138,14 +140,11 @@ class TorneoController
             $inputs = Request::getData();
 
             $torneo_id = $inputs['torneo_id'];
-            $nombre = $inputs['nombre'];
-            $deporte = $inputs['deporte'];
-            $tipoTorneo = $inputs['tipoTorneo'];
-            $cantidad = $inputs['cantidad'];
-            $fechaInicio = $inputs['fechaInicio'];
-            $sedeId = $inputs['sede'];
 
-            Torneo::ActualizarTorneo($torneo_id, $nombre , $deporte, $tipoTorneo, $cantidad, $fechaInicio, $sedeId, $usuario_id);
+
+            Torneo::ActualizarTorneo($inputs);
+
+            $usuario->actualizar();
             header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
 
         } else {
@@ -179,6 +178,57 @@ class TorneoController
             header('Location: ' . App::$urlPath . '/error404');
         };
     }
+
+    /**
+     * Método que busca los equipos que tengan un nombre o id que contenga el parámetro.
+     */
+    public function buscarEquipo()
+    {
+        $inputs = Request::getData();
+        $resultados = Equipo::BuscarEquipos($inputs );
+        Session::set('resultados',$resultados);
+        Session::set('inputsBusqueda',$inputs);
+        header('Location: ' . App::$urlPath . '/torneos/agregar-equipos');
+    }
+
+
+    /**
+     * Método que agrega un Equipo en el Torneo
+     */
+    public function agregarEquipo()
+    {
+        $inputs = Request::getData();
+        print_r($inputs);
+        Session::clearValue("errorAgregarEquipo");
+        $torneo = Session::get('torneo');
+        if (isset($inputs ["equipo_id"]) && !empty($inputs ["equipo_id"])) {
+            $equipo_id = $inputs ['equipo_id'];
+
+            if ($torneo->existeEquipo($equipo_id)) {
+                Session::set("errorAgregarEquipo", $equipo_id . " ya es un equipo del torneo");
+            } else {
+
+                if (Equipo::existeEquipo($equipo_id)) {
+                    $torneo->insertarEquipo($equipo_id);
+                    Session::clearValue("errorAgregarEquipo");
+                } else {
+                    Session::set("errorAgregarEquipo", $equipo_id . " no existe en el sistema");
+                }
+            };
+        } else {
+            Session::set("errorAgregarEquipo",  " Ingrese un equipo");
+        }
+        print_r(Session::get('errorAgregarEquipo'));
+
+        $torneo->actualizar();
+        $inputsBusqueda = Session::get('inputsBusqueda');
+        $resultados = Equipo::BuscarEquipos($inputsBusqueda );
+        Session::set('resultados',$resultados);
+
+        header('Location: ' . App::$urlPath . '/torneos/agregar-equipos');
+
+    }
+
 
 
     /**
@@ -237,21 +287,6 @@ class TorneoController
     }
 
 
-    /**
-     * Método que busca los usuarios que tengan un nombre o apellido que contenga el parámetro.
-     *
-    public function buscar(Request $request)
-    {
 
-        $ruta = "";
-        $inputs = $request->getData();
-        $dato = $inputs ['dato'];
-
-        View::render('modulos/header',compact('ruta'));
-        $resultados = Usuario::BuscarUsuarios($dato );
-        View::render('modulos/resultados', compact('ruta','resultados'));
-        View::render('modulos/footer',compact('ruta'));
-
-    }
 */
 }

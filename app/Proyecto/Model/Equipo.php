@@ -271,4 +271,31 @@ class Equipo
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 
+    public static function BuscarEquipos ($inputs){
+
+        $where = "WHERE ACTIVO = 1 ";
+        $datos = [];
+        if ($inputs['id']) {
+            $where .= " AND EQUIPO_ID = :id";
+            $datos['id'] = $inputs['id'];
+        }
+
+        if ($inputs['nombre']) {
+            $where .= " AND UPPER(NOMBRE) LIKE concat('%', UPPER(:nombre) , '%')  ";
+            $datos['nombre'] = $inputs['nombre'];
+        }
+
+        $query = "SELECT EQUIPO_ID FROM EQUIPOS " . $where;
+        $stmt = DBConnection::getStatement($query);
+        $resultados = [];
+        $stmt->execute($datos);
+        while($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $resultados [] = New Equipo ( $datos['EQUIPO_ID'] );
+        }
+        return $resultados ;
+
+    }
+
+
+
 }

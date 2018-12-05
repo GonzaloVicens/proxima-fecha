@@ -3,6 +3,7 @@ namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
 use Proyecto\Exceptions\TorneoNoGrabadoException;
+use Proyecto\Session\Session;
 
 
 /**
@@ -100,6 +101,8 @@ class Torneo
     {
         if(!is_null($torneo)) {
             $this->setTorneo($torneo);
+            $this->setEquipos();
+            $this->setOrganizadores();
         }
     }
 
@@ -133,18 +136,15 @@ class Torneo
     }
 
 
-    public static function CrearTorneo($nombreParam , $deporteId, $tipoTorneoId, $cantidadEquipos, $fechaInicio, $sedeId, $organizador_id){
+    public static function CrearTorneo($inputs, $organizador_id){
 
-        if (!$sedeId) {
-            $sedeId = 1;
-        }
         $torneo= [
-            'nombre'           => $nombreParam,
-            'deporte_id'       =>  $deporteId,
-            'tipo_torneo_id'   =>  $tipoTorneoId,
-            'cantidad_equipos' =>  $cantidadEquipos,
-            'fecha_inicio'     =>  $fechaInicio,
-            'sede_id'          =>  $sedeId,
+            'nombre'           => $inputs['nombre'],
+            'deporte_id'       =>  $inputs['deporte'],
+            'tipo_torneo_id'   =>  $inputs['tipoTorneo'],
+            'cantidad_equipos' =>  $inputs['cantidad'],
+            'fecha_inicio'     =>  $inputs['fechaInicio'],
+            'sede_id'          =>  $inputs['sede'],
             'estado_torneo_id'    =>  "I"
         ];
 
@@ -169,19 +169,16 @@ class Torneo
         }
     }
 
-    public static function ActualizarTorneo($torneo_id , $nombreParam , $deporteId, $tipoTorneoId, $cantidadEquipos, $fechaInicio, $sedeId, $organizador_id){
+    public static function ActualizarTorneo($inputs){
 
-        if (!$sedeId) {
-            $sedeId = 1;
-        }
         $torneo= [
-            'torneo_id'         => $torneo_id,
-            'nombre'            => $nombreParam,
-            'deporte_id'        =>  $deporteId,
-            'tipo_torneo_id'    =>  $tipoTorneoId,
-            'cantidad_equipos'  =>  $cantidadEquipos,
-            'fecha_inicio'      =>  $fechaInicio,
-            'sede_id'           =>  $sedeId
+            'torneo_id'         => $inputs['torneo_id'],
+            'nombre'            => $inputs['nombre'],
+            'deporte_id'        =>  $inputs['deporte'],
+            'tipo_torneo_id'    =>  $inputs['tipoTorneo'],
+            'cantidad_equipos'  =>  $inputs['cantidad'],
+            'fecha_inicio'      =>  $inputs['fechaInicio'],
+            'sede_id'           =>  $inputs['sede']
         ];
 
         $script = "UPDATE TORNEOS SET NOMBRE = :nombre, DEPORTE_ID = :deporte_id, TIPO_TORNEO_ID = :tipo_torneo_id, CANTIDAD_EQUIPOS = :cantidad_equipos, FECHA_INICIO = :fecha_inicio, SEDE_ID = :sede_id WHERE TORNEO_ID = :torneo_id";
@@ -244,6 +241,16 @@ class Torneo
         $stmt->execute(['torneo_id' => $this->torneo_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->equipos[] = New Equipo($datos['EQUIPO_ID']);
+        };
+    }
+
+    public function setOrganizadores(){
+        $this->organizadores= [];
+        $query = "SELECT ORGANIZADOR_ID FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $this->torneo_id]);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $this->organizadores[] = $datos['ORGANIZADOR_ID'];
         };
     }
 
@@ -323,4 +330,36 @@ class Torneo
         return ($this->estado_torneo_id == "I");
 
     }
+
+
+    public function existeEquipo($equipo_id){
+        $datos = ['torneo_id' => $this->torneo_id,
+            'equipo_id' => $equipo_id
+        ];
+
+        $query = "SELECT 'X' FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id AND EQUIPO_ID = :equipo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+    public function insertarEquipo($equipo_id){
+        $datos = ['torneo_id' => $this->torneo_id,
+            'equipo_id' => $equipo_id
+        ];
+
+        $query = "INSERT INTO EQUIPOS_TORNEO VALUE (:torneo_id, :equipo_id )";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos );
+        $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+
+    public function actualizar(){
+        $this->setTorneo($this->torneo_id);
+        $this->setEquipos();
+        $this->setOrganizadores();
+        Session::set('torneo',$this);
+    }
+
 }

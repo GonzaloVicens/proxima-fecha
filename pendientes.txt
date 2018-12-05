@@ -1,0 +1,61 @@
+Pendientes/Notas:
+
+	1) views\web\ver-equipo.php
+		-> Estoy empezando a hacerlo mas dinámico pero me frené porque hay un tema acá...
+		Vos estás mostrando la información del Torneo que está participando... yo agregue dos variables para diferencias si solo está inscripto o si está participando del torneo.. porque por ejemplo si el torneo no empezó no tiene sentido mostrar la "proxima fecha" o las "posiciones".
+		Sin embargo me frené porque tenemos un tema aca...
+		Que va a pasar si el usuario está jugando mas de un torneo a la vez? que mostraría?? hay que pensarlo... lo mismo para la columna derecha... Fijate si te conviene capaz no mostrar taaaaaaaaaaanta información del torneo.. sino solo links a los distintos torneos... 
+		Como alternativa lo que se me ocurre así rapdio es por ejemplo en el tab proxima fecha podríamos poner una debajo de otra las proximas fechas de cada torneo, referenciando de que torneo se trata... y en el tab posiciones tmb.. las distintas tablas, en este caso ya estaría mostrando el torneo...
+		La parte de "Torneo / Liga" hay que buscarle la vuelta también...
+
+		Por último la columna de la derecha, yo no la pondría en "ver-equipo" sino en "ver-torneo" ya que en realidad es toda información del torneo en si... y en el "ver-torneo" lo tenemos medio vacío cuando ya el torneo está andando...
+
+
+	2) views\web\ver-usuario.php
+		Vale la pena también poder actualizar la foto del perfil desde ahi? 
+	
+
+	3) Usuario 
+		-> Editar Perfil
+		-> La foto no se mantiene redonda si lo que subis no es redondo	
+	
+	4) Los términos y condiciones
+	
+	5) web/ver-equipo.php 
+		-> Agregar Compañero (Esto funciona, falta traerlo de la vieja vista a la nueva)
+		-> La cinta del capitán, antes teniamos esto:
+			#miequipo #capitan {
+							background-image: url(../images/cinta.png);
+							background-repeat: no-repeat;
+							background-position: right center;
+							width: 250px;
+							vertical-align: middle;
+			}
+
+	
+	6) Las Sedes
+			
+			
+			
+Cambios:
+	1) SQL 
+		-> Se agregó el Estado al Torneo porque de eso depende que pueda inscribirse en otros o no...
+	2) Equipo.php 
+		-> Se agregó la lógica del estado del torneo
+		-> Se agrego la posibilidad de que el "capitan" mande mensajes a otros jugadores.
+		-> Ahora el "Enviar Mensaje" lleva a las notificaciones
+	3) ver-usuario
+		-> Se corrigio el link a los torneos
+		-> Se corrigió el link para "Editar Perfil"
+	4) crear-torneo.php
+		-> se agregó el botón cancelar
+	5) editar-torneo.php
+		-> se autocompletan los campos
+		-> se agregó el boton cancelar
+	6) footer-cuenta-usuario.php
+		-> Corregí el link y el formulario para actualizar la foto del usuario
+		-> Saque el Modal del "Eliminar Torneo" porque daba error al no estar en la pagina de torneos y querer autocompletarlo.
+	7) ver-torneo.php	
+		-> Agregue el Modal del "Eliminar Torneo" porque daba error al no estar en la pagina de torneos y querer autocompletarlo.
+	
+	

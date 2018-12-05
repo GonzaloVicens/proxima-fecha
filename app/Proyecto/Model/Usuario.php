@@ -3,6 +3,7 @@ namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
 use Proyecto\Tools\Hash;
+use Proyecto\Session\Session;
 use Proyecto\Exceptions\UsuarioNoGrabadoException;
 use Proyecto\Exceptions\AmigoNoGrabadoException;
 use Proyecto\Exceptions\MensajesNoLeidosException;
@@ -560,6 +561,8 @@ class Usuario
         $this->setEquipos();
         $this->setTorneos();
         $this->setTorneosPropios();
+
+        Session::set('usuario',$this);
     }
 }
 

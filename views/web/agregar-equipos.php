@@ -14,38 +14,40 @@ use Proyecto\Core\App;
                 <h2 class="mt-4 mb-5 colorGris2 font-weight-normal ">Agregar Equipos al Torneo / Liga</h2>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</button>
+                <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
             </div>
             <div class="col-md-5">
-                <!-- Nombre de Torneo Debajo, tendría que ser dinámico -->
-                <h2 class="mb-4 pfgreen fontSize1-6rem">Torneo Federal de Arroyo Dulce</h2>
-                <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
-                <!-- Listado de Equipos que Ya Participan Debajo, tendría que ser dinámico -->
-                <ul>
-                    <li>Cambaceres de Don Torcuato</li>
-                    <li>La Runfla de Pagani</li>
-                    <li>Los Messi</li>
-                    <li>Joya Nunca taxi</li>
-                </ul>
+                <h2 class="mb-4 pfgreen fontSize1-6rem"><?= $torneo->getNombre()?></h2>
+
+                <?php if ( $torneo->tieneEquipos() ){ ?>
+                    <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
+                    <ul>
+                        <?= $torneo->printEquiposEnLi() ?>
+                    </ul>
+                    <!-- Agregar clase d-none o d-block de acuerdo a si quedan equipos por agregar o no -->
+                <?php }
+                if ($torneo->getLugaresLibres() > 0 ){ ?>
+                    <p class="text-muted font-italic d-block">Resta agregar <?= $torneo->getLugaresLibres() ?> equipos aún</p>
+                <?php } ?>
             </div>
             <div class="col-md-4">
                 <!--h3 class="mt-5 mb-4 colorGris2">Agregar Equipos al Torneo / Liga</h3-->
                 <!-- Nombre de Torneo Debajo, obvio tendria que ser dinámico -->
                 <h2 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Buscar Equipos para agregar</h2>
-                <form action="" method="" enctype="">
+                <form action="buscar-equipo" method="POST" >
                     <div class="form-group">
-                       <label for="buscar-equipo">Buscar Equipo por Nombre</label>
+                       <label for="buscar-nombre">Buscar Equipo por Nombre</label>
                         <div class="input-group">
-                            <input class="form-control py-2 border-right-0 border" type="text" placeholder="Buscar" id="buscar-equipo">
+                            <input name="nombre" value="<?=$inputsBusqueda['nombre']?>" class="form-control py-2 border-right-0 border" type="text" placeholder="Nombre" id="buscar-nombre">
                             <span class="input-group-append">
                                 <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="buscar-equipo">Buscar Equipo por Id</label>
+                        <label for="buscar-id">Buscar Equipo por Id</label>
                         <div class="input-group">
-                            <input class="form-control py-2 border-right-0 border" type="text" placeholder="Buscar" id="buscar-equipo">
+                            <input name="id" value="<?=$inputsBusqueda['id']?>" class="form-control py-2 border-right-0 border" type="text" placeholder="ID" id="buscar-id">
                             <span class="input-group-append">
                                 <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
                             </span>
@@ -54,29 +56,29 @@ use Proyecto\Core\App;
                     <button type="submit" class="btn btn-outline-success">Buscar</button>
                 </form>
             </div>
-            <div class="col-md-3">
+        </div>
+        <div class="row">
+            <div class="col-md-10">
                 <h4 class="mb-4 pfgreen fontSize1-4rem colorGris2 font-weight-normal">Resultado de Búsqueda</h4>
-                <form action="" method="" enctype="">
-                    <!--
-                        Si no se buscó nada aún aparece este div y el formulario pasa a display none (clase d-none)
-                        Cuando hay un resultado para mostrar esto se pasa a display:none
-                     -->
-                    <div class="text-muted d-none">No hay resultados para mostrar</div>
+                    <?php
+                    if (isset($resultados) && !empty($resultados [0]) ){
+                        foreach ($resultados as $resultado){
 
-                    <div class="my-1">
-                        <label class='m-0 naranjaFecha' for="nombre">Nombre Equipo</label><br>
-                        <input  class="inputNoStyle minWidth100" type="text" value="Los Invisibles de avellaneda" id="nombre" name="nombre" disabled/>
-                    </div>
-                    <div  class="my-1">
-                        <label class='m-0 naranjaFecha' for="idequipo">ID</label><br>
-                        <input  class="inputNoStyle" type="text" value="324" id="idequipo" name="idequipo" disabled/>
-                    </div>
-                    <div  class="mt-1 mb-3">
-                        <label class='m-0 naranjaFecha' for="nombre">Creado por</label><br>
-                        <input class="inputNoStyle" type="text" value="Facundo Salerno" id="creador" name="creador" disabled/>
-                    </div>
-                    <button type="submit" class="btn btn-outline-success"><i class="fas fa-plus"></i> Agregar Equipo</button>
-                </form>
+                    ?>
+                            <div class="my-1">
+                                <form action="agregar-equipo" method="POST">
+                                    <input  name="equipo_id" type="hidden" value="<?= $resultado->getEquipoID() ?>" />
+                                    <label class='m-0 naranjaFecha' for="nombre">Nombre Equipo</label><br>
+                                    <input  class="inputNoStyle minWidth100" type="text" value="<?= $resultado->getNombre() ?>" id="nombre" disabled/>
+                                    <button type="submit" class="btn btn-outline-success"><i class="fas fa-plus"></i> Agregar Equipo</button>
+                                </form>
+                            </div>
+                    <?php
+                        }
+                    } else {
+                        echo "<div class='text-muted d-none'>No hay resultados para mostrar</div>";
+                    }
+                    ?>
             </div>
         </div>
     </div>
