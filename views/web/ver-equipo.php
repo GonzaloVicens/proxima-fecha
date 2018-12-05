@@ -70,20 +70,14 @@ if(isset($equipo)){
                             <div class='d-flex mt-5 pf_miequipo'>
                             <h4 class='mt-5 pfgreen nombreEquipo text-right'> <?= $equipo->getNombre()?>  </h4>
                             <div class='d-inline-block fondoHeader2 rounded-circle ml-3  escudoequipo'>
-                                <?php
-                            if(isset($equipo) and file_exists('img/equipos/'. $equipo_id  . '_logo_200.jpg')) {
-                                echo "<img class='rounded-circle' src='../img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
-                            } else {
-                                echo "<img class='rounded-circle' src='../img/icons/escudolaurel-gris.jpg' alt='Logo del Equipo'/>";
-                            }
-                            echo "    </div>";
-                            echo "    <div class='vs'>VS</div>";
-                            echo "    <div class='d-inline-block fondoHeader2 rounded-circle mr-3 escudoequipo'>";
-                            echo "        <img class='rounded-circle' src='../img/equipos/1_logo_200.jpg' alt='Logo del Equipo'/>";
-                            echo "    </div>";
-                            echo "    <h4 class='mt-5 pfgreen nombreEquipo text-left'>Preprocesor Futbol Club </h4>";
-                            echo "</div>";
-                            ?>
+                                <img class="rounded-circle" src="<?=$rutaFotoLogo?>" alt='Logo del Equipo'/>
+                            </div>
+                            <div class='vs'>VS</div>
+                            <div class='d-inline-block fondoHeader2 rounded-circle mr-3 escudoequipo'>
+                                <img class='rounded-circle' src='../img/equipos/1_logo_200.jpg' alt='Logo del Equipo'/>
+                            </div>
+                                <h4 class='mt-5 pfgreen nombreEquipo text-left'>Preprocesor Futbol Club </h4>
+                            </div>
                             <div class="datospf_miequipo colorGris2">
                                 <ul class="d-flex list-unstyled">
                                     <li class="fecha_miequipo border-right"><i class="far fa-calendar"></i> Fecha: <span>12/12/2019</span></li>
@@ -91,7 +85,6 @@ if(isset($equipo)){
                                     <li class="sede_miequipo"><i class="fas fa-map-marker-alt"></i> Sede: <span>Complejo Cataluñas</span></li>
                                 </ul>
                             </div>
-
                         </div>
                         <div class="tab-pane fade" id="nav-posiciones" role="tabpanel" aria-labelledby="nav-posiciones-tab">
                             <h4 class="mb-4 pfgreen mt-5">Tabla de posiciones <br><span class="font-weight-normal colorGris2">Torneo Federal de Arroyo Dulce</span></h4>
