@@ -35,7 +35,7 @@ Pendientes/Notas:
 	
 	6) Las Sedes
 			
-			
+	7) Si agrego un equipo a un torneo no se refresca, ahora.. si lo agrego..voy al home... y vuelvo.. aparece agregado...
 			
 Cambios:
 	1) SQL 

@@ -104,6 +104,7 @@ class TorneoController
             if (Session::has('inputsBusqueda')){
                 $inputsBusqueda = Session::get('inputsBusqueda');
                 Session::clearValue('inputsBusqueda');
+                Session::set('inputsBuscados',$inputsBusqueda);
             } else {
                 $inputsBusqueda = [];
                 $inputsBusqueda['nombre']= "";
@@ -185,9 +186,16 @@ class TorneoController
     public function buscarEquipo()
     {
         $inputs = Request::getData();
+
+        Session::clearValue('inputsBusqueda');
+        Session::clearValue("errorAgregarEquipo");
+        Session::clearValue("IDAgregarEquipo");
+        Session::clearValue('inputsBuscados');
+
+        Session::set('inputsBusqueda',$inputs);
+
         $resultados = Equipo::BuscarEquipos($inputs );
         Session::set('resultados',$resultados);
-        Session::set('inputsBusqueda',$inputs);
         header('Location: ' . App::$urlPath . '/torneos/agregar-equipos');
     }
 
@@ -198,32 +206,38 @@ class TorneoController
     public function agregarEquipo()
     {
         $inputs = Request::getData();
-        print_r($inputs);
         Session::clearValue("errorAgregarEquipo");
+        Session::clearValue("IDAgregarEquipo");
         $torneo = Session::get('torneo');
         if (isset($inputs ["equipo_id"]) && !empty($inputs ["equipo_id"])) {
             $equipo_id = $inputs ['equipo_id'];
+            $nombre = $inputs ['nombre'];
+            Session::set("IDAgregarEquipo", $equipo_id );
+            if ($torneo->getLugaresLibres() > 0) {
 
-            if ($torneo->existeEquipo($equipo_id)) {
-                Session::set("errorAgregarEquipo", $equipo_id . " ya es un equipo del torneo");
-            } else {
-
-                if (Equipo::existeEquipo($equipo_id)) {
-                    $torneo->insertarEquipo($equipo_id);
-                    Session::clearValue("errorAgregarEquipo");
+                if ($torneo->existeEquipo($equipo_id)) {
+                    Session::set("errorAgregarEquipo", $nombre  . " ya es un equipo del torneo");
                 } else {
-                    Session::set("errorAgregarEquipo", $equipo_id . " no existe en el sistema");
-                }
-            };
+                    if (Equipo::existeEquipo($equipo_id)) {
+                        $torneo->insertarEquipo($equipo_id);
+                        Session::set("errorAgregarEquipo", $nombre  . " fue agregado al torneo");
+                    } else {
+                        Session::set("errorAgregarEquipo", $equipo_id . " no existe en el sistema");
+                    }
+                };
+            } else {
+                Session::set("errorAgregarEquipo", "El torneo ya esta lleno");
+            }
         } else {
-            Session::set("errorAgregarEquipo",  " Ingrese un equipo");
+                Session::set("errorAgregarEquipo", " Ingrese un equipo");
         }
-        print_r(Session::get('errorAgregarEquipo'));
-
         $torneo->actualizar();
-        $inputsBusqueda = Session::get('inputsBusqueda');
-        $resultados = Equipo::BuscarEquipos($inputsBusqueda );
-        Session::set('resultados',$resultados);
+        if (Session::has('inputsBuscados')){
+            $inputsBusqueda = Session::get('inputsBuscados');
+            Session::set('inputsBusqueda',$inputsBusqueda);
+            $resultados = Equipo::BuscarEquipos($inputsBusqueda );
+            Session::set('resultados',$resultados);
+        }
 
         header('Location: ' . App::$urlPath . '/torneos/agregar-equipos');
 

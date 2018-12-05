@@ -6,6 +6,7 @@
  * Time: 02:47 AM
  */
 use Proyecto\Core\App;
+use Proyecto\Session\Session;
 ?>
 <main class="py-4 mb-4">
     <div class="container">
@@ -62,16 +63,30 @@ use Proyecto\Core\App;
                 <h4 class="mb-4 pfgreen fontSize1-4rem colorGris2 font-weight-normal">Resultado de Búsqueda</h4>
                     <?php
                     if (isset($resultados) && !empty($resultados [0]) ){
+                        if (Session::has("IDAgregarEquipo")){
+                            $idAgregarEquipo =Session::get("IDAgregarEquipo");
+                        } else {
+                            $idAgregarEquipo ="";
+                        };
+                        if (Session::has("errorAgregarEquipo")){
+                            $errorAgregarEquipo =Session::get("errorAgregarEquipo");
+                        } else {
+                            $errorAgregarEquipo ="";
+                        };
                         foreach ($resultados as $resultado){
-
                     ?>
                             <div class="my-1">
                                 <form action="agregar-equipo" method="POST">
                                     <input  name="equipo_id" type="hidden" value="<?= $resultado->getEquipoID() ?>" />
                                     <label class='m-0 naranjaFecha' for="nombre">Nombre Equipo</label><br>
-                                    <input  class="inputNoStyle minWidth100" type="text" value="<?= $resultado->getNombre() ?>" id="nombre" disabled/>
+                                    <input  class="inputNoStyle minWidth100" type="text" value="<?= $resultado->getNombre() ?>" id="nombre" name="nombre" disabled/>
                                     <button type="submit" class="btn btn-outline-success"><i class="fas fa-plus"></i> Agregar Equipo</button>
                                 </form>
+                                <?php
+                                if ($idAgregarEquipo == $resultado->getEquipoID()){
+                                    echo "<p> $errorAgregarEquipo </p>";
+                                }
+                                ?>
                             </div>
                     <?php
                         }

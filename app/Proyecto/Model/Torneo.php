@@ -359,6 +359,7 @@ class Torneo
         $this->setTorneo($this->torneo_id);
         $this->setEquipos();
         $this->setOrganizadores();
+        Session::clearValue('torneo');
         Session::set('torneo',$this);
     }
 
