@@ -57,5 +57,12 @@ Cambios:
 		-> Saque el Modal del "Eliminar Torneo" porque daba error al no estar en la pagina de torneos y querer autocompletarlo.
 	7) ver-torneo.php	
 		-> Agregue el Modal del "Eliminar Torneo" porque daba error al no estar en la pagina de torneos y querer autocompletarlo.
-	
+	8) web\registrarse.php	
+		-> corregi el botón de cancelar
+	9) web\agregar-equipos.php
+		-> Cambie la parte del formulario de la busqueda para que funcione y se autocomplete si ya se hizo alguna busqueda.
+		-> Baje la parte de resultados porque puede pasar que aparezca mas de un resultado para la buqueda y no nos serviría como estaba... 
+		
+		
+		
 	
