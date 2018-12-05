@@ -3,57 +3,75 @@ use Proyecto\Model\Equipo;
 use Proyecto\Session\Session;
 use Proyecto\Core\App;
 
-if (Equipo::existeEquipo($equipo_id)) {
-    $equipo = new Equipo($equipo_id);
-    $equipo->setJugadores();
-    Session::set("equipo_idActual",$equipo->getEquipoId());
-    ?>
+$rutaFotoPortada = App::$urlPath . "/img/equipos/portada6-4.jpg";
+$rutaFotoLogo = App::$urlPath . "/img/icons/escudolaurel-gris.jpg";
+if(isset($equipo)){
+    $equipo_id = $equipo->getEquipoID();
+
+    $estaJugandoTorneo = $equipo->estaJugandoTorneo();
+    $estaInscriptoEnTorneo = $equipo->estaInscriptoEnTorneo();
+
+
+    if(file_exists('img/equipos/'. $equipo_id  . '_portada.jpg')) {
+        $rutaFotoPortada = App::$urlPath . "/img/equipos/" . $equipo_id . "_portada.jpg";
+    }
+    if(file_exists('img/equipos/'. $equipo_id  . '_logo_200.jpg')) {
+        $rutaFotoLogo = App::$urlPath . "/img/equipos/" . $equipo_id . "_logo_200.jpg";
+    };
+}
+?>
 
 
     <main class="main_miequipo">
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <?php
-                    if(isset($equipo) and file_exists('img/equipos/'. $equipo->getEquipoId() . '_portada.jpg')) {
-                        echo "<section class='portada mb-5' style='background-image: url(" . App::$urlPath . "/img/equipos/" . $equipo_id . "_portada.jpg);'>";
-                    } else {
-                        echo "<section class='portada mb-5' style='background-image: url(" . App::$urlPath . "/img/equipos/portada6-4.jpg);'>";
-                    }
-                    //echo "<section class='portada mb-5' style='background-image: url(../img/equipos/" . $equipo_id . "_portada.jpg);background-repeat:no-repeat;'>";
+                    <section class="portada mb-5" style="background-image: url(<?=$rutaFotoPortada?>)">
+                        <div class='escudo_y_nombre d-flex align-items-center'>
+                            <div class='d-inline-block p-1 fondoHeader2 rounded-circle ml-3'>
+                                <img class="rounded-circle" src="<?=$rutaFotoLogo?>" alt='Logo del Equipo'/>
+                            </div>
+                            <h2 class='mt-5 ml-3 text-white'><?=$equipo->getNombre()?></h2>
+                        </div>
+                    <?php if ( (Session::has("usuario")) && ($equipo->getCapitanID() == Session::get("usuario")->getUsuarioID())) {?>
+                        <div id='cambiar_fotoportada'><a href='#' title='actualizar portada' class='colorGris1 hoverVerde'><i class='fas fa-camera'></i> actualizar portada</a></div>
+                    <?php };?>
+                    </section>
 
-                    echo "    <div class='escudo_y_nombre d-flex align-items-center'>";
-                    echo "        <div class='d-inline-block p-1 fondoHeader2 rounded-circle ml-3'>";
-                    if(isset($equipo) and file_exists('img/equipos/'. $equipo->getEquipoId() . '_logo_200.jpg')) {
-                        echo "<img class='rounded-circle' src='" . App::$urlPath . "/img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
-                    } else {
-                        echo "<img class='rounded-circle' src='" . App::$urlPath . "/img/icons/escudolaurel-gris.jpg' alt='Logo del Equipo'/>";
-                    }
-                    echo "        </div>";
-                    echo "        <h2 class='mt-5 ml-3 text-white'>" . $equipo->getNombre() . "</h2>";
-                    echo "    </div>";
-                    if ( (Session::has("usuario")) && ($equipo->getCapitanID() == Session::get("usuario")->getUsuarioID())) {
-                        echo "<div id='cambiar_fotoportada'><a href='#' title='actualizar portada' class='colorGris1 hoverVerde'><i class='fas fa-camera'></i> actualizar portada</a></div>";
-                    };
-                    echo "</section>";
-                    ?>
 
                     <nav class="tabs_miequipo">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link pfgreen hoverVerde active" id="nav-proximafecha-tab" data-toggle="tab" href="#nav-proximafecha" role="tab" aria-controls="nav-proximafecha" aria-selected="true">Próxima Fecha</a>
-                            <a class="nav-item nav-link pfgreen hoverVerde" id="nav-miequipo-tab" data-toggle="tab" href="#nav-miequipo" role="tab" aria-controls="nav-miequipo" aria-selected="false">Mi Equipo</a>
-                            <a class="nav-item nav-link pfgreen hoverVerde" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Torneo / Liga</a>
+                            <a class="nav-item nav-link pfgreen hoverVerde active" id="nav-miequipo-tab" data-toggle="tab" href="#nav-miequipo" role="tab" aria-controls="nav-miequipo" aria-selected="true">Mi Equipo</a>
+                            <?php if ($estaJugandoTorneo){?>
+                            <a class="nav-item nav-link pfgreen hoverVerde " id="nav-proximafecha-tab" data-toggle="tab" href="#nav-proximafecha" role="tab" aria-controls="nav-proximafecha" aria-selected="false">Próxima Fecha</a>
                             <a class="nav-item nav-link pfgreen hoverVerde" id="nav-posiciones-tab" data-toggle="tab" href="#nav-posiciones" role="tab" aria-controls="nav-posiciones" aria-selected="false">Posiciones</a>
+                            <?php };
+                            if ($estaInscriptoEnTorneo){?>
+                            <a class="nav-item nav-link pfgreen hoverVerde" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Torneo / Liga</a>
+                            <?php } ?>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-proximafecha" role="tabpanel" aria-labelledby="nav-proximafecha-tab">
+                        <div class="tab-pane fade show active" id="nav-miequipo" role="tabpanel" aria-labelledby="nav-miequipo-tab">
                             <?php
-                            echo "<div class='d-flex mt-5 pf_miequipo'>";
-                            echo "    <h4 class='mt-5 pfgreen nombreEquipo text-right'>" . $equipo->getNombre() . "</h4>";
-                            echo "    <div class='d-inline-block fondoHeader2 rounded-circle ml-3  escudoequipo'>";
-                            //echo "        <img class='rounded-circle' src='../img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
-                            if(isset($equipo) and file_exists('img/equipos/'. $equipo->getEquipoId() . '_logo_200.jpg')) {
+                            echo "<h4 class='pfgreen mt-5 mb-4'>Integrantes del equipo <span class='font-weight-normal'>" . $equipo->getNombre() . "</span></h4>";
+
+                            $equipo->printJugadoresEnUL();
+                            if  (Session::has("usuario")){
+                                if (! $equipo->participaEnTorneo() && $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
+                                    echo "<div><a href='#AgregarCompanero' title='Agregar Compañero'>Agregar Compañero</a></div>";
+                                }}
+
+                            ?>
+                        </div>
+
+                        <?php if ($estaJugandoTorneo){?>
+                            <div class="tab-pane fade " id="nav-proximafecha" role="tabpanel" aria-labelledby="nav-proximafecha-tab">
+                            <div class='d-flex mt-5 pf_miequipo'>
+                            <h4 class='mt-5 pfgreen nombreEquipo text-right'> <?= $equipo->getNombre()?>  </h4>
+                            <div class='d-inline-block fondoHeader2 rounded-circle ml-3  escudoequipo'>
+                                <?php
+                            if(isset($equipo) and file_exists('img/equipos/'. $equipo_id  . '_logo_200.jpg')) {
                                 echo "<img class='rounded-circle' src='../img/equipos/" . $equipo_id . "_logo_200.jpg' alt='Logo del Equipo'/>";
                             } else {
                                 echo "<img class='rounded-circle' src='../img/icons/escudolaurel-gris.jpg' alt='Logo del Equipo'/>";
@@ -74,34 +92,6 @@ if (Equipo::existeEquipo($equipo_id)) {
                                 </ul>
                             </div>
 
-                        </div>
-                        <div class="tab-pane fade" id="nav-miequipo" role="tabpanel" aria-labelledby="nav-miequipo-tab">
-                            <?php
-                            echo "<h4 class='pfgreen mt-5 mb-4'>Integrantes del equipo <span class='font-weight-normal'>" . $equipo->getNombre() . "</span></h4>";
-
-                            $equipo->printJugadoresEnUL();
-                            if  (Session::has("usuario")){
-                                if (! $equipo->participaEnTorneo() && $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
-                                    echo "<div><a href='#AgregarCompanero' title='Agregar Compañero'>Agregar Compañero</a></div>";
-                                }}
-
-                            ?>
-                        </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <h4 class="mb-4 pfgreen mt-5">Torneo Federal de Arroyo Dulce</h4>
-                            <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha de Inicio: <span>14/12/18</span></p>
-                            <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha Finalización: <span class="font-italic">No definida aún</span></p>
-                            <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span>8</span></p>
-                            <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
-                            <!-- Listado de Equipos que Ya Participan Debajo, tendría que ser dinámico -->
-                            <ul>
-                                <li>Cambaceres de Don Torcuato</li>
-                                <li>La Runfla de Pagani</li>
-                                <li>Los Messi</li>
-                                <li>Joya Nunca taxi</li>
-                            </ul>
-                            <!-- Agregar clase d-none o d-block de acuerdo a si quedan equipos por agregar o no -->
-                            <!--p class="text-muted font-italic d-block">Resta agregar 4 equipos aún</p-->
                         </div>
                         <div class="tab-pane fade" id="nav-posiciones" role="tabpanel" aria-labelledby="nav-posiciones-tab">
                             <h4 class="mb-4 pfgreen mt-5">Tabla de posiciones <br><span class="font-weight-normal colorGris2">Torneo Federal de Arroyo Dulce</span></h4>
@@ -165,6 +155,25 @@ if (Equipo::existeEquipo($equipo_id)) {
                                 </table>
                             </div>
                         </div>
+                    <?php };
+                    if ($estaInscriptoEnTorneo){?>
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <h4 class="mb-4 pfgreen mt-5">Torneo Federal de Arroyo Dulce</h4>
+                            <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha de Inicio: <span>14/12/18</span></p>
+                            <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha Finalización: <span class="font-italic">No definida aún</span></p>
+                            <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span>8</span></p>
+                            <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
+                            <!-- Listado de Equipos que Ya Participan Debajo, tendría que ser dinámico -->
+                            <ul>
+                                <li>Cambaceres de Don Torcuato</li>
+                                <li>La Runfla de Pagani</li>
+                                <li>Los Messi</li>
+                                <li>Joya Nunca taxi</li>
+                            </ul>
+                            <!-- Agregar clase d-none o d-block de acuerdo a si quedan equipos por agregar o no -->
+                            <!--p class="text-muted font-italic d-block">Resta agregar 4 equipos aún</p-->
+                        </div>
+                    <?php } ?>
                     </div>
 
                     <!--h4 class="my-3 h3 naranjaFecha">Próxima Fecha <span class="font-weight-normal verde3 pl-2">Jornada 5</span></h4-->
@@ -289,9 +298,4 @@ if (Equipo::existeEquipo($equipo_id)) {
             </div>
         </div>
     </main>
-    <?php
 
-} else {
-    header("Location: /error404");
-}
-?>

@@ -25,7 +25,7 @@ if (Usuario::existeUsuario($usuario_id)) {
             </div>
             <div class="col-md-8 pl-4">
                 <ul class="list-unstyled">
-                    <span class="editar_user"></span>
+                    <a href = "editar-mis-datos" class="editar_user"></a>
                     <li class='nombreUser mt-4 mb-3'><h2><?= $usuario->getNombreCompleto()?></h2></li>
                     <li><span class='font-weight-bold text-dark'>Equipos</span>
                         <ul class="list-unstyled">

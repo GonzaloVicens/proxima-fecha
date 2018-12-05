@@ -34,11 +34,7 @@ class EquipoController
             $equipo->setJugadores();
             Session::set("equipo_idActual",$equipo->getEquipoId());
 
-
-            if (Session::has("usuario")) {
-                $usuario = Session::get('usuario');
-            };
-            View::render('web/ver-equipo',compact('equipo','equipo_id','usuario'), 3);
+            View::render('web/ver-equipo',compact('equipo'), 3);
         } else{
             View::render('web/error404',[], 2);
         };

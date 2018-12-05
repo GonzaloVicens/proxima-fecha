@@ -7,7 +7,6 @@ use Proyecto\Core\Route;
 use Proyecto\Core\App;
 use Proyecto\Model\Usuario;
 use Proyecto\Model\Mensaje;
-//use Proyecto\Model\Posteo;
 use Proyecto\Model\Equipo;
 use Proyecto\Session\Session;
 use Proyecto\Tools\FormValidator;
@@ -218,6 +217,42 @@ class UsuarioController
     {
         View::render('web/editar-mis-datos',[], 3);
     }
+
+
+    /**
+     * Método que controla la actualización de la foto del perfil de usuario.
+     * @param Request $request
+     */
+    public function actualizarFotoPerfil()
+    {
+        if (Session::has("usuario")){
+            $inputs = Request::getData();
+            $files =  Request::getFiles();
+
+            $usuario_id = $inputs['usuario_id'];
+            if (isset($files['foto']['tmp_name']) && !empty($files ['foto']['tmp_name'])){
+                $archivo_tmp = $files ['foto']['tmp_name'];
+                $original = imagecreatefromjpeg($archivo_tmp);
+                $ancho = imagesx( $original );
+                $alto = imagesy( $original );
+
+                $alto_max= 200;
+                $ancho_max = round( $ancho *  $alto_max / $alto );
+
+                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
+                imagecopyresampled( $copia, $original,
+                    0,0, 0,0,
+                    $ancho_max,$alto_max,
+                    $ancho,$alto);
+                $nombre_nuevo = App::$rootPath . "/img/usuarios/$usuario_id.jpg";
+                imagejpeg( $copia , $nombre_nuevo);
+            }
+            header('Location: ' . App::$urlPath . '/usuarios/'.$usuario_id );
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        }
+    }
+
 
 }
 
