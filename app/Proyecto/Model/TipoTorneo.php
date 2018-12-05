@@ -60,13 +60,18 @@ class TipoTorneo
         return $this->descripcion;
     }
 
-    public static function printRadiosTiposTorneos(){
+    public static function printRadiosTiposTorneos( $elegido =null ){
 
         $query = "SELECT TIPO_TORNEO_ID , DESCRIPCION FROM TIPOS_TORNEO ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            echo "<div><input type='radio' name='tipoTorneo' value='".$datos['TIPO_TORNEO_ID']."' id='tipoTorneo".$datos['TIPO_TORNEO_ID']."'> <label for='tipoTorneo".$datos['TIPO_TORNEO_ID']."'>". $datos['DESCRIPCION']."</label></div>";
+            if ($elegido) {
+                $checked = " checked=checked ";
+            } else {
+                $checked = "  ";
+            }
+            echo "<div><input type='radio' $checked name='tipoTorneo' value='".$datos['TIPO_TORNEO_ID']."' id='tipoTorneo".$datos['TIPO_TORNEO_ID']."'> <label for='tipoTorneo".$datos['TIPO_TORNEO_ID']."'>". $datos['DESCRIPCION']."</label></div>";
         }       ;
     }
 }

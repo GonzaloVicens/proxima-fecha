@@ -30,32 +30,32 @@ if (Session::has('torneo')){
                     </div>
                     <div class="form-group">
                         <label for="deporte">Deporte</label>
-                        <select name="deporte" class="form-control">
-                            <?=Deporte::printOptionsDeportes()?>
+                        <select name="deporte" id="deporte"  class="form-control">
+                            <?=Deporte::printOptionsDeportes($torneo->getDeporteID())?>
                         </select>
                         <!--input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingresá tu nombre"-->
                     </div>
                     <div class="form-group">
                         <label>Tipo de Competición</label><br>
-                        <?=TipoTorneo::printRadiosTiposTorneos()?>
+                        <?=TipoTorneo::printRadiosTiposTorneos($torneo->getTipoTorneoID())?>
 
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad Equipos</label>
-                        <input type="text" name='cantidad' class="form-control" id="cantidad"><!--No utilizo type='number' porque no todos los browser lo toman Ok -->
+                        <input type="text" name='cantidad' class="form-control" id="cantidad" value='<?= $torneo->getCantidadEquipos() ?>'><!--No utilizo type='number' porque no todos los browser lo toman Ok -->
                     </div>
                     <div class="form-group">
-                        <label for="fechainicio">Fecha de Inicio (DD/MM/YYYY) </label>
-                        <input type="date" name='fechaInicio' class="form-control" id="fechainicio">
+                        <label for="fechainicio">Fecha de Inicio </label>
+                        <input type="date" name='fechaInicio' class="form-control" id="fechainicio" value="<?= $torneo->getFechaInicio()?>">
                     </div>
                     <div class="form-group">
                         <label for="sede">Sede</label>
                         <select name="sede" class="form-control">
-                            <?=Sede::printOptionsSedes()?>
+                            <?=Sede::printOptionsSedes($torneo->getSedeID())?>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-outline-success">Enviar</button>
-                    <!--button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button-->
+                    <a type="button" href="<?=App::$urlPath . '/torneos/'. $torneo->getTorneoId()?>" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
                 </form>
             </div>
             <div class="col-md-3">

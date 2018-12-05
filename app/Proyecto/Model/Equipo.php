@@ -159,7 +159,7 @@ class Equipo
 
     public function participaEnTorneo()
     {
-        $query = "SELECT 'X' FROM EQUIPOS_TORNEO WHERE EQUIPO_ID = :equipo_id ";
+        $query = "SELECT 'X' FROM TORNEOS A, EQUIPOS_TORNEO B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.EQUIPO_ID = :equipo_id AND A.ESTADO_TORNEO != 'F' ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
@@ -168,18 +168,35 @@ class Equipo
     public function printJugadoresEnUL()
     {
         echo"<ul class='lista_jugadores list-group'>";
+
+        if (Session::has("usuario")){
+            $usuario = Session::get("usuario");
+            $usuario_id = $usuario->getUsuarioID();
+        } else {
+            $usuario_id ="";
+        }
         $query = "SELECT A.JUGADOR_ID, B.NOMBRE , B.APELLIDO FROM JUGADORES A, USUARIOS B WHERE A.JUGADOR_ID = B.USUARIO_ID AND A.EQUIPO_ID = :equipo_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
+
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $idCapitan = "";
             $boton = "";
-
-            IF (($datos['JUGADOR_ID'] == $this->capitan_id) &&  (Session::has("usuario")) ){
+            $jugadorID = $datos['JUGADOR_ID'];
+            IF ($datos['JUGADOR_ID'] == $this->capitan_id){
                 $idCapitan = "id='capitan'";
-                $usuario = Session::get("usuario");
-                if ($usuario->getUsuarioID() != $this->capitan_id){
-                    $boton = "<a href='#mensajeModal' class='mayuscula'>Enviar Mensaje</a>";
+            }
+
+            if (Session::has('logueado')){
+                if ($usuario_id == $this->capitan_id ) {
+                    IF (($jugadorID != $this->capitan_id)) {
+                        $boton = "<a href='../mensajes/". $usuario_id . "/" . $jugadorID . "' class='mayuscula'>Enviar Mensaje</a>";
+                    }
+                } else {
+                    IF (($jugadorID == $this->capitan_id)) {
+                        $boton = "<a href='../mensajes/". $usuario_id . "/" . $jugadorID . "' class='mayuscula'>Enviar Mensaje</a>";
+                    //    $boton = "<a href='#mensajeModal' class='mayuscula'>Enviar Mensaje</a>";
+                    }
                 }
             }
 
@@ -246,11 +263,12 @@ class Equipo
         $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-
-    public function estaJugandoTorneo(){
-        return true;
+    public function estaJugandoTorneo()
+    {
+        $query = "SELECT 'X' FROM TORNEOS A, EQUIPOS_TORNEO B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.EQUIPO_ID = :equipo_id AND A.ESTADO_TORNEO = 'C' ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['equipo_id' => $this->equipo_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
-
-
 
 }

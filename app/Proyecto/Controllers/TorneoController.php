@@ -138,7 +138,7 @@ class TorneoController
             $fechaInicio = $inputs['fechaInicio'];
             $sedeId = $inputs['sede'];
 
-            $torneo_id = Torneo::CrearTorneo($nombre , $deporte, $tipoTorneo, $cantidad, $fechaInicio, $sedeId, $usuario_id);
+            Torneo::ActualizarTorneo($torneo_id, $nombre , $deporte, $tipoTorneo, $cantidad, $fechaInicio, $sedeId, $usuario_id);
             header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
 
         } else {

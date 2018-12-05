@@ -65,13 +65,20 @@ class Deporte
         return $this->descripcion;
     }
 
-    public static function printOptionsDeportes(){
+    public static function printOptionsDeportes( $elegido =null ){
 
         $query = "SELECT DEPORTE_ID , DESCRIPCION FROM DEPORTES ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            echo "<option value='" . $datos['DEPORTE_ID'] . "'>" . $datos['DESCRIPCION']  . "</option>";
+
+            if ($datos['DEPORTE_ID'] == $elegido) {
+                $selected = " selected ";
+            } else {
+                $selected = " ";
+            }
+
+            echo "<option value='" . $datos['DEPORTE_ID'] . "' " . $selected .">" . $datos['DESCRIPCION']  . "</option>";
         }       ;
     }
 

@@ -24,7 +24,7 @@ use Proyecto\Model\TipoTorneo;
                     </div>
                     <div class="form-group">
                        <label for="deporte">Deporte</label>
-                       <select name="deporte" class="form-control">
+                       <select name="deporte" id="deporte" class="form-control">
                         <?=Deporte::printOptionsDeportes()?>
                        </select>
                         <!--input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingresá tu nombre"-->
@@ -49,7 +49,7 @@ use Proyecto\Model\TipoTorneo;
                         </select>
                     </div>
                     <button type="submit" class="btn btn-lg btn-outline-success">Crear</button>
-                    <!--button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button-->
+                    <a type="button" href="<?=App::$urlPath . '/usuarios/'. $usuario->getUsuarioId()?>" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
                 </form>
             </div>
             <div class="col-md-3">

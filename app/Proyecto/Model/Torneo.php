@@ -53,6 +53,10 @@ class Torneo
      */
     protected $organizadores;
 
+    /**
+     * @var string
+     */
+    protected $estado_torneo_id;
 
     /**
      * @return int
@@ -78,6 +82,13 @@ class Torneo
         $this->deporte_id = $deporte_id;
     }
 
+    /**
+     * @return int
+     */
+    public function getSedeId()
+    {
+        return $this->sede_id;
+    }
 
 
 
@@ -105,7 +116,7 @@ class Torneo
     {
         $this->torneo_id = $torneo;
 
-        $query = "SELECT NOMBRE, DEPORTE_ID, TIPO_TORNEO_ID, CANTIDAD_EQUIPOS, FECHA_INICIO, SEDE_ID FROM TORNEOS WHERE TORNEO_ID = :torneo_id ";
+        $query = "SELECT NOMBRE, DEPORTE_ID, TIPO_TORNEO_ID, CANTIDAD_EQUIPOS, FECHA_INICIO, SEDE_ID, ESTADO_TORNEO_ID FROM TORNEOS WHERE TORNEO_ID = :torneo_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['torneo_id' => $this->torneo_id]);
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -115,6 +126,7 @@ class Torneo
             $this->cantidad_equipos= $datos['CANTIDAD_EQUIPOS'];
             $this->fecha_inicio= $datos['FECHA_INICIO'];
             $this->sede_id= $datos['SEDE_ID'];
+            $this->estado_torneo_id = $datos['ESTADO_TORNEO_ID'];
         };
         $this->equipos = [];
         $this->organizadores = [];
@@ -127,15 +139,18 @@ class Torneo
             $sedeId = 1;
         }
         $torneo= [
-            'nombre' => $nombreParam,
-            'deporte_id'   =>  $deporteId,
+            'nombre'           => $nombreParam,
+            'deporte_id'       =>  $deporteId,
             'tipo_torneo_id'   =>  $tipoTorneoId,
-            'cantidad_equipos'   =>  $cantidadEquipos,
-            'fecha_inicio'   =>  $fechaInicio,
-            'sede_id'   =>  $sedeId
+            'cantidad_equipos' =>  $cantidadEquipos,
+            'fecha_inicio'     =>  $fechaInicio,
+            'sede_id'          =>  $sedeId,
+            'estado_torneo_id'    =>  "I"
         ];
 
-        $script = "INSERT INTO TORNEOS VALUES (null, :nombre, :deporte_id, :tipo_torneo_id, :cantidad_equipos, STR_TO_DATE(:fecha_inicio, '%d/%m/%Y'), :sede_id)";
+
+//        $script = "INSERT INTO TORNEOS VALUES (null, :nombre, :deporte_id, :tipo_torneo_id, :cantidad_equipos, STR_TO_DATE(:fecha_inicio, '%Y/%m/%d'), :sede_id, :estado_torneo_id)";
+        $script = "INSERT INTO TORNEOS VALUES (null, :nombre, :deporte_id, :tipo_torneo_id, :cantidad_equipos, :fecha_inicio, :sede_id, :estado_torneo_id)";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($torneo)) {
             $torneoID = DBConnection::getConnection()->lastInsertId();
@@ -153,6 +168,29 @@ class Torneo
             throw new TorneoNoGrabadoException("Error al grabar el torneo.");
         }
     }
+
+    public static function ActualizarTorneo($torneo_id , $nombreParam , $deporteId, $tipoTorneoId, $cantidadEquipos, $fechaInicio, $sedeId, $organizador_id){
+
+        if (!$sedeId) {
+            $sedeId = 1;
+        }
+        $torneo= [
+            'torneo_id'         => $torneo_id,
+            'nombre'            => $nombreParam,
+            'deporte_id'        =>  $deporteId,
+            'tipo_torneo_id'    =>  $tipoTorneoId,
+            'cantidad_equipos'  =>  $cantidadEquipos,
+            'fecha_inicio'      =>  $fechaInicio,
+            'sede_id'           =>  $sedeId
+        ];
+
+        $script = "UPDATE TORNEOS SET NOMBRE = :nombre, DEPORTE_ID = :deporte_id, TIPO_TORNEO_ID = :tipo_torneo_id, CANTIDAD_EQUIPOS = :cantidad_equipos, FECHA_INICIO = :fecha_inicio, SEDE_ID = :sede_id WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($torneo)) {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        };
+    }
+
 
     public function setEquipos()
     {
@@ -184,6 +222,9 @@ class Torneo
         return $this->fecha_inicio;
     }
 
+    public function getTipoTorneoId (){
+        return $this->tipo_torneo_id;
+    }
 
     public function getDescrTipoTorneo(){
         $tipoTorneo = new TipoTorneo($this->tipo_torneo_id);

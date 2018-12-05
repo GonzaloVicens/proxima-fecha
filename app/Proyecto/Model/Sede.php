@@ -163,13 +163,20 @@ class Sede
     }
 
 
-    public static function printOptionsSedes(){
+    public static function printOptionsSedes($elegida = null){
+
 
         $query = "SELECT SEDE_ID , NOMBRE FROM SEDES ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            echo "<option value='" . $datos['SEDE_ID'] . "'>" . $datos['NOMBRE']  . "</option>";
+
+            if ($datos['SEDE_ID'] == $elegida) {
+                $selected = " selected ";
+            } else {
+                $selected = " ";
+            }
+            echo "<option value='" . $datos['SEDE_ID'] . "' ". $selected. ">" . $datos['NOMBRE']  . "</option>";
         }       ;
     }
 
