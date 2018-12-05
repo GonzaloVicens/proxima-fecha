@@ -185,7 +185,7 @@ class Usuario
         return !empty($this->torneos[0]);
     }
 
-    public function tieneTorneoPropio() {
+    public function tieneTorneosPropios() {
         return !empty($this->torneosPropios[0]);
     }
 
@@ -539,4 +539,27 @@ class Usuario
         return $this->contactos;
     }
 
+
+    public function esOrganizadorDeTorneo($torneo_id){
+        $query = "SELECT 'Y' FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id AND ORGANIZADOR_ID = :usuario_id AND ACTIVO = 1 ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['usuario_id' => $this->usuario_id, 'torneo_id' => $torneo_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+    public function puedeAgregarEquiposEnTorneo($torneo_id){
+        $query = "SELECT 'Y' FROM TORNEOS A, ORGANIZADORES B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.TORNEO_ID = :torneo_id AND B.ORGANIZADOR_ID = :usuario_id AND A.ESTADO_TORNEO_ID = 'I' AND B.ACTIVO = 1 ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['usuario_id' => $this->usuario_id, 'torneo_id' => $torneo_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+
+    public function actualizar(){
+        $this->setUsuario();
+        $this->setEquipos();
+        $this->setTorneos();
+        $this->setTorneosPropios();
+    }
 }
+

@@ -53,10 +53,10 @@ if (Usuario::existeUsuario($usuario_id)) {
                             ?>
                         </ul>
                     </li>
-                    <li><span class='font-weight-bold text-dark'>Torneos creados</span>
+                    <li><span class='font-weight-bold text-dark'>Torneos que organizas</span>
                         <ul class="list-unstyled">
                             <?php
-                            if($usuario->tieneTorneoPropio()){
+                            if($usuario->tieneTorneosPropios()){
                                 foreach ($usuario->getTorneosPropios() as $torneo) {
                                     echo "<li class='text-secondary'><a class='negrita' href='". App::$urlPath . "/torneos/" . $torneo->getTorneoID() ."' title='Ver Torneo'>" .   $torneo->getNombre()  ."</a></li>";
                                 }

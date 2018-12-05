@@ -144,10 +144,13 @@ use Proyecto\Core\App;
     </div>
 </div>
 
+
+<!-- POR ALGUNA RA´ZON ESTÁ ACA?
 <div class="modal fade bd-example-modal-lg" id='modal_eliminar_torneo' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form action="eliminar-torneo" method="post" >
+                <input type="hidden" name="torneo_id" value=""/>
                 <div class="modal-header fondoHeader2 text-white">
                     <h5 class="modal-title">Eliminar Torneo</h5>
                     <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">
@@ -160,21 +163,22 @@ use Proyecto\Core\App;
                             <div class="modal-body">
                                 <p><strong>Está a un paso de eliminar este torneo</strong>. Tenga en cuenta que esta acción es irreversible y no podrá volver atrás.</p>
                                 <div class="form-group">
-                                    <label for="InputSiEliminar">Por favor para confirmar esta acción, escriba "si" en el campo debajo:</label>
-                                    <input type="text" class="form-control" id="InputSiEliminar" maxlength="2">
+                                    <label for="InputSiEliminar">Por favor para confirmar esta acción, escriba "SI" en el campo debajo:</label>
+                                    <input type="text" name="confirmar" class="form-control" id="InputSiEliminar" maxlength="2">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">Eliminar Torneo</button>
+                    <button type="submit" class="btn btn-danger">Eliminar Torneo</button>
                     <button type="button" class="btn btn-secondary cancelar">Cancelar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+-->
 
 <div class="modal fade bd-example-modal-lg" id='modal_cambiar_fotoperfil' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog">

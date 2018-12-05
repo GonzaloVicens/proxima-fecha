@@ -72,7 +72,7 @@ if (! $usuarioLogueado ){
                         <label class="form-check-label" for="terminos"> Acepto los términos y condiciones </label>
                     </div>
                     <button type="submit" class="btn btn-lg btn-outline-success">Crear Cuenta</button>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                    <a href="<?=App::$urlPath . '/'?>" type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
                 </form>
             </div>
             <div class="col-md-3">

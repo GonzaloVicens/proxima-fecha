@@ -192,6 +192,50 @@ class Torneo
     }
 
 
+    public static function EliminarTorneo($torneo_id ){
+        $torneo= [
+            'torneo_id'         => $torneo_id
+        ];
+
+        $script = "DELETE FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($torneo)) {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        };
+
+        $script = "DELETE FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($torneo)) {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        };
+
+        $script = "DELETE FROM FICHA_PARTIDO WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($torneo)) {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        };
+
+        $script = "DELETE FROM PARTIDOS WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($torneo)) {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        };
+
+        $script = "DELETE FROM FASES WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($torneo)) {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        };
+
+        $script = "DELETE FROM TORNEOS WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($torneo)) {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        };
+
+    }
+
+
     public function setEquipos()
     {
         $this->equipos = [];
@@ -273,5 +317,10 @@ class Torneo
 
     public function getLugaresLibres(){
         return $this->cantidad_equipos - count($this->equipos);
+    }
+
+    public function esNuevo(){
+        return ($this->estado_torneo_id == "I");
+
     }
 }

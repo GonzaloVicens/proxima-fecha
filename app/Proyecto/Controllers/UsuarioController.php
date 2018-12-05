@@ -104,7 +104,7 @@ class UsuarioController
         if ( !empty($formValidator->getCamposError()) ){
             Session::set("camposError",$formValidator->getCamposError());
             Session::set("campos",$formValidator->getCampos());
-            header('Location: ' . App::$urlPath . '/');
+            header('Location: ' . App::$urlPath . '/registrarse');
         } else {
             Session::clearValue("camposError");
             Session::clearValue("campos");
@@ -229,7 +229,7 @@ class UsuarioController
             $inputs = Request::getData();
             $files =  Request::getFiles();
 
-            $usuario_id = $inputs['usuario_id'];
+            $usuario = $inputs['usuario_id'];
             if (isset($files['foto']['tmp_name']) && !empty($files ['foto']['tmp_name'])){
                 $archivo_tmp = $files ['foto']['tmp_name'];
                 $original = imagecreatefromjpeg($archivo_tmp);
@@ -244,10 +244,10 @@ class UsuarioController
                     0,0, 0,0,
                     $ancho_max,$alto_max,
                     $ancho,$alto);
-                $nombre_nuevo = App::$rootPath . "/img/usuarios/$usuario_id.jpg";
+                $nombre_nuevo = App::$rootPath . "/img/usuarios/$usuario".".jpg";
                 imagejpeg( $copia , $nombre_nuevo);
             }
-            header('Location: ' . App::$urlPath . '/usuarios/'.$usuario_id );
+            header('Location: ' . App::$urlPath . '/usuarios/'.$usuario);
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         }

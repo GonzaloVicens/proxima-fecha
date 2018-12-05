@@ -62,8 +62,8 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMisTorneos">
                             <ul class="list-unstyled">
                                 <?php
-                                if($usuario->tieneTorneo()){
-                                    foreach ($usuario->getTorneos() as $torneo) {
+                                if($usuario->tieneTorneosPropios()){
+                                    foreach ($usuario->getTorneosPropios() as $torneo) {
                                         echo "<li class='dropdown-item'><a href='". App::$urlPath . "/torneos/".$torneo->getTorneoID() ."' title='Ver Torneo'>" . $torneo->getNombre()  ."</a></li>";
                                     }
                                 }else{

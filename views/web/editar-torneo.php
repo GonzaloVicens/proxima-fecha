@@ -22,7 +22,7 @@ if (Session::has('torneo')){
             </div>
             <div class="col-md-6">
                 <h2 class="mt-5 mb-4 pfgreen">Editar <span class="font-weight-normal">Torneo o Liga</span></h2>
-                <form method='post' action='<?= App::$urlPath;?>/usuarios/editar-torneo' >
+                <form method='post' action='<?= App::$urlPath;?>/torneos/editar-torneo' >
                     <input type="hidden" name="torneo_id" id="torneo_id"  value='<?= $torneo->getTorneoID() ?>'>
                     <div class="form-group">
                         <label for="nombre">Nombre Torneo / Liga</label>

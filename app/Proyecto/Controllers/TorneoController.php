@@ -29,12 +29,12 @@ class TorneoController
     public function ver()
     {
         $routeParams = Route::getRouteParams();
-            $torneo_id = $routeParams['torneo_id'];
-            if (Torneo::existeTorneo($torneo_id)) {
-                $torneo = new Torneo($torneo_id);
-                $torneo->setEquipos();
+        $torneo_id = $routeParams['torneo_id'];
+        if (Torneo::existeTorneo($torneo_id)) {
+            $torneo = new Torneo($torneo_id);
+            $torneo->setEquipos();
             Session::set("torneo",$torneo);
-            View::render('web/ver-torneo',[], 3);
+            View::render('web/ver-torneo',compact('torneo'), 3);
         } else{
             View::render('web/error404',[], 2);
         };
@@ -96,11 +96,18 @@ class TorneoController
 
     public function agregarEquipos()
     {
+        $puedeAgregarEquipos = false;
         if (Session::has("usuario")) {
             $usuario = Session::get('usuario');
-            $usuario_id = $usuario->getUsuarioID();
-            View::render('web/agregar-equipos',compact('usuario','usuario_id'), 3);
+            if (Session::has("torneo")) {
+                $torneo = Session::get('torneo');
+                $puedeAgregarEquipos = $usuario->puedeAgregarEquiposEnTorneo($torneo->getTorneoID());
 
+            }
+        };
+
+        if ($puedeAgregarEquipos ){
+            View::render('web/agregar-equipos',compact('usuario','torneo'), 3);
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         };
@@ -145,6 +152,34 @@ class TorneoController
             header('Location: ' . App::$urlPath . '/error404');
         };
     }
+
+
+    /**
+     * Método que controla la eliminazión de un torneo
+     */
+    public function eliminar(){
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+
+            $inputs = Request::getData();
+
+            $torneo_id = $inputs['torneo_id'];
+            $confirmar = $inputs['confirmar'];
+
+            if ($confirmar == "SI"){
+                Torneo::EliminarTorneo($torneo_id);
+                $usuario->actualizar();
+                header('Location: ' . App::$urlPath . '/usuarios/'. $usuario_id);
+            } ELSE {
+                header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
+            }
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
+
 
     /**
      * Método que ordena el Insert de un mensaje si hay datos, y vuelve a la ubicación original;
