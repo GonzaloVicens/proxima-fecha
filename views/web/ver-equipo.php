@@ -9,7 +9,7 @@ if(isset($equipo)){
     $equipo_id = $equipo->getEquipoID();
 
     $estaJugandoTorneo = $equipo->estaJugandoTorneo();
-    $estaInscriptoEnTorneo = $equipo->estaInscriptoEnTorneo();
+    $participaEnTorneo = $equipo->participaEnTorneo();
 
 
     if(file_exists('img/equipos/'. $equipo_id  . '_portada.jpg')) {
@@ -46,7 +46,7 @@ if(isset($equipo)){
                             <a class="nav-item nav-link pfgreen hoverVerde " id="nav-proximafecha-tab" data-toggle="tab" href="#nav-proximafecha" role="tab" aria-controls="nav-proximafecha" aria-selected="false">Próxima Fecha</a>
                             <a class="nav-item nav-link pfgreen hoverVerde" id="nav-posiciones-tab" data-toggle="tab" href="#nav-posiciones" role="tab" aria-controls="nav-posiciones" aria-selected="false">Posiciones</a>
                             <?php };
-                            if ($estaInscriptoEnTorneo){?>
+                            if ($participaEnTorneo){?>
                             <a class="nav-item nav-link pfgreen hoverVerde" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Torneo / Liga</a>
                             <?php } ?>
                         </div>
@@ -149,7 +149,7 @@ if(isset($equipo)){
                             </div>
                         </div>
                     <?php };
-                    if ($estaInscriptoEnTorneo){?>
+                    if ($participaEnTorneo){?>
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                             <h4 class="mb-4 pfgreen mt-5">Torneo Federal de Arroyo Dulce</h4>
                             <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha de Inicio: <span>14/12/18</span></p>

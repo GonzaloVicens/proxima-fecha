@@ -251,9 +251,6 @@ class Equipo
         return true;
     }
 
-    public function estaInscriptoEnTorneo(){
-        return true;
-    }
 
 
 }
