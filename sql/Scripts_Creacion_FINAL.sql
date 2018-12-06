@@ -1665,7 +1665,7 @@ INSERT INTO SEDES  VALUES (1, 'Sin Definir', 'ARG', 'BUE', 'N/A', 'Sin Definir',
 INSERT INTO SEDES  VALUES (2, 'La Popular', 'ARG', 'BUE', '1752', 'Costa Rica', 80, '4655-2212', NULL);
 INSERT INTO SEDES  VALUES (3, 'Complejo Norte', 'ARG', 'BUE', '1222', 'Av Juan B Justo', 1101, '2344-5312', 'Entre Venezuela y Bolivar');
 
-INSERT INTO ESTADOS_TORNEO VALUES ('I', 'Inicial');
+INSERT INTO ESTADOS_TORNEO VALUES ('I', 'No Iniciado');
 INSERT INTO ESTADOS_TORNEO VALUES ('C', 'En Curso');
 INSERT INTO ESTADOS_TORNEO VALUES ('F', 'Finalizado');
 

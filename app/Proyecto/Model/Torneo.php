@@ -59,6 +59,12 @@ class Torneo
      */
     protected $estado_torneo_id;
 
+
+    /**
+     * @var string
+     */
+    protected $estado_torneo_descr;
+
     /**
      * @return int
      */
@@ -257,8 +263,27 @@ class Torneo
     public function getTorneoId(){
         return $this->torneo_id;
     }
+
     public function getEquipos(){
         return $this->equipos;
+    }
+
+    public function getEstadoID(){
+        return $this->estado_torneo_id;
+    }
+
+    public function getEstadoDescr()
+    {
+        if (!isset($this->estado_torneo_descr)) {
+
+            $query = "SELECT DESCRIPCION FROM ESTADOS_TORNEO WHERE ESTADO_TORNEO_ID  = :estado_torneo_id ";
+            $stmt = DBConnection::getStatement($query);
+            $stmt->execute(['estado_torneo_id' => $this->estado_torneo_id]);
+            if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $this->estado_torneo_descr = $datos['DESCRIPCION'];
+            }
+        }
+        return $this->estado_torneo_descr;
     }
 
     public function getNombre(){
@@ -312,9 +337,19 @@ class Torneo
     }
 
 
-    public  function printEquiposEnLi(){
+    public  function printEquiposEnLi( $origen){
         foreach ($this->equipos as $equipo) {
-             echo "<li>" . $equipo->getNombre()  . "</li>";
+            echo "<li>" . $equipo->getNombre() ;
+            if (Session::has('logueado')) {
+                $usuario = Session::get('usuario');
+                if ($this->tieneOrganizador($usuario->getUsuarioID()) && $this->estado_torneo_id == "I") {
+                    echo "<form action='eliminar-equipo' method='POST'>";
+                    echo "<input type='hidden' name='equipo_id' value='" . $equipo->getEquipoId() ."'/>";
+                    echo "<input type='hidden' name='origen' value='". $origen . "'/>";
+                    echo "<input type='submit' value='Eliminar'/></form>";
+                }
+            }
+            echo "</li>";
         }
     }
 
@@ -328,7 +363,6 @@ class Torneo
 
     public function esNuevo(){
         return ($this->estado_torneo_id == "I");
-
     }
 
 
@@ -354,6 +388,16 @@ class Torneo
         $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function eliminarEquipo($equipo_id){
+        $datos = ['torneo_id' => $this->torneo_id,
+            'equipo_id' => $equipo_id
+        ];
+
+        $query = "DELETE FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id AND EQUIPO_ID  = :equipo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos );
+        $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 
     public function actualizar(){
         $this->setTorneo($this->torneo_id);
@@ -362,5 +406,13 @@ class Torneo
         Session::clearValue('torneo');
         Session::set('torneo',$this);
     }
+
+    public function tieneOrganizador($usuario_id){
+        $query = "SELECT 'Y' FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id AND ORGANIZADOR_ID = :usuario_id AND ACTIVO = 1 ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['usuario_id' => $usuario_id, 'torneo_id' => $this->torneo_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
 
 }

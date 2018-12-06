@@ -243,7 +243,24 @@ class TorneoController
 
     }
 
+    /**
+     * Método que elimina un Equipo en el Torneo
+     */
+    public function eliminarEquipo()
+    {
+        $inputs = Request::getData();
+        if (isset($inputs ["equipo_id"]) && !empty($inputs ["equipo_id"])) {
+            $torneo = Session::get('torneo');
+            $equipo_id = $inputs ['equipo_id'];
+            $origen = $inputs ['origen'];
+            if ($torneo->existeEquipo($equipo_id)) {
+                $torneo->eliminarEquipo($equipo_id);
+            };
+        }
+        $torneo->actualizar();
+         header('Location: ' . App::$urlPath . '/torneos/' . $origen);
 
+    }
 
     /**
      * Método que ordena el Insert de un mensaje si hay datos, y vuelve a la ubicación original;

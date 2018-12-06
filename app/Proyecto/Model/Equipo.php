@@ -127,6 +127,7 @@ class Equipo
     {
         return $this->equipo_id;
     }
+
     public function getJugadores()
     {
         return $this->jugadores;

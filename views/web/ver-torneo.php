@@ -23,14 +23,14 @@ use Proyecto\Session\Session;
             <div class="col-md-8">
                 <!-- Nombre de Torneo Debajo, tendría que ser dinámico -->
                 <h2 class="mb-4 pfgreen h1"><?= $torneo->getNombre() ?></h2>
-                <p class="text-muted"><i class="far fa-calendar-alt"></i> Fecha de Inicio: <span><?= $torneo->getFechaInicio() ?></span></p>
+                <p class="text-muted"><i class="far fa-calendar-alt"></i> Estado: <?=$torneo->getEstadoDescr()?> - Fecha de Inicio: <span><?= $torneo->getFechaInicio() ?></span></p>
                 <p class="text-muted"><i class="far fa-calendar-alt"></i> Sede: <span class="font-italic"><?= $torneo->getDescrSede() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span><?= $torneo->getCantidadEquipos() ?></span></p>
 
             <?php if ( $torneo->tieneEquipos() ){ ?>
                 <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
                 <ul>
-                    <?= $torneo->printEquiposEnLi() ?>
+                    <?= $torneo->printEquiposEnLi($torneo->getTorneoID()) ?>
                 </ul>
                 <!-- Agregar clase d-none o d-block de acuerdo a si quedan equipos por agregar o no -->
                 <?php }
@@ -39,7 +39,7 @@ use Proyecto\Session\Session;
                 <?php } ?>
             </div>
             <div class="col-md-4">
-            <?php if ($usuario->esOrganizadorDeTorneo($torneo->getTorneoID())){?>
+            <?php if (isset($usuario) && $usuario->esOrganizadorDeTorneo($torneo->getTorneoID())){?>
                 <h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>
                 <p>
                     <a href="<?= App::$urlPath;?>/torneos/editar-torneo" class="naranjaFecha hoverVerde"><i class="far fa-edit"></i> Modificar Datos del Torneo</a>
@@ -49,13 +49,17 @@ use Proyecto\Session\Session;
                 </p>
 
                 <?php if ($torneo->esNuevo()){?>
+                    <?php if ($torneo->getLugaresLibres() > 0 ){ ?>
                     <p>
                         <a href="<?= App::$urlPath;?>/torneos/agregar-equipos" class="naranjaFecha hoverVerde"><i class="fas fa-plus-circle"></i> Agregar Equipo</a>
                     </p>
+                    <?php }
+                        if ($torneo->getLugaresLibres() == 0 ){ ?>
                     <p>
                         <button href="#" class="naranjaFecha btn btn-lg btn-outline-warning"><i class="fas fa-trophy"></i> Generar Fixture</button>
                     </p>
-                <?php } else { ?>
+                <?php }
+                    } else { ?>
                     <p class="d-none">
                         <button href="#" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</button>
                     </p>

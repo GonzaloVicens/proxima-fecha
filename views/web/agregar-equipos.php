@@ -23,7 +23,7 @@ use Proyecto\Session\Session;
                 <?php if ( $torneo->tieneEquipos() ){ ?>
                     <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
                     <ul>
-                        <?= $torneo->printEquiposEnLi() ?>
+                        <?= $torneo->printEquiposEnLi("agregar-equipos") ?>
                     </ul>
                     <!-- Agregar clase d-none o d-block de acuerdo a si quedan equipos por agregar o no -->
                 <?php }
