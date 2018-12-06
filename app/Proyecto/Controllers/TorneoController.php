@@ -262,62 +262,8 @@ class TorneoController
 
     }
 
-    /**
-     * Método que ordena el Insert de un mensaje si hay datos, y vuelve a la ubicación original;
-     * @param Request $request
-     *
-     *
-    public function agregarComentario(Request $request)
-    {
-        if (Session::has("usuario")){
-           $inputs = $request->getData();
-            if (!empty($inputs['mensaje'])) {
-                $mensajeID = Mensaje::CrearMensaje($inputs);
-            };
-        header("Location: ../public#posteo".$inputs['posteo_id']);
-
-        } else {
-            header("Location: ../public");
-        }
-    }
-
-
-
-
-
-    /**
-     * Método que ordena el Insert de un mensaje si hay datos, y vuelve a la ubicación original dentro de los posteos de un usuario;
-     * @param Request $request
-     *
-     *
-    public function agregarComentarioPosteos(Request $request)
-    {
-        if (Session::has("usuario")){
-            $inputs = $request->getData();
-            $usuarioAMostrar  ="";
-            if (!empty($inputs['mensaje'])){
-                try {
-                    $mensajeID = Mensaje::CrearMensaje($inputs);
-                } catch ( MensajeNoGrabadoException $exc){
-                    echo "<pre>";
-				    print_r($exc.getMessage());
-				    echo "</pre>";
-         
-                    header("Location: ../error404");
-                }
-
-                $posteo = New Posteo($inputs['posteo_id']);
-                $usuarioAMostrar =  $posteo->getUsuarioID();
-            };
-
-            header("Location: posteos/".$usuarioAMostrar);
-        } else {
-            header("Location: ../public");
-        }
+    public function generarFixture(){
 
     }
 
-
-
-*/
 }

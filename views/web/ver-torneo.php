@@ -56,9 +56,14 @@ use Proyecto\Session\Session;
                     <?php }
                         if ($torneo->getLugaresLibres() == 0 ){ ?>
                     <p>
-                        <button href="#" class="naranjaFecha btn btn-lg btn-outline-warning"><i class="fas fa-trophy"></i> Generar Fixture</button>
+                        <a href="generar-fixture" class="naranjaFecha btn btn-lg btn-outline-warning"><i class="fas fa-trophy"></i> Generar Fixture</a>
                     </p>
-                <?php }
+                            <?php if($torneo->tieneFixture()) { ?>
+                    <p>
+                        <button href="#" class="naranjaFecha btn btn-lg btn-outline-warning"><i class="fas fa-trophy"></i> Comenzar Torneo</button>
+                    </p>
+                            <?php }
+                            }
                     } else { ?>
                     <p class="d-none">
                         <button href="#" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</button>

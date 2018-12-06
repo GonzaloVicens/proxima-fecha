@@ -197,7 +197,7 @@ class Torneo
 
     public static function EliminarTorneo($torneo_id ){
         $torneo= [
-            'torneo_id'         => $torneo_id
+            'torneo_id' => $torneo_id
         ];
 
         $script = "DELETE FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id";
@@ -343,7 +343,7 @@ class Torneo
             if (Session::has('logueado')) {
                 $usuario = Session::get('usuario');
                 if ($this->tieneOrganizador($usuario->getUsuarioID()) && $this->estado_torneo_id == "I") {
-                    echo "<form action='eliminar-equipo' method='POST'>";
+                    echo "<form style='display:inline' action='eliminar-equipo' method='POST'>";
                     echo "<input type='hidden' name='equipo_id' value='" . $equipo->getEquipoId() ."'/>";
                     echo "<input type='hidden' name='origen' value='". $origen . "'/>";
                     echo "<input type='submit' value='Eliminar'/></form>";
@@ -414,5 +414,11 @@ class Torneo
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 
+    public function tieneFixture(){
+        $query = "SELECT 'Y' FROM FASES WHERE TORNEO_ID = :torneo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $this->torneo_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
 
 }
