@@ -45,7 +45,7 @@ class Torneo
     protected $sede_id;
 
     /**
-     * @var array of Equipo;
+     * @var array of string;
      */
     protected $equipos;
 
@@ -107,8 +107,9 @@ class Torneo
     {
         if(!is_null($torneo)) {
             $this->setTorneo($torneo);
-            $this->setEquipos();
             $this->setOrganizadores();
+            $this->setFases();
+            $this->setEquipos();
         }
     }
 
@@ -124,6 +125,10 @@ class Torneo
     public function setTorneo($torneo)
     {
         $this->torneo_id = $torneo;
+        $this->equipos = [];
+        $this->organizadores = [];
+        $this->fases = [];
+
 
         $query = "SELECT NOMBRE, DEPORTE_ID, TIPO_TORNEO_ID, CANTIDAD_EQUIPOS, FECHA_INICIO, SEDE_ID, ESTADO_TORNEO_ID FROM TORNEOS WHERE TORNEO_ID = :torneo_id ";
         $stmt = DBConnection::getStatement($query);
@@ -137,8 +142,7 @@ class Torneo
             $this->sede_id= $datos['SEDE_ID'];
             $this->estado_torneo_id = $datos['ESTADO_TORNEO_ID'];
         };
-        $this->equipos = [];
-        $this->organizadores = [];
+
     }
 
 
@@ -195,22 +199,10 @@ class Torneo
     }
 
 
-    public static function EliminarTorneo($torneo_id ){
+    protected function eliminarFixture() {
         $torneo= [
-            'torneo_id' => $torneo_id
+            'torneo_id' => $this->torneo_id
         ];
-
-        $script = "DELETE FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id";
-        $stmt = DBConnection::getStatement($script );
-        if(!$stmt->execute($torneo)) {
-            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
-        };
-
-        $script = "DELETE FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id";
-        $stmt = DBConnection::getStatement($script );
-        if(!$stmt->execute($torneo)) {
-            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
-        };
 
         $script = "DELETE FROM FICHA_PARTIDO WHERE TORNEO_ID = :torneo_id";
         $stmt = DBConnection::getStatement($script );
@@ -229,6 +221,27 @@ class Torneo
         if(!$stmt->execute($torneo)) {
             throw new TorneoNoGrabadoException("Error al grabar el torneo.");
         };
+    }
+
+    public function eliminarTorneo(){
+
+        $this->eliminarFixture();
+
+        $torneo= [
+            'torneo_id' => $this->torneo_id
+        ];
+
+        $script = "DELETE FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($torneo)) {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        };
+
+        $script = "DELETE FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($torneo)) {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        };
 
         $script = "DELETE FROM TORNEOS WHERE TORNEO_ID = :torneo_id";
         $stmt = DBConnection::getStatement($script );
@@ -243,10 +256,11 @@ class Torneo
     {
         $this->equipos = [];
         $query = "SELECT EQUIPO_ID FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id ";
+
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['torneo_id' => $this->torneo_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $this->equipos[] = New Equipo($datos['EQUIPO_ID']);
+            $this->equipos[] = $datos['EQUIPO_ID'];
         };
     }
 
@@ -259,6 +273,18 @@ class Torneo
             $this->organizadores[] = $datos['ORGANIZADOR_ID'];
         };
     }
+
+    public function setFases()
+    {
+        $this->fases = [];
+        $query = "SELECT FASE_ID FROM FASES WHERE TORNEO_ID = :torneo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $this->torneo_id]);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $this->fases[] = New Fase($this->torneo_id, $datos ['FASE_ID']);
+        };
+    }
+
 
     public function getTorneoId(){
         return $this->torneo_id;
@@ -338,7 +364,8 @@ class Torneo
 
 
     public  function printEquiposEnLi( $origen){
-        foreach ($this->equipos as $equipo) {
+        foreach ($this->equipos as $id) {
+            $equipo = New Equipo($id);
             echo "<li>" . $equipo->getNombre() ;
             if (Session::has('logueado')) {
                 $usuario = Session::get('usuario');
@@ -403,9 +430,11 @@ class Torneo
         $this->setTorneo($this->torneo_id);
         $this->setEquipos();
         $this->setOrganizadores();
+        $this->setFases();
         Session::clearValue('torneo');
         Session::set('torneo',$this);
     }
+
 
     public function tieneOrganizador($usuario_id){
         $query = "SELECT 'Y' FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id AND ORGANIZADOR_ID = :usuario_id AND ACTIVO = 1 ";
@@ -419,6 +448,91 @@ class Torneo
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['torneo_id' => $this->torneo_id]);
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+
+    public function generarFixture(){
+        switch( $this->tipo_torneo_id){
+            case "L":
+                $this->generarLiga();
+                break;
+            case "C":
+                $this->generarCopa();
+                break;
+            case "T":
+                $this->generarTorneoIdaYVuelta();
+                break;
+        }
+    }
+
+    public function existeFase($fase_id) {
+        return Fase::ExisteFase($this->torneo_id, $fase_id);
+    }
+
+    public function crearFase($fase_id){
+        if (! $this->existeFase($fase_id)){
+            Fase::CrearFase($this->torneo_id, $fase_id, "Fecha " .$fase_id);
+        }
+    }
+
+    public function yaOrganizaronPartido($local_ID, $visita_ID){
+        return Partido::ExistePartidoEnTorneoEntre( $this->torneo_id, $local_ID, $visita_ID);
+    }
+
+
+    public function generarLiga(){
+        $this->eliminarFixture();
+
+        $this->actualizar();
+        $faseInicial = 1;
+        foreach ($this->equipos as $iEquipo => $equipoI ){
+            foreach ($this->equipos as $jEquipo => $equipoJ ){
+                if ($jEquipo != $iEquipo ) {
+                    $partidoHecho = $this->yaOrganizaronPartido($equipoI, $equipoJ);
+
+                    $iFase =  $faseInicial ;
+                    while(!$partidoHecho ) {
+                        if ($iFase == $this->cantidad_equipos ) {
+                            $iFase = 1;
+                        }
+                        if (! $this->existeFase($iFase)){
+                            $this->crearFase($iFase);
+                        }
+                        $fase = New Fase($this->torneo_id, $iFase);
+
+                        if ($fase->tieneEquipo($equipoI)) {
+                            $iFase++;
+                        } else {
+                            if ($fase->tieneEquipo($equipoJ)) {
+                                $iFase++;
+                            } else {
+                                $organizadorRandom = mt_rand(0, count($this->organizadores) - 1);
+                                $fase->insertarPartido($equipoI, $equipoJ, $this->organizadores[$organizadorRandom], $this->sede_id);
+                                $partidoHecho = true;
+                                $faseInicial =$iFase +1;
+                            }
+                        }
+                    }
+
+
+
+                }
+            }
+        }
+        $this-> actualizar();
+        $this-> imprimirLiga();
+    }
+
+    public function imprimirLiga(){
+        echo "<pre>";
+        print_r($this);
+        echo "</pre>";
+    }
+
+    public function generarCopa(){
+
+    }
+    public function generarTorneoIdaYVuelta(){
     }
 
 }

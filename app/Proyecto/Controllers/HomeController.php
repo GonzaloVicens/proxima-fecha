@@ -8,6 +8,7 @@
  */
 
 namespace Proyecto\Controllers;
+use Proyecto\Model\Usuario;
 use Proyecto\View\View;
 use Proyecto\Session\Session;
 
@@ -20,8 +21,13 @@ class HomeController //implements JsonSerializable
     {
         if (Session::has("usuario")) {
             $usuario = Session::get('usuario');
-            $usuario->actualizar();
-            header('Location: ' . 'usuarios/' . $usuario->getUsuarioID());
+            if (Usuario::ExisteUsuario($usuario->getUsuarioID())) {
+                $usuario->actualizar();
+                header('Location: ' . 'usuarios/' . $usuario->getUsuarioID());
+            } else {
+                Session::clearValue("usuario");
+                View::render('web/home', [], 1);
+            }
         } else {
             View::render('web/home', [], 1);
         };

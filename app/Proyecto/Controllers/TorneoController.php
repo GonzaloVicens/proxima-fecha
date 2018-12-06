@@ -32,7 +32,7 @@ class TorneoController
         $torneo_id = $routeParams['torneo_id'];
         if (Torneo::existeTorneo($torneo_id)) {
             $torneo = new Torneo($torneo_id);
-            $torneo->setEquipos();
+
             Session::set("torneo",$torneo);
             View::render('web/ver-torneo',compact('torneo'), 3);
         } else{
@@ -168,7 +168,9 @@ class TorneoController
             $confirmar = $inputs['confirmar'];
 
             if ($confirmar == "SI"){
-                Torneo::EliminarTorneo($torneo_id);
+                $torneo = new Torneo($torneo_id);
+                $torneo->eliminarTorneo();
+                Session::clearValue('torneo');
                 $usuario->actualizar();
                 header('Location: ' . App::$urlPath . '/usuarios/'. $usuario_id);
             } ELSE {
@@ -263,7 +265,10 @@ class TorneoController
     }
 
     public function generarFixture(){
+        $torneo = Session::get('torneo');
+        $torneo->actualizar();
 
+        $torneo->generarFixture();
     }
 
 }
