@@ -92,10 +92,16 @@ class Fase
     }
 
 
+    public function getPartidos(){
+        return $this->partidos;
+    }
+
+
     public function setFase($torneo, $fase)
     {
         $this->torneo_id = $torneo;
         $this->fase_id = $fase;
+        $this->partidos = [];
 
         $param= [
             'torneo_id' => $torneo,
@@ -111,8 +117,8 @@ class Fase
             $query = "SELECT PARTIDO_ID FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id ";
             $stmt = DBConnection::getStatement($query);
             $stmt->execute($param);
-            WHILE($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-                $partidos[] = new Partido($torneo, $fase, $datos['PARTIDO_ID']) ;
+            while($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $this->partidos[] = new Partido($torneo, $fase, $datos['PARTIDO_ID']) ;
             }
 
         }
@@ -172,7 +178,7 @@ class Fase
 
     public function insertarPartido($local_id, $visita_id, $arbitro_id, $sede_id, $cancha_id = null  ){
         $nuevoPartido = Partido::InsertarPartido($this->torneo_id , $this->fase_id, $local_id, $visita_id, $arbitro_id, $sede_id, $cancha_id );
-        $partidos[] = new Partido($nuevoPartido ) ;
+        $this->partidos[] = new Partido($this->torneo_id , $this->fase_id, $nuevoPartido ) ;
     }
 
     public function jugaronEnFaseAnterior( $local_ID, $visita_ID){

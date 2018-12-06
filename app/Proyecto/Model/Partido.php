@@ -375,4 +375,12 @@ class Partido
         }
     }
 
+    public function getLocalName(){
+        return Equipo::getNombrePorID($this->local_id);
+    }
+
+    public function getVisitaName(){
+        return Equipo::getNombrePorID($this->visita_id);
+    }
+
 }

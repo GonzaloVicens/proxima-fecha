@@ -5,9 +5,6 @@ use Proyecto\Core\Route;
 use Proyecto\Core\Request;
 use Proyecto\Model\Equipo;
 use Proyecto\Model\Torneo;
-//use Proyecto\Model\Mensaje;
-//use Proyecto\Model\Posteo;
-use Proyecto\Model\Usuario;
 use Proyecto\Session\Session;
 use Proyecto\Core\App;
 class TorneoController
@@ -70,18 +67,6 @@ class TorneoController
     }
 
 
-    public function verFixtureCompleto()
-    {
-        if (Session::has("usuario")) {
-            $usuario = Session::get('usuario');
-            $usuario_id = $usuario->getUsuarioID();
-            View::render('web/ver-fixture-completo',compact('usuario','usuario_id'), 3);
-
-        } else {
-            header('Location: ' . App::$urlPath . '/error404');
-        };
-
-    }
 
 
     public function verAgregarEquipos()
@@ -267,8 +252,24 @@ class TorneoController
     public function generarFixture(){
         $torneo = Session::get('torneo');
         $torneo->actualizar();
-
         $torneo->generarFixture();
+        Session::set('torneo',$torneo);
+        header('Location: ' . App::$urlPath . '/torneos/ver-fixture-completo' );
     }
+
+    public function verFixtureCompleto()
+    {
+        if (Session::has("torneo")) {
+            $torneo = Session::get('torneo');
+            $torneo ->actualizar();
+            View::render('web/ver-fixture-completo',compact('torneo'), 3);
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+
+    }
+
+
 
 }

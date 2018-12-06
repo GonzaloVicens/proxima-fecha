@@ -298,5 +298,17 @@ class Equipo
     }
 
 
-
+    public static function getNombrePorID($id) {
+        $datos = [
+            'equipo_id' => $id
+        ];
+        $query = "SELECT NOMBRE FROM EQUIPOS WHERE EQUIPO_ID = :equipo_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        $nombre ="";
+        if($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $nombre  = $datos['NOMBRE'] ;
+        }
+        return $nombre ;
+    }
 }

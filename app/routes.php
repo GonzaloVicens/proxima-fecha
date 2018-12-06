@@ -29,8 +29,8 @@ Route::addRoute('POST', '/torneos/eliminar-equipo'             , 'TorneoControll
 Route::addRoute('POST', '/torneos/buscar-equipo'               , 'TorneoController@buscarEquipo');
 Route::addRoute('POST', '/torneos/eliminar-torneo'             , 'TorneoController@eliminar');
 Route::addRoute('GET' , '/torneos/generar-fixture'             , 'TorneoController@generarFixture');
+Route::addRoute('GET' , '/torneos/ver-fixture-completo'        , 'TorneoController@verFixtureCompleto');
 Route::addRoute('GET' , '/ver-proxima-fecha'                   , 'TorneoController@verProximaFecha');
-Route::addRoute('GET' , '/ver-fixture-completo'                , 'TorneoController@verFixtureCompleto');
 Route::addRoute('GET' , '/preguntas-frecuentes'                , 'HomeController@preguntasFrecuentes');
 Route::addRoute('GET' , '/registrarse'                         , 'HomeController@registrarse');
 Route::addRoute('GET' , '/error404'                            , 'HomeController@error404');

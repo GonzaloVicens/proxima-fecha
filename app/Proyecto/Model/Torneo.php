@@ -66,6 +66,11 @@ class Torneo
     protected $estado_torneo_descr;
 
     /**
+     * @var array of Fase
+     */
+    protected $fases;
+
+    /**
      * @return int
      */
     public function getCantidadEquipos()
@@ -97,6 +102,12 @@ class Torneo
         return $this->sede_id;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFases(){
+        return $this->fases;
+    }
 
 
     /**
@@ -520,19 +531,16 @@ class Torneo
             }
         }
         $this-> actualizar();
-        $this-> imprimirLiga();
     }
 
-    public function imprimirLiga(){
-        echo "<pre>";
-        print_r($this);
-        echo "</pre>";
-    }
 
     public function generarCopa(){
 
     }
     public function generarTorneoIdaYVuelta(){
     }
+
+
+
 
 }
