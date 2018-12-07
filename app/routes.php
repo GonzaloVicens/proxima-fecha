@@ -16,6 +16,7 @@ Route::addRoute('POST', '/usuarios/crear-torneo'               , 'TorneoControll
 Route::addRoute('GET' , '/usuarios/editar-mis-datos'           , 'UsuarioController@editarUsuario');
 Route::addRoute('POST', '/usuarios/actualizarFotoPerfil'       , 'UsuarioController@actualizarFotoPerfil');
 Route::addRoute('GET' , '/usuarios/notificaciones'             , 'UsuarioController@notificaciones');
+Route::addRoute('GET' , '/usuarios/mensajes'                   , 'UsuarioController@mensajes');
 Route::addRoute('POST', '/usuarios/registrar'                  , 'UsuarioController@registrar');
 Route::addRoute('GET' , '/equipos/{equipo_id}'                 , 'EquipoController@ver');
 Route::addRoute('POST', '/equipos/agregar-jugador'             , 'EquipoController@agregarJugador');

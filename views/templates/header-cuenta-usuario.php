@@ -96,7 +96,26 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                 <ul class="navbar-nav userdropdown">
                     <li class="nav-item dropdown">
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <span class="text-white"><i class="fas fa-bell"></i></span>
+                            <span class="text-white"><i class="fas fa-comments"></i></span>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMessage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fas fa-comments"></i>
+                            <span>Mensajes</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                            <ul class="list-unstyled">
+                                <li class="dropdown-item">
+                                    <a href="<?= App::$urlPath;?>/usuarios/mensajes" class="">ver mensajes</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <span class="text-white"><i class="fas fa-comments"></i></span>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

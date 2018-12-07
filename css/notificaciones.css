@@ -3,7 +3,7 @@
   font-style: italic;
   font-size: .8rem;
   margin-right: .6rem; }
-.notificaciones i.fas.fa-bell:before {
+.notificaciones i.fas.fa-bell:before, .notificaciones i.fas.fa-comments:before {
   font-size: 1.5rem;
   color: #ebebeb;
   padding: .5rem;

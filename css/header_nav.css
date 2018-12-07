@@ -55,6 +55,7 @@ nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 button.navbar-
     height: 60px;
     padding-top: 2px;
     padding-bottom: 2px; }
+    nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownMessage,
     nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownNotification {
       height: 60px;
       line-height: 60px;
@@ -62,10 +63,13 @@ nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 button.navbar-
       align-items: center;
       padding-left: 8px;
       width: 40px; }
+      nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownMessage span,
       nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownNotification span {
         display: none; }
+      nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownMessage:before,
       nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownNotification:before {
         padding-left: 8px; }
+      nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownMessage + .dropdown-menu,
       nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownNotification + .dropdown-menu {
         left: -107px;
         text-align: center; }

@@ -156,6 +156,17 @@ class UsuarioController
         };
     }
 
+    public function mensajes()
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            View::render('web/mensajes',compact('usuario','usuario_id'), 3);
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
+
 
     /**
      * Método que muestra el chat entre el usuario conectado y el amigo elegido

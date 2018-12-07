@@ -11,7 +11,8 @@
   }
   i{
     &.fas {
-      &.fa-bell {
+      &.fa-bell,
+      &.fa-comments{
 
         &:before {
           font-size: 1.5rem;
