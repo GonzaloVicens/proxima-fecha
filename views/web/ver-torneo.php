@@ -48,6 +48,9 @@ $torneo->actualizar();
                     <a href="<?= App::$urlPath;?>/torneos/editar-torneo" class="naranjaFecha hoverVerde"><i class="far fa-edit"></i> Modificar Datos del Torneo</a>
                 </p>
                 <p>
+                    <a href="<?= App::$urlPath;?>/torneos/editar-organizadores" class="naranjaFecha hoverVerde"><i class="far fa-edit"></i> Administrar Organizadores</a>
+                </p>
+                <p>
                     <button href="#" class="btn btn-link naranjaFecha hoverVerde" id="eliminar_torneo"><i class="fas fa-times-circle"></i> Eliminar Torneo</button>
                 </p>
 

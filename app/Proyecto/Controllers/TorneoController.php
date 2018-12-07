@@ -270,6 +270,16 @@ class TorneoController
 
     }
 
+    public function editarOrganizadores()
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            View::render('web/editar-organizadores',compact('usuario'), 3);
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
 
 
 }

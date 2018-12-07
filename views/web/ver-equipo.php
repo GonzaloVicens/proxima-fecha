@@ -59,11 +59,42 @@ if(isset($equipo)){
                             $equipo->printJugadoresEnUL();
                             if  (Session::has("usuario")){
                                 if (! $equipo->participaEnTorneo() && $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
-                                    echo "<div><a href='#AgregarCompanero' title='Agregar Compañero'>Agregar Compañero</a></div>";
+                                    ?>
+                                    <div id="registroAgregar">
+                                        <div>
+                                            <div id="AgregarCompanero">
+                                                <div>
+                                                    <div id='cabeceraAgregarCompanero'>
+                                                        <h2 class='mayusculas'>Agregar un compañero</h2>
+                                                    </div>
+                                                    <div id='cuerpoAgregarCompanero'>
+                                                        <form class='formRegistro' action="agregar-jugador" method="POST">
+                                                            <input type="hidden" name="equipo" value="<?= $equipo->getEquipoID() ?>"/>
+                                                            <label>Jugador<input id="jugador" type="text" name="jugador"/></label>
+                                                            <input  type="submit" value="Agregar Compañero" />
+                                                        </form>
+                                                        <?php
+                                                        if(Session::has("errorAgregarJugador")){
+                                                            ?>
+                                                            <div class='DivErrores'>
+                                                            <h2 style='color:#F00'><?=Session::get("errorAgregarJugador")?></h2>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
                                 }}
-
                             ?>
                         </div>
+
+
+
+
+
+
 
                         <?php if ($estaJugandoTorneo){?>
                             <div class="tab-pane fade " id="nav-proximafecha" role="tabpanel" aria-labelledby="nav-proximafecha-tab">

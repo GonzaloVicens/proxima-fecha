@@ -38,9 +38,22 @@ $torneo->actualizar();
                                     ?>
 
                                     <tr>
+                                        <td class="versus"><?= $partido->getPartidoID()?></td>
                                         <td class="text-right equipos"><div class="nombre_equipo"><?= $partido->getLocalName()?></div></td>
                                         <td class="versus"><?= $partido->getPuntosLocal()?> - <?= $partido->getPuntosVisita()?></td>
                                         <td class="text-left equipos"><div class="nombre_equipo"><?= $partido->getVisitaName()?></div></td>
+                                        <?php
+
+                                        if (isset($usuario) && $partido->esArbitro($usuario->getUsuarioID())){
+                                            echo "<td class='versus'><a>Actualizar Partido</a></td>";
+                                         } else {
+                                            if ($partido->fueJugado()){
+                                                echo "<td><a>Ver Partido</a></td>";
+                                            } else {
+                                                echo "<td></td>";
+                                            }
+                                        }
+                                        ?>
                                     </tr>
                                 <?php }?>
                             </table>

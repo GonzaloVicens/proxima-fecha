@@ -13,6 +13,7 @@ use Proyecto\Session\Session;
 
 if (Session::has('torneo')){
     $torneo = Session::get('torneo');
+    $torneo->actualizar();
 }
 ?>
 <main class="py-4 mb-4">

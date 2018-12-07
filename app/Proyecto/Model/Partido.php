@@ -72,6 +72,12 @@ class Partido
     protected $cancha_id;
 
     /**
+     * @var string
+     */
+    protected $jugado;
+
+
+    /**
      * Usuario constructor.
      * @param null $equi
      */
@@ -289,7 +295,7 @@ class Partido
             'partido_id' => $this->partido_id
         ];
 
-        $query = "SELECT LOCAL_ID, VISITA_ID, FECHA, HORA, ARBITRO_ID, PUNTOS_LOCAL, PUNTOS_VISITA, SEDE_ID, CANCHA_ID FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID = :partido_id";
+        $query = "SELECT LOCAL_ID, VISITA_ID, FECHA, HORA, ARBITRO_ID, PUNTOS_LOCAL, PUNTOS_VISITA, SEDE_ID, CANCHA_ID, JUGADO FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID = :partido_id";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute($datos);
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -302,6 +308,7 @@ class Partido
             $this->puntos_visita= $datos['PUNTOS_VISITA'];
             $this->sede_id= $datos['SEDE_ID'];
             $this->cancha_id= $datos['CANCHA_ID'];
+            $this->jugado= $datos['JUGADO'];
         };
     }
 
@@ -365,7 +372,7 @@ class Partido
             'cancha_id'     => $cancha_id
         ];
 
-        $script = "INSERT INTO PARTIDOS VALUES (:torneo_id, :fase_id, null, :local_id, :visita_id, null, null, :arbitro_id, 0,0, ' ', ' ' , :sede_id, :cancha_id)";
+        $script = "INSERT INTO PARTIDOS VALUES (:torneo_id, :fase_id, null, :local_id, :visita_id, null, null, :arbitro_id, 0,0, ' ', ' ' , :sede_id, :cancha_id, 'N')";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($datos)) {
             return $fase;
@@ -383,4 +390,22 @@ class Partido
         return Equipo::getNombrePorID($this->visita_id);
     }
 
+    public function esArbitro ($usuario) {
+        $query = "SELECT 'X' FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID = :partido_id AND ARBITRO_ID = :arbitro_id";
+
+        $datos= [
+            'torneo_id' => $this->torneo_id,
+            'fase_id' => $this->fase_id,
+            'partido_id' => $this->partido_id,
+            'arbitro_id' => $usuario
+        ];
+
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+    public function fueJugado(){
+        return $this->jugado == 'Y';
+    }
 }

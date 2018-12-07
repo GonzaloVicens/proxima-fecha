@@ -66,7 +66,7 @@ class TipoTorneo
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            if ($elegido) {
+            if ($elegido == $datos['TIPO_TORNEO_ID']) {
                 $checked = " checked=checked ";
             } else {
                 $checked = "  ";

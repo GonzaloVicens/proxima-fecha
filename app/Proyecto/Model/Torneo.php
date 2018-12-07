@@ -433,8 +433,12 @@ class Torneo
 
         $query = "DELETE FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id AND EQUIPO_ID  = :equipo_id ";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute($datos );
-        $stmt->fetch(\PDO::FETCH_ASSOC);
+        IF ($stmt->execute($datos )){
+            $this->eliminarFixture();
+            $this->actualizar();
+        } else {
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        }
     }
 
     public function actualizar(){
