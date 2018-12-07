@@ -271,11 +271,13 @@ class TorneoController
 
     }
 
+
     public function editarOrganizadores()
     {
         if (Session::has("usuario") && Session::has('torneo')) {
             $usuario = Session::get('usuario');
             $torneo = Session::get('torneo');
+            $torneo->actualizar();
             $organizadores= $torneo->getTodosLosOrganizadores();
             View::render('web/editar-organizadores',compact('usuario','torneo','organizadores'), 3);
 
@@ -351,4 +353,67 @@ class TorneoController
 
         header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
     }
+
+
+
+
+    /**
+     * Método que da por decide la actualización del Torneo
+     */
+    protected function actualizarEstadoTorneo($estado)
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario->actualizar();
+
+            if (Session::has("torneo")) {
+                $torneo = Session::get('torneo');
+                $torneo->actualizar();
+
+                if ($torneo->tieneOrganizadorActivo($usuario->getUsuarioID())) {
+                    switch ($estado){
+                        case "C":
+                            $torneo->comenzar();
+                            break;
+                        case "F":
+                            $torneo->finalizar();
+                            break;
+                        case "R":
+                            $torneo->reiniciar();
+                            break;
+                    }
+                }
+            };
+        }
+
+        $torneo->actualizar();
+        header('Location: ' . App::$urlPath . '/torneos/' . $torneo->getTorneoID());
+
+    }
+
+    /**
+     * Método que da por comenzado el Torneo
+     */
+    public function comenzarTorneo()
+    {
+        $this->actualizarEstadoTorneo("C");
+    }
+
+    /**
+     * Método que da por finalizado el Torneo
+     */
+    public function finalizarTorneo()
+    {
+        $this->actualizarEstadoTorneo("F");
+    }
+
+    /**
+     * Método que da por finalizado el Torneo
+     */
+    public function reiniciarTorneo()
+    {
+        $this->actualizarEstadoTorneo("R");
+    }
+
+
 }

@@ -42,45 +42,75 @@ $torneo->actualizar();
                 <?php } ?>
             </div>
             <div class="col-md-4">
-            <?php if (isset($usuario) && $usuario->esOrganizadorDeTorneo($torneo->getTorneoID())){?>
                 <h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>
-                <p>
-                    <a href="<?= App::$urlPath;?>/torneos/editar-torneo" class="naranjaFecha hoverVerde"><i class="far fa-edit"></i> Modificar Datos del Torneo</a>
-                </p>
-                <p>
-                    <a href="<?= App::$urlPath;?>/torneos/editar-organizadores" class="naranjaFecha hoverVerde"><i class="far fa-edit"></i> Administrar Organizadores</a>
-                </p>
-                <p>
-                    <button href="#" class="btn btn-link naranjaFecha hoverVerde" id="eliminar_torneo"><i class="fas fa-times-circle"></i> Eliminar Torneo</button>
-                </p>
-
-                <?php if ($torneo->esNuevo()){?>
-                    <?php if ($torneo->getLugaresLibres() > 0 ){ ?>
+                <?php if (isset($usuario) && $usuario->esOrganizadorDeTorneo($torneo->getTorneoID())) { ?>
+                    <?php if ($torneo->esNuevo()) { ?>
                     <p>
-                        <a href="<?= App::$urlPath;?>/torneos/agregar-equipos" class="naranjaFecha hoverVerde"><i class="fas fa-plus-circle"></i> Agregar Equipo</a>
+                        <a href="<?= App::$urlPath; ?>/torneos/editar-torneo" class="naranjaFecha hoverVerde"><i
+                                class="far fa-edit"></i> Modificar Datos del Torneo</a>
                     </p>
+                <?php } ?>
+                <p>
+                    <a href="<?= App::$urlPath; ?>/torneos/editar-organizadores" class="naranjaFecha hoverVerde"><i
+                            class="far fa-edit"></i> Administrar Organizadores</a>
+                </p>
+                <?php if (!$torneo->estaEnCurso()) { ?>
+                    <p>
+                        <button href="#" class="btn btn-link naranjaFecha hoverVerde" id="eliminar_torneo"><i
+                                class="fas fa-times-circle"></i> Eliminar Torneo
+                        </button>
+                    </p>
+                <?php } ?>
+                <?php if ($torneo->esNuevo()) { ?>
+                    <?php if ($torneo->getLugaresLibres() > 0) { ?>
+                        <p>
+                            <a href="<?= App::$urlPath; ?>/torneos/agregar-equipos" class="naranjaFecha hoverVerde"><i
+                                    class="fas fa-plus-circle"></i> Agregar Equipo</a>
+                        </p>
                     <?php }
-                        if ($torneo->getLugaresLibres() == 0  && ! $torneo->tieneFixture() ){ ?>
+                    if ($torneo->getLugaresLibres() == 0 && !$torneo->tieneFixture()) { ?>
+                        <p>
+                            <a href="generar-fixture" class="naranjaFecha btn btn-lg btn-outline-warning"><i
+                                    class="fas fa-trophy"></i> Generar Fixture</a>
+                        </p>
+                    <?php }
+                    if ($torneo->tieneFixture() && $torneo->estaInicial()) { ?>
+                        <p>
+                            <a href="comenzar-torneo" class="naranjaFecha btn btn-lg btn-outline-warning"><i
+                                    class="fas fa-trophy"></i> Comenzar Torneo</a>
+                        </p>
+                    <?php }
+                }
+                if ($torneo->estaEnCurso()) {
+                    ?>
                     <p>
-                        <a href="generar-fixture" class="naranjaFecha btn btn-lg btn-outline-warning"><i class="fas fa-trophy"></i> Generar Fixture</a>
+                        <a href="finalizar-torneo" class="naranjaFecha btn btn-lg btn-outline-warning"><i
+                                class="fas fa-trophy"></i> Finalizar Torneo</a>
                     </p>
-                            <?php }
-                            if($torneo->tieneFixture()) { ?>
+                    <?php
+                }
+                if ($torneo->estaFinalizado()) {
+                    ?>
                     <p>
-                        <button href="#" class="naranjaFecha btn btn-lg btn-outline-warning"><i class="fas fa-trophy"></i> Comenzar Torneo</button>
+                        <a href="reiniciar-torneo" class="naranjaFecha btn btn-lg btn-outline-warning"><i
+                                class="fas fa-trophy"></i> Reiniciar Torneo</a>
                     </p>
-                            <?php }
-                            }
+                <?php }
+            } else {
+                if (isset($usuario)) {
 
+                ?>
+                 <p>
+                    <a href="<?= App::$urlPath; ?>/torneos/ver-organizadores" class="naranjaFecha hoverVerde"><i class="far fa-edit"></i> Ver Organizadores</a>
+                 </p>
+                    <?php
+                    }
             }
-            if ($torneo->tieneFixture()) {?>
-                    <p >
-                        <a href="ver-fixture-completo" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</a>
-                    </p>
-                <?php }?>
-
-
-
+            if ($torneo->tieneFixture()) { ?>
+                <p>
+                    <a href="ver-fixture-completo" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</a>
+                </p>
+            <?php } ?>
             </div>
         </div>
     </div>

@@ -608,9 +608,19 @@ class Torneo
         return $this->organizadores;
     }
 
-    public function getTodosLosOrganizadores(){
+    public function getOrganizadoresActivos(){
+        return $this->getTodosLosOrganizadores(" AND B.ACTIVO = '1' ");
+    }
+
+
+    public function getTodosLosOrganizadores($where = null){
         $respuesta= [];
         $query = "SELECT B.ORGANIZADOR_ID, A.NOMBRE, A.APELLIDO, B.ACTIVO FROM USUARIOS A, ORGANIZADORES B WHERE A.USUARIO_ID = B.ORGANIZADOR_ID AND B.TORNEO_ID = :torneo_id ";
+
+        if (isset($where)){
+            $query .= $where ;
+        }
+
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['torneo_id' => $this->torneo_id]);
 
@@ -620,6 +630,9 @@ class Torneo
 
         return $respuesta;
     }
+
+
+
 
     public function existeOrganizador($organizador_id){
         $datos = ['torneo_id' => $this->torneo_id,
@@ -644,7 +657,16 @@ class Torneo
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 
+    public function tieneOrganizadorActivo($organizador_id){
+        $datos = ['torneo_id' => $this->torneo_id,
+            'organizador_id' => $organizador_id
+        ];
 
+        $query = "SELECT 'X' FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id AND ORGANIZADOR_ID = :organizador_id AND ACTIVO = '1'";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
 
     public function editarOrganizador($organizador_id, $activo)
     {
@@ -675,6 +697,40 @@ class Torneo
         $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function estaEnCurso(){
+        return $this->estado_torneo_id == 'C';
+    }
+
+    public function estaInicial(){
+        return $this->estado_torneo_id == 'I';
+    }
+
+    public function estaFinalizado(){
+        return $this->estado_torneo_id == 'F';
+    }
 
 
+    public function actualizarEstadoTorneo($nuevoEstado){
+        $datos = ['torneo_id' => $this->torneo_id,
+                'estado_torneo_id' => $nuevoEstado
+            ];
+
+        $query = "UPDATE TORNEOS SET ESTADO_TORNEO_ID = :estado_torneo_id WHERE TORNEO_ID = :torneo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos );
+        $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function comenzar(){
+        $this->actualizarEstadoTorneo("C");
+    }
+
+    public function finalizar(){
+        $this->actualizarEstadoTorneo("F");
+    }
+
+    public function reiniciar(){
+        $this->actualizarEstadoTorneo("I");
+        $this->eliminarFixture();
+    }
 }

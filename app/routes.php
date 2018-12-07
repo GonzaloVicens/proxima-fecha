@@ -32,6 +32,9 @@ Route::addRoute('POST', '/torneos/agregar-equipo'              , 'TorneoControll
 Route::addRoute('POST', '/torneos/eliminar-equipo'             , 'TorneoController@eliminarEquipo');
 Route::addRoute('POST', '/torneos/buscar-equipo'               , 'TorneoController@buscarEquipo');
 Route::addRoute('POST', '/torneos/eliminar-torneo'             , 'TorneoController@eliminar');
+Route::addRoute('GET' , '/torneos/comenzar-torneo'             , 'TorneoController@comenzarTorneo');
+Route::addRoute('GET' , '/torneos/finalizar-torneo'            , 'TorneoController@finalizarTorneo');
+Route::addRoute('GET' , '/torneos/reiniciar-torneo'            , 'TorneoController@reiniciarTorneo');
 Route::addRoute('GET' , '/torneos/generar-fixture'             , 'TorneoController@generarFixture');
 Route::addRoute('GET' , '/torneos/ver-fixture-completo'        , 'TorneoController@verFixtureCompleto');
 Route::addRoute('GET' , '/ver-proxima-fecha'                   , 'TorneoController@verProximaFecha');
