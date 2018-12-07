@@ -50,7 +50,7 @@ class Torneo
     protected $equipos;
 
     /**
-     * @var array of Usuario;
+     * @var array of string;
      */
     protected $organizadores;
 
@@ -277,7 +277,7 @@ class Torneo
 
     public function setOrganizadores(){
         $this->organizadores= [];
-        $query = "SELECT ORGANIZADOR_ID FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id ";
+        $query = "SELECT ORGANIZADOR_ID FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id  AND ACTIVO = '1'  ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['torneo_id' => $this->torneo_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -603,4 +603,78 @@ class Torneo
 
         }
     }
+
+    public function getOrganizadores() {
+        return $this->organizadores;
+    }
+
+    public function getTodosLosOrganizadores(){
+        $respuesta= [];
+        $query = "SELECT B.ORGANIZADOR_ID, A.NOMBRE, A.APELLIDO, B.ACTIVO FROM USUARIOS A, ORGANIZADORES B WHERE A.USUARIO_ID = B.ORGANIZADOR_ID AND B.TORNEO_ID = :torneo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $this->torneo_id]);
+
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta[] = $datos;
+        };
+
+        return $respuesta;
+    }
+
+    public function existeOrganizador($organizador_id){
+        $datos = ['torneo_id' => $this->torneo_id,
+            'organizador_id' => $organizador_id
+        ];
+
+        $query = "SELECT 'X' FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id AND ORGANIZADOR_ID = :organizador_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+
+    public function tieneOtrosOrganizadores($organizador_id){
+        $datos = ['torneo_id' => $this->torneo_id,
+            'organizador_id' => $organizador_id
+        ];
+
+        $query = "SELECT 'X' FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id AND ORGANIZADOR_ID != :organizador_id AND ACTIVO = '1' ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+
+
+    public function editarOrganizador($organizador_id, $activo)
+    {
+
+        if ($activo) {
+            $activo = '0';
+        } else {
+            $activo = '1';
+        }
+
+        $datos = ['torneo_id' => $this->torneo_id,
+            'organizador_id'  => $organizador_id,
+            'activo'          => $activo
+        ];
+        $query = "UPDATE ORGANIZADORES SET ACTIVO = :activo WHERE TORNEO_ID = :torneo_id AND ORGANIZADOR_ID =  :organizador_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos );
+        $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function insertarOrganizador($organizador_id){
+        $datos = ['torneo_id' => $this->torneo_id,
+            'organizador_id' => $organizador_id
+        ];
+        $query = "INSERT INTO ORGANIZADORES VALUE (:torneo_id , :organizador_id, '1')";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos );
+        $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+
+
 }

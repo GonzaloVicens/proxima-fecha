@@ -5,6 +5,7 @@ use Proyecto\Core\Route;
 use Proyecto\Core\Request;
 use Proyecto\Model\Equipo;
 use Proyecto\Model\Torneo;
+use Proyecto\Model\Usuario;
 use Proyecto\Session\Session;
 use Proyecto\Core\App;
 class TorneoController
@@ -272,14 +273,82 @@ class TorneoController
 
     public function editarOrganizadores()
     {
-        if (Session::has("usuario")) {
+        if (Session::has("usuario") && Session::has('torneo')) {
             $usuario = Session::get('usuario');
-            View::render('web/editar-organizadores',compact('usuario'), 3);
+            $torneo = Session::get('torneo');
+            $organizadores= $torneo->getTodosLosOrganizadores();
+            View::render('web/editar-organizadores',compact('usuario','torneo','organizadores'), 3);
 
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         };
     }
 
+    /**
+     * Método que agrega un Organizador en el Torneo
+     */
+    public function agregarOrganizador()
+    {
+        $inputs = Request::getData();
 
+        if (isset($inputs["torneo_id"]) && !empty($inputs ["torneo_id"]) ){
+            $torneo_id = $inputs ['torneo_id'];
+            $torneo = new Torneo($torneo_id);
+
+            if (isset($inputs ["organizador_id"]) && !empty($inputs ["organizador_id"])) {
+
+                $organizador_id = $inputs ['organizador_id'];
+
+                if ($torneo->existeOrganizador($organizador_id)) {
+                    Session::set("errorAgregarOrganizador", $organizador_id . " ya es un organizador del torneo");
+                } else {
+                    if (Usuario::existeUsuario($organizador_id)) {
+                        $torneo->insertarOrganizador($organizador_id);
+                        Session::clearValue("errorAgregarOrganizador");
+                    } else {
+                        Session::set("errorAgregarOrganizador", $organizador_id . " no existe en el sistema");
+                    }
+                };
+            } else {
+                Session::set("errorAgregarOrganizador",  " Ingrese un organizador");
+            }
+        }
+
+        header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
+    }
+
+
+    /**
+     * Método que activa/desactiva un Organizador en el Torneo
+     */
+    public function editarOrganizador()
+    {
+        $inputs = Request::getData();
+
+        if (isset($inputs["torneo_id"]) && !empty($inputs ["torneo_id"]) ){
+            $torneo_id = $inputs ['torneo_id'];
+            $torneo = new Torneo($torneo_id);
+
+            if (isset($inputs ["organizador_id"]) && !empty($inputs ["organizador_id"])) {
+
+                $organizador_id = $inputs ['organizador_id'];
+                $activo = $inputs ['activo'];
+
+                if (!$torneo->existeOrganizador($organizador_id)) {
+                    Session::set("errorAgregarOrganizador", $organizador_id . " no es un organizador del torneo");
+                } else {
+                    if ($torneo->tieneOtrosOrganizadores($organizador_id)) {
+                        $torneo->editarOrganizador($organizador_id, $activo);
+                        Session::clearValue("errorAgregarOrganizador");
+                    } else {
+                        Session::set("errorAgregarOrganizador",  "No quedan organizadores en el torneo");
+                    }
+                };
+            } else {
+                Session::set("errorAgregarOrganizador",  " Ingrese un organizador");
+            }
+        }
+
+        header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
+    }
 }

@@ -564,5 +564,18 @@ class Usuario
 
         Session::set('usuario',$this);
     }
+
+    public static function getNombreDeUsuario ($usuario_id){
+        $query = "SELECT NOMBRE , APELLIDO FROM USUARIOS WHERE USUARIO_ID = :usuario_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['usuario_id' => $usuario_id]);
+        if ($a = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            return $a['APELLIDO'] . ', ' . $a['NOMBRE'];
+        } else {
+            throw new UsuarioNoEncontradoException ("No existe el usuario.");
+        }
+
+    }
+
 }
 
