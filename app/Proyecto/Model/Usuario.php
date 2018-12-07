@@ -540,6 +540,12 @@ class Usuario
         return $this->contactos;
     }
 
+    public function esCapitanDeEquipo(){
+        $query = "SELECT 'Y' FROM EQUIPOS WHERE CAPITAN_ID= :usuario_id AND ACTIVO = '1' ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['usuario_id' => $this->usuario_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
 
     public function esOrganizadorDeTorneo($torneo_id){
         $query = "SELECT 'Y' FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id AND ORGANIZADOR_ID = :usuario_id AND ACTIVO = 1 ";

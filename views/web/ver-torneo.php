@@ -30,6 +30,31 @@ $torneo->actualizar();
                 <p class="text-muted"><i class="far fa-calendar-alt"></i> Sede: <span class="font-italic"><?= $torneo->getDescrSede() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span><?= $torneo->getCantidadEquipos() ?></span></p>
 
+                <h3>Organizadores:</h3>
+                <ul>
+                    <?php
+                    foreach($organizadoresActivos as $organizadorActual) {
+                        $boton ="";
+                        if (Session::has('logueado')){
+                            $usuario = Session::get("usuario");
+                            $usuario->actualizar();
+                            if ($usuario->esCapitanDeEquipo() && $usuario->getUsuarioID() != $organizadorActual['ORGANIZADOR_ID']  ) {
+                                $boton = "<a href='../mensajes/". $usuario->getUsuarioID() . "/" . $organizadorActual['ORGANIZADOR_ID'] . "' class='mayuscula'>Enviar Mensaje</a>";
+                            }
+                        }
+
+                        echo "<li>" . $organizadorActual['APELLIDO'] . ", " . $organizadorActual['NOMBRE'] . $boton . "</li>";
+                         } ?>
+                </ul>
+
+
+
+
+
+
+
+
+
             <?php if ( $torneo->tieneEquipos() ){ ?>
                 <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
                 <ul>
@@ -96,15 +121,6 @@ $torneo->actualizar();
                                 class="fas fa-trophy"></i> Reiniciar Torneo</a>
                     </p>
                 <?php }
-            } else {
-                if (isset($usuario)) {
-
-                ?>
-                 <p>
-                    <a href="<?= App::$urlPath; ?>/torneos/ver-organizadores" class="naranjaFecha hoverVerde"><i class="far fa-edit"></i> Ver Organizadores</a>
-                 </p>
-                    <?php
-                    }
             }
             if ($torneo->tieneFixture()) { ?>
                 <p>

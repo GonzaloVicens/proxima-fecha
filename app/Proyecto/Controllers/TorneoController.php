@@ -30,9 +30,11 @@ class TorneoController
         $torneo_id = $routeParams['torneo_id'];
         if (Torneo::existeTorneo($torneo_id)) {
             $torneo = new Torneo($torneo_id);
-
             Session::set("torneo",$torneo);
-            View::render('web/ver-torneo',compact('torneo'), 3);
+            $organizadoresActivos= $torneo->getOrganizadoresActivos();
+
+
+            View::render('web/ver-torneo',compact('torneo','organizadoresActivos'), 3);
         } else{
             View::render('web/error404',[], 2);
         };
