@@ -408,4 +408,19 @@ class Partido
     public function fueJugado(){
         return $this->jugado == 'Y';
     }
+
+    public function reasignarArbitro($arbitro){
+        $datos= [
+            'torneo_id'   => $this->torneo_id,
+            'fase_id'     => $this->fase_id,
+            'partido_id'    => $this->partido_id,
+            'arbitro_id'  => $arbitro
+        ];
+        $script = "UPDATE PARTIDOS SET ARBITRO_ID = :arbitro_id WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
+        $stmt = DBConnection::getStatement($script );
+        if(! $stmt->execute($datos)) {
+            print_r($stmt->errorInfo());
+            throw new PartidoNoGrabadoException("Error al grabar el partido.");
+        }
+    }
 }

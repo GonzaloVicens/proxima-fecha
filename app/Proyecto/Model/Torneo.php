@@ -673,6 +673,7 @@ class Torneo
 
         if ($activo) {
             $activo = '0';
+            $this->reasignarOrganizador($organizador_id);
         } else {
             $activo = '1';
         }
@@ -685,6 +686,10 @@ class Torneo
         $stmt = DBConnection::getStatement($query);
         $stmt->execute($datos );
         $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if ($activo = '0') {
+            $this->reasignarOrganizador($organizador_id);
+        }
     }
 
     public function insertarOrganizador($organizador_id){
@@ -732,5 +737,20 @@ class Torneo
     public function reiniciar(){
         $this->actualizarEstadoTorneo("I");
         $this->eliminarFixture();
+    }
+
+    public function reasignarOrganizador($organizador){
+        $this->actualizar();
+        foreach($this->fases as $faseActual) {
+            foreach ( $faseActual->getPartidos() as $partidoActual) {
+                if ( $partidoActual->getArbitroID() == $organizador && !$partidoActual->fueJugado()){
+                    do {
+                        $organizadorRandom = mt_rand(0, count($this->organizadores) - 1);
+                    } while ($this->organizadores[$organizadorRandom] == $organizador);
+
+                    $partidoActual->reasignarArbitro($this->organizadores[$organizadorRandom]);
+                }
+            }
+        }
     }
 }
