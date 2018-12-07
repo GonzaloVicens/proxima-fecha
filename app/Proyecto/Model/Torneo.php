@@ -463,6 +463,8 @@ class Torneo
 
 
     public function generarFixture(){
+        $this->eliminarFixture();
+
         switch( $this->tipo_torneo_id){
             case "L":
                 $this->generarLiga();
@@ -474,15 +476,22 @@ class Torneo
                 $this->generarTorneoIdaYVuelta();
                 break;
         }
+        $this-> actualizar();
     }
 
     public function existeFase($fase_id) {
         return Fase::ExisteFase($this->torneo_id, $fase_id);
     }
 
-    public function crearFase($fase_id){
+    public function crearFaseLiga($fase_id){
         if (! $this->existeFase($fase_id)){
             Fase::CrearFase($this->torneo_id, $fase_id, "Fecha " .$fase_id);
+        }
+    }
+
+    public function crearFaseCopa($fase_id, $nombre){
+        if (! $this->existeFase($fase_id)){
+            Fase::CrearFase($this->torneo_id, $fase_id, $nombre);
         }
     }
 
@@ -492,8 +501,6 @@ class Torneo
 
 
     public function generarLiga(){
-        $this->eliminarFixture();
-
         $this->actualizar();
         $faseInicial = 1;
         foreach ($this->equipos as $iEquipo => $equipoI ){
@@ -507,7 +514,7 @@ class Torneo
                             $iFase = 1;
                         }
                         if (! $this->existeFase($iFase)){
-                            $this->crearFase($iFase);
+                            $this->crearFaseLiga($iFase);
                         }
                         $fase = New Fase($this->torneo_id, $iFase);
 
@@ -524,23 +531,72 @@ class Torneo
                             }
                         }
                     }
-
-
-
                 }
             }
         }
-        $this-> actualizar();
     }
 
 
     public function generarCopa(){
+        $this->actualizar();
 
+        $faseACrear = 1;
+        $cantidadPartidos = $this->cantidad_equipos  ;
+
+        while ($cantidadPartidos > 1) {
+
+            // Primero genero la llave original
+            $cantidadPartidos = intdiv ( $cantidadPartidos , 2 );
+
+            switch ($cantidadPartidos){
+                case 1:
+                    $nombre = "Final";
+                    break;
+                case 2:
+                    $nombre = "Semifinal";
+                    break;
+                case 3:
+                    $nombre = "Cuartos de Final";
+                    break;
+                default:
+                    $nombre = $cantidadPartidos . "avos";
+            }
+
+            $this->crearFaseCopa($faseACrear , $nombre);
+            $nuevaFase = New Fase ($this->torneo_id, $faseACrear);
+            $this->fases[] = $nuevaFase ;
+
+            for( $i = 0; $i < $cantidadPartidos ; $i++) {
+                $organizadorRandom = mt_rand(0, count($this->organizadores) - 1);
+                if ($faseACrear == 1) {
+                    $nuevaFase->insertarPartido($this->equipos[$i], $this->equipos[$i + $cantidadPartidos], $this->organizadores[$organizadorRandom], $this->sede_id);
+                }else{
+                    $nuevaFase->insertarPartido(0 , 0, $this->organizadores[$organizadorRandom], $this->sede_id);
+                }
+            }
+            $faseACrear++;
+        }
     }
+
+
+
     public function generarTorneoIdaYVuelta(){
+        $this->generarLiga();
+        $this->actualizar();
+
+        $fasesExistentes = count($this->fases);
+        foreach($this->fases as $faseActual) {
+            $nuevaFase_ID = $fasesExistentes  + $faseActual->getFaseID();
+            $this->crearFaseLiga($nuevaFase_ID);
+            $nuevaFase = New Fase ($this->torneo_id, $nuevaFase_ID );
+            $this->fases[] = $nuevaFase ;
+
+            foreach ( $faseActual->getPartidos() as $partidoActual) {
+                $organizadorRandom = mt_rand(0, count($this->organizadores) - 1);
+
+                $nuevaFase->insertarPartido($partidoActual->getVisitaID(), $partidoActual->getLocalID(), $this->organizadores[$organizadorRandom], $this->sede_id);
+            }
+
+        }
     }
-
-
-
-
 }
