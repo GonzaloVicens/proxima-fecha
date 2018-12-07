@@ -47,7 +47,6 @@ $torneo->actualizar();
                         </div>
                     </div>
                 <?php }?>
-
             </div>
         </div>
     </div>

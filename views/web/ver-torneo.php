@@ -9,6 +9,8 @@ use Proyecto\Core\App;
 
 use Proyecto\Model\Torneo;
 use Proyecto\Session\Session;
+
+$torneo->actualizar();
 ?>
 
 <main class="py-4 mb-4">
@@ -55,22 +57,25 @@ use Proyecto\Session\Session;
                         <a href="<?= App::$urlPath;?>/torneos/agregar-equipos" class="naranjaFecha hoverVerde"><i class="fas fa-plus-circle"></i> Agregar Equipo</a>
                     </p>
                     <?php }
-                        if ($torneo->getLugaresLibres() == 0 ){ ?>
+                        if ($torneo->getLugaresLibres() == 0  && ! $torneo->tieneFixture() ){ ?>
                     <p>
                         <a href="generar-fixture" class="naranjaFecha btn btn-lg btn-outline-warning"><i class="fas fa-trophy"></i> Generar Fixture</a>
                     </p>
-                            <?php if($torneo->tieneFixture()) { ?>
+                            <?php }
+                            if($torneo->tieneFixture()) { ?>
                     <p>
                         <button href="#" class="naranjaFecha btn btn-lg btn-outline-warning"><i class="fas fa-trophy"></i> Comenzar Torneo</button>
                     </p>
                             <?php }
                             }
-                    } else { ?>
-                    <p class="d-none">
-                        <button href="#" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</button>
+
+            }
+            if ($torneo->tieneFixture()) {?>
+                    <p >
+                        <a href="ver-fixture-completo" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</a>
                     </p>
-                <?php } ?>
-            <?php } ?>
+                <?php }?>
+
 
 
             </div>
