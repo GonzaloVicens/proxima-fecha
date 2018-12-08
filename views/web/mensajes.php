@@ -54,7 +54,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
             //o esto quedó de una etapa de prueba y ahora hay que sacarlo?
             //echo "<h1> hubo un error </h1>";
         };?>
-    </div>
+    </div>|
 </main>
 
 

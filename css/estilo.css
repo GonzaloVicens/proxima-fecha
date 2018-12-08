@@ -383,6 +383,13 @@ button.btn.btn-outline-warning:hover {
       text-overflow: ellipsis;
       overflow: hidden; }
 
+.btn-volver-derecha {
+  overflow: auto;
+  margin: .5em 0; }
+  .btn-volver-derecha a,
+  .btn-volver-derecha button {
+    float: right; }
+
 .floating-label-form-group {
   position: relative; }
   .floating-label-form-group input,
@@ -895,5 +902,61 @@ nav {
 @media (min-width: 1200px) {
   .editar-mis-datos form.formEditarDatos .user-photo-block .user-block h2 {
     font-size: 2rem; } }
+.mensaje #conversacion .redondo {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin-right: 10px; }
+.mensaje #conversacion h2 {
+  border-bottom: 1px solid #BDBDBD;
+  -webkit-box-shadow: 0 4px 3px -3px #BDBDBD;
+  -moz-box-shadow: 0 4px 3px -3px #BDBDBD;
+  box-shadow: 0 4px 3px -3px #BDBDBD;
+  padding-bottom: .8em;
+  line-height: 2.2em; }
+.mensaje #conversacion .dialogo {
+  list-style: none;
+  padding: 0;
+  margin-top: 2em;
+  min-height: 200px; }
+  .mensaje #conversacion .dialogo .mensajeLiImpar,
+  .mensaje #conversacion .dialogo .mensajeLiPar {
+    margin: 15px 5px; }
+  .mensaje #conversacion .dialogo .mensajeLiImpar span .unMensaje {
+    background-color: #eeeeee;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 75%;
+    padding: 10px; }
+  .mensaje #conversacion .dialogo .mensajeLiPar span {
+    background-color: #eeeeee;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 75%;
+    padding: 10px; }
+  .mensaje #conversacion .dialogo .mensajeLiPar {
+    overflow: auto; }
+    .mensaje #conversacion .dialogo .mensajeLiPar .mensajePar {
+      float: right; }
+  .mensaje #conversacion .dialogo .mensajeLiImpar {
+    overflow: auto; }
+    .mensaje #conversacion .dialogo .mensajeLiImpar .mensajeImpar {
+      float: left; }
+.mensaje #conversacion #formChat {
+  margin: 1.5em 0;
+  padding: 2em 0;
+  border-top: 1px solid #BDBDBD;
+  display: flex;
+  align-items: flex-end; }
+  .mensaje #conversacion #formChat #nuevoMensaje {
+    resize: none;
+    border-radius: 8px;
+    border: 1px solid #909090;
+    width: 100%;
+    outline: none;
+    padding: .5em .75em;
+    height: 5em; }
+  .mensaje #conversacion #formChat .LinkVerPosteos {
+    height: 40px; }
 
 /*# sourceMappingURL=estilo.css.map */

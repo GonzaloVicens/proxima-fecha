@@ -383,4 +383,11 @@ button.btn.btn-outline-warning:hover {
       text-overflow: ellipsis;
       overflow: hidden; }
 
+.btn-volver-derecha {
+  overflow: auto;
+  margin: .5em 0; }
+  .btn-volver-derecha a,
+  .btn-volver-derecha button {
+    float: right; }
+
 /*# sourceMappingURL=common.css.map */

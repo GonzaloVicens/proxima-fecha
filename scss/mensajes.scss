@@ -1,0 +1,102 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.mensaje {
+   #conversacion {
+     .redondo {
+       border-radius: 50%;
+       height: 50px;
+       width: 50px;
+       margin-right: 10px;
+     }
+     h2 {
+       border-bottom: 1px solid $col_gris1;
+       -webkit-box-shadow: 0 4px 3px -3px $col_gris1;
+       -moz-box-shadow: 0 4px 3px -3px $col_gris1;
+       box-shadow: 0 4px 3px -3px $col_gris1;
+       padding-bottom: .8em;
+       line-height: 2.2em;
+     }
+
+     .dialogo {
+       list-style: none;
+       padding: 0;
+       margin-top: 2em;
+       min-height: 200px;
+
+       .mensajeLiImpar,
+       .mensajeLiPar {
+         margin: 15px 5px;
+       }
+       .mensajeLiImpar{
+         span {
+           .unMensaje {
+             background-color: $col_gris3;
+             border-radius: 8px;
+             display: inline-block;
+             max-width: 75%;
+             padding: 10px;
+           }
+         }
+       }
+
+       .mensajeLiPar {
+         span {
+           background-color: $col_gris3;
+           border-radius: 8px;
+           display: inline-block;
+           max-width: 75%;
+           padding: 10px;
+         }
+       }
+
+       .mensajeLiPar {
+         overflow: auto;
+         .mensajePar {
+           float: right;
+         }
+       }
+
+
+       .mensajeLiImpar {
+         overflow: auto;
+         .mensajeImpar {
+           float: left;
+         }
+       }
+     }
+
+     #formChat {
+       margin: 1.5em 0;
+       padding: 2em 0;
+       border-top: 1px solid $col_gris1;
+       display: flex;
+       align-items: flex-end;
+
+       #nuevoMensaje {
+         resize: none;
+         border-radius: 8px;
+         border: 1px solid $col_gris2;
+         width: 100%;
+         outline: none;
+         padding: .5em .75em;
+         height: 5em;
+       }
+
+       .LinkVerPosteos {
+         height: 40px;
+       }
+     }
+
+   }
+
+
+}
+
+@media (max-width: 991px) {
+  //styles here
+}
+
+@media (min-width: 992px) {
+  //styles here
+}

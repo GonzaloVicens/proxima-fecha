@@ -576,3 +576,13 @@ button.btn.btn-outline-warning:hover{
     }
   }
 }
+
+.btn-volver-derecha {
+  overflow: auto;
+  margin: .5em 0;
+  a,
+  button {
+    float: right;
+  }
+
+}
