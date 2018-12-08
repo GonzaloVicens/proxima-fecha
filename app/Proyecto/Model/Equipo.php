@@ -329,7 +329,7 @@ class Equipo
     public function printOptionsJugadores($elegido = null)
     {
 
-        $query = "SELECT A.JUGADOR_ID, B.APELLIDO, B.NOMBRE FROM JUGADORES A, USUARIOS B WHERE A.EQUIPO_ID = :equipo_id AND A.JUGADOR_ID = B.USUARIO_ID";
+        $query = "SELECT A.JUGADOR_ID, B.APELLIDO, B.NOMBRE FROM JUGADORES A, USUARIOS B WHERE A.EQUIPO_ID = :equipo_id AND A.JUGADOR_ID = B.USUARIO_ID ORDER BY APELLIDO ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -360,15 +360,15 @@ class Equipo
 
             foreach ($fichas as $ficha) {
                 if ($ficha->getJugadorID() == $jugadorID) {
-                    $ulFichas .= "<li>$ficha->getTipoEstadisticaID()</li>";
+                    $ulFichas .= "<li>". $ficha->getTipoEstadisticaID()."</li>";
                 }
             }
             $ulFichas .= "</ul>";
 
             if ($esLocal) {
-                echo "<li class='li-listado-jugadores-img list-group-item'>" . $ulFichas . "<a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "</span></a></li>";
+                echo "<li class='li-listado-jugadores-img list-group-item'>" . $ulFichas . "<a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
             } else {
-                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "</span></a>" . $ulFichas . "</li>";
+                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a>" . $ulFichas . "</li>";
             }
         }
         echo "</ul>";
@@ -392,6 +392,10 @@ class Equipo
                             <?=$this->printOptionsJugadores()?>
                         </select>
                     </div>
+                    <input type="hidden" name="torneo" value="<?= $partido->getTorneoID()?>">
+                    <input type="hidden" name="fase" value="<?= $partido->getFaseID()?>">
+                    <input type="hidden" name="partido" value="<?= $partido->getPartidoID()?>">
+                    <input type="hidden" name="equipo" value="<?= $this->equipo_id?>">
                     <button type='submit' class='btn btn-lg btn-outline-succes'>Agregar Ficha Partido</button>
                 </form>
             <?php

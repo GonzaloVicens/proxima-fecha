@@ -438,6 +438,18 @@ class TorneoController
     public function agregarFichaPartido(){
         $inputs = Request::getData();
 
+        if ( (isset($inputs["torneo"]) && !empty($inputs ["torneo"]) )
+        &&  (isset($inputs["fase"]) && !empty($inputs ["fase"]) )
+        &&  (isset($inputs["partido"]) && !empty($inputs ["partido"]) )
+        &&  (isset($inputs["equipo"]) && !empty($inputs ["equipo"]) )
+        &&  (isset($inputs["jugador"]) && !empty($inputs ["jugador"]) )
+        &&  (isset($inputs["tipo"]) && !empty($inputs ["tipo"]) )){
+
+            $partido = New Partido($inputs["torneo"], $inputs["fase"], $inputs["partido"]);
+            $partido->agregarFicha($inputs["tipo"], $inputs["equipo"], $inputs["jugador"]);
+        }
+
+        header('Location: ' . App::$urlPath . '/torneos/' . $inputs["torneo"] . "/". $inputs["fase"] ."/". $inputs["partido"]);
 
     }
 }

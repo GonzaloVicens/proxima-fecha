@@ -115,7 +115,7 @@ class Ficha
             'ficha_id'   => $ficha
         ];
 
-        $query = "SELECT A.TIPO_ESTADISTICA_ID , B.DESCRIPCION , A.EQUIPO_ID, A.JUGADOR_ID FROM FICHA_PARTIDO A , TIPOS_ESTADISTICAS B WHERE A.TORNEO_ID = :torneo_id AND A.FASE_ID = :fase_id AND A.PARTIDO_ID = :partido_id AND A.FICHA_ID = :ficha_id AND A.TIPO_ESTADISTICA_ID = B.TIPO_ESTADISTICA_ID";
+        $query = "SELECT A.TIPO_ESTADISTICA_ID , B.DESCRIPCION , A.EQUIPO_ID, A.JUGADOR_ID FROM FICHA_PARTIDO A , TIPOS_ESTADISTICA B WHERE A.TORNEO_ID = :torneo_id AND A.FASE_ID = :fase_id AND A.PARTIDO_ID = :partido_id AND A.FICHA_ID = :ficha_id AND A.TIPO_ESTADISTICA_ID = B.TIPO_ESTADISTICA_ID";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute($param);
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -152,7 +152,7 @@ class Ficha
      * @return mixed
      * @throws FichaNoGrabadaException
      */
-    public static function CrearFicha($torneo, $fase, $partido, $tipo, $equipo , $jugador){
+    public static function InsertarFicha($torneo, $fase, $partido, $tipo, $equipo , $jugador){
         $datos= [
             'torneo_id'   => $torneo,
             'fase_id'     =>  $fase,
@@ -165,7 +165,7 @@ class Ficha
         $script = "INSERT INTO FICHA_PARTIDO VALUES (:torneo_id, :fase_id, :partido_id, null,  :tipo_estadistica_id, :equipo_id, :jugador_id)";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($datos)) {
-            return $fase;
+            return DBConnection::getConnection()->lastInsertId();
         } else {
             throw new FichaNoGrabadaException("Error al grabar la ficha.");
         }

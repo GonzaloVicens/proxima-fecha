@@ -4,7 +4,7 @@ namespace Proyecto\Model;
 use Proyecto\DB\DBConnection;
 use Proyecto\Session\Session;
 use Proyecto\Exceptions\PartidoNoGrabadoException;
-
+use Proyecto\Model\Ficha;
 
 /**
  * Implementación de la clase Partido
@@ -290,6 +290,7 @@ class Partido
     * @return array of Fichas
     */
     public function getFichas(){
+        $this->setFichas();
         return $this->fichas;
     }
 
@@ -308,7 +309,7 @@ class Partido
          $stmt = DBConnection::getStatement($query);
          $stmt->execute($datos);
          WHILE ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-             $this->fichas[] = New Ficha($datos['FICHA_ID']);
+             $this->fichas[] = New Ficha($this->torneo_id, $this->fase_id, $this->partido_id, $datos['FICHA_ID']);
          };
      }
 
@@ -413,7 +414,7 @@ class Partido
         $script = "INSERT INTO PARTIDOS VALUES (:torneo_id, :fase_id, null, :local_id, :visita_id, null, null, :arbitro_id, 0,0, ' ', ' ' , :sede_id, :cancha_id, 'N')";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($datos)) {
-            return $fase;
+            return DBConnection::getConnection()->lastInsertId();
         } else {
             print_r($stmt->errorInfo());
             throw new PartidoNoGrabadoException("Error al grabar el partido.");
@@ -524,4 +525,52 @@ class Partido
         };
         return $respuesta;
     }
+
+
+    public function agregarFicha($tipo_Ficha, $equipo_Ficha, $jugador_Ficha){
+        $nuevaFicha = Ficha::InsertarFicha($this->torneo_id , $this->fase_id, $this->partido_id, $tipo_Ficha, $equipo_Ficha, $jugador_Ficha);
+        $this->fichas[] = new Ficha($this->torneo_id , $this->fase_id, $this->partido_id, $nuevaFicha) ;
+
+        if ($tipo_Ficha == "G") {
+            if ($equipo_Ficha == $this->local_id) {
+                $this->SumarPunto($this->local_id);
+            } else {
+                $this->SumarPunto($this->visita_id);
+            }
+        };
+        if ($tipo_Ficha == "X") {
+            if ($equipo_Ficha == $this->local_id) {
+                $this->SumarPunto($this->visita_id);
+            } else {
+                $this->SumarPunto($this->local_id);
+
+            }
+        };
+    }
+
+    protected function SumarPunto($equipoASumar){
+        if ($equipoASumar== $this->local_id) {
+            $this->puntos_local++;
+        } else {
+            $this->puntos_visita++;
+        }
+
+        $datos= [
+            'torneo_id'   => $this->torneo_id,
+            'fase_id'     => $this->fase_id,
+            'partido_id'    => $this->partido_id,
+            'puntos_local'  => $this->puntos_local,
+            'puntos_visita'  => $this->puntos_visita
+        ];
+
+        $script = "UPDATE PARTIDOS SET PUNTOS_LOCAL = :puntos_local , PUNTOS_VISITA = :puntos_visita WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
+        $stmt = DBConnection::getStatement($script );
+        if(! $stmt->execute($datos)) {
+            print_r($stmt->errorInfo());
+            throw new PartidoNoGrabadoException("Error al grabar el partido.");
+        }
+
+    }
+
+
 }
