@@ -11,26 +11,23 @@ use Proyecto\Session\Session;
 
 if (Session::has('logueado') && Session::get('logueado')=='S') {
     $usuarioLogueado = true;
+    $usuario->actualizar();
 }else{
     $usuarioLogueado = false;
 }
 
-if (! $usuarioLogueado ){
-    if (Session::has("camposError")){
-        $camposError = Session::get("camposError");
-        $camposViejos = Session::get("campos");
-        $usuario=$camposViejos['usuario'];
-        $nombre=$camposViejos['nombre'];
-        $apellido=$camposViejos['apellido'];
-        $email=$camposViejos['email'];
-        Session::clearValue("camposError");
-        Session::clearValue("campos");
-    } else {
-        $usuario="";
-        $nombre="";
-        $apellido="";
-        $email="";
-    }
+if (Session::has("camposError")){
+    $camposError = Session::get("camposError");
+    $camposViejos = Session::get("campos");
+    $nombre=$camposViejos['nombre'];
+    $apellido=$camposViejos['apellido'];
+    $email=$camposViejos['email'];
+    Session::clearValue("camposError");
+    Session::clearValue("campos");
+} else {
+    $nombre="";
+    $apellido="";
+    $email="";
 };
 
 ?>
@@ -40,7 +37,7 @@ if (! $usuarioLogueado ){
             <div class="col-md-3">
             </div>
             <div class="col-md-6">
-                <form class='formEditarDatos' action="<?= App::$urlPath;?>/usuarios/editar-datos"  method="post">
+                <form class='formEditarDatos' action="<?= App::$urlPath;?>/usuarios/editar-datos"  method="post" enctype="multipart/form-data">
                     <div class="form-group user-photo-block">
                         <div class="user-block">
                             <h2 class="mt-5 mb-4 pfgreen">Editar <span class="font-weight-normal">Mis Datos</span></h2>
@@ -74,13 +71,9 @@ if (! $usuarioLogueado ){
                     <div class="my-4">
                         <span id='edit_pass' class="btn btn-outline-info">Cambiar Contraseña</span>
                             <div class="d-none edit-pass-field mt-2">
-                                <div class="form-group">
-                                    <label for="password">Password Actual</label>
-                                    <input type="password" class="form-control" name="clave" id="passwordactual" placeholder="Password">
-                                </div>
                                 <div class="form-group mb-4">
                                     <label for="confirmarpassword">Nuevo Password</label>
-                                    <input type="password" class="form-control" name="confClave" id="nuevopassword" placeholder="Nuevo Password">
+                                    <input type="password" class="form-control" name="clave" id="nuevopassword" placeholder="Nuevo Password">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="confirmarpassword">Confirmar Nuevo Password</label>
@@ -89,12 +82,12 @@ if (! $usuarioLogueado ){
                             </div>
                     </div>
                     <button type="submit" class="btn btn-outline-success">Enviar</button>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                    <a href="<?=App::$urlPath . '/'?>" type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
                 </form>
             </div>
             <div class="col-md-3">
                 <?php
-                if (! $usuarioLogueado && isset($camposError)){
+                if (isset($camposError)){
                     echo("<div class='DivErrores'><ul>");
                     foreach ($camposError as $error => $descr) {
                         echo ("<li style='color:#F00'>".ucfirst($error).": ".$descr."</li>");

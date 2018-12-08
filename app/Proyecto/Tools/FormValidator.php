@@ -25,13 +25,19 @@ class FormValidator
 
 
     /**
+     * Atributo privado donde se guarda si el validador es para el Registrarse o el Editar
+     */
+    private $formEditar;
+
+    /**
      * Al instanciar la clase con un formulario como parámetro, ya se hace la validación del mismo
      * FormValidator constructor.
      * @param $formulario
      */
-    public function __construct($formulario)
+    public function __construct($formulario, $formEditar =null)
     {
         $this->campos = $formulario;
+        $this->formEditar= $formEditar;
         $this->validarFormulario();
     }
 
@@ -41,6 +47,10 @@ class FormValidator
     public function validarFormulario(){
         // Valido los inputs;
         $firmoTerminos = false;
+
+        if ( $this->formEditar) {
+            $firmoTerminos = true;
+        }
         foreach( $this->campos as $nombreCampo => $valor){
             if ($nombreCampo == 'terminos'){
                 $firmoTerminos = true;
@@ -70,7 +80,9 @@ class FormValidator
                 break;
             case 'clave':
                 $this->confClave = $campo;
-                return $this->validarCampoEspecifico($campo, '/^.+$/i', "El campo es requerido");
+                if ( !$this->formEditar ) {
+                    return $this->validarCampoEspecifico($campo, '/^.+$/i', "El campo es requerido");
+                }
                 break;
             case 'usuario':
                 $rta = $this->validarCampoEspecifico($campo, '/^[a-z\d]+$/i', "El campo solo puede ser texto o números");

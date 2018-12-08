@@ -254,7 +254,6 @@ class Usuario
             'apellido'    => ucfirst($vUsuario['apellido']),
             'email'       => $vUsuario['email'],
             'activo'      => '1',
-            //'telefono'   => $vUsuario['telefono'],
             'telefono'   => null,
             'ultima_vez' => date("Y-m-d")
         ];
@@ -268,27 +267,64 @@ class Usuario
         }
     }
 
-
-    /** Actualiza los datos del usuario en la base de datos en base al parámetro vUsuario recibido
+    /** Actualiza cuando e usuario inisio sesion
      *  Si sale bien, devuelve el ID del usaurio actualizado
      * @param $vUsuario
      * @return mixed
      * @throws UsuarioNoGrabadoException
      */
-    public static function ActualizarUsuario($vUsuario){
+    public function inicioSesion(){
         $usuario= [
-            'usuario_id'  => $vUsuario['usuario'],
-            'nombre'      => ucfirst($vUsuario['nombre']),
-            'apellido'    => ucfirst($vUsuario['apellido']),
-            'email'       => $vUsuario['email'],
-            'descripcion' => $vUsuario['descripcion'],
-
+            'usuario_id'  => $this->usuario_id,
+            'ultima_vez' => date("Y-m-d")
         ];
 
-        $script = "UPDATE USUARIOS  SET NOMBRE = :nombre, APELLIDO = :apellido , EMAIL = :email , DESCRIPCION = :descripcion WHERE USUARIO_ID = :usuario_id";
+        $script = "UPDATE USUARIOS  SET ULTIMA_VEZ_ONLINE = :ultima_vez WHERE USUARIO_ID = :usuario_id";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($usuario)) {
-            return $vUsuario['usuario'];
+            return $this->usuario_id;
+        } else {
+            echo "<pre>";
+            print_r($stmt->errorInfo());
+            echo "</pre>";
+            throw new UsuarioNoGrabadoException("Error al grabar el usuario.");
+        }
+    }
+
+
+
+    /** Actualiza los datos del usuario en la base de datos en base al parámetro vUsuario recibido
+     *  Si sale bien, devuelve el ID del usaurio actualizado
+     * @param $vUsuario
+     * @throws UsuarioNoGrabadoException
+     */
+    public function actualizarUsuario($vUsuario){
+        $usuario= [
+            'usuario_id'  => $this->usuario_id,
+            'nombre'      => ucfirst($vUsuario['nombre']),
+            'apellido'    => ucfirst($vUsuario['apellido']),
+            'email'       => $vUsuario['email']
+        ];
+
+        $script = "UPDATE USUARIOS  SET NOMBRE = :nombre, APELLIDO = :apellido , EMAIL = :email WHERE USUARIO_ID = :usuario_id";
+        $stmt = DBConnection::getStatement($script );
+        if($stmt->execute($usuario)) {
+            if (isset($vUsuario['clave'])) {
+
+                $usuario = [
+                    'usuario_id' => $this->usuario_id,
+                    'password' => Hash::encrypt($vUsuario['clave'])
+                ];
+
+                $script = "UPDATE USUARIOS  SET PASSWORD = :password WHERE USUARIO_ID = :usuario_id";
+                $stmt = DBConnection::getStatement($script);
+                if (!$stmt->execute($usuario)) {
+                    echo "<pre>";
+                    print_r($stmt->errorInfo());
+                    echo "</pre>";
+                    throw new UsuarioNoGrabadoException("Error al grabar el usuario.");
+                }
+            }
         } else {
             echo "<pre>";
             print_r($stmt->errorInfo());

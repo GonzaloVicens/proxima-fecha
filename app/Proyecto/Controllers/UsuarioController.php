@@ -42,6 +42,7 @@ class UsuarioController
             Session::clearValue('errorLogin');
             Session::set('usuario',$usuario);
             Session::set('logueado','S');
+            $usuario->inicioSesion();
             header('Location: ' . App::$urlPath .'/usuarios/'.$usuario->getUsuarioID());
         }
     }
@@ -224,10 +225,82 @@ class UsuarioController
         }
     }
 
-    public function editarUsuario()
+    public function verEditarUsuario()
     {
         View::render('web/editar-mis-datos',[], 3);
     }
+
+
+
+
+    /**
+     * Método que controla la actualización de del perfil de usuario.
+     * @param Request $request
+     */
+    public function editarUsuario()
+    {
+        if (Session::has("usuario")){
+            $usuario = Session::get('usuario');
+            $usuario->actualizar();
+            $inputs = Request::getData();
+
+            $error =0;
+            $errorActual = "";
+
+            $formValidator = new FormValidator( $inputs, true);
+
+            // Si hay algún campo en error, vuelvo al formulario, indicando que hay errores;
+            if ( !empty($formValidator->getCamposError()) ){
+                Session::set("camposError",$formValidator->getCamposError());
+                Session::set("campos",$formValidator->getCampos());
+                header('Location: ' . App::$urlPath . '/usuarios/editar-datos');
+
+            } else {
+                Session::clearValue("camposError");
+                Session::clearValue("campos");
+
+                try {
+                    $usuario->actualizarUsuario($inputs);
+                } catch ( UsuarioNoGrabadoException $exc){
+                    echo "<pre>";
+                    print_r($exc->getMessage());
+                    echo "</pre>";
+                    header('Location: ' . App::$urlPath . '/error404');
+                }
+            }
+
+            if ( empty($formValidator->getCamposError()) ) {
+                $files = Request::getFiles();
+
+                if (isset($files['foto']['tmp_name']) && !empty($files ['foto']['tmp_name'])) {
+                    $archivo_tmp = $files ['foto']['tmp_name'];
+                    $original = imagecreatefromjpeg($archivo_tmp);
+                    $ancho = imagesx($original);
+                    $alto = imagesy($original);
+
+                    $alto_max = 200;
+                    $ancho_max = round($ancho * $alto_max / $alto);
+
+                    $copia = imagecreatetruecolor($ancho_max, $alto_max);
+                    imagecopyresampled($copia, $original,
+                        0, 0, 0, 0,
+                        $ancho_max, $alto_max,
+                        $ancho, $alto);
+                    $nombre_nuevo = App::$rootPath . "/img/usuarios/" . $usuario->getUsuarioID() . ".jpg";
+                    imagejpeg($copia, $nombre_nuevo);
+                }
+                header('Location: ' . App::$urlPath . '/usuarios/' . $usuario->getUsuarioID());
+            } else {
+                header('Location: ' . App::$urlPath . '/usuarios/editar-datos');
+            }
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        }
+    }
+
+
+
+
 
 
     /**

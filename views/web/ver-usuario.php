@@ -8,6 +8,7 @@
 use Proyecto\Core\App;
 use Proyecto\Model\Usuario;
 use Proyecto\Session\Session;
+$usuario->actualizar();
 if (Usuario::existeUsuario($usuario_id)) {
 
 ?>
@@ -26,7 +27,7 @@ if (Usuario::existeUsuario($usuario_id)) {
             </div>
             <div class="col-md-8 pl-4">
                 <ul class="list-unstyled">
-                    <a href = "editar-mis-datos" class="editar_user"></a>
+                    <a href = "editar-datos" class="editar_user"></a>
                     <li class='nombreUser mt-4 mb-3'><h2><?= $usuarioAMostrar->getNombreCompleto()?></h2></li>
                     <li><span class='font-weight-bold text-dark'>Equipos</span>
                         <ul class="list-unstyled">
