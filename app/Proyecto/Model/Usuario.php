@@ -299,6 +299,7 @@ class Usuario
      * @throws UsuarioNoGrabadoException
      */
     public function actualizarUsuario($vUsuario){
+
         $usuario= [
             'usuario_id'  => $this->usuario_id,
             'nombre'      => ucfirst($vUsuario['nombre']),
@@ -309,8 +310,7 @@ class Usuario
         $script = "UPDATE USUARIOS  SET NOMBRE = :nombre, APELLIDO = :apellido , EMAIL = :email WHERE USUARIO_ID = :usuario_id";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($usuario)) {
-            if (isset($vUsuario['clave'])) {
-
+            if (isset($vUsuario['clave']) && !empty($vUsuario['clave'])) {
                 $usuario = [
                     'usuario_id' => $this->usuario_id,
                     'password' => Hash::encrypt($vUsuario['clave'])
