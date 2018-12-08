@@ -551,10 +551,7 @@ class Usuario
 
 
     public function getContactos(){
-        if ( empty($this->contactos[0])){
-           $this->contactos = Mensaje::GetContactosDeMensajesDeUsuario ($this->usuario_id);
-        };
-        return $this->contactos;
+        return Mensaje::GetContactosDeMensajesDeUsuario ($this->usuario_id);
     }
 
     public function esCapitanDeEquipo(){
