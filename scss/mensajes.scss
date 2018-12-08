@@ -1,6 +1,62 @@
 @import "colors.scss";
 @import "mixins.scss";
 
+.mensajes {
+  h2 {
+    i.fas.fa-comments:before {
+      font-size: 1.4rem;
+      color: #ebebeb;
+      padding: .5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: #18C25D;
+      margin-right: .4rem;
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .lista-contacto-mensaje{
+    min-height: 250px;
+
+    li{
+      &:nth-child(odd){
+        background-color: $col_gris5;
+      }
+
+      img{
+        border-radius:50%;
+        height: 50px;
+        width: 50px;
+        margin-right: 20px;
+      }
+
+      a {
+        text-decoration: none;
+        .nombre_apellido_jugador{
+          font-weight: 500;
+        }
+
+        &.verchat {
+          color: $bgcol_verde5;
+          margin-left: 30px;
+
+          &:hover {
+            opacity: .8;
+          }
+        }
+      }
+
+      .aviso-mensajes-nuevos {
+        color: $bgcol_naranja;
+        font-weight: 600;
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
 .mensaje {
    #conversacion {
      .redondo {

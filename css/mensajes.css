@@ -1,3 +1,37 @@
+.mensajes h2 i.fas.fa-comments:before {
+  font-size: 1.4rem;
+  color: #ebebeb;
+  padding: .5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #18C25D;
+  margin-right: .4rem;
+  display: block;
+  text-align: center; }
+.mensajes .lista-contacto-mensaje {
+  min-height: 250px; }
+  .mensajes .lista-contacto-mensaje li:nth-child(odd) {
+    background-color: #F9F9F9; }
+  .mensajes .lista-contacto-mensaje li img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-right: 20px; }
+  .mensajes .lista-contacto-mensaje li a {
+    text-decoration: none; }
+    .mensajes .lista-contacto-mensaje li a .nombre_apellido_jugador {
+      font-weight: 500; }
+    .mensajes .lista-contacto-mensaje li a.verchat {
+      color: #00CD5E;
+      margin-left: 30px; }
+      .mensajes .lista-contacto-mensaje li a.verchat:hover {
+        opacity: .8; }
+  .mensajes .lista-contacto-mensaje li .aviso-mensajes-nuevos {
+    color: #ff8c00;
+    font-weight: 600;
+    margin-left: 20px; }
+
 .mensaje #conversacion .redondo {
   border-radius: 50%;
   height: 50px;

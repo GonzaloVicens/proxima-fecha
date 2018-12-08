@@ -30,10 +30,9 @@ if (Session::has("usuario") && Session::get("usuario")->getUsuarioId() == $usuar
                     //Conversación con <img src='.$contactoActual->getUsuarioID().'><a href='../../usuarios/" .$contactoActual->getUsuarioId() ."' class='verde3 hoverVerde'>"  . $contactoActual->getNombreCompleto() . "</a></h2>";
                     //Conversación con <img src='" . App::$urlPath . "/img/usuarios/".$contactoActual->getUsuarioId() . ".jpg'><a href='../../usuarios/" .$contactoActual->getUsuarioId() ."' class='verde3 hoverVerde'>"  . $contactoActual->getNombreCompleto() . "</a></h2>";
                     if(isset($contactoActual) and file_exists('img/usuarios/'.$contactoActual->getUsuarioId() . '.jpg')){
-                        //echo "<span class='d-block m-auto text-center rounded-circle overflowhidden'> <img class='rounded-circle' src='" . App::$urlPath . "/img/usuarios/".$usuario->getUsuarioId() . ".jpg' alt='foto perfil' /></span>";
+
                         echo "<img class='redondo' src='" . App::$urlPath . "/img/usuarios/".$contactoActual->getUsuarioId() . ".jpg'><a href='../../usuarios/" .$contactoActual->getUsuarioId() ."' class='h3 verde3 hoverVerde'>"  . $contactoActual->getNombreCompleto() . "</a></h2>";
                     }else {
-                        //echo "<span class='d-block m-auto text-center rounded-circle overflowhidden'> <img class='rounded-circle' src='" . App::$urlPath . "/img/usuarios/UserJugador.jpg' alt='foto perfil' /></span>";
                         echo "<img class='redondo' src='" . App::$urlPath . "/img/usuarios/UserJugador.jpg'><a href='../../usuarios/" .$contactoActual->getUsuarioId() ."' class='verde3 hoverVerde'>"  . $contactoActual->getNombreCompleto() . "</a></h2>";
                     }
                     echo "<ol class='dialogo'>";

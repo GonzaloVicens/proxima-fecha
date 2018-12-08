@@ -70,7 +70,7 @@
       margin-bottom: 1.4em;
       margin-top: .8em; }
       .container-form-home form .form-group label {
-        color: #FFA500;
+        color: #ff8c00;
         font-weight: 400; }
       .container-form-home form .form-group input.form-control {
         background-color: transparent;
@@ -85,13 +85,13 @@
   height: 140px; }
 
 .naranjaFecha {
-  color: #FFA500; }
+  color: #ff8c00; }
 
 .sombraTexto {
   text-shadow: #2f2f2f 2px 2px 2px; }
 
 .fondoNaranjaFecha {
-  background-color: #FFA500; }
+  background-color: #ff8c00; }
 
 .porcentaje60 {
   width: 70%; }
