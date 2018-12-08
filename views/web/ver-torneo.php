@@ -42,7 +42,7 @@ $torneo->actualizar();
 
                                 // Cionfiguro el origen del chat para el botón "Volver" de la conversacion;
                                 Session::set('origenChat','/torneos/'.$torneo->getTorneoID());
-                                $boton = "<a href='../mensajes/". $usuario->getUsuarioID() . "/" . $organizadorActual['ORGANIZADOR_ID'] . "' class='mayuscula'>Enviar Mensaje</a>";
+                                $boton = "<a href='../mensajes/". $usuario->getUsuarioID() . "/" . $organizadorActual['ORGANIZADOR_ID'] . "' class='enviar-mensaje'>Enviar Mensaje</a>";
                             }
                         }
 

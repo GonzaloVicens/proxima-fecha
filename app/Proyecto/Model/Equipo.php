@@ -193,13 +193,13 @@ class Equipo
                     IF (($jugadorID != $this->capitan_id)) {
                         // Cionfiguro el origen del chat para el botón "Volver" de la conversacion;
                         Session::set('origenChat','/equipos/'.$this->equipo_id);
-                        $boton = "<a href='../mensajes/". $usuario_id . "/" . $jugadorID . "' class='mayuscula'>Enviar Mensaje</a>";
+                        $boton = "<a href='../mensajes/". $usuario_id . "/" . $jugadorID . "' class='enviar-mensaje'>Enviar Mensaje</a>";
                     }
                 } else {
                     IF (($jugadorID == $this->capitan_id)) {
-                        // Cionfiguro el origen del chat para el botón "Volver" de la conversacion;
+                        // Configuro el origen del chat para el botón "Volver" de la conversacion;
                         Session::set('origenChat','/equipos/'.$this->equipo_id);
-                        $boton = "<a href='../mensajes/". $usuario_id . "/" . $jugadorID . "' class='mayuscula'>Enviar Mensaje</a>";
+                        $boton = "<a href='../mensajes/". $usuario_id . "/" . $jugadorID . "' class='enviar-mensaje'>Enviar Mensaje</a>";
                     //    $boton = "<a href='#mensajeModal' class='mayuscula'>Enviar Mensaje</a>";
                     }
                 }

@@ -390,6 +390,21 @@ button.btn.btn-outline-warning:hover {
   .btn-volver-derecha button {
     float: right; }
 
+.enviar-mensaje {
+  color: #18C25D;
+  text-decoration: none !important;
+  margin-left: 20px; }
+  .enviar-mensaje:hover {
+    color: #18C25D;
+    transition: color .2s ease-in-out;
+    opacity: .8; }
+  .enviar-mensaje:before {
+    content: '\f075';
+    font-family: 'FontAwesome';
+    margin-right: 5px;
+    font-size: inherit;
+    text-decoration: none; }
+
 .floating-label-form-group {
   position: relative; }
   .floating-label-form-group input,

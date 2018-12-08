@@ -586,3 +586,22 @@ button.btn.btn-outline-warning:hover{
   }
 
 }
+
+.enviar-mensaje {
+  color: $bgcol_verde3;
+  text-decoration: none !important;
+  margin-left: 20px;
+
+  &:hover {
+    @include hover-txt($bgcol_verde3);
+    opacity: .8;
+  }
+
+  &:before {
+    content: '\f075';
+    font-family: 'FontAwesome';
+    margin-right: 5px;
+    font-size: inherit;
+    text-decoration: none;
+  }
+}
