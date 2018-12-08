@@ -79,6 +79,11 @@ class Partido
 
 
     /**
+     * @var Array of FichaPartido
+     */
+    protected $fichas;
+
+    /**
      * Usuario constructor.
      * @param null $equi
      */
@@ -281,8 +286,38 @@ class Partido
         $this->cancha_id = $cancha_id;
     }
 
+    /**
+    * @return array of Fichas
+    */
+    public function getFichas(){
+        return $this->fichas;
+    }
 
 
+     public function setFichas()
+     {
+         $this->fichas = [];
+
+         $datos= [
+             'torneo_id' =>$this->torneo_id,
+             'fase_id' => $this->fase_id,
+             'partido_id' => $this->partido_id
+         ];
+
+         $query = "SELECT FICHA_ID FROM FICHA_PARTIDO WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID = :partido_id";
+         $stmt = DBConnection::getStatement($query);
+         $stmt->execute($datos);
+         WHILE ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+             $this->fichas[] = New Ficha($datos['FICHA_ID']);
+         };
+     }
+
+    /**
+     * @param $torneo
+     * @param $fase
+     * @param $partido
+     *
+     */
 
     public function setPartido($torneo, $fase, $partido)
     {
@@ -311,6 +346,8 @@ class Partido
             $this->cancha_id= $datos['CANCHA_ID'];
             $this->jugado= $datos['JUGADO'];
         };
+
+        $this->setFichas();
     }
 
 

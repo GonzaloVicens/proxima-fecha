@@ -427,7 +427,9 @@ class TorneoController
         $partido_id = $routeParams['partido'];
         if (Partido::existePartido($torneo_id, $fase_id, $partido_id)) {
             $partidoActual = new Partido($torneo_id, $fase_id, $partido_id) ;
-            View::render('web/ver-partido',compact('partidoActual'), 3);
+            $local = new Equipo ($partidoActual->getLocalId());
+            $visita = new Equipo ($partidoActual->getVisitaId());
+            View::render('web/ver-partido',compact('partidoActual', 'local','visita'), 3);
         } else{
             View::render('web/error404',[], 2);
         };

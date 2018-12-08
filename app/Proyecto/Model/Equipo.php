@@ -4,7 +4,7 @@ namespace Proyecto\Model;
 use Proyecto\DB\DBConnection;
 use Proyecto\Exceptions\EquipoNoGrabadoException;
 use Proyecto\Session\Session;
-
+use Proyecto\Core\App;
 /**
  * Implementación de la clase Equipo
  */
@@ -321,4 +321,33 @@ class Equipo
         $this->setJugadores();
         Session::set('equipo',$this);
     }
+
+
+
+    public function printJugadoresEnPartido($partido, $esLocal)
+    {
+        echo"<ul class='lista_jugadores list-group'>";
+
+        $query = "SELECT A.JUGADOR_ID, B.NOMBRE , B.APELLIDO FROM JUGADORES A, USUARIOS B WHERE A.JUGADOR_ID = B.USUARIO_ID AND A.EQUIPO_ID = :equipo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['equipo_id' => $this->equipo_id]);
+
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $liCapitan = "";
+            $jugadorID = $datos['JUGADOR_ID'];
+            IF ($datos['JUGADOR_ID'] == $this->capitan_id){
+                $liCapitan = "<li>CC</li>";
+            }
+
+            if ($esLocal){
+                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/". $datos['JUGADOR_ID'] ."' title='Ver'><span ".$idCapitan."></span><span class='nombre_apellido_jugador'>" . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "</span></a></li>";
+            }else {
+                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/". $datos['JUGADOR_ID'] ."' title='Ver'><span ".$idCapitan."></span><span class='nombre_apellido_jugador'>" . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "</span></a></li>";
+            }
+        }
+        echo "</ul>";
+    }
+
+
+
 }
