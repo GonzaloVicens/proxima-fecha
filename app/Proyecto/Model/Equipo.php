@@ -324,7 +324,7 @@ class Equipo
 
 
 
-    public function printJugadoresEnPartido($partido, $esLocal)
+    public function printJugadoresEnPartido($fichas, $esLocal)
     {
         echo"<ul class='lista_jugadores list-group'>";
 
@@ -335,9 +335,12 @@ class Equipo
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $liCapitan = "";
             $jugadorID = $datos['JUGADOR_ID'];
+
             IF ($datos['JUGADOR_ID'] == $this->capitan_id){
                 $liCapitan = "<li>CC</li>";
             }
+
+
 
             if ($esLocal){
                 echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/". $datos['JUGADOR_ID'] ."' title='Ver'><span ".$idCapitan."></span><span class='nombre_apellido_jugador'>" . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "</span></a></li>";

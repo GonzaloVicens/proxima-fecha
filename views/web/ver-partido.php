@@ -54,10 +54,10 @@ $datosPartido = $partidoActual->getInfoPartido();
         </div>
         <div class="row">
             <div class="col-md-6">
-                <?= $local->printJugadoresEnPartido($partidoActual, true ) ?>
+                <?= $local->printJugadoresEnPartido($partidoActual->getFichas(), true ) ?>
             </div>
             <div class="col-md-6">
-                <?= $visita->printJugadoresEnPartido($partidoActual, false) ?>
+                <?= $visita->printJugadoresEnPartido($partidoActual->getFichas(), false) ?>
             </div>
         </div>
         <a href='<?= App::$urlPath . '/torneos/ver-fixture-completo'  ?>' class="colorGris2 hoverVerde"><i class="fas fa-shield-alt"></i> Ver Fixture Completo</a>
