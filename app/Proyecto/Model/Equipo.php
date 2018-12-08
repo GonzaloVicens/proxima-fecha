@@ -108,7 +108,7 @@ class Equipo
             $this->nombre = $datos['NOMBRE'];
             $this->capitan_id = $datos['CAPITAN_ID'];
         };
-        $this->jugadores = [];
+        $this->setJugadores();
     }
 
 
@@ -119,7 +119,7 @@ class Equipo
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $this->jugadores[] = New Usuario($datos['JUGADOR_ID']);
+            $this->jugadores[] = $datos['JUGADOR_ID'];
         };
     }
 
@@ -315,5 +315,10 @@ class Equipo
             $nombre  = $datos['NOMBRE'] ;
         }
         return $nombre ;
+    }
+
+    public function actualizar(){
+        $this->setJugadores();
+        Session::set('equipo',$this);
     }
 }

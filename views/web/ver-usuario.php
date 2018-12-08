@@ -9,14 +9,15 @@ use Proyecto\Core\App;
 use Proyecto\Model\Usuario;
 use Proyecto\Session\Session;
 if (Usuario::existeUsuario($usuario_id)) {
+
 ?>
 <main class="py-4 mb-4 usuario">
     <div class="container">
         <div class="row border-bottom">
             <div class="col-md-4 p-3">
                 <?php
-                    if(isset($usuario) and file_exists('img/usuarios/'. $usuario->getUsuarioId() . '.jpg')){
-                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='hover-camera rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/".$usuario->getUsuarioId() . ".jpg' alt='foto perfil' /></div></div>";
+                    if(isset($usuarioAMostrar) and file_exists('img/usuarios/'. $usuarioAMostrar->getUsuarioId() . '.jpg')){
+                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='hover-camera rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/".$usuarioAMostrar->getUsuarioId() . ".jpg' alt='foto perfil' /></div></div>";
                     }else {
                         echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='hover-camera rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' /></div></div>";
                     }
@@ -26,12 +27,12 @@ if (Usuario::existeUsuario($usuario_id)) {
             <div class="col-md-8 pl-4">
                 <ul class="list-unstyled">
                     <a href = "editar-mis-datos" class="editar_user"></a>
-                    <li class='nombreUser mt-4 mb-3'><h2><?= $usuario->getNombreCompleto()?></h2></li>
+                    <li class='nombreUser mt-4 mb-3'><h2><?= $usuarioAMostrar->getNombreCompleto()?></h2></li>
                     <li><span class='font-weight-bold text-dark'>Equipos</span>
                         <ul class="list-unstyled">
                             <?php
-                            if($usuario->tieneEquipo()){
-                                foreach ($usuario->getEquipos() as $equipo) {
+                            if($usuarioAMostrar->tieneEquipo()){
+                                foreach ($usuarioAMostrar->getEquipos() as $equipo) {
                                     echo "<li class='text-secondary'><a class='negrita' href='". App::$urlPath ."/equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
                                 }
                             }else{
@@ -42,8 +43,8 @@ if (Usuario::existeUsuario($usuario_id)) {
                     <li><span class='font-weight-bold text-dark'>Torneos en los que participa</span>
                         <ul class="list-unstyled">
                             <?php
-                            if($usuario->tieneTorneo()){
-                                foreach ($usuario->getTorneos() as $torneo) {
+                            if($usuarioAMostrar->tieneTorneo()){
+                                foreach ($usuarioAMostrar->getTorneos() as $torneo) {
                                     echo "<li class='text-secondary'><a class='negrita' href='". App::$urlPath . "/torneos/" . $torneo->getTorneoID() ."' title='Ver Torneo'>" .   $torneo->getNombre()  ."</a></li>";
                                 }
                             }else{
@@ -56,8 +57,8 @@ if (Usuario::existeUsuario($usuario_id)) {
                     <li><span class='font-weight-bold text-dark'>Torneos que organizas</span>
                         <ul class="list-unstyled">
                             <?php
-                            if($usuario->tieneTorneosPropios()){
-                                foreach ($usuario->getTorneosPropios() as $torneo) {
+                            if($usuarioAMostrar->tieneTorneosPropios()){
+                                foreach ($usuarioAMostrar->getTorneosPropios() as $torneo) {
                                     echo "<li class='text-secondary'><a class='negrita' href='". App::$urlPath . "/torneos/" . $torneo->getTorneoID() ."' title='Ver Torneo'>" .   $torneo->getNombre()  ."</a></li>";
                                 }
                             }else{
@@ -69,7 +70,7 @@ if (Usuario::existeUsuario($usuario_id)) {
                 </ul>
             </div>
         </div>
-        <?php if  (Session::has("usuario")){ ?>
+        <?php if  (Session::has("logueado") && $usuarioAMostrar->getUsuarioID() == Session::get('usuario')->getUsuarioID()){ ?>
         <div class="row pt-5">
             <div class="col-md-12 mb-3">
                 <h2>Acciones</h2>

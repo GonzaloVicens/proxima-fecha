@@ -5,11 +5,12 @@ use Proyecto\Core\App;
 
 $rutaFotoPortada = App::$urlPath . "/img/equipos/portada6-4.jpg";
 $rutaFotoLogo = App::$urlPath . "/img/icons/escudolaurel-gris.jpg";
-if(isset($equipo)){
-    $equipo_id = $equipo->getEquipoID();
+if(isset($equipoAMostrar)){
+    $equipoAMostrar->actualizar();
+    $equipo_id = $equipoAMostrar->getEquipoID();
 
-    $estaJugandoTorneo = $equipo->estaJugandoTorneo();
-    $participaEnTorneo = $equipo->participaEnTorneo();
+    $estaJugandoTorneo = $equipoAMostrar->estaJugandoTorneo();
+    $participaEnTorneo = $equipoAMostrar->participaEnTorneo();
 
 
     if(file_exists('img/equipos/'. $equipo_id  . '_portada.jpg')) {
@@ -31,9 +32,9 @@ if(isset($equipo)){
                             <div class='d-inline-block p-1 fondoHeader2 rounded-circle ml-3'>
                                 <img class="rounded-circle" src="<?=$rutaFotoLogo?>" alt='Logo del Equipo'/>
                             </div>
-                            <h2 class='mt-5 ml-3 text-white'><?=$equipo->getNombre()?></h2>
+                            <h2 class='mt-5 ml-3 text-white'><?=$equipoAMostrar->getNombre()?></h2>
                         </div>
-                    <?php if ( (Session::has("usuario")) && ($equipo->getCapitanID() == Session::get("usuario")->getUsuarioID())) {?>
+                    <?php if ( (Session::has("usuario")) && ($equipoAMostrar->getCapitanID() == Session::get("usuario")->getUsuarioID())) {?>
                         <div id='cambiar_fotoportada'><a href='#' title='actualizar portada' class='colorGris1 hoverVerde'><i class='fas fa-camera'></i> actualizar portada</a></div>
                     <?php };?>
                     </section>
@@ -54,11 +55,11 @@ if(isset($equipo)){
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-miequipo" role="tabpanel" aria-labelledby="nav-miequipo-tab">
                             <?php
-                            echo "<h4 class='pfgreen mt-5 mb-4'>Integrantes del equipo <span class='font-weight-normal'>" . $equipo->getNombre() . "</span></h4>";
+                            echo "<h4 class='pfgreen mt-5 mb-4'>Integrantes del equipo <span class='font-weight-normal'>" . $equipoAMostrar->getNombre() . "</span></h4>";
 
-                            $equipo->printJugadoresEnUL();
+                            $equipoAMostrar->printJugadoresEnUL();
                             if  (Session::has("usuario")){
-                                if (! $equipo->participaEnTorneo() && $equipo->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
+                                if (! $equipoAMostrar->participaEnTorneo() && $equipoAMostrar->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
                                     ?>
                                     <div id="registroAgregar">
                                         <div>
@@ -69,7 +70,7 @@ if(isset($equipo)){
                                                     </div>
                                                     <div id='cuerpoAgregarCompanero'>
                                                         <form class='formRegistro' action="agregar-jugador" method="POST">
-                                                            <input type="hidden" name="equipo" value="<?= $equipo->getEquipoID() ?>"/>
+                                                            <input type="hidden" name="equipo" value="<?= $equipoAMostrar->getEquipoID() ?>"/>
                                                             <label>Jugador<input id="jugador" type="text" name="jugador"/></label>
                                                             <input  type="submit" value="Agregar Compañero" />
                                                         </form>
@@ -99,7 +100,7 @@ if(isset($equipo)){
                         <?php if ($estaJugandoTorneo){?>
                             <div class="tab-pane fade " id="nav-proximafecha" role="tabpanel" aria-labelledby="nav-proximafecha-tab">
                             <div class='d-flex mt-5 pf_miequipo'>
-                            <h4 class='mt-5 pfgreen nombreEquipo text-right'> <?= $equipo->getNombre()?>  </h4>
+                            <h4 class='mt-5 pfgreen nombreEquipo text-right'> <?= $equipoAMostrar->getNombre()?>  </h4>
                             <div class='d-inline-block fondoHeader2 rounded-circle ml-3  escudoequipo'>
                                 <img class="rounded-circle" src="<?=$rutaFotoLogo?>" alt='Logo del Equipo'/>
                             </div>

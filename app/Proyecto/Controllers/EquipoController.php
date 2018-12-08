@@ -30,11 +30,11 @@ class EquipoController
         $routeParams = Route::getRouteParams();
         $equipo_id = $routeParams['equipo_id'];
         if (Equipo::existeEquipo($equipo_id)) {
-            $equipo = new Equipo($equipo_id);
-            $equipo->setJugadores();
-            Session::set("equipo_idActual",$equipo->getEquipoId());
+            $equipoAMostrar = new Equipo($equipo_id);
+            $equipoAMostrar->actualizar();
+            Session::set("equipo_idActual",$equipoAMostrar->getEquipoId());
 
-            View::render('web/ver-equipo',compact('equipo'), 3);
+            View::render('web/ver-equipo',compact('equipoAMostrar'), 3);
         } else{
             View::render('web/error404',[], 2);
         };

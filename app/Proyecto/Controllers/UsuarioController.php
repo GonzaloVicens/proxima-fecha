@@ -67,21 +67,20 @@ class UsuarioController
      */
     public function ver()
     {
-        $ruta = "../";
         $routeParams = Route::getRouteParams();
         $usuario_id = $routeParams['usuario_id'];
         if ($usuario_id ){
             if (Usuario::existeUsuario($usuario_id)) {
-                $usuario = new Usuario($usuario_id);
-                View::render('web/ver-usuario',compact('usuario','usuario_id'), 3);
+                $usuarioAMostrar = new Usuario($usuario_id);
+                View::render('web/ver-usuario',compact('usuarioAMostrar','usuario_id'), 3);
             } else{
                 header('Location: ' . App::$urlPath . '/error404');
             };
         } else {
             if (Session::has("usuario")) {
-                $usuario = Session::get('usuario');
-                $usuario_id = $usuario->getUsuarioID();
-                View::render('web/ver-usuario',compact('usuario','usuario_id'), 3);
+                $usuarioAMostrar = Session::get('usuario');
+                $usuario_id = $usuarioAMostrar->getUsuarioID();
+                View::render('web/ver-usuario',compact('usuarioAMostrar','usuario_id'), 3);
             } else {
                 header('Location: ' . App::$urlPath . '/error404');
             };
