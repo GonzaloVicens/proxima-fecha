@@ -52,6 +52,8 @@ class FormValidator
             $firmoTerminos = true;
         }
         foreach( $this->campos as $nombreCampo => $valor){
+
+
             if ($nombreCampo == 'terminos'){
                 $firmoTerminos = true;
             }
@@ -73,6 +75,7 @@ class FormValidator
      * @return string
      */
     public function validarCampo($nombre, $campo){
+
         switch($nombre){
             case 'nombre':
             case 'apellido':
@@ -99,8 +102,10 @@ class FormValidator
             case 'telefono':
                 return $this->validarCampoEspecifico($campo, '/^\d{8,}$/', "El campo solo admite números (Mínimo 8)");
                 break;
+
             case 'email':
                 return $this->validarCampoEspecifico($campo, '/^([\w\.]{3,}@[a-z0-9\-]{3,}(\.[a-z]{2,4})+)?$/i', "El campo no es un correo válido");
+
                 break;
             default:
                 return "";
@@ -118,12 +123,12 @@ class FormValidator
      * @return string
      */
     public function validarCampoEspecifico($campo, $expReg, $texto){
-        $valido = preg_match( $expReg, $campo );
         $rta = "";
-        if ( !$valido ) {
-            if ($campo == "" ){
-                $rta = "El campo es requerido";
-            }else{
+        if ($campo == "" ){
+            $rta = "El campo es requerido";
+        }else{
+            $valido = preg_match( $expReg, $campo );
+            if ( !$valido ) {
                 $rta = $texto;
             }
         }

@@ -11,8 +11,6 @@ Pendientes/Notas:
 		Por último la columna de la derecha, yo no la pondría en "ver-equipo" sino en "ver-torneo" ya que en realidad es toda información del torneo en si... y en el "ver-torneo" lo tenemos medio vacío cuando ya el torneo está andando...
 
 
-	2) views\web\ver-usuario.php
-		Vale la pena también poder actualizar la foto del perfil desde ahi? 
 	
 
 	3) Usuario 
@@ -21,48 +19,15 @@ Pendientes/Notas:
 	
 	4) Los términos y condiciones
 	
-	5) web/ver-equipo.php 
-		-> Agregar Compañero (Esto funciona, falta traerlo de la vieja vista a la nueva)
-		-> La cinta del capitán, antes teniamos esto:
-			#miequipo #capitan {
-							background-image: url(../images/cinta.png);
-							background-repeat: no-repeat;
-							background-position: right center;
-							width: 250px;
-							vertical-align: middle;
-			}
-
-	
 	6) Las Sedes
 			
-	7) Si agrego un equipo a un torneo no se refresca, ahora.. si lo agrego..voy al home... y vuelvo.. aparece agregado...
-			
-Cambios:
-	1) SQL 
-		-> Se agregó el Estado al Torneo porque de eso depende que pueda inscribirse en otros o no...
-	2) Equipo.php 
-		-> Se agregó la lógica del estado del torneo
-		-> Se agrego la posibilidad de que el "capitan" mande mensajes a otros jugadores.
-		-> Ahora el "Enviar Mensaje" lleva a las notificaciones
-	3) ver-usuario
-		-> Se corrigio el link a los torneos
-		-> Se corrigió el link para "Editar Perfil"
-	4) crear-torneo.php
-		-> se agregó el botón cancelar
-	5) editar-torneo.php
-		-> se autocompletan los campos
-		-> se agregó el boton cancelar
-	6) footer-cuenta-usuario.php
-		-> Corregí el link y el formulario para actualizar la foto del usuario
-		-> Saque el Modal del "Eliminar Torneo" porque daba error al no estar en la pagina de torneos y querer autocompletarlo.
-	7) ver-torneo.php	
-		-> Agregue el Modal del "Eliminar Torneo" porque daba error al no estar en la pagina de torneos y querer autocompletarlo.
-	8) web\registrarse.php	
-		-> corregi el botón de cancelar
-	9) web\agregar-equipos.php
-		-> Cambie la parte del formulario de la busqueda para que funcione y se autocomplete si ya se hizo alguna busqueda.
-		-> Baje la parte de resultados porque puede pasar que aparezca mas de un resultado para la buqueda y no nos serviría como estaba... 
-		
+	7) Mecanismos para el recupero de clave en el caso de los usuarios que las hayan perdido.
+	
+	8) Los administradores del sistema deben poder ejercer tareas de auditoría sobre los usuarios según los términos y condiciones (bannear usuarios o publicaciones).
+
+	9) Tener acceso a estadísticas del sistema.
+	
+	10) Links pie de pagina	
 		
 		
 	
