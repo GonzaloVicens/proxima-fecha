@@ -12,3 +12,16 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin icon-in-circle($bg-col, $icon-col) {
+  font-size: 1.5rem;
+  color: $icon-col;
+  padding: .5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: $bg-col;
+  margin-right: .4rem;
+  display: block;
+  text-align: center;
+}

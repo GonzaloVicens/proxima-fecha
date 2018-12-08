@@ -12,19 +12,10 @@
   i{
     &.fas {
       &.fa-bell,
-      &.fa-comments{
+      &.fa-comments {
 
         &:before {
-          font-size: 1.5rem;
-          color: #ebebeb;
-          padding: .5rem;
-          width: 2.5rem;
-          height: 2.5rem;
-          border-radius: 50%;
-          background-color: $col_verde1;
-          margin-right: .4rem;
-          display: block;
-          text-align: center;
+          @include icon-in-circle($col_verde1, $col_gris6)
         }
       }
     }

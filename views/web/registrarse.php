@@ -34,56 +34,92 @@ if (! $usuarioLogueado ){
 };
 
 ?>
-<main class="py-4 mb-4">
+<main class="py-4 mb-4 registro">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
             </div>
             <div class="col-md-6">
-                <h2 class="mt-5 mb-4 pfgreen">Registrarse</h2>
+                <h2 class="mt-5 mb-4 pfgreen"><i class="fas fa-user"></i> Registrarse</h2>
                 <form class='formRegistro' action="<?= App::$urlPath;?>/usuarios/registrar"  method="post">
                     <div class="form-group">
                        <label for="usuario">Usuario</label>
                        <input type="text" <?= "value='$usuario'"?> class="form-control" name="usuario" id="usuario" placeholder="Elige tu usuario">
+                        <?php
+                        if (! $usuarioLogueado && isset($camposError['usuario'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['usuario'] . "</small><p>";
+                        }
+                        ?>
                     </div>
                     <div class="form-group">
-                       <label for="nombre">Nombre</label>
+                        <label for="nombre">Nombre</label>
                         <input type="text" <?= "value='$nombre'"?> class="form-control" name="nombre" id="nombre" aria-describedby="emailHelp" placeholder="Ingresá tu nombre">
+                        <?php
+                        if (! $usuarioLogueado && isset($camposError['nombre'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['nombre'] . "</small><p>";
+                        }
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="apellido">Apellido</label>
                         <input type="text" <?= "value='$apellido'"?> class="form-control" name="apellido" id="apellido"  placeholder="Ingresá tu apellido">
+                        <?php
+                        if (! $usuarioLogueado && isset($camposError['apellido'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['apellido'] . "</small><p>";
+                        }
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" <?= "value='$email'"?> class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Tu dirección de e-mail">
-                        <!--small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small-->
+                        <?php
+                        if (! $usuarioLogueado && isset($camposError['email'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['email'] . "</small><p>";
+                        }
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" name="clave" id="password" placeholder="Elige un Password">
+                        <?php
+                        if (! $usuarioLogueado && isset($camposError['clave'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['clave'] . "</small><p>";
+                        }
+                        ?>
                     </div>
-                    <div class="form-group mb-4">
+                    <div class="form-group">
                         <label for="confirmarpassword">Confirmar Password</label>
                         <input type="password" class="form-control" name="confClave" id="confirmarpassword" placeholder="Confirmar Password">
+                        <?php
+                        if (! $usuarioLogueado && isset($camposError['confClave'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['confClave'] . "</small><p>";
+                        }
+                        ?>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="terminos" id="terminos">
-                        <label class="form-check-label" for="terminos"> Acepto los términos y condiciones </label>
+                        <!--input type="checkbox" class="form-check-input" name="terminos" id="terminos"-->
+                        <label class="form-check-label terminos_condiciones"><input type="checkbox" class="form-check-input" name="terminos" id="terminos"> Acepto los términos y condiciones </label>
+                        <?php
+                        if (! $usuarioLogueado && isset($camposError['terminos'])) {
+                            echo "<small class='rta-validacion text-danger'>" . $camposError['terminos'] . "</small>";
+                        }
+                        ?>
                     </div>
-                    <button type="submit" class="btn btn-lg btn-outline-success">Crear Cuenta</button>
-                    <a href="<?=App::$urlPath . '/'?>" type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
+                    <button type="submit" class="btn btn-outline-success mr-2">Crear Cuenta</button>
+                    <a href="<?=App::$urlPath . '/'?>" class="btn btn-link cancel" data-dismiss="modal">Cancelar</a>
                 </form>
             </div>
             <div class="col-md-3">
                 <?php
+
                 if (! $usuarioLogueado && isset($camposError)){
-                    echo("<div class='DivErrores'><ul>");
+                    ///echo("<div class='DivErrores'><ul>");
                     foreach ($camposError as $error => $descr) {
-                        echo ("<li style='color:#F00'>".ucfirst($error).": ".$descr."</li>");
+                     ///echo ("<li style='color:#F00'>".ucfirst($error).": ".$descr." " . $error . "</li>");
                     }
-                    echo("</ul></div>");
+                    ///echo("</ul></div>");
                 }
+
                 ?>
             </div>
         </div>
