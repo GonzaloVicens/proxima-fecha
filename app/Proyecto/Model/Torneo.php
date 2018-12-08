@@ -755,4 +755,41 @@ class Torneo
             }
         }
     }
+
+
+    public static function GetInfoTorneo($torneo)
+    {
+        $respuesta = ['nombre' => "",
+            'deporte_id' => "",
+                'deporte_descr' => "",
+                'tipo_torneo_id' => "",
+                'tipo_descr' => "",
+                'cantidad_equipos' => "",
+                'fecha_inicio' => "",
+                'sede_id' => "",
+                'sede_descr' => "",
+                'estado_torneo_id' => "",
+                'estado_descr' => ""
+            ];
+
+        $query = "SELECT A.NOMBRE, A.DEPORTE_ID, B.DESCRIPCION DEPORTE_DESCR, A.TIPO_TORNEO_ID, C.DESCRIPCION TIPO_DESCR,A.CANTIDAD_EQUIPOS, A.FECHA_INICIO, A.SEDE_ID, D.NOMBRE SEDE_DESCR, A.ESTADO_TORNEO_ID , E.DESCRIPCION ESTADO_DESCR  FROM TORNEOS A,  DEPORTES B, TIPOS_TORNEO C,  SEDES D, ESTADOS_TORNEO E WHERE A.TORNEO_ID = :torneo_id AND A.DEPORTE_ID = B.DEPORTE_ID AND A.TIPO_TORNEO_ID = C.TIPO_TORNEO_ID AND A.SEDE_ID = D.SEDE_ID AND A.ESTADO_TORNEO_ID = E.ESTADO_TORNEO_ID ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $torneo]);
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta = [
+                'nombre' => $datos['NOMBRE'],
+                'deporte_id' => $datos['DEPORTE_ID'],
+                'deporte_descr' => $datos['DEPORTE_DESCR'],
+                'tipo_torneo_id' => $datos['TIPO_TORNEO_ID'],
+                'tipo_descr' => $datos['TIPO_DESCR'],
+                'cantidad_equipos' => $datos['CANTIDAD_EQUIPOS'],
+                'fecha_inicio' => $datos['FECHA_INICIO'],
+                'sede_id' => $datos['SEDE_ID'],
+                'sede_descr' => $datos['SEDE_DESCR'],
+                'estado_torneo_id' => $datos['ESTADO_TORNEO_ID'],
+                'estado_descr' => $datos['ESTADO_DESCR']
+            ];
+        };
+        return $respuesta;
+    }
 }

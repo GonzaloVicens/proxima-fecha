@@ -6,6 +6,7 @@ use Proyecto\Core\Request;
 use Proyecto\Model\Equipo;
 use Proyecto\Model\Torneo;
 use Proyecto\Model\Usuario;
+use Proyecto\Model\Partido;
 use Proyecto\Session\Session;
 use Proyecto\Core\App;
 class TorneoController
@@ -353,7 +354,7 @@ class TorneoController
             }
         }
 
-        header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
+      //  header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
     }
 
 
@@ -418,4 +419,17 @@ class TorneoController
     }
 
 
+    public function verPartido(){
+
+        $routeParams = Route::getRouteParams();
+        $torneo_id = $routeParams['torneo'];
+        $fase_id = $routeParams['fase'];
+        $partido_id = $routeParams['partido'];
+        if (Partido::existePartido($torneo_id, $fase_id, $partido_id)) {
+            $partidoActual = new Partido($torneo_id, $fase_id, $partido_id) ;
+            View::render('web/ver-partido',compact('partidoActual'), 3);
+        } else{
+            View::render('web/error404',[], 2);
+        };
+    }
 }

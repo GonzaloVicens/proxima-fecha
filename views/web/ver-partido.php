@@ -6,21 +6,39 @@
  * Time: 02:47 AM
  */
 use Proyecto\Core\App;
+use Proyecto\Model\Torneo;
+use Proyecto\Model\Usuario;
+use Proyecto\Model\Partido;
+use Proyecto\Session\Session;
+
+
+$partidoActual->actualizar();
+
+$datosPartido = $partidoActual->getInfoPartido();
+
+if ($usuario->tieneMensajesSinLeer()){
+    echo "hola";
+} else {
+    echo "chau;";
+}
+echo "<pre>";
+print_r($datosPartido );
+echo "</pre>";
 ?>
 <main class="py-4 mb-4">
     <div class="container">
         <div class="row">
             <div class="col-md-10">
                 <!-- El h2 debajo tendría que tener contenido dinámico, según se trate de Torneo o Liga-->
-                <h3 class="h5 mt-4 mb-2 colorGris2 font-weight-normal"><i class="fas fa-trophy"></i> Torneo</h3>
+                <h3 class="h5 mt-4 mb-2 colorGris2 font-weight-normal"><i class="fas fa-trophy"></i> <?=$datosPartido['tipo_descr']?></h3>
             </div>
             <div class="col-md-2">
-                <!--button class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</button-->
+                <a href="<?= App::$urlPath . '/torneos/' . $partidoActual->getTorneoID() ?>" class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
             </div>
             <div class="col-md-8">
                 <!-- Nombre de Torneo Debajo, tendría que ser dinámico -->
-                <h2 class="mb-3 pfgreen h2">Torneo Federal de Arroyo Dulce</h2>
-                <h4 class="mb-3 h3 naranjaFecha">Próxima Fecha <span class="font-weight-normal verde3 pl-2">Jornada 5</span></h4>
+                <h2 class="mb-3 pfgreen h2"><?=$datosPartido['nombre']?></h2>
+                <h4 class="mb-3 h3 naranjaFecha"><?=$datosPartido['fase_descr']?><span class="font-weight-normal verde3 pl-2"></span></h4>
                 <div class="table_container shadow">
                     <div class="header_table_jornada">
                         <h5 class=""><i class="far fa-calendar-alt"></i>  Fecha 5 <span> 12 Nov</span></h5>

@@ -45,10 +45,11 @@ $torneo->actualizar();
                                         <?php
 
                                         if (isset($usuario) && $partido->esArbitro($usuario->getUsuarioID()) && $torneo->estaEnCurso() ){
-                                            echo "<td class='versus'><a>Actualizar Partido</a></td>";
+                                            $label = "Actualizar Partido";
                                          } else {
-                                            echo "<td class='versus'><a>Ver Partido</a></td>";
+                                            $label = "Ver Partido";
                                         }
+                                        echo "<td class='versus'><a href='". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "'>$label</a></td>";
                                         ?>
                                     </tr>
                                 <?php }?>

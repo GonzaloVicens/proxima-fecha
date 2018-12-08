@@ -2,6 +2,7 @@
 namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
+use Proyecto\Session\Session;
 use Proyecto\Exceptions\PartidoNoGrabadoException;
 
 
@@ -422,5 +423,68 @@ class Partido
             print_r($stmt->errorInfo());
             throw new PartidoNoGrabadoException("Error al grabar el partido.");
         }
+    }
+
+
+    public static function existePartido($torneo_id, $fase_id, $partido_id){
+        $datos= [
+            'torneo_id'   => $torneo_id,
+            'fase_id'     => $fase_id,
+            'partido_id'    => $partido_id
+        ];
+
+        $query = "SELECT 'X' FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID = :partido_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+    public function actualizar(){
+        $this->setPartido($this->torneo_id, $this->fase_id, $this->partido_id);
+        Session::set('partido', $this);
+    }
+
+
+
+    public function getInfoPartido()
+    {
+        $respuesta = [ 'torneo_id' => "",
+            'nombre' => "",
+            'deporte_id' => "",
+            'deporte_descr' => "",
+            'tipo_torneo_id' => "",
+            'tipo_descr' => "",
+            'cantidad_equipos' => "",
+            'fecha_inicio' => "",
+            'sede_id' => "",
+            'sede_descr' => "",
+            'estado_torneo_id' => "",
+            'estado_descr' => "",
+            'fase_id' => "",
+            'fase_descr' => ""
+        ];
+
+        $query = "SELECT A.TORNEO_ID, A.NOMBRE, A.DEPORTE_ID, B.DESCRIPCION DEPORTE_DESCR, A.TIPO_TORNEO_ID, C.DESCRIPCION TIPO_DESCR,A.CANTIDAD_EQUIPOS, A.FECHA_INICIO, A.SEDE_ID, D.NOMBRE SEDE_DESCR, A.ESTADO_TORNEO_ID , E.DESCRIPCION ESTADO_DESCR, F.FASE_ID, F.DESCRIPCION FASE_DESCR FROM TORNEOS A,  DEPORTES B, TIPOS_TORNEO C,  SEDES D, ESTADOS_TORNEO E, FASES F WHERE A.TORNEO_ID = :torneo_id AND A.DEPORTE_ID = B.DEPORTE_ID AND A.TIPO_TORNEO_ID = C.TIPO_TORNEO_ID AND A.SEDE_ID = D.SEDE_ID AND A.ESTADO_TORNEO_ID = E.ESTADO_TORNEO_ID AND F.TORNEO_ID = A.TORNEO_ID  AND F.FASE_ID = :fase_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $this->torneo_id, 'fase_id' => $this->fase_id]);
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta = [
+                'torneo_id' => $datos['TORNEO_ID'],
+                'nombre' => $datos['NOMBRE'],
+                'deporte_id' => $datos['DEPORTE_ID'],
+                'deporte_descr' => $datos['DEPORTE_DESCR'],
+                'tipo_torneo_id' => $datos['TIPO_TORNEO_ID'],
+                'tipo_descr' => $datos['TIPO_DESCR'],
+                'cantidad_equipos' => $datos['CANTIDAD_EQUIPOS'],
+                'fecha_inicio' => $datos['FECHA_INICIO'],
+                'sede_id' => $datos['SEDE_ID'],
+                'sede_descr' => $datos['SEDE_DESCR'],
+                'estado_torneo_id' => $datos['ESTADO_TORNEO_ID'],
+                'estado_descr' => $datos['ESTADO_DESCR'],
+                'fase_id' => $datos['FASE_ID'],
+                'fase_descr' => $datos['FASE_DESCR']
+            ];
+        };
+        return $respuesta;
     }
 }

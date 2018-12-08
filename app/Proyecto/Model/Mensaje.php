@@ -235,7 +235,7 @@ class Mensaje
         if ($emisor_id != $receptor_id) {
             $query = "SELECT DISTINCT 'Y' FROM MENSAJES WHERE EMISOR_ID = :emisor_id AND RECEPTOR_ID = :receptor_id AND LEIDO = 'N'";
         }else {
-            $query = "SELECT DISTINCT 'Y' FROM MENSAJES WHERE :usuario_id  = :emisor_id AND RECEPTOR_ID = :receptor_id AND LEIDO = 'N'";
+            $query = "SELECT DISTINCT 'Y' FROM MENSAJES WHERE :receptor_id  = :emisor_id AND RECEPTOR_ID = :receptor_id AND LEIDO = 'N'";
         }
          $stmt = DBConnection::getStatement($query);
         $stmt->execute(['emisor_id' => $emisor_id, 'receptor_id' => $receptor_id ]);
