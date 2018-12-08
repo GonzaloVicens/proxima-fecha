@@ -556,14 +556,16 @@ class Partido
         }
 
         $datos= [
-            'torneo_id'   => $this->torneo_id,
-            'fase_id'     => $this->fase_id,
+            'torneo_id'     => $this->torneo_id,
+            'fase_id'       => $this->fase_id,
             'partido_id'    => $this->partido_id,
             'puntos_local'  => $this->puntos_local,
-            'puntos_visita'  => $this->puntos_visita
+            'puntos_visita' => $this->puntos_visita,
+            'fecha'         => date('Y/m/d'),
+            'hora'          => date('H:i:s')
         ];
 
-        $script = "UPDATE PARTIDOS SET PUNTOS_LOCAL = :puntos_local , PUNTOS_VISITA = :puntos_visita WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
+        $script = "UPDATE PARTIDOS SET PUNTOS_LOCAL = :puntos_local , PUNTOS_VISITA = :puntos_visita , FECHA=:fecha, HORA=:hora ,  JUGADO = 'Y' WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
         $stmt = DBConnection::getStatement($script );
         if(! $stmt->execute($datos)) {
             print_r($stmt->errorInfo());
