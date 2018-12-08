@@ -9,7 +9,8 @@ use Proyecto\Core\App;
 use Proyecto\Model\Usuario;
 use Proyecto\Session\Session;
 $usuario->actualizar();
-if (Usuario::existeUsuario($usuario_id)) {
+$usuarioAMostrar->actualizar();
+if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
 
 ?>
 <main class="py-4 mb-4 usuario">

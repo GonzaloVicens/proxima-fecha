@@ -434,4 +434,10 @@ class TorneoController
             View::render('web/error404',[], 2);
         };
     }
+
+    public function agregarFichaPartido(){
+        $inputs = Request::getData();
+
+
+    }
 }

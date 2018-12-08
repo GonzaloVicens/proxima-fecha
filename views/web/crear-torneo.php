@@ -55,6 +55,7 @@ use Proyecto\Model\TipoTorneo;
                             <?=Sede::printOptionsSedes()?>
                         </select>
                     </div>
+
                     <button type="submit" class="btn btn-lg btn-outline-success">Crear</button>
                     <a type="button" href="<?=App::$urlPath . '/usuarios/'. $usuario->getUsuarioId()?>" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
                 </form>

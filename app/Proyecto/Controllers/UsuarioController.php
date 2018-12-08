@@ -121,7 +121,8 @@ class UsuarioController
             $usuario = New Usuario($usuario_id);
             Session::set('usuario',$usuario);
             Session::set('logueado','S');
-            View::render('web/ver-usuario',compact('usuario','usuario_id'), 3);
+            $usuarioAMostrar  =$usuario;
+            View::render('web/ver-usuario',compact('usuario','usuario_id','usuarioAMostrar'), 3);
         }
     }
 
