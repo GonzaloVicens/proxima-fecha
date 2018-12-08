@@ -169,11 +169,23 @@ nav {
                     #navbarDropdownNotification {
                       height: 60px;
                       line-height: 60px;
-                      //background-color: red;
                       display: flex;
                       align-items: center;
                       padding-left: 8px;
-                      width: 40px;
+                      width: 46px;
+
+                      i {
+                        &.aviso-nuevos:before {
+                          background: darkorange;
+                          color: white;
+                          padding: 5px;
+                          border-radius: 50%;
+                          height: 30px;
+                          width: 30px;
+                          display: inline-block;
+                          text-align:center;
+                        }
+                      }
 
                       span {
                         display: none;

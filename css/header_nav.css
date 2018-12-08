@@ -62,7 +62,17 @@ nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 button.navbar-
       display: flex;
       align-items: center;
       padding-left: 8px;
-      width: 40px; }
+      width: 46px; }
+      nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownMessage i.aviso-nuevos:before,
+      nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownNotification i.aviso-nuevos:before {
+        background: darkorange;
+        color: white;
+        padding: 5px;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        text-align: center; }
       nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownMessage span,
       nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 div.collapse.navbar-collapse ul li.nav-item #navbarDropdownNotification span {
         display: none; }
