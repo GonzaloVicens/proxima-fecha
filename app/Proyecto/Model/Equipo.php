@@ -271,7 +271,8 @@ class Equipo
 
     public function estaJugandoTorneo()
     {
-        $query = "SELECT 'X' FROM TORNEOS A, EQUIPOS_TORNEO B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.EQUIPO_ID = :equipo_id AND A.ESTADO_TORNEO = 'C' ";
+        $query = "SELECT 'X' FROM TORNEOS A, EQUIPOS_TORNEO B WHERE A.TORNEO_ID = B.TORNEO_ID AND B.EQUIPO_ID = :equipo_id  AND A.ESTADO_TORNEO_ID = 'C' ";
+
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
         return ($stmt->fetch(\PDO::FETCH_ASSOC));
