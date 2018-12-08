@@ -181,6 +181,7 @@ class UsuarioController
                 $usuarioActual = new Usuario($usuario_id);
                 $contactoActual = new Usuario($contacto_id);
                 $mensajes = $usuarioActual->getMensajesCon($contacto_id);
+
                 View::render('web/conversacion', compact('mensajes','usuarioActual','contactoActual'),3);
 
                 try {

@@ -12,10 +12,15 @@ use Proyecto\Model\Mensaje;
  */
 if (Session::has("usuario") && Session::get("usuario")->getUsuarioId() == $usuarioActual->getUsuarioId()) {
 
+
 	?>
 	<body>
 <div id='home'>
 	<main>
+		<div class="col-md-3">
+			<a href="<?= App::$urlPath . Session::get('origenChat') ?>" class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
+		</div>
+
 		<section id="conversacion">
 			<?php
 			echo "<h2> Conversación con <a href='../../usuarios/" .$contactoActual->getUsuarioId() ."' class='negrita'>"  . $contactoActual->getNombreCompleto() . "</a></h2>";
