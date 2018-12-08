@@ -14,6 +14,9 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
     $usuarioLogueado = false;
 }
 $usuario->actualizar();
+// Cionfiguro el origen del chat para el botón "Volver" de la conversacion;
+Session::set('origenChat','/usuarios/mensajes');
+
 ?>
 
 <main class="py-4 mb-4 mensajes">
