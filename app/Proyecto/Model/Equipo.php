@@ -290,7 +290,8 @@ class Equipo
             $datos['nombre'] = $inputs['nombre'];
         }
 
-        $query = "SELECT EQUIPO_ID FROM EQUIPOS " . $where;
+        $order = " ORDER BY NOMBRE";
+        $query = "SELECT EQUIPO_ID FROM EQUIPOS " . $where . $order ;
         $stmt = DBConnection::getStatement($query);
         $resultados = [];
         $stmt->execute($datos);

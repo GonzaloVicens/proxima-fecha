@@ -7,6 +7,9 @@
  */
 use Proyecto\Core\App;
 use Proyecto\Session\Session;
+
+$torneo->actualizar();
+
 ?>
 <main class="py-4 mb-4">
     <div class="container">

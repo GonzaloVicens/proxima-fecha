@@ -43,7 +43,14 @@ if (Session::has('torneo')){
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad Equipos</label>
-                        <input type="text" name='cantidad' class="form-control" id="cantidad" value='<?= $torneo->getCantidadEquipos() ?>'><!--No utilizo type='number' porque no todos los browser lo toman Ok -->
+                        <select name="cantidad" id="cantidad" class="form-control">
+                            <option value='4'  <?php if ($torneo->getCantidadEquipos() == 4 ){ echo "selected";} ?> >4</option>
+                            <option value='8'  <?php if ($torneo->getCantidadEquipos() == 8 ){ echo "selected";} ?> >8</option>
+                            <option value='16' <?php if ($torneo->getCantidadEquipos() == 16){ echo "selected";} ?> >16</option>
+                            <option value='32' <?php if ($torneo->getCantidadEquipos() == 32){ echo "selected";} ?> >32</option>
+                            <option value='64' <?php if ($torneo->getCantidadEquipos() == 64){ echo "selected";} ?> >64</option>
+                        </select>
+
                     </div>
                     <div class="form-group">
                         <label for="fechainicio">Fecha de Inicio </label>

@@ -36,7 +36,14 @@ use Proyecto\Model\TipoTorneo;
                     </div>
                     <div class="form-group">
                         <label for="cantidad">Cantidad Equipos</label>
-                        <input type="text" name='cantidad' class="form-control" id="cantidad"><!--No utilizo type='number' porque no todos los browser lo toman Ok -->
+                        <select name="cantidad" id="cantidad" class="form-control">
+                            <option value='4'>4</option>
+                            <option value='8'>8</option>
+                            <option value='16'>16</option>
+                            <option value='32'>32</option>
+                            <option value='64'>64</option>
+                        </select>
+
                     </div>
                     <div class="form-group">
                         <label for="fechainicio">Fecha de Inicio (DD/MM/YYYY) </label>

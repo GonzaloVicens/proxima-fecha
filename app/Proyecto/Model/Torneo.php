@@ -4,7 +4,7 @@ namespace Proyecto\Model;
 use Proyecto\DB\DBConnection;
 use Proyecto\Exceptions\TorneoNoGrabadoException;
 use Proyecto\Session\Session;
-
+use Proyecto\Core\App;
 
 /**
  * Implementación de la clase Torneo
@@ -266,7 +266,7 @@ class Torneo
     public function setEquipos()
     {
         $this->equipos = [];
-        $query = "SELECT EQUIPO_ID FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id ";
+        $query = "SELECT A.EQUIPO_ID , A.NOMBRE FROM EQUIPOS A, EQUIPOS_TORNEO B WHERE A.EQUIPO_ID = B.EQUIPO_ID AND B.TORNEO_ID = :torneo_id ORDER BY NOMBRE ";
 
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['torneo_id' => $this->torneo_id]);
@@ -377,7 +377,9 @@ class Torneo
     public  function printEquiposEnLi( $origen){
         foreach ($this->equipos as $id) {
             $equipo = New Equipo($id);
-            echo "<li>" . $equipo->getNombre() ;
+
+
+            echo "<li><a href='" . App::$urlPath . "/equipos/" . $equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a>";
             if (Session::has('logueado')) {
                 $usuario = Session::get('usuario');
                 if ($this->tieneOrganizador($usuario->getUsuarioID()) && $this->estado_torneo_id == "I") {
