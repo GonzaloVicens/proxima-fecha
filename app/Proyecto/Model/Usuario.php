@@ -513,25 +513,6 @@ class Usuario
     }
 
 
-    /**
-     * Carga los datos del array en el objeto.
-     *
-     * @param $data
-     */
-    protected function cargarDatos($data)
-    {
-        $this->setId($data['id']);
-        $this->setUsuario($data['usuario']);
-        $this->setPassword($data['password']);
-        $this->setMail($data['mail']);
-        $this->setNombre($data['nombre']);
-        $this->setApellido($data['apellido']);
-        $this->setFechaNac($data['fecha_nac']);
-        $this->setSexo($data['sexo']);
-        $this->setPais($data['pais']);
-
-    }
-
 
     /**
      * @param $data

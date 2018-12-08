@@ -13,6 +13,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
 }else{
     $usuarioLogueado = false;
 }
+$usuario->actualizar();
 ?>
 
 <main class="py-4 mb-4 mensajes">
@@ -28,18 +29,19 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                         foreach( $usuario->getContactos() as $contacto) {
                             echo "<li class='li-contacto-mensaje list-group-item'>";
 
-                            if(file_exists('img/usuarios/'.$contacto->getUsuarioId()  . '.jpg')){
                                 echo "<a href='../usuarios/".$contacto->getUsuarioId() . "' title='Ver Datos Usuario'>";
+                            if(file_exists('img/usuarios/'.$contacto->getUsuarioId()  . '.jpg')){
                                 echo "    <img src='../img/usuarios/".$contacto->getUsuarioId() . ".jpg' alt='Foto del Contacto ".$contacto->getNombreCompleto(). "'>";
+                            }else {
+                                echo "<img class='fotoChica' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' />";
+                            }
                                 echo "</a>";
                                 echo "<a class='li-listado-jugadores-a pfgreen hoverVerde' href='../mensajes/" . Session::get("usuario")->getUsuarioId() . "/". $contacto->getUsuarioId() ."' title='Ver Chat'>";
                                 echo "    <span class='nombre_apellido_jugador'>". $contacto->getNombreCompleto() . "</span>";
                                 echo "    <span class='ml-3 font-italic colorGris2 hoverVerde'> ". $contacto->getUsuarioId() . "</span>";
                                 echo "</a>";
                                 echo "<a href='../mensajes/" . Session::get("usuario")->getUsuarioId() . "/". $contacto->getUsuarioId() ."' class='verchat' title='Ver Chat'><i class='fas fa-comment'></i> Ver Chat</a>";
-                            }else {
-                                echo "<img class='fotoChica' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' />";
-                            }
+
 
                             if ( $usuario->tieneMensajesSinLeerDe($contacto->getUsuarioId())){
                                 echo("<span class='aviso-mensajes-nuevos'> <i class='fas fa-exclamation-circle'></i> Mensajes Nuevos </span>");

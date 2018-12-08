@@ -258,7 +258,7 @@ class Mensaje
 
 
     public static function GetContactosDeMensajesDeUsuario ($usuario){
-        $query = "SELECT RECEPTOR_ID USUARIO_ID FROM MENSAJES WHERE EMISOR_ID = :emisor_id UNION SELECT EMISOR_ID USUARIO_ID FROM MENSAJES WHERE RECEPTOR_ID = :emisor_id  ";
+        $query = "SELECT RECEPTOR_ID  USUARIO_ID FROM MENSAJES WHERE EMISOR_ID = :emisor_id UNION SELECT EMISOR_ID USUARIO_ID FROM MENSAJES WHERE RECEPTOR_ID = :emisor_id  ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['emisor_id' => $usuario]);
         $contactos = [];
