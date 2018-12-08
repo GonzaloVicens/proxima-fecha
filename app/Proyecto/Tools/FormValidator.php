@@ -79,7 +79,10 @@ class FormValidator
         switch($nombre){
             case 'nombre':
             case 'apellido':
-                return $this->validarCampoEspecifico($campo, '/^[a-z\s]+$/i', "El campo solo puede ser texto o espacios");
+                    $buscar = array( '/á/i', '/é/i', '/í/i', '/ó/i', '/ú/i', '/ñ/i' );
+                    $poner = array( 'a', 'e', 'i', 'o', 'u', 'n' );
+                    $texto2 = preg_replace( $buscar, $poner, $campo );
+                    return $this->validarCampoEspecifico($texto2 , '/^[a-z\s]+$/i', "El campo solo puede ser texto o espacios");
                 break;
             case 'clave':
                 $this->confClave = $campo;
