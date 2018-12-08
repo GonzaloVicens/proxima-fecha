@@ -62,11 +62,21 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMisTorneos">
                             <ul class="list-unstyled">
                                 <?php
+                                $sinTorneos = true;
+                                if($usuario->tieneTorneo()){
+                                    foreach ($usuario->getTorneos() as $torneo) {
+                                        echo "<li class='dropdown-item'><a href='" . App::$urlPath . "/torneos/" . $torneo->getTorneoID() . "' title='Ver Torneo'>" . $torneo->getNombre() . "</a></li>";
+                                    }
+                                    $sinTorneos = false;
+                                }
+
                                 if($usuario->tieneTorneosPropios()){
+                                    $sinTorneos = false;
                                     foreach ($usuario->getTorneosPropios() as $torneo) {
                                         echo "<li class='dropdown-item'><a href='". App::$urlPath . "/torneos/".$torneo->getTorneoID() ."' title='Ver Torneo'>" . $torneo->getNombre()  ."</a></li>";
                                     }
-                                }else{
+                                }
+                                if ($sinTorneos ) {
                                     echo "<li class='dropdown-item no-options'>No participa <br>en ningún torneo</li>";
                                 }
                                 ?>
