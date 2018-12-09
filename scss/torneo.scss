@@ -1,0 +1,33 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.torneo {
+
+  .equipos_participan {
+  width: 415px;
+
+    li{
+      padding: 6px 10px;
+      &:nth-child(odd){
+        background-color: $col_gris5;
+      }
+
+      img{
+        border-radius:50%;
+        height: 50px;
+        width: 50px;
+        margin-right: 20px;
+      }
+
+      a{
+        text-decoration: none;
+        color: $col_gris4;
+
+        &:hover {
+          @include hover-txt($bgcol_verde5);
+        }
+      }
+    }
+  }
+}
+

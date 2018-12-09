@@ -13,12 +13,11 @@ use Proyecto\Session\Session;
 $torneo->actualizar();
 ?>
 
-<main class="py-4 mb-4">
+<main class="py-4 mb-4 torneo">
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <!-- El h2 debajo tendría que tener contenido dinámico, según se trate de Torneo o Liga-->
-                <h3 class="mt-4 mb-2 colorGris2 font-weight-normal "><i class="fas fa-trophy"></i><?= $torneo->getDescrTipoTorneo() ?></h3>
+                <h3 class="mt-4 mb-1 h4 colorGris2 font-weight-normal"><i class="fas fa-trophy"></i> <?= $torneo->getDescrTipoTorneo() ?></h3>
             </div>
             <div class="col-md-2">
                 <!--button class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</button-->
@@ -30,8 +29,8 @@ $torneo->actualizar();
                 <p class="text-muted"><i class="far fa-calendar-alt"></i> Sede: <span class="font-italic"><?= $torneo->getDescrSede() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span><?= $torneo->getCantidadEquipos() ?></span></p>
 
-                <h3>Organizadores:</h3>
-                <ul>
+                <h3 class="pfgreen h4 mt-4">Organizadores:</h3>
+                <ul class="list-unstyled">
                     <?php
                     foreach($organizadoresActivos as $organizadorActual) {
                         $boton ="";
@@ -49,21 +48,11 @@ $torneo->actualizar();
                         echo "<li>" . $organizadorActual['APELLIDO'] . ", " . $organizadorActual['NOMBRE'] . $boton . "</li>";
                          } ?>
                 </ul>
-
-
-
-
-
-
-
-
-
             <?php if ( $torneo->tieneEquipos() ){ ?>
-                <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
-                <ul>
+                <h4 class="pfgreen mt-4">Equipos que participan en este torneo</h4>
+                <ul class="list-group equipos_participan">
                     <?= $torneo->printEquiposEnLi($torneo->getTorneoID()) ?>
                 </ul>
-                <!-- Agregar clase d-none o d-block de acuerdo a si quedan equipos por agregar o no -->
                 <?php }
                 if ($torneo->getLugaresLibres() > 0 ){ ?>
                 <p class="text-muted font-italic d-block">Resta agregar <?= $torneo->getLugaresLibres() ?> equipos aún</p>

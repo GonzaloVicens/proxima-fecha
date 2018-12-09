@@ -1,0 +1,19 @@
+.torneo .equipos_participan {
+  width: 415px; }
+  .torneo .equipos_participan li {
+    padding: 6px 10px; }
+    .torneo .equipos_participan li:nth-child(odd) {
+      background-color: #F9F9F9; }
+    .torneo .equipos_participan li img {
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      margin-right: 20px; }
+    .torneo .equipos_participan li a {
+      text-decoration: none;
+      color: #666666; }
+      .torneo .equipos_participan li a:hover {
+        color: #00CD5E;
+        transition: color .2s ease-in-out; }
+
+/*# sourceMappingURL=torneo.css.map */
