@@ -620,8 +620,6 @@ class Usuario
         $this->setEquipos();
         $this->setTorneos();
         $this->setTorneosPropios();
-
-        Session::set('usuario',$this);
     }
 
     public static function getNombreDeUsuario ($usuario_id){

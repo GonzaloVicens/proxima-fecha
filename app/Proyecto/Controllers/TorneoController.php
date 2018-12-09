@@ -1,5 +1,6 @@
 <?php
 namespace Proyecto\Controllers;
+use Proyecto\Tools\FormValidator;
 use Proyecto\View\View;
 use Proyecto\Core\Route;
 use Proyecto\Core\Request;
@@ -47,12 +48,38 @@ class TorneoController
      */
     public function registrar(){
         if (Session::has("usuario")) {
-            $usuario = Session::get('usuario');
             $inputs = Request::getData();
-            $torneo_id = Torneo::CrearTorneo($inputs, $usuario->getUsuarioId());
-            header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
 
-        } else {
+            $formValidator = new FormValidator($inputs, true);
+
+            // Si hay algún campo en error, vuelvo al formulario, indicando que hay errores;
+            if (!empty($formValidator->getCamposError())) {
+                Session::set("camposError", $formValidator->getCamposError());
+                Session::set("campos", $formValidator->getCampos());
+                header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
+
+            } else {
+                if (!isset($inputs['domingo']) &&
+                    !isset($inputs['lunes']) &&
+                    !isset($inputs['martes']) &&
+                    !isset($inputs['miercoles']) &&
+                    !isset($inputs['jueves']) &&
+                    !isset($inputs['viernes']) &&
+                    !isset($inputs['sabado']) ) {
+
+                    $camposError = [];
+                    $camposError ['dias'] = 'Debe elegir al menos un día';
+                    Session::set("camposError", $camposError);
+                    header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
+                } else {
+                    Session::clearValue("camposError");
+                    Session::clearValue("campos");
+                    $usuario = Session::get('usuario');
+                    $torneo_id = Torneo::CrearTorneo($inputs, $usuario->getUsuarioId());
+                    header('Location: ' . App::$urlPath . '/torneos/' . $torneo_id);
+                }
+            };
+        }else {
             header('Location: ' . App::$urlPath . '/error404');
         };
     }

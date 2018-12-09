@@ -6,9 +6,23 @@
  * Time: 02:47 AM
  */
 use Proyecto\Core\App;
+use Proyecto\Session\Session;
 use Proyecto\Model\Deporte;
 use Proyecto\Model\Sede;
 use Proyecto\Model\TipoTorneo;
+
+if (Session::has("camposError")){
+    $camposError = Session::get("camposError");
+    $camposViejos = Session::get("campos");
+    if (isset($camposViejos['nombre']) ){
+        $nombre=$camposViejos['nombre'];
+    }
+    Session::clearValue("camposError");
+    Session::clearValue("campos");
+} else {
+    $nombre="";
+};
+
 ?>
 <main class="py-4 mb-4">
     <div class="container">
@@ -24,7 +38,7 @@ use Proyecto\Model\TipoTorneo;
                     </div>
                     <div class="form-group">
                        <label for="deporte">Deporte</label>
-                       <select name="deporte" id="deporte" class="form-control">
+                       <select name="deporte" id="deporte" class="form-control" required>
                         <?=Deporte::printOptionsDeportes()?>
                        </select>
                         <!--input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingresá tu nombre"-->
@@ -42,7 +56,6 @@ use Proyecto\Model\TipoTorneo;
                             <option value='16'>16</option>
                             <option value='32'>32</option>
                         </select>
-
                     </div>
                     <div class="form-group">
                         <label for="fechainicio">Fecha de Inicio (DD/MM/YYYY) </label>
@@ -54,12 +67,32 @@ use Proyecto\Model\TipoTorneo;
                             <?=Sede::printOptionsSedes()?>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <p>Días en que se juega el torneo</p>
+                        <label for="domingo">Domingo <input type="checkbox" name='domingo' class="form-control" id="domingo"></label>
+                        <label for="lunes">Lunes<input type="checkbox" name='lunes' class="form-control" id="lunes"></label>
+                        <label for="martes">Martes<input type="checkbox" name='martes' class="form-control" id="martes"></label>
+                        <label for="miercoles">Miércoles<input type="checkbox" name='miercoles' class="form-control" id="miercoles"></label>
+                        <label for="jueves">Jueves<input type="checkbox" name='jueves' class="form-control" id="jueves"></label>
+                        <label for="viernes">Viernes<input type="checkbox" name='viernes' class="form-control" id="viernes"></label>
+                        <label for="sabado">Sábado<input type="checkbox" name='sabado' class="form-control" id="sabado"></label>
+                    </div>
 
                     <button type="submit" class="btn btn-lg btn-outline-success">Crear</button>
                     <a type="button" href="<?=App::$urlPath . '/usuarios/'. $usuario->getUsuarioId()?>" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
                 </form>
             </div>
             <div class="col-md-3">
+                <?php
+
+                if (isset($camposError)){
+                    echo("<div class='DivErrores'><ul>");
+                    foreach ($camposError as $error => $descr) {
+                        echo ("<li style='color:#F00'>".ucfirst($error).": ".$descr."</li>");
+                    }
+                    echo("</ul></div>");
+                }
+                ?>
             </div>
         </div>
     </div>

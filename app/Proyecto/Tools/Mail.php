@@ -36,17 +36,6 @@ class Mail{
 
         $exito = $mail->Send();
 
-        // Notificamos al usuario del estado del mensaje
-        if(!$exito) {
-            $msgrta = 'problema';
-        } else {
-            $msgrta = 'ok';
-        }
-
-        View::render('web/contacto', [
-            'msgrta' => $msgrta
-        ]);
-
 
     }
 

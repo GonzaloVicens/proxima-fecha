@@ -110,6 +110,16 @@ class FormValidator
                 return $this->validarCampoEspecifico($campo, '/^([\w\.]{3,}@[a-z0-9\-]{3,}(\.[a-z]{2,4})+)?$/i', "El campo no es un correo válido");
 
                 break;
+
+            case 'deporte':
+            case 'tipoTorneo':
+                if ($campo == "" ){
+                    return "El campo es requerido";
+                }else{
+                    return "";
+                }
+                break;
+
             default:
                 return "";
         };

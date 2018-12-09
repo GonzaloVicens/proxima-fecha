@@ -71,7 +71,7 @@ class TipoTorneo
             } else {
                 $checked = "  ";
             }
-            echo "<div><input type='radio' $checked name='tipoTorneo' value='".$datos['TIPO_TORNEO_ID']."' id='tipoTorneo".$datos['TIPO_TORNEO_ID']."'> <label for='tipoTorneo".$datos['TIPO_TORNEO_ID']."'>". $datos['DESCRIPCION']."</label></div>";
+            echo "<div><input type='radio' required $checked name='tipoTorneo' value='".$datos['TIPO_TORNEO_ID']."' id='tipoTorneo".$datos['TIPO_TORNEO_ID']."'> <label for='tipoTorneo".$datos['TIPO_TORNEO_ID']."'>". $datos['DESCRIPCION']."</label></div>";
         }       ;
     }
 }
