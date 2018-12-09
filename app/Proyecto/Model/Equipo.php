@@ -408,8 +408,26 @@ class Equipo
     public function getProximosPartidos(){
         $partidos= [];
 
+        $query = "SELECT TORNEO_ID, MIN(FASE_ID) FASE_ID FROM PARTIDOS  WHERE :equipo_id IN (LOCAL_ID, VISITA_ID) AND JUGADO = 'N' GROUP BY TORNEO_ID";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['equipo_id' => $this->equipo_id]);
 
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 
+            $param = [
+                'torneo_id' => $datos['TORNEO_ID'],
+                'fase_id' => $datos['FASE_ID'],
+                'equipo_id' => $this->equipo_id
+            ];
+
+            $query2 = "SELECT PARTIDO_ID FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND :equipo_id IN (LOCAL_ID, VISITA_ID) ";
+            $stmt2 = DBConnection::getStatement($query2);
+            $stmt2->execute($param);
+
+            while ($datos2 = $stmt2->fetch(\PDO::FETCH_ASSOC)) {
+                $partidos[] = New Partido( $datos['TORNEO_ID'], $datos['FASE_ID'], $datos2['PARTIDO_ID']);
+            }
+        }
         return $partidos;
     }
 }

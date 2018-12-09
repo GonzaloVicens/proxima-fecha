@@ -425,13 +425,14 @@ class Partido
         }
     }
 
-    public function getLocalName(){
+    public function getLocalNombre(){
         return Equipo::getNombrePorID($this->local_id);
     }
 
-    public function getVisitaName(){
+    public function getVisitaNombre(){
         return Equipo::getNombrePorID($this->visita_id);
     }
+
 
     public function esArbitro ($usuario) {
         $query = "SELECT 'X' FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID = :partido_id AND ARBITRO_ID = :arbitro_id";

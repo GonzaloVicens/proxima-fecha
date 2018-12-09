@@ -92,27 +92,60 @@ if(isset($equipoAMostrar)){
                         </div>
 
                         <?php if ($estaJugandoTorneo){
-                            $partidos = $equipoAMostrar->getProximosPartidos();
-                            ?>
-                            <div class="tab-pane fade " id="nav-proximafecha" role="tabpanel" aria-labelledby="nav-proximafecha-tab">
+                        echo "<div class='tab-pane fade ' id='nav-proximafecha' role='tabpanel' aria-labelledby='nav-proximafecha-tab'>";
+
+                           $partidos = $equipoAMostrar->getProximosPartidos();
+                            foreach ($partidos as $proximoPartido) {
+
+                                $infoPartido = $proximoPartido->getInfoPartido();
+                                $rutaLogoLocal = App::$urlPath . "/img/icons/escudolaurel-gris.jpg";
+                                $rutaLogoVisita = App::$urlPath . "/img/icons/escudolaurel-gris.jpg";
+
+                                if(file_exists('img/equipos/'. $proximoPartido->getLocalID() . '_logo_200.jpg')) {
+                                    $rutaLogoLocal = App::$urlPath . "/img/equipos/" . $proximoPartido->getLocalID()  . "_logo_200.jpg";
+                                };
+                                if(file_exists('img/equipos/'. $proximoPartido->getVisitaID()  . '_logo_200.jpg')) {
+                                    $rutaLogoVisita = App::$urlPath . "/img/equipos/" . $proximoPartido->getVisitaID()  . "_logo_200.jpg";
+                                };
+
+                                ?>
+
                             <div class='d-flex mt-5 pf_miequipo'>
-                            <h4 class='mt-5 pfgreen nombreEquipo text-right'> <?= $equipoAMostrar->getNombre()?>  </h4>
-                            <div class='d-inline-block fondoHeader2 rounded-circle ml-3  escudoequipo'>
-                                <img class="rounded-circle" src="<?=$rutaFotoLogo?>" alt='Logo del Equipo'/>
+                                <h4 class='mt-5 pfgreen nombreEquipo text-right'> <?= $proximoPartido->getLocalNombre()?>  </h4>
+                                <div class='d-inline-block fondoHeader2 rounded-circle ml-3  escudoequipo'>
+                                    <img class="rounded-circle" src="<?=$rutaLogoLocal?>" alt='Logo del Equipo Local'/>
+                                </div>
+                                <div class='vs'>VS</div>
+                                <div class='d-inline-block fondoHeader2 rounded-circle mr-3 escudoequipo'>
+                                    <img class='rounded-circle' src='<?=$rutaLogoVisita?>' alt='Logo del Equipo Visitante'/>
+                                </div>
+                                <h4 class='mt-5 pfgreen nombreEquipo text-left'><?=$proximoPartido->getVisitaNombre()?></h4>
                             </div>
-                            <div class='vs'>VS</div>
-                            <div class='d-inline-block fondoHeader2 rounded-circle mr-3 escudoequipo'>
-                                <img class='rounded-circle' src='../img/equipos/1_logo_200.jpg' alt='Logo del Equipo'/>
-                            </div>
-                                <h4 class='mt-5 pfgreen nombreEquipo text-left'>Preprocesor Futbol Club </h4>
-                            </div>
-                            <div class="datospf_miequipo colorGris2">
-                                <ul class="d-flex list-unstyled">
-                                    <li class="fecha_miequipo border-right"><i class="far fa-calendar"></i> Fecha: <span>12/12/2019</span></li>
-                                    <li class="hora_miequipo border-right"><i class="far fa-clock"></i> Hora: <span>10:00</span><span>hs</span></li>
-                                    <li class="sede_miequipo"><i class="fas fa-map-marker-alt"></i> Sede: <span>Complejo Cataluñas</span></li>
-                                </ul>
-                            </div>
+
+                                <div class="datospf_miequipo colorGris2">
+                                    <ul class="d-flex list-unstyled">
+                                        <li class="fecha_miequipo border-right"><i class="far fa-calendar"></i> <?= $infoPartido['nombre'] . ", ". $infoPartido['fase_descr']?></li>
+                                        <li class="hora_miequipo border-right"><i class="far fa-clock"></i> Sede: <span><?= $infoPartido['sede_descr']?></span></li>
+                                        
+                                        <?php
+                                        $boton  ="";
+                                        if($usuario->esCapitanDeEquipo($proximoPartido->getLocalID()) || $usuario->esCapitanDeEquipo($proximoPartido->getVisitaID())) {
+                                            // Configuro el origen del chat para el botón "Volver" de la conversacion;
+                                            Session::set('origenChat', '/equipos/' . $equipoAMostrar->getEquipoID()  );
+                                            $boton = "<a href='". App::$urlPath . "/mensajes/" . $usuario->getUsuarioID() . "/" . $proximoPartido->getArbitroID() . "' class='enviar-mensaje'>Enviar Mensaje</a>";
+                                        };
+                                        ?>
+                                        <li class="sede_miequipo"><i class="fas fa-map-marker-alt"></i> Arbitro: <span><?= $proximoPartido->getArbitroDescr() ?></span><?=$boton ?></li>
+
+
+
+                                    </ul>
+                                </div>
+                            <?php  }
+                        ?>
+
+
+
                         </div>
                         <div class="tab-pane fade" id="nav-posiciones" role="tabpanel" aria-labelledby="nav-posiciones-tab">
                             <h4 class="mb-4 pfgreen mt-5">Tabla de posiciones <br><span class="font-weight-normal colorGris2">Torneo Federal de Arroyo Dulce</span></h4>

@@ -41,9 +41,9 @@ $datosPartido = $partidoActual->getInfoPartido();
                     <div>
                         <table class="jornada_table">
                             <tr>
-                                <td class="text-right equipos"><div class="nombre_equipo"><?= $partidoActual->getLocalName()?></div></td>
+                                <td class="text-right equipos"><div class="nombre_equipo"><?= $partidoActual->getLocalNombre()?></div></td>
                                 <td class="versus"><?= $partidoActual->getPuntosLocal()?> - <?= $partidoActual->getPuntosVisita()?></td>
-                                <td class="text-left equipos"><div class="nombre_equipo"><?= $partidoActual->getVisitaName()?></div></td>
+                                <td class="text-left equipos"><div class="nombre_equipo"><?= $partidoActual->getVisitaNombre()?></div></td>
                             </tr>
                         </table>
                     </div>
@@ -55,17 +55,16 @@ $datosPartido = $partidoActual->getInfoPartido();
         <div class="row">
             <div class="col-md-6">
                 <?php
-                echo "<h4>Arbitro del encuentro: " . $partidoActual->getArbitroDescr(). "</h4>";
+                echo "<h4>Arbitro del encuentro: " . $partidoActual->getArbitroDescr();
 
                 if($usuario->esCapitanDeEquipo($partidoActual->getLocalID()) || $usuario->esCapitanDeEquipo($partidoActual->getVisitaID())) {
                     // Configuro el origen del chat para el botón "Volver" de la conversacion;
                     Session::set('origenChat', '/torneos/' . $partidoActual->getTorneoID() . "/" . $partidoActual->getFaseID() . "/" . $partidoActual->getPartidoID() );
 
                     echo  "<a href='". App::$urlPath . "/mensajes/" . $usuario->getUsuarioID() . "/" . $partidoActual->getArbitroID() . "' class='enviar-mensaje'>Enviar Mensaje</a>";
-                } else {
                 }
+                echo "</h4>";
                 ?>
-
 
             </div>
         </div>
