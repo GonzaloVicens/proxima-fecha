@@ -792,4 +792,168 @@ class Torneo
         };
         return $respuesta;
     }
+
+
+    public function imprimirTablaPosiciones(){
+        ?>
+        <h4 class="mb-4 pfgreen mt-5"><span class="font-weight-normal colorGris2"><?= $this->getNombre()?></span></h4>
+        <div class="posiciones_table shadow-sm">
+        <table class="">
+            <tr class="fondoHeader2 text-white">
+                <th>Equipo</th><th>Ptos</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>GF</th><th>GC</th><th>Dif</th>
+            </tr>
+            <?php
+            foreach($this->equipos as $equipoActual_ID) {
+                $equipoActual = New Equipo($equipoActual_ID);
+                echo "<tr><td class='nombre_tablaposiciones'>". $equipoActual->getNombre() . "</td>";
+                echo "<td class='font-weight-bold'>" . $this->getPartidosJugadosPorEquipo($equipoActual->getEquipoID()) ."</td>";
+                echo "<td>". $this->getPartidosGanadosPorEquipo($equipoActual->getEquipoID()) . "</td>";
+                echo "<td>". $this->getPartidosEmpatadosPorEquipo($equipoActual->getEquipoID()) . "</td>";
+                echo "<td>". $this->getPartidosPerdidosPorEquipo($equipoActual->getEquipoID()) . "</td>";
+                echo "<td>". $this->getGolesAFavorEquipo($equipoActual->getEquipoID()) . "</td>";
+                echo "<td>". $this->getGolesEnContraEquipo($equipoActual->getEquipoID()) . "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </div>
+    <?php
+    }
+
+
+    protected function getPartidosJugadosPorEquipo($equipoID){
+        $param = [
+            'torneo_id' => $this->torneo_id,
+            'equipo_id' => $equipoID
+        ];
+
+        $query = "SELECT COUNT(*) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND :equipo_id IN (LOCAL_ID, VISITA_ID) AND JUGADO = 'Y' ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            return ($datos['CANTIDAD']);
+        } ELSE {
+            return 0;
+        }
+    }
+
+    protected function getPartidosGanadosPorEquipo($equipoID){
+        $param = [
+            'torneo_id' => $this->torneo_id,
+            'equipo_id' => $equipoID
+        ];
+
+        $respuesta = 0;
+
+        $query = "SELECT COUNT(*) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND JUGADO = 'Y' AND LOCAL_ID = :equipo_id AND PUNTOS_LOCAL > PUNTOS_VISITA ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta += ($datos['CANTIDAD']);
+        }
+
+        $query = "SELECT COUNT(*) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND JUGADO = 'Y' AND VISITA_ID = :equipo_id AND PUNTOS_VISITA > PUNTOS_LOCAL";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta += ($datos['CANTIDAD']);
+        }
+
+        return $respuesta;
+    }
+
+    protected function getPartidosEmpatadosPorEquipo($equipoID){
+        $param = [
+            'torneo_id' => $this->torneo_id,
+            'equipo_id' => $equipoID
+        ];
+
+        $query = "SELECT COUNT(*) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND :equipo_id IN (LOCAL_ID, VISITA_ID) AND JUGADO = 'Y'  AND PUNTO_LOCAL = PUNTOS_VISITA ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            return ($datos['CANTIDAD']);
+        } ELSE {
+            return 0;
+        }
+    }
+
+    protected function getPartidosPerdidosPorEquipo($equipoID){
+        $param = [
+            'torneo_id' => $this->torneo_id,
+            'equipo_id' => $equipoID
+        ];
+
+        $respuesta = 0;
+
+        $query = "SELECT COUNT(*) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND JUGADO = 'Y' AND LOCAL_ID = :equipo_id AND PUNTOS_LOCAL < PUNTOS_VISITA ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta += ($datos['CANTIDAD']);
+        }
+
+        $query = "SELECT COUNT(*) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND JUGADO = 'Y' AND VISITA_ID = :equipo_id AND PUNTOS_VISITA < PUNTOS_LOCAL";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta += ($datos['CANTIDAD']);
+        }
+
+        return $respuesta;
+    }
+
+
+    protected function getGolesAFavorEquipo($equipoID){
+        $param = [
+            'torneo_id' => $this->torneo_id,
+            'equipo_id' => $equipoID
+        ];
+
+        $respuesta = 0;
+
+        $query = "SELECT SUM(PUNTOS_LOCAL) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND JUGADO = 'Y' AND LOCAL_ID = :equipo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta += ($datos['CANTIDAD']);
+        }
+
+        $query = "SELECT SUM(PUNTOS_VISITA) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND JUGADO = 'Y' AND VISITA_ID = :equipo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta += ($datos['CANTIDAD']);
+        }
+
+        return $respuesta;
+    }
+
+
+    protected function getGolesEnContraEquipo($equipoID){
+        $param = [
+            'torneo_id' => $this->torneo_id,
+            'equipo_id' => $equipoID
+        ];
+
+        $respuesta = 0;
+
+        $query = "SELECT SUM(PUNTOS_VISITA) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND JUGADO = 'Y' AND LOCAL_ID = :equipo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta += ($datos['CANTIDAD']);
+        }
+
+        $query = "SELECT SUM(PUNTOS_LOCAL) CANTIDAD FROM PARTIDOS  WHERE TORNEO_ID = :torneo_id AND JUGADO = 'Y' AND VISITA_ID = :equipo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta += ($datos['CANTIDAD']);
+        }
+
+        return $respuesta;
+    }
+
 }
+

@@ -150,15 +150,16 @@ class Equipo
     /**
      * @return null|Torneo
      */
-    public function getTorneo()
+    public function getTorneos()
     {
-        $query = "SELECT TORNEO_ID FROM EQUIPOS_TORNEO WHERE EQUIPO_ID = :equipo_id ";
+        $torneos = [];
+        $query = "SELECT A.TORNEO_ID FROM TORNEOS A, EQUIPOS_TORNEO B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.ESTADO_TORNEO_ID = 'C' AND B.EQUIPO_ID = :equipo_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
-        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            return new Torneo($datos['TORNEO_ID']);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $torneos [] = new Torneo($datos['TORNEO_ID']);
         };
-        return null;
+        return $torneos ;
     }
 
     public function participaEnTorneo()

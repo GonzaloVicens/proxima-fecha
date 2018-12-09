@@ -126,7 +126,7 @@ if(isset($equipoAMostrar)){
                                     <ul class="d-flex list-unstyled">
                                         <li class="fecha_miequipo border-right"><i class="far fa-calendar"></i> <?= $infoPartido['nombre'] . ", ". $infoPartido['fase_descr']?></li>
                                         <li class="hora_miequipo border-right"><i class="far fa-clock"></i> Sede: <span><?= $infoPartido['sede_descr']?></span></li>
-                                        
+
                                         <?php
                                         $boton  ="";
                                         if($usuario->esCapitanDeEquipo($proximoPartido->getLocalID()) || $usuario->esCapitanDeEquipo($proximoPartido->getVisitaID())) {
@@ -136,78 +136,17 @@ if(isset($equipoAMostrar)){
                                         };
                                         ?>
                                         <li class="sede_miequipo"><i class="fas fa-map-marker-alt"></i> Arbitro: <span><?= $proximoPartido->getArbitroDescr() ?></span><?=$boton ?></li>
-
-
-
                                     </ul>
                                 </div>
                             <?php  }
                         ?>
-
-
-
                         </div>
                         <div class="tab-pane fade" id="nav-posiciones" role="tabpanel" aria-labelledby="nav-posiciones-tab">
-                            <h4 class="mb-4 pfgreen mt-5">Tabla de posiciones <br><span class="font-weight-normal colorGris2">Torneo Federal de Arroyo Dulce</span></h4>
-                            <div class="posiciones_table shadow-sm">
-                                <table class="">
-                                    <tr class="fondoHeader2 text-white">
-                                        <th>Equipo</th>
-                                        <th>Ptos</th>
-                                        <th>PJ</th>
-                                        <th>PG</th>
-                                        <th>PE</th>
-                                        <th>PP</th>
-                                        <th>GF</th>
-                                        <th>GC</th>
-                                        <th>Dif</th>
-                                    </tr>
-                                    <tr>
-                                        <td class="nombre_tablaposiciones">La Runfla de Pagani</td>
-                                        <td class="font-weight-bold">12</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>23</td>
-                                        <td>11</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="nombre_tablaposiciones">Los Messi</td>
-                                        <td class="font-weight-bold">9</td>
-                                        <td>4</td>
-                                        <td>3</td>
-                                        <td>0</td>
-                                        <td>1</td>
-                                        <td>22</td>
-                                        <td>21</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="nombre_tablaposiciones">Los Arrays de 1 índice</td>
-                                        <td class="font-weight-bold">7</td>
-                                        <td>2</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>0</td>
-                                        <td>14</td>
-                                        <td>15</td>
-                                        <td>-1</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="nombre_tablaposiciones">PHP Futbol Club</td>
-                                        <td class="font-weight-bold">0</td>
-                                        <td>4</td>
-                                        <td>1</td>
-                                        <td>3</td>
-                                        <td>0</td>
-                                        <td>23</td>
-                                        <td>11</td>
-                                        <td>12</td>
-                                    </tr>
-                                </table>
-                            </div>
+                        <?php
+                            $torneosAMostrar= $equipoAMostrar->getTorneos();
+                            foreach ($torneosAMostrar as $proximoTorneo) {
+                                $proximoTorneo->imprimirTablaPosiciones();
+                        } ?>
                         </div>
                     <?php };
                     if ($participaEnTorneo){?>
