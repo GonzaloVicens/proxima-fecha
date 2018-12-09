@@ -29,12 +29,12 @@ class DBConnection
 		$user = "root";
 		$pass = "";
 		$base = "DW4_PROXIMAFECHA";
-        /*
+/*
         $host = "localhost";
         $user = "p4000541_PFECHA";
         $pass = "mikaDA72zu";
         $base = "p4000541_PFECHA";
-        */
+*/
 
         $dsn = "mysql:host=$host;dbname=$base;charset=utf8";
 

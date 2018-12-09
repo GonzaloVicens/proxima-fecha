@@ -45,8 +45,8 @@ use Proyecto\Core\App;
             <div class="col-md-2">
                 <p>Redes Sociales</p>
                 <ul class="list-unstyled d-flex">
-                    <li class="mr-4"><img src="<?= App::$urlPath;?>/img/fb_naranja.png" alt="facebook icon"></li>
-                    <li><img src="<?= App::$urlPath;?>/img/twitter.png" alt="twitter icon"></li>
+                    <li class="mr-4"><a href="https://www.facebook.com/proximafecha.ar/"><img src="<?= App::$urlPath;?>/img/fb_naranja.png" alt="facebook icon"></a></li>
+                    <li><a href="https://twitter.com/proximafecha"><img src="<?= App::$urlPath;?>/img/twitter.png" alt="twitter icon"></a></li>
                 </ul>
             </div>
         </div>

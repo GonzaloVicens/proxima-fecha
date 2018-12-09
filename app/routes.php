@@ -19,6 +19,7 @@ Route::addRoute('POST', '/usuarios/actualizarFotoPerfil'                       ,
 Route::addRoute('GET' , '/usuarios/notificaciones'                             , 'UsuarioController@notificaciones');
 Route::addRoute('GET' , '/usuarios/mensajes'                                   , 'UsuarioController@mensajes');
 Route::addRoute('POST', '/usuarios/registrar'                                  , 'UsuarioController@registrar');
+Route::addRoute('POST', '/usuarios/recuperar-password'                         , 'UsuarioController@recuperarPassword');
 Route::addRoute('GET' , '/equipos/{equipo_id}'                                 , 'EquipoController@ver');
 Route::addRoute('POST', '/equipos/agregar-jugador'                             , 'EquipoController@agregarJugador');
 Route::addRoute('GET' , '/equipos'                                             , 'EquipoController@verEquipos');
@@ -43,6 +44,7 @@ Route::addRoute('GET' , '/torneos/{torneo}/{fase}/{partido}'                   ,
 Route::addRoute('GET' , '/ver-proxima-fecha'                                   , 'TorneoController@verProximaFecha');
 Route::addRoute('GET' , '/preguntas-frecuentes'                                , 'HomeController@preguntasFrecuentes');
 Route::addRoute('GET' , '/registrarse'                                         , 'HomeController@registrarse');
+Route::addRoute('GET' , '/recuperar-password'                                  , 'HomeController@verRecuperarPassword');
 Route::addRoute('GET' , '/error404'                                            , 'HomeController@error404');
 Route::addRoute('GET' , '/mensajes/{usuario_id}/{contacto_id}'                 , 'UsuarioController@mostrarMensajes');
 Route::addRoute('GET' , '/{sarasa}'                                            , 'HomeController@error404');

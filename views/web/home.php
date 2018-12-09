@@ -50,7 +50,7 @@ use Proyecto\Session\Session;
                                         ?>
                                     </div>
                                     <div class="d-flex justify-content-around text-muted">
-                                        <a class='recuperar_pass' href="#">recuperar contraseña</a>
+                                        <a class='recuperar_pass' href="<?= App::$urlPath;?>/recuperar-password">recuperar contraseña</a>
                                         <a class='crear_cuenta' href="<?= App::$urlPath;?>/registrarse">crear una cuenta</a>
                                     </div>
 
@@ -121,7 +121,7 @@ use Proyecto\Session\Session;
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <button type="button" class="btn btn-outline-success btn-lg btn-block alto70">CREA TU CAMPEONATO <b>AHORA</b></button>
+                <a href="<?= App::$urlPath;?>/registrarse" type="button" class="btn btn-outline-success btn-lg btn-block alto70">CREA TU CAMPEONATO <b>AHORA</b></a>
             </div>
             <div class="col-md-4">
             </div>

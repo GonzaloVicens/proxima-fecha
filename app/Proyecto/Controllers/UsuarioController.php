@@ -127,6 +127,32 @@ class UsuarioController
     }
 
 
+    /**
+     * Método que enviar una nueva contraseña al correo en caso que el usuario olvidara la acutal
+     */
+    public function recuperarPassword()
+    {
+        $inputs = Request::getData();
+        $usuario_id = $inputs ["usuario"];
+        $error = "";
+        if (isset($usuario_id ) && !empty($usuario_id )) {
+            if (!Usuario::existeUsuario ($usuario_id)){
+                $error = "El usuario no existe en el sistema";
+            }
+        } else {
+            $error = "No ha ingresado el usuario";
+        }
+        if ($error){
+            Session::set('errorLogin', $error);
+
+        } else {
+            Usuario::EnviarPassword($usuario_id );
+            Session::set('mailEnviado',"Y");
+        }
+        header('Location: ' . App::$urlPath . '/recuperar-password');
+    }
+
+
 
 
     /**

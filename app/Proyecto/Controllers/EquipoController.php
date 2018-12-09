@@ -129,7 +129,9 @@ class EquipoController
                 Session::set("errorAgregarJugador",  " Ingrese un jugador");
             }
         }
-        View::render('web/ver-equipo',compact('equipo','equipo_id'), 3);
+
+        $equipoAMostrar= $equipo;
+        View::render('web/ver-equipo',compact('equipo','equipo_id','equipoAMostrar'), 3);
     }
 
     /**

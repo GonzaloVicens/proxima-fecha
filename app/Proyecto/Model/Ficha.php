@@ -153,16 +153,34 @@ class Ficha
      * @throws FichaNoGrabadaException
      */
     public static function InsertarFicha($torneo, $fase, $partido, $tipo, $equipo , $jugador){
+
+        //Busco la ultima ficha creada para el partido;
+        $nuevaFicha = 0;
+        $query = "SELECT MAX(FICHA_ID) FICHA_ID FROM FICHA_PARTIDO WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID = :partido_id";
+        $datos= [
+            'torneo_id' => $torneo,
+            'fase_id' => $fase,
+            'partido_id' => $partido
+        ];
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        IF ($ultimaFicha = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $nuevaFicha = $ultimaFicha['FICHA_ID'];
+        }
+
+        $nuevaFicha++;
+
         $datos= [
             'torneo_id'   => $torneo,
             'fase_id'     =>  $fase,
             'partido_id' => $partido,
+            'ficha_id' => $nuevaFicha,
             'tipo_estadistica_id' => $tipo,
             'equipo_id' => $equipo,
             'jugador_id' => $jugador
         ];
 
-        $script = "INSERT INTO FICHA_PARTIDO VALUES (:torneo_id, :fase_id, :partido_id, null,  :tipo_estadistica_id, :equipo_id, :jugador_id)";
+        $script = "INSERT INTO FICHA_PARTIDO VALUES (:torneo_id, :fase_id, :partido_id, :ficha_id,  :tipo_estadistica_id, :equipo_id, :jugador_id)";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($datos)) {
             return DBConnection::getConnection()->lastInsertId();

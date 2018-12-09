@@ -78,7 +78,8 @@ if(isset($equipoAMostrar)){
                                                         <div class='DivErrores'>
                                                             <h2 style='color:#F00'><?=Session::get("errorAgregarJugador")?></h2>
                                                         </div>
-                                                    <?php } ?>
+                                                    <?php Session::clearValue('errorAgregarJugador');
+                                                    } ?>
                                                 </div>
                                             </div>
                                         </div>

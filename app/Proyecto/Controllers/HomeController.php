@@ -58,5 +58,9 @@ class HomeController //implements JsonSerializable
     }
 
 
+
+    public function verRecuperarPassword(){
+        View::render('web/recuperar-password',[], 3);
+    }
 }
 

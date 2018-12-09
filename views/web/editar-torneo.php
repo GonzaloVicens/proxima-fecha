@@ -48,7 +48,6 @@ if (Session::has('torneo')){
                             <option value='8'  <?php if ($torneo->getCantidadEquipos() == 8 ){ echo "selected";} ?> >8</option>
                             <option value='16' <?php if ($torneo->getCantidadEquipos() == 16){ echo "selected";} ?> >16</option>
                             <option value='32' <?php if ($torneo->getCantidadEquipos() == 32){ echo "selected";} ?> >32</option>
-                            <option value='64' <?php if ($torneo->getCantidadEquipos() == 64){ echo "selected";} ?> >64</option>
                         </select>
 
                     </div>

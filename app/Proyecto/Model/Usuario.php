@@ -1,8 +1,10 @@
 <?php
 namespace Proyecto\Model;
 
+
 use Proyecto\DB\DBConnection;
 use Proyecto\Tools\Hash;
+use Proyecto\Tools\Mail;
 use Proyecto\Session\Session;
 use Proyecto\Exceptions\UsuarioNoGrabadoException;
 use Proyecto\Exceptions\AmigoNoGrabadoException;
@@ -290,6 +292,43 @@ class Usuario
             throw new UsuarioNoGrabadoException("Error al grabar el usuario.");
         }
     }
+
+
+    /**
+     * @param $usuario_id
+     * Método que envia un correo electronico al mail del usuario pasado por parámetro con los datos para poder iniciar sesión.
+     * Además actualiza la contraseña del usuario con una temporal hasta que el usuario decida cambiarla
+     */
+
+    public static function EnviarPassword ($usuario_id){
+        $usuarioOlvidado = new Usuario($usuario_id);
+
+        $destinoMail = $usuarioOlvidado->getEmail();
+        $destinoNombre = $usuarioOlvidado->getNombreCompleto();
+        //genero una nueva clave de 8 digitos;
+        $clave = "PF";
+        for ($i = 0; $i <= 8 ; $i++) {
+            $clave .= mt_rand(0, 9);
+        };
+
+        $usuario = [
+            'usuario_id' => $usuario_id,
+            'password' => Hash::encrypt($clave )
+        ];
+
+        $script = "UPDATE USUARIOS  SET PASSWORD = :password WHERE USUARIO_ID = :usuario_id";
+        $stmt = DBConnection::getStatement($script);
+        if ($stmt->execute($usuario)) {
+            Mail::enviarNuevoPassword($destinoNombre,$destinoMail,  $clave);
+
+        }else{
+            echo "<pre>";
+            print_r($stmt->errorInfo());
+            echo "</pre>";
+            throw new UsuarioNoGrabadoException("Error al grabar el usuario.");
+        }
+    }
+
 
 
 
@@ -596,6 +635,8 @@ class Usuario
         }
 
     }
+
+
 
 }
 

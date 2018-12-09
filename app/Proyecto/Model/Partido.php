@@ -402,12 +402,32 @@ class Partido
 
     public static function InsertarPartido($torneo, $fase, $local_id, $visita_id, $arbitro_id, $sede_id = null, $cancha_id = null){
 
+        //Busco la ultima ficha creada para el partido;
+        $nuevoPartido= 0;
+        $query = "SELECT MAX(PARTIDO_ID) PARTIDO_ID FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id ";
+        $datos= [
+            'torneo_id' => $torneo,
+            'fase_id' => $fase,
+        ];
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+
+        IF ($ultimoPartido = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $nuevoPartido = $ultimoPartido['PARTIDO_ID'];
+        }
+
+        $nuevoPartido++;
+
+
+
         if (!isset($cancha_id)){
             $cancha_id = 1;
         }
+
         $datos= [
             'torneo_id'   => $torneo,
             'fase_id'     => $fase,
+            'partido_id'  => $nuevoPartido,
             'local_id'    => $local_id,
             'visita_id'   => $visita_id,
             'arbitro_id'  => $arbitro_id,
@@ -415,7 +435,7 @@ class Partido
             'cancha_id'     => $cancha_id
         ];
 
-        $script = "INSERT INTO PARTIDOS VALUES (:torneo_id, :fase_id, null, :local_id, :visita_id, null, null, :arbitro_id, 0,0, ' ', ' ' , :sede_id, :cancha_id, 'N')";
+        $script = "INSERT INTO PARTIDOS VALUES (:torneo_id, :fase_id, :partido_id, :local_id, :visita_id, null, null, :arbitro_id, 0,0, ' ', ' ' , :sede_id, :cancha_id, 'N')";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($datos)) {
             return DBConnection::getConnection()->lastInsertId();
