@@ -805,13 +805,22 @@ class Torneo
             <?php
             foreach($this->equipos as $equipoActual_ID) {
                 $equipoActual = New Equipo($equipoActual_ID);
+
+                $jugados =  $this->getPartidosJugadosPorEquipo($equipoActual->getEquipoID());
+                $ganados =  $this->getPartidosGanadosPorEquipo($equipoActual->getEquipoID());
+                $empatados =  $this->getPartidosEmpatadosPorEquipo($equipoActual->getEquipoID());
+                $perdidos =  $this->getPartidosPerdidosPorEquipo($equipoActual->getEquipoID());
+                $golesAFavor = $this->getGolesAFavorEquipo($equipoActual->getEquipoID());
+                $golesEnContra = $this->getGolesEnContraEquipo($equipoActual->getEquipoID());
                 echo "<tr><td class='nombre_tablaposiciones'>". $equipoActual->getNombre() . "</td>";
-                echo "<td class='font-weight-bold'>" . $this->getPartidosJugadosPorEquipo($equipoActual->getEquipoID()) ."</td>";
-                echo "<td>". $this->getPartidosGanadosPorEquipo($equipoActual->getEquipoID()) . "</td>";
-                echo "<td>". $this->getPartidosEmpatadosPorEquipo($equipoActual->getEquipoID()) . "</td>";
-                echo "<td>". $this->getPartidosPerdidosPorEquipo($equipoActual->getEquipoID()) . "</td>";
-                echo "<td>". $this->getGolesAFavorEquipo($equipoActual->getEquipoID()) . "</td>";
-                echo "<td>". $this->getGolesEnContraEquipo($equipoActual->getEquipoID()) . "</td>";
+                echo "<td class='font-weight-bold'>" . ($empatados + $ganados * 3) ."</td>";
+                echo "<td>". $jugados . "</td>";
+                echo "<td>". $ganados . "</td>";
+                echo "<td>". $empatados . "</td>";
+                echo "<td>".$perdidos . "</td>";
+                echo "<td>".  $golesAFavor . "</td>";
+                echo "<td>". $golesEnContra . "</td>";
+                echo "<td>".  ($golesAFavor - $golesEnContra) . "</td>";
                 echo "</tr>";
             }
             ?>
