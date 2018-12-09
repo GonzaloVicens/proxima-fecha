@@ -38,7 +38,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
     </script>
 
 </head>
-<header>
+<body>
     <header class="shadow_bottom">
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-white navbar-dark fondoHeader2">

@@ -25,7 +25,7 @@ if (Session::has('torneo')){
                 <h2 class="mt-5 mb-4 pfgreen">Organizadores <span class="font-weight-normal"><?= $torneo->getNombre()?></span></h2>
             </div>
             <div class="col-md-3">
-                <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
+                <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
             </div>
         </div>
         <div class="row">
@@ -36,7 +36,7 @@ if (Session::has('torneo')){
                     <?php
                     foreach($organizadores as $organizadorActual) {
                         ?>
-                        <li><?=$organizadorActual['APELLIDO'] . ", " . $organizadorActual['NOMBRE'] ?> </li>
+                        <li class="list-unstyled"><?=$organizadorActual['APELLIDO'] . ", " . $organizadorActual['NOMBRE'] ?> </li>
                         <form action="editar-organizador" method="POST">
                             <input type="hidden" name='torneo_id' value="<?=$torneo->getTorneoID()?>"/>
                             <input type="hidden" name='organizador_id' value="<?=$organizadorActual['ORGANIZADOR_ID']?>"/>
@@ -46,7 +46,7 @@ if (Session::has('torneo')){
                             } else {
                                 $label = "Activar Organizador";
                             }; ?>
-                            <input type="submit" value="<?=$label?>"/>
+                            <input class='btn btn-sm btn-outline-primary' type="submit" value="<?=$label?>"/>
                         </form>
                     <?php
                     }

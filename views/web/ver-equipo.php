@@ -91,9 +91,10 @@ if(isset($equipoAMostrar)){
                                 }}
                             ?>
                         </div>
+                        </div>
 
                         <?php if ($estaJugandoTorneo){
-                        echo "<div class='tab-pane fade ' id='nav-proximafecha' role='tabpanel' aria-labelledby='nav-proximafecha-tab'>";
+                        echo "<div class='tab-pane fade' id='nav-proximafecha' role='tabpanel' aria-labelledby='nav-proximafecha-tab'>";
 
                            $partidos = $equipoAMostrar->getProximosPartidos();
                             foreach ($partidos as $proximoPartido) {
@@ -204,12 +205,12 @@ if(isset($equipoAMostrar)){
                         }?>
                         <p class="ml-2 colorGris2 font-weight-normal nombretorneo"><i class="fas fa-trophy mr-1"></i> <?=$ultimaFecha['NOMBRE']. " - " . $ultimaFecha['FASE_DESCR'] ?> </p>
                         <h4 class="text-white rounded p-2 mt-4 font-weight-normal">Resultados</h4>
-                        <?php If (!isset($ultimaFecha['TORNEO_ID'] )) {
+                        <?php if (!isset($ultimaFecha['TORNEO_ID'] )) {
                             echo "<p class='ml-2 colorGris2 font-weight-normal nombretorneo font-italic d-none'>No se ha completado ninguna jornada del torneo aún</p>";
                             echo "<h4 class='text-white rounded p-2 mt-4 font-weight-normal'>Ver Fechas Anteriores</h4>";
                             echo "<p class='ml-2 colorGris2 font-weight-normal nombretorneo font-italic d-none'>No estás participando de ningún torneo aún</p>";
 
-                        }else {
+                        } else {
                             ?>
                         <div class="d-block">
                             <?php $partidosUltimaFase = Fase::getPartidosJugadosEnFase($ultimaFecha['TORNEO_ID'], $ultimaFecha['FASE_ID']);
