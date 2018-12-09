@@ -204,7 +204,7 @@ class Fase
 
     public static function getFasesAnteriores($torneo, $fase){
         $respuesta = [] ;
-        $query = "SELECT A.TORNEO_ID TORNEO_ID , A.FASE_ID FASE_ID, B.DESCRIPCION DESCRIPCION, MIN(A.FECHA) FECHA                   FROM PARTIDOS A, FASES B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.FASE_ID = B.FASE_ID                   AND A.TORNEO_ID = :torneo_id AND A.FASE_ID < :fase_id AND A.JUGADO = 'Y' GROUP BY A.TORNEO_ID, A.FASE_ID, B.DESCRIPCION";
+        $query = "SELECT A.TORNEO_ID TORNEO_ID , A.FASE_ID FASE_ID, B.DESCRIPCION DESCRIPCION, MIN(A.FECHA) FECHA FROM PARTIDOS A, FASES B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.FASE_ID = B.FASE_ID  AND A.TORNEO_ID = :torneo_id AND A.FASE_ID <= :fase_id AND A.JUGADO = 'Y' GROUP BY A.TORNEO_ID, A.FASE_ID, B.DESCRIPCION";
 
         $datos= [
             'torneo_id' => $torneo,
