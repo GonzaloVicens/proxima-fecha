@@ -403,4 +403,13 @@ class Equipo
             }
         }
     }
+
+
+    public function getProximosPartidos(){
+        $partidos= [];
+
+
+
+        return $partidos;
+    }
 }

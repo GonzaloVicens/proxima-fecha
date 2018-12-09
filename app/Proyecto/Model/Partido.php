@@ -222,6 +222,10 @@ class Partido
         $this->arbitro_id = $arbitro_id;
     }
 
+    public function getArbitroDescr(){
+        return Usuario::getNombreDeUsuario($this->arbitro_id);
+    }
+
     /**
      * @return int
      */

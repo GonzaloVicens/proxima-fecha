@@ -36,7 +36,7 @@ $datosPartido = $partidoActual->getInfoPartido();
                 <h2 class="mb-3 pfgreen h2"><?=$datosPartido['nombre']?></h2>
                 <div class="table_container shadow">
                     <div class="header_table_jornada">
-                        <h5 class=""><i class="far fa-calendar-alt"></i>  <?=$datosPartido['fase_descr']?> <span> </span></h5>
+                        <h4 class=""><i class="far fa-calendar-alt"></i>  <?=$datosPartido['fase_descr']?> <span> </span></h4>
                     </div>
                     <div>
                         <table class="jornada_table">
@@ -50,6 +50,23 @@ $datosPartido = $partidoActual->getInfoPartido();
                 </div>
             </div>
             <div class="col-md-3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <?php
+                echo "<h4>Arbitro del encuentro: " . $partidoActual->getArbitroDescr(). "</h4>";
+
+                if($usuario->esCapitanDeEquipo($partidoActual->getLocalID()) || $usuario->esCapitanDeEquipo($partidoActual->getVisitaID())) {
+                    // Configuro el origen del chat para el botón "Volver" de la conversacion;
+                    Session::set('origenChat', '/torneos/' . $partidoActual->getTorneoID() . "/" . $partidoActual->getFaseID() . "/" . $partidoActual->getPartidoID() );
+
+                    echo  "<a href='". App::$urlPath . "/mensajes/" . $usuario->getUsuarioID() . "/" . $partidoActual->getArbitroID() . "' class='enviar-mensaje'>Enviar Mensaje</a>";
+                } else {
+                }
+                ?>
+
+
             </div>
         </div>
         <div class="row">

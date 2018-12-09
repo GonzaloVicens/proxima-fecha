@@ -91,13 +91,9 @@ if(isset($equipoAMostrar)){
                             ?>
                         </div>
 
-
-
-
-
-
-
-                        <?php if ($estaJugandoTorneo){?>
+                        <?php if ($estaJugandoTorneo){
+                            $partidos = $equipoAMostrar->getProximosPartidos();
+                            ?>
                             <div class="tab-pane fade " id="nav-proximafecha" role="tabpanel" aria-labelledby="nav-proximafecha-tab">
                             <div class='d-flex mt-5 pf_miequipo'>
                             <h4 class='mt-5 pfgreen nombreEquipo text-right'> <?= $equipoAMostrar->getNombre()?>  </h4>
