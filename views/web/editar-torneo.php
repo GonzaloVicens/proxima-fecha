@@ -61,6 +61,20 @@ if (Session::has('torneo')){
                             <?=Sede::printOptionsSedes($torneo->getSedeID())?>
                         </select>
                     </div>
+
+
+                    <div class="form-group">
+                        <p>Días en que se juega el torneo</p>
+                        <label for="domingo">Domingo <input type="checkbox" <?= $torneo->checkDia("D")?> name='D' class="form-control" id="domingo"></label>
+                        <label for="lunes">Lunes<input type="checkbox" name='L' <?= $torneo->checkDia("L")?> class="form-control" id="lunes"></label>
+                        <label for="martes">Martes<input type="checkbox" name='M' <?= $torneo->checkDia("M")?> class="form-control" id="martes"></label>
+                        <label for="miercoles">Miércoles<input type="checkbox" name='X' <?= $torneo->checkDia("X")?> class="form-control" id="miercoles"></label>
+                        <label for="jueves">Jueves<input type="checkbox" name='J' <?= $torneo->checkDia("J")?> class="form-control" id="jueves"></label>
+                        <label for="viernes">Viernes<input type="checkbox" name='V' <?= $torneo->checkDia("V")?> class="form-control" id="viernes"></label>
+                        <label for="sabado">Sábado<input type="checkbox" name='S' <?= $torneo->checkDia("S")?> class="form-control" id="sabado"></label>
+                    </div>
+
+
                     <button type="submit" class="btn btn-outline-success">Enviar</button>
                     <a type="button" href="<?=App::$urlPath . '/torneos/'. $torneo->getTorneoId()?>" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
                 </form>

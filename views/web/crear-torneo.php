@@ -69,13 +69,13 @@ if (Session::has("camposError")){
                     </div>
                     <div class="form-group">
                         <p>Días en que se juega el torneo</p>
-                        <label for="domingo">Domingo <input type="checkbox" name='domingo' class="form-control" id="domingo"></label>
-                        <label for="lunes">Lunes<input type="checkbox" name='lunes' class="form-control" id="lunes"></label>
-                        <label for="martes">Martes<input type="checkbox" name='martes' class="form-control" id="martes"></label>
-                        <label for="miercoles">Miércoles<input type="checkbox" name='miercoles' class="form-control" id="miercoles"></label>
-                        <label for="jueves">Jueves<input type="checkbox" name='jueves' class="form-control" id="jueves"></label>
-                        <label for="viernes">Viernes<input type="checkbox" name='viernes' class="form-control" id="viernes"></label>
-                        <label for="sabado">Sábado<input type="checkbox" name='sabado' class="form-control" id="sabado"></label>
+                        <label for="domingo">Domingo <input type="checkbox" name='D' class="form-control" id="domingo"></label>
+                        <label for="lunes">Lunes<input type="checkbox" name='L' class="form-control" id="lunes"></label>
+                        <label for="martes">Martes<input type="checkbox" name='M' class="form-control" id="martes"></label>
+                        <label for="miercoles">Miércoles<input type="checkbox" name='X' class="form-control" id="miercoles"></label>
+                        <label for="jueves">Jueves<input type="checkbox" name='J' class="form-control" id="jueves"></label>
+                        <label for="viernes">Viernes<input type="checkbox" name='V' class="form-control" id="viernes"></label>
+                        <label for="sabado">Sábado<input type="checkbox" name='S' class="form-control" id="sabado"></label>
                     </div>
 
                     <button type="submit" class="btn btn-lg btn-outline-success">Crear</button>

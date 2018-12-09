@@ -34,8 +34,6 @@ class TorneoController
             $torneo = new Torneo($torneo_id);
             Session::set("torneo",$torneo);
             $organizadoresActivos= $torneo->getOrganizadoresActivos();
-
-
             View::render('web/ver-torneo',compact('torneo','organizadoresActivos'), 3);
         } else{
             View::render('web/error404',[], 2);
@@ -59,13 +57,13 @@ class TorneoController
                 header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
 
             } else {
-                if (!isset($inputs['domingo']) &&
-                    !isset($inputs['lunes']) &&
-                    !isset($inputs['martes']) &&
-                    !isset($inputs['miercoles']) &&
-                    !isset($inputs['jueves']) &&
-                    !isset($inputs['viernes']) &&
-                    !isset($inputs['sabado']) ) {
+                if (!isset($inputs['D']) &&
+                    !isset($inputs['L']) &&
+                    !isset($inputs['M']) &&
+                    !isset($inputs['X']) &&
+                    !isset($inputs['J']) &&
+                    !isset($inputs['V']) &&
+                    !isset($inputs['S']) ) {
 
                     $camposError = [];
                     $camposError ['dias'] = 'Debe elegir al menos un día';
@@ -149,25 +147,51 @@ class TorneoController
     /**
      * Método que controla la actualización de un torneo
      */
-    public function actualizar(){
+    public function actualizar()
+    {
         if (Session::has("usuario")) {
-            $usuario = Session::get('usuario');
-            $usuario_id = $usuario->getUsuarioID();
-
             $inputs = Request::getData();
-
             $torneo_id = $inputs['torneo_id'];
 
+            $formValidator = new FormValidator($inputs, true);
 
-            Torneo::ActualizarTorneo($inputs);
+            // Si hay algún campo en error, vuelvo al formulario, indicando que hay errores;
+            if (!empty($formValidator->getCamposError())) {
+                Session::set("camposError", $formValidator->getCamposError());
+                Session::set("campos", $formValidator->getCampos());
+                header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
 
-            $usuario->actualizar();
-            header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
+            } else {
+                if (!isset($inputs['D']) &&
+                    !isset($inputs['L']) &&
+                    !isset($inputs['M']) &&
+                    !isset($inputs['X']) &&
+                    !isset($inputs['J']) &&
+                    !isset($inputs['V']) &&
+                    !isset($inputs['S'])
+                ) {
 
+                    $camposError = [];
+                    $camposError ['dias'] = 'Debe elegir al menos un día';
+                    Session::set("camposError", $camposError);
+                    header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
+                } else {
+                    Session::clearValue("camposError");
+                    Session::clearValue("campos");
+                    $usuario = Session::get('usuario');
+                    Torneo::ActualizarTorneo($inputs);
+                    header('Location: ' . App::$urlPath . '/torneos/' . $torneo_id);
+                }
+            };
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         };
     }
+
+
+
+
+
 
 
     /**

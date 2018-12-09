@@ -71,6 +71,11 @@ class Torneo
     protected $fases;
 
     /**
+     * @var array of string
+     */
+    protected $diasTorneo;
+
+    /**
      * @return int
      */
     public function getCantidadEquipos()
@@ -121,6 +126,7 @@ class Torneo
             $this->setOrganizadores();
             $this->setFases();
             $this->setEquipos();
+            $this->setDiasTorneo();
         }
     }
 
@@ -184,6 +190,8 @@ class Torneo
             $stmt = DBConnection::getStatement($script );
             $stmt->execute($organizador);
 
+            self::InsertarDiasTorneo($torneoID, $inputs);
+
             return $torneoID;
         } else {
             throw new TorneoNoGrabadoException("Error al grabar el torneo.");
@@ -204,7 +212,9 @@ class Torneo
 
         $script = "UPDATE TORNEOS SET NOMBRE = :nombre, DEPORTE_ID = :deporte_id, TIPO_TORNEO_ID = :tipo_torneo_id, CANTIDAD_EQUIPOS = :cantidad_equipos, FECHA_INICIO = :fecha_inicio, SEDE_ID = :sede_id WHERE TORNEO_ID = :torneo_id";
         $stmt = DBConnection::getStatement($script );
-        if(!$stmt->execute($torneo)) {
+        if($stmt->execute($torneo)) {
+            self::InsertarDiasTorneo( $inputs);
+        }else {
             throw new TorneoNoGrabadoException("Error al grabar el torneo.");
         };
     }
@@ -448,6 +458,7 @@ class Torneo
         $this->setEquipos();
         $this->setOrganizadores();
         $this->setFases();
+        $this->setDiasTorneo();
         Session::clearValue('torneo');
         Session::set('torneo',$this);
     }
@@ -984,5 +995,112 @@ class Torneo
         return $respuesta;
     }
 
+
+    protected static function  InsertarDiasTorneo($inputs){
+
+
+        $torneoID = $inputs['torneo_id'];
+
+        $datos= [
+            'torneo_id' => $torneoID
+        ];
+        $script = "DELETE FROM DIAS_TORNEO WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($script );
+        $stmt->execute($datos);
+
+        if (isset($inputs['D'])){
+            self::InsertarDiaEnTorneo($torneoID, 'D');
+        }
+        if (isset($inputs['L'])){
+            self::InsertarDiaEnTorneo($torneoID, 'L');
+        }
+        if (isset($inputs['M'])){
+            self::InsertarDiaEnTorneo($torneoID, 'M');
+        }
+        if (isset($inputs['X'])){
+            self::InsertarDiaEnTorneo($torneoID, 'X');
+        }
+        if (isset($inputs['J'])){
+            self::InsertarDiaEnTorneo($torneoID, 'J');
+        }
+        if (isset($inputs['V'])){
+            self::InsertarDiaEnTorneo($torneoID, 'V');
+        }
+        if (isset($inputs['S'])){
+            self::InsertarDiaEnTorneo($torneoID, 'S');
+        }
+
+    }
+
+    protected static function  InsertarDiaEnTorneo($torneoID, $dia){
+
+        $datos= [
+            'torneo_id' => $torneoID,
+            'dia_torneo'   =>  $dia
+        ];
+        $script = "INSERT INTO DIAS_TORNEO VALUES (:torneo_id, :dia_torneo)";
+        $stmt = DBConnection::getStatement($script );
+        $stmt->execute($datos);
+
+    }
+
+
+    public function getDiasTorneo(){
+        return $this->diasTorneo;
+    }
+
+    public function setDiasTorneo(){
+        $this->diasTorneo = [];
+        $query = "SELECT DIA_ID FROM DIAS_TORNEO WHERE TORNEO_ID = :torneo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $this->torneo_id]);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $this->diasTorneo [] = $datos ['DIA_ID'];
+        };
+
+    }
+
+    public function getDiasTorneoEnString(){
+        $respuesta = "";
+        foreach( $this->diasTorneo as $dia){
+            if (!empty($respuesta )){
+                $respuesta .= " - ";
+            }
+            switch ($dia){
+                case "D":
+                    $respuesta .= "Domingo";
+                    break;
+                case "L":
+                    $respuesta .= "Lunes";
+                    break;
+                case "M":
+                    $respuesta .= "Martes";
+                    break;
+                case "X":
+                    $respuesta .= "Miércoles";
+                    break;
+                case "J":
+                    $respuesta .= "Jueves";
+                    break;
+                case "V":
+                    $respuesta .= "Viernes";
+                    break;
+                case "S":
+                    $respuesta .= "Sabado";
+                    break;
+            }
+        }
+        return $respuesta;
+    }
+
+
+    public function checkDia($dia) {
+        foreach( $this->diasTorneo as $diaTorneo){
+            if ($diaTorneo == $dia){
+                return "checked";
+            }
+        };
+        return "";
+    }
 }
 
