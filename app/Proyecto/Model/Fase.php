@@ -185,4 +185,38 @@ class Fase
         return Partido::ExistePartidoAnteriorAFaseEntre( $this->torneo_id, $this->fase_id, $local_ID, $visita_ID);
     }
 
+
+    public static function getPartidosJugadosEnFase($torneo, $fase){
+        $respuesta = [] ;
+        $query = "SELECT B.NOMBRE NOMBRE_LOCAL , A.PUNTOS_LOCAL, C.NOMBRE NOMBRE_VISITA, A.PUNTOS_VISITA FROM PARTIDOS A, EQUIPOS B, EQUIPOS C WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND JUGADO = 'Y' AND A.LOCAL_ID = B.EQUIPO_ID AND A.VISITA_ID = C.EQUIPO_ID ";
+
+        $datos= [
+            'torneo_id' => $torneo,
+            'fase_id' => $fase,
+        ];
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        while ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta[] = $resultado;
+        }
+        return $respuesta;
+    }
+
+    public static function getFasesAnteriores($torneo, $fase){
+        $respuesta = [] ;
+        $query = "SELECT A.TORNEO_ID TORNEO_ID , A.FASE_ID FASE_ID, B.DESCRIPCION DESCRIPCION, MIN(A.FECHA) FECHA                   FROM PARTIDOS A, FASES B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.FASE_ID = B.FASE_ID                   AND A.TORNEO_ID = :torneo_id AND A.FASE_ID < :fase_id AND A.JUGADO = 'Y' GROUP BY A.TORNEO_ID, A.FASE_ID, B.DESCRIPCION";
+
+        $datos= [
+            'torneo_id' => $torneo,
+            'fase_id' => $fase,
+        ];
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        while ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta[] = $resultado;
+        }
+        return $respuesta;
+    }
+
+
 }

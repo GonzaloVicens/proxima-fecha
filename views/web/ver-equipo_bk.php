@@ -1,8 +1,7 @@
 <?php
-use Proyecto\Core\App;
-use Proyecto\Session\Session;
-use Proyecto\Model\Fase;
 use Proyecto\Model\Equipo;
+use Proyecto\Session\Session;
+use Proyecto\Core\App;
 
 $rutaFotoPortada = App::$urlPath . "/img/equipos/portada6-4.jpg";
 $rutaFotoLogo = App::$urlPath . "/img/icons/escudolaurel-gris.jpg";
@@ -192,59 +191,124 @@ if(isset($equipoAMostrar)){
                         echo "</div>";
                     }} ?>
                     </div>
-               </div>
+
+                    <!--h4 class="my-3 h3 naranjaFecha">Próxima Fecha <span class="font-weight-normal verde3 pl-2">Jornada 5</span></h4-->
+                    <!--div class="table_container shadow">
+                        <div class="header_table_jornada">
+                            <h5 class=""><i class="far fa-calendar-alt"></i>  Fecha 5 <span> 12 Nov</span></h5>
+                        </div>
+                        <div>
+                            <table class="jornada_table">
+                                <tr>
+                                    <td class="text-right equipos">Hipocondríacos</td>
+                                    <td class="versus">vs</td>
+                                    <td class="text-left equipos">LosPitagonicos</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right equipos">LGTV</td>
+                                    <td class="versus">vs</td>
+                                    <td class="text-left equipos">SisterAdmin</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right equipos">SQLInjection</td>
+                                    <td class="versus">vs</td>
+                                    <td class="text-left equipos">Pilares de la Defensa e Injusticia</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right equipos">Los Invisibles</td>
+                                    <td class="versus">vs</td>
+                                    <td class="text-left equipos">Los Messi</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right equipos">Lo Importante es la Salud</td>
+                                    <td class="versus">vs</td>
+                                    <td class="text-left equipos">Solteros contra Calzados</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <p class="text-muted font-weight-bold d-none">Equipo libre: <span class="font-weight-normal">Imberbes Afeitados</span></p>
+                    <a-- href='#' class="colorGris2 hoverVerde"><i class="fas fa-shield-alt"></i> Ver Fixture Completo</a-->
+                </div>
                 <div class='col-md-3'>
                     <aside class="aside_miequipo">
-                        <h4 class="text-white rounded p-2 mt-4 font-weight-normal">Ultima Fecha</h4>
-                        <?php $ultimaFecha = $equipoAMostrar->getUltimaFecha();
-                        if (!isset($ultimaFecha['TORNEO_ID'] )) {
-                            echo "<p class='ml-2 colorGris2 font-weight-normal nombretorneo font-italic d-none'>Tu equipo no estás inscripto en ningún torneo aún</p>";
-                        }else {
-
-                        }?>
-                        <p class="ml-2 colorGris2 font-weight-normal nombretorneo"><i class="fas fa-trophy mr-1"></i> <?=$ultimaFecha['NOMBRE']. " - " . $ultimaFecha['FASE_DESCR'] ?> </p>
-                        <h4 class="text-white rounded p-2 mt-4 font-weight-normal">Resultados</h4>
-                        <?php If (!isset($ultimaFecha['TORNEO_ID'] )) {
-                            echo "<p class='ml-2 colorGris2 font-weight-normal nombretorneo font-italic d-none'>No se ha completado ninguna jornada del torneo aún</p>";
-                            echo "<h4 class='text-white rounded p-2 mt-4 font-weight-normal'>Ver Fechas Anteriores</h4>";
-                            echo "<p class='ml-2 colorGris2 font-weight-normal nombretorneo font-italic d-none'>No estás participando de ningún torneo aún</p>";
-
-                        }else {
-                            ?>
+                        <h4 class="text-white rounded p-2 mt-4 font-weight-normal">Torneos en los que participas</h4>
+                        <p class="ml-2 colorGris2 font-weight-normal nombretorneo font-italic d-none">Tu equipo no estás inscripto en ningún torneo aún</p>
+                        <p class="ml-2 colorGris2 font-weight-normal nombretorneo"><i class="fas fa-trophy mr-1"></i> Augurios de Montecarlo</p>
+                        <h4 class="text-white rounded p-2 mt-4 font-weight-normal">Resultados última jornada</h4>
+                        <p class="ml-2 colorGris2 font-weight-normal nombretorneo font-italic d-none">No se ha completado ninguna jornada del torneo aún</p>
+                        <!-- En caso de que todavía no se haya jugado ningún partido, se saca el d-none del elemento de arriba y se agrega al div de abajo sacando el d-block -->
                         <div class="d-block">
-                            <?php $partidosUltimaFase = Fase::getPartidosJugadosEnFase($ultimaFecha['TORNEO_ID'], $ultimaFecha['FASE_ID']);
-                            foreach($partidosUltimaFase as $partidoViejoAMostrar) {
-                                ?>
-
+                            <p class="ml-2 colorGris2 font-weight-normal nombretorneo"><i class="fas fa-calendar mr-1"></i> Fecha <span class="numero_fecha">5</span></p>
                             <div class="table_resultado_container shadow-sm">
                                 <table class="resultado-encuentro pfgreen table">
                                     <tr class="border-bottom">
-                                        <td><?= $partidoViejoAMostrar['NOMBRE_LOCAL']?></td>
-                                        <td class="border-left text-center marcador"><?= $partidoViejoAMostrar['PUNTOS_LOCAL']?></td>
+                                        <td>Jacintos Merquetos</td>
+                                        <td class="border-left text-center marcador">2</td>
                                     </tr>
                                     <tr>
-                                        <td><?= $partidoViejoAMostrar['NOMBRE_VISITA']?></td>
-                                        <td class="border-left text-center marcador"><?= $partidoViejoAMostrar['PUNTOS_VISITA']?></td>
+                                        <td>Larga la pastafrola</td>
+                                        <td class="border-left text-center marcador">2</td>
                                     </tr>
                                 </table>
                             </div>
-                            <?php } ?>
+                            <div class="table_resultado_container shadow-sm">
+                                <table class="resultado-encuentro pfgreen table">
+                                    <tr class="border-bottom">
+                                        <td>Filosofía Tobara</td>
+                                        <td class="border-left text-center marcador">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pero pero pero</td>
+                                        <td class="border-left text-center marcador">1</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="table_resultado_container shadow-sm">
+                                <table class="resultado-encuentro pfgreen table">
+                                    <tr class="border-bottom">
+                                        <td>Solteros contra Calzados</td>
+                                        <td class="border-left text-center marcador">1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SisterAdmin</td>
+                                        <td class="border-left text-center marcador">4</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="table_resultado_container shadow-sm">
+                                <table class="resultado-encuentro pfgreen table">
+                                    <tr class="border-bottom">
+                                        <td>SQLInjection</td>
+                                        <td class="border-left text-center marcador">1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Los Messi</td>
+                                        <td class="border-left text-center marcador">1</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                         <h4 class="text-white rounded p-2 mt-4 font-weight-normal">Ver Fechas Anteriores</h4>
+                        <p class="ml-2 colorGris2 font-weight-normal nombretorneo font-italic d-none">No estás participando de ningún torneo aún</p>
                         <div class="table_container2 shadow-sm">
                             <div>
                                 <table class="jornada_table">
-                                    <?php $fasesAnteriores = Fase::getFasesAnteriores($ultimaFecha['TORNEO_ID'], $ultimaFecha['FASE_ID']);
-                                    foreach($fasesAnteriores as $faseAnterior){
-                                     ?>
                                     <tr>
-                                        <td class=""><a href="#"><i class="far fa-calendar-alt"></i> <?=$faseAnterior['DESCRIPCION']?> <span> <?=$faseAnterior['FECHA']?></span></a></td>
+                                        <td class=""><a href="#"><i class="far fa-calendar-alt"></i> Fecha 1 <span> 12/11/18</span></a></td>
                                     </tr>
-                                    <?php } ?>
+                                    <tr>
+                                        <td class=""><a href="#"><i class="far fa-calendar-alt"></i> Fecha 2 <span> 19/11/18</span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=""><a href="#"><i class="far fa-calendar-alt"></i> Fecha 3 <span> 26/11/18</span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=""><a href="#"><i class="far fa-calendar-alt"></i> Fecha 4 <span> 02/12/18</span></a></td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
-                        <?php } ?>
                     </aside>
                 </div>
             </div>

@@ -150,10 +150,14 @@ class Equipo
     /**
      * @return null|Torneo
      */
-    public function getTorneos()
+    public function getTorneos($whereAdicional = null)
     {
         $torneos = [];
         $query = "SELECT A.TORNEO_ID FROM TORNEOS A, EQUIPOS_TORNEO B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.ESTADO_TORNEO_ID = 'C' AND B.EQUIPO_ID = :equipo_id ";
+
+        if ($whereAdicional ){
+            $query .= $whereAdicional;
+        }
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -413,7 +417,7 @@ class Equipo
     public function getProximosPartidos(){
         $partidos= [];
 
-        $query = "SELECT TORNEO_ID, MIN(FASE_ID) FASE_ID FROM PARTIDOS  WHERE :equipo_id IN (LOCAL_ID, VISITA_ID) AND JUGADO = 'N' GROUP BY TORNEO_ID";
+        $query = "SELECT A.TORNEO_ID TORNEO_ID, MIN(A.FASE_ID) FASE_ID FROM PARTIDOS  A , TORNEOS B WHERE A.TORNEO_ID = B.TORNEO_ID AND B.ESTADO_TORNEO_ID = 'C' AND :equipo_id IN (A.LOCAL_ID, A.VISITA_ID) AND A.JUGADO = 'N' GROUP BY A.TORNEO_ID";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
 
@@ -435,4 +439,15 @@ class Equipo
         }
         return $partidos;
     }
+
+    public function getUltimaFecha(){
+
+        $query = "SELECT A.TORNEO_ID TORNEO_ID , C.NOMBRE NOMBRE, A.FASE_ID FASE_ID , D.DESCRIPCION FASE_DESCR, A.PARTIDO_ID PARTIDO_ID FROM PARTIDOS  A, TORNEOS C , FASES D WHERE A.TORNEO_ID = C.TORNEO_ID AND :equipo_id IN (A.LOCAL_ID, A.VISITA_ID) AND D.TORNEO_ID = A.TORNEO_ID AND D.FASE_ID = A.FASE_ID AND A.FECHA = (SELECT MAX(B.FECHA) FROM PARTIDOS B WHERE A.TORNEO_ID = B.TORNEO_ID AND :equipo_id IN (A.LOCAL_ID, A.VISITA_ID) AND A.JUGADO = 'Y' )";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['equipo_id' => $this->equipo_id]);
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }
+
+
