@@ -803,24 +803,16 @@ class Torneo
                 <th>Equipo</th><th>Ptos</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>GF</th><th>GC</th><th>Dif</th>
             </tr>
             <?php
-            foreach($this->equipos as $equipoActual_ID) {
-                $equipoActual = New Equipo($equipoActual_ID);
-
-                $jugados =  $this->getPartidosJugadosPorEquipo($equipoActual->getEquipoID());
-                $ganados =  $this->getPartidosGanadosPorEquipo($equipoActual->getEquipoID());
-                $empatados =  $this->getPartidosEmpatadosPorEquipo($equipoActual->getEquipoID());
-                $perdidos =  $this->getPartidosPerdidosPorEquipo($equipoActual->getEquipoID());
-                $golesAFavor = $this->getGolesAFavorEquipo($equipoActual->getEquipoID());
-                $golesEnContra = $this->getGolesEnContraEquipo($equipoActual->getEquipoID());
-                echo "<tr><td class='nombre_tablaposiciones'>". $equipoActual->getNombre() . "</td>";
-                echo "<td class='font-weight-bold'>" . ($empatados + $ganados * 3) ."</td>";
-                echo "<td>". $jugados . "</td>";
-                echo "<td>". $ganados . "</td>";
-                echo "<td>". $empatados . "</td>";
-                echo "<td>".$perdidos . "</td>";
-                echo "<td>".  $golesAFavor . "</td>";
-                echo "<td>". $golesEnContra . "</td>";
-                echo "<td>".  ($golesAFavor - $golesEnContra) . "</td>";
+            foreach($this->getEquiposTablaPosiciones() as $equipoActual) {
+                echo "<tr><td class='nombre_tablaposiciones'>". $equipoActual['NOMBRE'] . "</td>";
+                echo "<td class='font-weight-bold'>" . $equipoActual['PUNTOS'] ."</td>";
+                echo "<td>". $equipoActual['JUGADOS']. "</td>";
+                echo "<td>". $equipoActual['GANADOS']. "</td>";
+                echo "<td>". $equipoActual['EMPATADOS']. "</td>";
+                echo "<td>". $equipoActual['PERDIDOS']. "</td>";
+                echo "<td>". $equipoActual['GOLES_FAVOR'] . "</td>";
+                echo "<td>". $equipoActual['GOLES_CONTRA']. "</td>";
+                echo "<td>". $equipoActual['DIFERENCIA'] . "</td>";
                 echo "</tr>";
             }
             ?>
@@ -959,6 +951,34 @@ class Torneo
         $stmt->execute($param );
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $respuesta += ($datos['CANTIDAD']);
+        }
+
+        return $respuesta;
+    }
+
+    protected function getEquiposTablaPosiciones(){
+        $param = [
+            'torneo_id' => $this->torneo_id
+        ];
+
+        $respuesta = [];
+
+        $query = "SELECT T.EQUIPO_ID EQUIPO_ID,  E.NOMBRE NOMBRE  , SUM(GANADOS * 3) + SUM(EMPATADOS) PUNTOS , SUM(JUGADOS) JUGADOS, SUM(GANADOS) GANADOS, SUM(EMPATADOS) EMPATADOS, SUM(PERDIDOS) PERDIDOS, SUM(GOLES_FAVOR) GOLES_FAVOR, SUM(GOLES_CONTRA) GOLES_CONTRA FROM TABLA_POSICIONES T , EQUIPOS E WHERE T.EQUIPO_ID = E.EQUIPO_ID AND T.TORNEO_ID = :torneo_id GROUP BY T.EQUIPO_ID, E.NOMBRE ORDER BY 3 DESC";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta [] = [
+                'EQUIPO_ID' => $datos['EQUIPO_ID'],
+                'NOMBRE' => $datos['NOMBRE'],
+                'PUNTOS' => $datos['PUNTOS'],
+                'JUGADOS' => $datos['JUGADOS'],
+                'GANADOS' => $datos['GANADOS'],
+                'EMPATADOS' => $datos['EMPATADOS'],
+                'PERDIDOS' => $datos['PERDIDOS'],
+                'GOLES_FAVOR' => $datos['GOLES_FAVOR'],
+                'GOLES_CONTRA' => $datos['GOLES_CONTRA'],
+                'DIFERENCIA' => $datos['GOLES_FAVOR'] - $datos['GOLES_CONTRA'],
+            ];
         }
 
         return $respuesta;
