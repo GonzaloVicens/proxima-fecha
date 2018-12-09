@@ -13,24 +13,29 @@ $torneo->actualizar();
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h3 class="h5 mt-4 mb-2 colorGris2 font-weight-normal"><i class="fas fa-trophy"></i><?= $torneo->getDescrTipoTorneo()?></h3>
             </div>
             <div class="col-md-2">
-                <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
+                <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
             </div>
 
             <div class="col-md-12">
-                <!-- Nombre de Torneo Debajo, tendría que ser dinámico -->
-                <h2 class="mb-3 pfgreen h2"><?= $torneo->getNombre()?></h2>
-                <h4 class="mb-3 h3 naranjaFecha">Fixture</h4>
+                <h2 class="pfgreen mt-4 mb-2">
+                    <span class="d-block font-weight-normal colorGris2 h4 mb-2"><i class="fas fa-trophy"></i> <?= $torneo->getDescrTipoTorneo()?></span>
+                    <span class=""><?= $torneo->getNombre()?></span>
+                </h2>
+
+
+                <h2 class="mb-3 pfgreen h2"></h2>
+                <h4 class="mb-3 h3 naranjaFecha">Fixture Completo</h4>
             </div>
-            <div class="col-md-6">
+
                 <?php
                 foreach ($torneo->getFases() as $fase) {
                     ?>
+                    <div class="col-md-6">
                     <div class="table_container shadow">
                         <div class="header_table_jornada">
-                            <h5 class=""><i class="far fa-calendar-alt"></i> <?= $fase->getDescripcion()?><!--<span> 12 Ago</span>--></h5>
+                            <h5 class=""><i class="far fa-calendar-alt"></i> <?= $fase->getDescripcion()?></h5>
                         </div>
                         <div>
                             <table class="jornada_table">
@@ -38,7 +43,7 @@ $torneo->actualizar();
                                     ?>
 
                                     <tr>
-                                        <td class="versus"><?= $partido->getPartidoID()?></td>
+                                        <td class="numero"><?= $partido->getPartidoID()?></td>
                                         <td class="text-right equipos"><div class="nombre_equipo"><?= $partido->getLocalNombre()?></div></td>
                                         <td class="versus"><?= $partido->getPuntosLocal()?> - <?= $partido->getPuntosVisita()?></td>
                                         <td class="text-left equipos"><div class="nombre_equipo"><?= $partido->getVisitaNombre()?></div></td>
@@ -46,18 +51,21 @@ $torneo->actualizar();
 
                                         if (isset($usuario) && $partido->esArbitro($usuario->getUsuarioID()) && $torneo->estaEnCurso() ){
                                             $label = "Actualizar Partido";
+                                            $icon = "<i class='fas fa-edit'></i><span class='d-none'>editar</span>";
                                          } else {
                                             $label = "Ver Partido";
+                                            $icon = "<i class='fas fa-eye'></i><span class='d-none'>ver</span>";
                                         }
-                                        echo "<td class='versus'><a href='". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "'>$label</a></td>";
+                                        echo "<td class='actualizar_ver'><a href='". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "' title=' $label '>$icon </a></td>";
                                         ?>
                                     </tr>
                                 <?php }?>
                             </table>
                         </div>
                     </div>
-                <?php }?>
             </div>
+                <?php }?>
+
         </div>
     </div>
 </main>

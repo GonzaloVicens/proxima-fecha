@@ -361,31 +361,6 @@ button.btn.btn-outline-warning:hover {
       .table_container2 .jornada_table tr:last-child {
         border-bottom: none; }
 
-.fixture-completo .table_container {
-  border: 1px solid #BDBDBD;
-  width: 95%;
-  margin: 2em 0 1.4em;
-  border-radius: 5px; }
-  .fixture-completo .table_container .jornada_table tr {
-    height: 44px;
-    max-height: 44px; }
-  .fixture-completo .table_container .jornada_table td.versus {
-    width: 14%;
-    padding: 0 .1em;
-    font-size: .9em; }
-  .fixture-completo .table_container .jornada_table td.equipos {
-    width: 43%;
-    max-width: 43%;
-    height: 44px;
-    line-height: 44px;
-    max-height: 44px; }
-    .fixture-completo .table_container .jornada_table td.equipos .nombre_equipo {
-      height: 44px;
-      max-height: 44px;
-      width: 100%;
-      text-overflow: ellipsis;
-      overflow: hidden; }
-
 .btn-volver-derecha {
   overflow: auto;
   margin: .5em 0; }

@@ -1,0 +1,44 @@
+.fixture-completo .table_container {
+  border: 1px solid #BDBDBD;
+  width: 95%;
+  margin: 2em 0 1.4em;
+  border-radius: 5px; }
+  .fixture-completo .table_container .jornada_table tr {
+    height: 44px;
+    max-height: 44px; }
+  .fixture-completo .table_container .jornada_table td.numero {
+    background: #eeeeee;
+    color: #909090;
+    font-size: .8em;
+    width: 8%;
+    text-align: center; }
+  .fixture-completo .table_container .jornada_table td.equipos {
+    width: 36%;
+    max-width: 43%;
+    height: 44px;
+    line-height: 44px;
+    max-height: 44px; }
+    .fixture-completo .table_container .jornada_table td.equipos .nombre_equipo {
+      height: 44px;
+      max-height: 44px;
+      width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: .9em; }
+  .fixture-completo .table_container .jornada_table td.versus {
+    width: 12%;
+    padding: 0 .1em;
+    font-size: .8em; }
+  .fixture-completo .table_container .jornada_table td.actualizar_ver {
+    background: #eeeeee;
+    color: #909090;
+    font-size: .8em;
+    width: 8%;
+    text-align: center; }
+    .fixture-completo .table_container .jornada_table td.actualizar_ver a {
+      color: #909090; }
+      .fixture-completo .table_container .jornada_table td.actualizar_ver a:hover {
+        color: #00CD5E;
+        transition: color .2s ease-in-out; }
+
+/*# sourceMappingURL=ver-fixture-completo.css.map */

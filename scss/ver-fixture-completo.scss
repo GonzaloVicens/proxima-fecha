@@ -1,0 +1,81 @@
+@import "colors.scss";
+@import "fonts.scss";
+@import "mixins.scss";
+
+.fixture-completo{
+
+  i{
+    &.fas {
+      &.fa-edit {
+
+        &:before {
+          //@include icon-in-circle($col_verde1, $col_gris6)
+        }
+      }
+    }
+  }
+
+  .table_container{
+
+    border:1px solid $col_gris1;
+    width: 95%;
+    margin: 2em 0 1.4em;
+    border-radius: 5px;
+
+    .jornada_table {
+
+      tr{
+        height: 44px;
+        max-height: 44px;
+      }
+
+      td {
+        &.numero {
+          background: $col_gris3;
+          color: $col_gris2;
+          font-size: .8em;
+          width: 8%;
+          text-align: center;
+        }
+
+        &.equipos {
+          width: 36%;
+          max-width: 43%;
+          height: 44px;
+          line-height: 44px;
+          max-height: 44px;
+
+          .nombre_equipo{
+            height: 44px;
+            max-height: 44px;
+            width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: .9em;
+          }
+        }
+
+        &.versus {
+          width: 12%;
+          padding: 0 .1em;
+          font-size: .8em;
+        }
+
+        &.actualizar_ver {
+          background: $col_gris3;
+          color: $col_gris2;
+          font-size: .8em;
+          width: 8%;
+          text-align: center;
+
+          a {
+            color: $col_gris2;
+            &:hover {
+              @include hover-txt($bgcol_verde5);
+            }
+          }
+        }
+      }
+    }
+  }
+}

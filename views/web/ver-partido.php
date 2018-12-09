@@ -26,16 +26,13 @@ $datosPartido = $partidoActual->getInfoPartido();
             <div class="col-md-2">
                 <a href="<?= App::$urlPath . '/torneos/ver-fixture-completo'  ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <h2 class="pfgreen mt-4 mb-2">
                     <span class="font-weight-normal colorGris2"><i class="fas fa-trophy"></i> <?=$datosPartido['tipo_descr']?></span>
                     <span class=""><?=$datosPartido['nombre']?></span>
                 </h2>
                 <a href='<?= App::$urlPath . '/torneos/ver-fixture-completo'  ?>' class="d-block ml-2 mb-5 colorGris1 hoverVerde"><i class="fas fa-shield-alt"></i> Ver Fixture Completo</a>
                 <h2 class="mt-3 mb-3 pfgreen h4"><i class="fas fa-edit"></i> Cargar Datos en Partido</h2>
-            </div>
-            <div class="col-md-3">
-
             </div>
         </div>
         <div class="row">
