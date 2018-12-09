@@ -248,6 +248,9 @@ a.accion, div.accion {
 .colorGris2 {
   color: #909090; }
 
+.colorGris4 {
+  color: #666666; }
+
 .fontSize1-6rem {
   font-size: 1.6rem; }
 
@@ -404,5 +407,17 @@ button.btn.btn-outline-warning:hover {
     margin-right: 5px;
     font-size: inherit;
     text-decoration: none; }
+
+.font-light {
+  font-weight: 300; }
+
+.font-regular {
+  font-weight: 400; }
+
+.font-regular-bold {
+  font-weight: 600; }
+
+.font-bold {
+  font-weight: 800; }
 
 /*# sourceMappingURL=common.css.map */

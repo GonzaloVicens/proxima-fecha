@@ -1,4 +1,5 @@
 @import "colors.scss";
+@import "fonts.scss";
 @import "mixins.scss";
 
 $FA:'FontAwesome';
@@ -365,6 +366,10 @@ a.accion, div.accion {
   color: $col_gris2;
 }
 
+.colorGris4{
+  color: $col_gris4;
+}
+
 .fontSize1-6rem{
   font-size:$font-size-1-6rem;
 }
@@ -604,4 +609,22 @@ button.btn.btn-outline-warning:hover{
     font-size: inherit;
     text-decoration: none;
   }
+}
+
+
+.font-light {
+  font-weight: $font-light;
+}
+
+.font-regular {
+  font-weight: $font-regular;
+}
+
+.font-regular-bold {
+  font-weight: $font-regular-bold;
+}
+
+
+.font-bold {
+  font-weight: $font-bold;
 }

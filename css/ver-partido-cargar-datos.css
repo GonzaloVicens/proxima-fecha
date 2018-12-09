@@ -1,0 +1,158 @@
+section.portada {
+  position: relative;
+  height: 220px;
+  background-repeat: no-repeat; }
+  section.portada div.escudo_y_nombre {
+    position: absolute;
+    bottom: -10%; }
+    section.portada div.escudo_y_nombre img {
+      display: inline-block;
+      height: 180px;
+      width: 180px; }
+
+.ver-partido-cargar-datos .container_lista_jugadores {
+  padding: 0 2em; }
+.ver-partido-cargar-datos .form-container-cargar-datos {
+  padding: 0 2em;
+  margin: 0 0 2em 0; }
+  .ver-partido-cargar-datos .form-container-cargar-datos form .btn.btn-light {
+    border: 1px solid #BDBDBD; }
+.ver-partido-cargar-datos i.fas.fa-edit:before {
+  font-size: 1.5rem;
+  color: #ebebeb;
+  padding: .5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #18C25D;
+  margin-right: .4rem;
+  display: block;
+  text-align: center; }
+.ver-partido-cargar-datos .container_tabla_y_arbitro {
+  width: 600px;
+  margin: auto; }
+  .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container {
+    width: 100%; }
+    .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container tr {
+      height: 50px; }
+      .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container tr td.equipos {
+        font-size: 16px; }
+    .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .header_table_jornada h4 {
+      font-size: 16px;
+      color: #ffffff; }
+    .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td.equipos {
+      width: 42%; }
+    .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td.versus {
+      width: 16%; }
+.ver-partido-cargar-datos #cambiar_fotoportada {
+  float: right;
+  margin: 10px 20px 0 0;
+  text-align: center; }
+  .ver-partido-cargar-datos #cambiar_fotoportada a {
+    font-size: .9rem;
+    text-decoration: none; }
+  .ver-partido-cargar-datos #cambiar_fotoportada i.fa-camera {
+    font-size: 1rem;
+    margin-right: 2px; }
+.ver-partido-cargar-datos .tabs_miequipo #nav-tab a.nav-item.nav-link.active {
+  font-weight: 500;
+  color: #006B33; }
+.ver-partido-cargar-datos .tab-content #nav-proximafecha > div.pf_miequipo {
+  border-bottom: 1px solid #DEE2E6;
+  padding-bottom: 3.6em;
+  align-items: baseline;
+  justify-content: center; }
+  .ver-partido-cargar-datos .tab-content #nav-proximafecha > div.pf_miequipo .nombreEquipo {
+    width: 33%;
+    font-size: 1.3rem; }
+  .ver-partido-cargar-datos .tab-content #nav-proximafecha > div.pf_miequipo .vs {
+    width: 8%;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    color: #ff8c00;
+    font-size: 1.6em;
+    text-shadow: #006B33 1px 1px; }
+  .ver-partido-cargar-datos .tab-content #nav-proximafecha > div.pf_miequipo .escudoequipo {
+    width: 13%;
+    text-align: center; }
+    .ver-partido-cargar-datos .tab-content #nav-proximafecha > div.pf_miequipo .escudoequipo img {
+      width: 100%;
+      display: inline-block;
+      border: 1px solid #006B33; }
+.ver-partido-cargar-datos .tab-content #nav-proximafecha .datospf_miequipo {
+  margin-top: .9em;
+  width: 100%; }
+  .ver-partido-cargar-datos .tab-content #nav-proximafecha .datospf_miequipo li {
+    width: 33.3333%;
+    text-align: center;
+    font-weight: 500; }
+    .ver-partido-cargar-datos .tab-content #nav-proximafecha .datospf_miequipo li span {
+      font-weight: normal; }
+.ver-partido-cargar-datos .tab-content #nav-posiciones .posiciones_table {
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #DEE2E6;
+  width: 90%; }
+  .ver-partido-cargar-datos .tab-content #nav-posiciones .posiciones_table table {
+    width: 100%; }
+    .ver-partido-cargar-datos .tab-content #nav-posiciones .posiciones_table table tr {
+      color: #006B33;
+      border-bottom: 1px solid #DEE2E6; }
+      .ver-partido-cargar-datos .tab-content #nav-posiciones .posiciones_table table tr:nth-child(even) {
+        background-color: #F9F9F9; }
+      .ver-partido-cargar-datos .tab-content #nav-posiciones .posiciones_table table tr th {
+        font-weight: 500; }
+        .ver-partido-cargar-datos .tab-content #nav-posiciones .posiciones_table table tr th:first-child {
+          text-align: left; }
+      .ver-partido-cargar-datos .tab-content #nav-posiciones .posiciones_table table tr td,
+      .ver-partido-cargar-datos .tab-content #nav-posiciones .posiciones_table table tr th {
+        width: 7%;
+        padding: 8px;
+        text-align: center; }
+      .ver-partido-cargar-datos .tab-content #nav-posiciones .posiciones_table table tr td.nombre_tablaposiciones {
+        font-weight: 500;
+        color: #006B33;
+        width: 44%;
+        text-align: left; }
+
+.lista_jugadores {
+  width: 70%; }
+  .lista_jugadores li:nth-child(odd) {
+    background-color: #F9F9F9; }
+  .lista_jugadores li img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-right: 20px; }
+  .lista_jugadores li a {
+    text-decoration: none; }
+    .lista_jugadores li a .nombre_apellido_jugador {
+      font-weight: 500; }
+
+.aside_miequipo h3.text-white.rounded,
+.aside_miequipo h4.text-white.rounded,
+.aside_miequipo h5.text-white.rounded {
+  background-color: #00CD5E;
+  font-size: 1rem; }
+.aside_miequipo .table_resultado_container {
+  border-radius: 5px;
+  border: 1px solid #DEE2E6;
+  margin-bottom: 10px; }
+  .aside_miequipo .table_resultado_container .resultado-encuentro {
+    font-size: .9rem;
+    margin-bottom: 0; }
+    .aside_miequipo .table_resultado_container .resultado-encuentro tr td {
+      padding: 8px;
+      border: none; }
+      .aside_miequipo .table_resultado_container .resultado-encuentro tr td.marcador {
+        width: 40px;
+        padding-left: 3px;
+        padding-right: 3px;
+        background-color: #00CD5E;
+        color: #ffffff;
+        overflow: hidden; }
+.aside_miequipo .table_container2 {
+  width: 100%; }
+
+/*# sourceMappingURL=ver-partido-cargar-datos.css.map */

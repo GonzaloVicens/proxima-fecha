@@ -1,0 +1,285 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+section{
+  &.portada{
+    position: relative;
+    height: 220px;
+    background-repeat: no-repeat;
+    div{
+      &.escudo_y_nombre{
+        position: absolute;
+        bottom: -10%;
+
+        img{
+          display: inline-block;
+          height: 180px;
+          width: 180px;
+        }
+      }
+    }
+
+  }
+}
+
+.ver-partido-cargar-datos {
+
+  .container_lista_jugadores {
+    padding: 0 2em;
+  }
+  .form-container-cargar-datos {
+    padding: 0 2em;
+    margin: 0 0 2em 0;
+    form {
+      .btn {
+        &.btn-light {
+          border: 1px solid $col_gris1;
+        }
+      }
+    }
+  }
+  i{
+    &.fas {
+      &.fa-edit {
+
+        &:before {
+          @include icon-in-circle($col_verde1, $col_gris6)
+        }
+      }
+    }
+  }
+
+  .container_tabla_y_arbitro{
+    width: 600px;
+    margin: auto;
+    .table_container {
+      width: 100%;
+
+      tr {
+        height: 50px;
+
+        td {
+          &.equipos {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .header_table_jornada {
+        h4 {
+          font-size: 16px;
+          color: $col_blanco;
+        }
+      }
+
+      .jornada_table {
+        td {
+          &.equipos {
+            width: 42%;
+          }
+          &.versus {
+            width: 16%;
+          }
+        }
+      }
+    }
+  }
+
+  #cambiar_fotoportada {
+    float: right;
+    margin: 10px 20px 0 0;
+    text-align: center;
+
+    a {
+      font-size: .9rem;
+      text-decoration: none;
+    }
+    i {
+      &.fa-camera {
+        font-size: 1rem;
+        margin-right: 2px;
+      }
+    }
+  }
+
+  .tabs_miequipo{
+    #nav-tab{
+      a{
+        &.nav-item{
+          &.nav-link{
+            &.active{
+              font-weight: 500;
+              color: $bgcol_verde;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content{
+    #nav-proximafecha{
+
+      &> div{
+        &.pf_miequipo{
+
+          border-bottom: 1px solid #DEE2E6;;
+          padding-bottom: 3.6em;
+          align-items: baseline;
+          justify-content: center;
+
+          .nombreEquipo{
+            width: 33%;
+            font-size: 1.3rem;
+          }
+
+          .vs{
+            width: 8%;
+            text-align: center;
+            font-weight: bold;
+            font-style: italic;
+            color:$bgcol_naranja;
+            font-size: 1.6em;
+            text-shadow: $bgcol_verde 1px 1px;
+            //border:1px solid red;
+          }
+          .escudoequipo{
+            //border:1px solid red;
+            width: 13%;
+            text-align: center;
+            img{
+              width: 100%;
+              display: inline-block;
+              border:1px solid $bgcol_verde;
+            }
+          }
+        }
+      }
+
+      .datospf_miequipo{
+        margin-top: .9em;
+        width: 100%;
+        li{
+          width: 33.3333%;
+          text-align: center;
+          font-weight: 500;
+          span{
+            font-weight: normal;
+          }
+        }
+      }
+    }
+
+    #nav-posiciones{
+      .posiciones_table {
+        overflow: hidden;
+        border-radius: 10px;
+        border: 1px solid #DEE2E6;
+        //margin-bottom: 10px;
+        width: 90%;
+
+        table{
+          width: 100%;
+          tr {
+
+            color: $bgcol_verde;
+            &:nth-child(even) {
+              background-color: $col_gris5;
+            }
+            border-bottom: 1px solid #DEE2E6;;
+            th {
+              font-weight: 500;
+
+              &:first-child {
+                text-align: left;
+              }
+            }
+
+            td,
+            th {
+              width: 7%;
+              padding: 8px;
+              text-align: center;
+            }
+
+            td {
+
+              &.nombre_tablaposiciones {
+                font-weight: 500;
+                color: $bgcol_verde;
+                width: 44%;
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.lista_jugadores{
+
+  width: 70%;
+  li{
+    &:nth-child(odd){
+      background-color: $col_gris5;
+    }
+
+    img{
+      border-radius:50%;
+      height: 50px;
+      width: 50px;
+      margin-right: 20px;
+    }
+
+    a{
+      text-decoration: none;
+      .nombre_apellido_jugador{
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.aside_miequipo{
+  h3,
+  h4,
+  h5{
+    &.text-white{
+      &.rounded{
+        background-color: $bgcol_verde5;
+        font-size: 1rem;
+      }
+    }
+  }
+  .table_resultado_container{
+      border-radius: 5px;
+      border:1px solid #DEE2E6;
+      margin-bottom: 10px;
+
+     .resultado-encuentro {
+        font-size: .9rem;
+        margin-bottom: 0;
+        tr{
+          td {
+            padding: 8px;
+            border:none;
+
+            &.marcador{
+              width: 40px;
+              padding-left: 3px;
+              padding-right: 3px;
+              background-color: $bgcol_verde5;
+              color: #ffffff;
+              overflow: hidden;
+            }
+          }
+        }
+     }
+  }
+  .table_container2{
+    width: 100%;
+  }
+}
+

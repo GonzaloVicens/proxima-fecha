@@ -346,6 +346,7 @@ class Equipo
 
     public function printJugadoresEnPartido($fichas, $esLocal)
     {
+        echo "<div class='container_lista_jugadores'>";
         echo "<ul class='lista_jugadores list-group'>";
 
         $query = "SELECT A.JUGADOR_ID, B.NOMBRE , B.APELLIDO FROM JUGADORES A, USUARIOS B WHERE A.JUGADOR_ID = B.USUARIO_ID AND A.EQUIPO_ID = :equipo_id ";
@@ -374,6 +375,7 @@ class Equipo
             }
         }
         echo "</ul>";
+        echo "</div>";
     }
 
     public function printFormularioPartido($partido)
@@ -382,24 +384,26 @@ class Equipo
             $usuario = Session::get('usuario');
             if ($usuario->getUsuarioID() == $partido->getArbitroID()) {
                 ?>
-                <form action='agregar-ficha-partido' method='POST'>
-                    <h2 class='mt-5 mb-4 pfgreen'>Agregar Ficha Equipo</h2>
-                    <div class='form-group'>
-                        <select name='tipo' class='form-control'>
-                            <?=TipoEstadistica::printOptions()?>
-                        </select>
-                    </div>
-                    <div class='form-group'>
-                        <select name='jugador' class='form-control'>
-                            <?=$this->printOptionsJugadores()?>
-                        </select>
-                    </div>
-                    <input type="hidden" name="torneo" value="<?= $partido->getTorneoID()?>">
-                    <input type="hidden" name="fase" value="<?= $partido->getFaseID()?>">
-                    <input type="hidden" name="partido" value="<?= $partido->getPartidoID()?>">
-                    <input type="hidden" name="equipo" value="<?= $this->equipo_id?>">
-                    <button type='submit' class='btn btn-lg btn-outline-succes'>Agregar Ficha Partido</button>
-                </form>
+                <div class="form-container-cargar-datos">
+                    <form action='agregar-ficha-partido' method='POST'>
+                        <h4 class='mt-5 mb-4 pfgreen encabezado-cargar-datos'>Agregar Ficha Equipo</h4>
+                        <div class='form-group'>
+                            <select name='tipo' class='form-control'>
+                                <?=TipoEstadistica::printOptions()?>
+                            </select>
+                        </div>
+                        <div class='form-group'>
+                            <select name='jugador' class='form-control'>
+                                <?=$this->printOptionsJugadores()?>
+                            </select>
+                        </div>
+                        <input type="hidden" name="torneo" value="<?= $partido->getTorneoID()?>">
+                        <input type="hidden" name="fase" value="<?= $partido->getFaseID()?>">
+                        <input type="hidden" name="partido" value="<?= $partido->getPartidoID()?>">
+                        <input type="hidden" name="equipo" value="<?= $this->equipo_id?>">
+                        <button type='submit' class='btn btn-light'>Agregar Ficha Partido</button>
+                    </form>
+                </div>
             <?php
             }
         }

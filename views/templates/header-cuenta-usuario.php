@@ -52,7 +52,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= App::$urlPath;?>/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
