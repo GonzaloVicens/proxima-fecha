@@ -25,6 +25,10 @@ class Fase
      */
     protected $descripcion;
 
+    /**
+     * @var date
+     */
+    protected $fecha;
 
     /**
      * @var Array of Partido
@@ -108,11 +112,12 @@ class Fase
             'fase_id'   => $fase
         ];
 
-        $query = "SELECT DESCRIPCION FROM FASES WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id ";
+        $query = "SELECT DESCRIPCION, FECHA FROM FASES WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute($param);
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->descripcion= $datos['DESCRIPCION'];
+            $this->fecha= $datos['FECHA'];
 
             $query = "SELECT PARTIDO_ID FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id ";
             $stmt = DBConnection::getStatement($query);
@@ -181,8 +186,8 @@ class Fase
     }
 
 
-    public function insertarPartido($local_id, $visita_id, $arbitro_id, $sede_id, $cancha_id = null  ){
-        $nuevoPartido = Partido::InsertarPartido($this->torneo_id , $this->fase_id, $local_id, $visita_id, $arbitro_id, $sede_id, $cancha_id );
+    public function insertarPartido($local_id, $visita_id, $arbitro_id, $fecha, $sede_id, $cancha_id = null  ){
+        $nuevoPartido = Partido::InsertarPartido($this->torneo_id , $this->fase_id, $local_id, $visita_id, $arbitro_id, $fecha, $sede_id, $cancha_id );
         $this->partidos[] = new Partido($this->torneo_id , $this->fase_id, $nuevoPartido ) ;
     }
 

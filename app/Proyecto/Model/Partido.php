@@ -400,7 +400,7 @@ class Partido
      * @throws PartidoNoGrabadoException
      */
 
-    public static function InsertarPartido($torneo, $fase, $local_id, $visita_id, $arbitro_id, $sede_id = null, $cancha_id = null){
+    public static function InsertarPartido($torneo, $fase, $local_id, $visita_id, $arbitro_id, $fecha, $sede_id = null, $cancha_id = null){
 
         //Busco la ultima ficha creada para el partido;
         $nuevoPartido= 0;
@@ -431,11 +431,12 @@ class Partido
             'local_id'    => $local_id,
             'visita_id'   => $visita_id,
             'arbitro_id'  => $arbitro_id,
+            'fecha'       => $fecha,
             'sede_id'     => $sede_id,
-            'cancha_id'     => $cancha_id
+            'cancha_id'   => $cancha_id
         ];
 
-        $script = "INSERT INTO PARTIDOS VALUES (:torneo_id, :fase_id, :partido_id, :local_id, :visita_id, null, null, :arbitro_id, 0,0, ' ', ' ' , :sede_id, :cancha_id, 'N')";
+        $script = "INSERT INTO PARTIDOS VALUES (:torneo_id, :fase_id, :partido_id, :local_id, :visita_id, :fecha, null, :arbitro_id, 0,0, ' ', ' ' , :sede_id, :cancha_id, 'N')";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($datos)) {
             return DBConnection::getConnection()->lastInsertId();
