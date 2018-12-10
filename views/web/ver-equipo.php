@@ -64,19 +64,35 @@ if(isset($equipoAMostrar)){
                                         <div id="AgregarCompanero">
                                             <div>
                                                 <div id='cabeceraAgregarCompanero'>
-                                                    <h2 class='mayusculas'>Agregar un compañero</h2>
+                                                    <h4 class='pfgreen mt-5 mb-4'>Agregar Jugador a tu Equipo</h4>
                                                 </div>
                                                 <div id='cuerpoAgregarCompanero'>
-                                                    <form class='formRegistro' action="agregar-jugador" method="POST">
+                                                    <form class='formRegistro d-none' action="agregar-jugador" method="POST">
                                                         <input type="hidden" name="equipo" value="<?= $equipoAMostrar->getEquipoID() ?>"/>
-                                                        <label>Jugador<input id="jugador" type="text" name="jugador"/></label>
-                                                        <input  type="submit" value="Agregar Compañero" />
+                                                        <label>Jugador</label><br><input id="jugador" type="text" name="jugador">
+                                                        <input class='btn btn-outline-success' type="submit" value="Agregar Compañero" />
+                                                    </form>
+                                                    <form class='formRegistro' action="agregar-jugador" method="POST">
+                                                        <div class="form-row align-items-center">
+                                                            <div class="col-auto my-1">
+                                                                <label class="" for="jugador">Jugador</label>
+                                                            </div>
+                                                            <div class="col-auto my-1">
+                                                                <!--input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe"-->
+                                                                <input type="hidden" name="equipo" value="<?= $equipoAMostrar->getEquipoID() ?>"/>
+                                                                <input id="jugador" class="form-control" type="text" name="jugador" placeholder="Usuario de Jugador">
+                                                            </div>
+                                                            <div class="col-auto my-1">
+                                                                <input class='btn btn-outline-success' type="submit" value="Agregar Compañero" />
+                                                                <button type="submit" class="btn btn-primary d-none">Submit</button>
+                                                            </div>
+                                                        </div>
                                                     </form>
                                                     <?php
                                                     if(Session::has("errorAgregarJugador")){
                                                         ?>
                                                         <div class='DivErrores'>
-                                                            <h2 style='color:#F00'><?=Session::get("errorAgregarJugador")?></h2>
+                                                            <p class="text-danger font-italic ml-5"><?=Session::get("errorAgregarJugador")?></p>
                                                         </div>
                                                     <?php Session::clearValue('errorAgregarJugador');
                                                     } ?>
@@ -88,7 +104,6 @@ if(isset($equipoAMostrar)){
                             <?php }
                         }?>
                     </div>
-
                     <?php if ($estaJugandoTorneo){?>
                         <div class='tab-pane fade ' id='nav-proximafecha' role='tabpanel' aria-labelledby='nav-proximafecha-tab'>
                             <?php
