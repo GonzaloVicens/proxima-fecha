@@ -149,10 +149,17 @@ class Fase
         $datos= [
             'torneo_id'   => $torneo,
             'fase_id'     =>  $fase,
-            'descripcion' => $descripcion
+            'descripcion' => $descripcion,
+            'fecha' => date("Y-m-d")
         ];
+/*
+        function getWeekday($date) {
+            return date('w', strtotime($date));
+        }
 
-        $script = "INSERT INTO FASES VALUES (:torneo_id, :fase_id, :descripcion)";
+        echo getWeekday('2012-10-11'); // returns 4
+*/
+        $script = "INSERT INTO FASES VALUES (:torneo_id, :fase_id, :descripcion, :fecha )";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($datos)) {
             return $fase;
