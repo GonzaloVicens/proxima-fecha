@@ -96,6 +96,11 @@ class Fase
     }
 
 
+
+    public function getFecha(){
+        return $this->fecha;
+    }
+
     public function getPartidos(){
         return $this->partidos;
     }

@@ -542,7 +542,7 @@ class Torneo
                                 $iFase++;
                             } else {
                                 $organizadorRandom = mt_rand(0, count($this->organizadores) - 1);
-                                $fase->insertarPartido($equipoI, $equipoJ, $this->organizadores[$organizadorRandom], $this->sede_id, $fase->getFecha());
+                                $fase->insertarPartido($equipoI, $equipoJ, $this->organizadores[$organizadorRandom], $fase->getFecha(), $this->sede_id);
                                 $partidoHecho = true;
                                 $faseInicial =$iFase +1;
                             }
