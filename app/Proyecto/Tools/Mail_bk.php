@@ -28,7 +28,7 @@ class Mail{
         $body .= '<b>Te recomendamos cambiarla una ve que inicies sesión:</b><br><br>';
         $body .= '<b>Saludos,</b><br>';
         $body .= '<b>El equipo de ProximaFecha</b><br>';
-        $body .= '<img src="http://proximafecha.com/img/logo.png" alt="Logo Proxima Fecha"/>';
+        $body .= '<img src="http://proximafecha.com/img/LOGOPF-Sin-Fondo.png" alt="Logo Proxima Fecha"/>';
 
         $mail->Body = $body;
 

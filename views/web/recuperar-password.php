@@ -9,17 +9,10 @@ use Proyecto\Core\App;
 use Proyecto\Session\Session;
 
 
-if (Session::has("camposError")){
-    $camposError = Session::get("camposError");
-    $camposViejos = Session::get("campos");
-    $usuario=$camposViejos['usuario'];
-    $email=$camposViejos['email'];
-    Session::clearValue("camposError");
-    Session::clearValue("campos");
-} else {
-    $usuario="";
-    $email="";
-};
+if (Session::has("errorLogin")){
+    $errorLogin = Session::get("errorLogin");
+    Session::clearValue("errorLogin");
+} ;
 
 ?>
 <main class="py-4 mb-4 registro">
@@ -46,10 +39,9 @@ if (Session::has("camposError")){
             <div class="col-md-3">
                 <?php
 
-                if ( isset($camposError)){
-                    foreach ($camposError as $error => $descr) {
-                        echo "<p>" . $campos[$error] . ": " . $descr . "</p>";
-                    }
+                if ( isset($errorLogin)){
+                    echo "<p>" . $errorLogin . "</p>";
+
                 }
                 ?>
             </div>

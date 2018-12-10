@@ -146,7 +146,8 @@ class UsuarioController
             Session::set('errorLogin', $error);
 
         } else {
-            Usuario::EnviarPassword($usuario_id );
+            $respuesta = Usuario::EnviarPassword($usuario_id );
+            Session::set('errorLogin', $respuesta );
             Session::set('mailEnviado',"Y");
         }
         header('Location: ' . App::$urlPath . '/recuperar-password');
