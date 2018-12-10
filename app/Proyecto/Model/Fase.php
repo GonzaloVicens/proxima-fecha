@@ -146,19 +146,17 @@ class Fase
      * @throws FaseNoGrabadaException
      */
     public static function CrearFase($torneo, $fase, $descripcion){
+
+        $proximaFecha = self::getProximaFecha($torneo, $fase);
+
         $datos= [
             'torneo_id'   => $torneo,
             'fase_id'     =>  $fase,
             'descripcion' => $descripcion,
-            'fecha' => date("Y-m-d")
+            'fecha' => $proximaFecha
         ];
-/*
-        function getWeekday($date) {
-            return date('w', strtotime($date));
-        }
 
-        echo getWeekday('2012-10-11'); // returns 4
-*/
+
         $script = "INSERT INTO FASES VALUES (:torneo_id, :fase_id, :descripcion, :fecha )";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($datos)) {
@@ -226,4 +224,83 @@ class Fase
     }
 
 
+    public static function getProximaFecha($torneo, $fase){
+
+        $query = "SELECT FECHA_INICIO FROM TORNEOS WHERE TORNEO_ID = :torneo_id ";
+
+        $datos= [
+            'torneo_id' => $torneo
+        ];
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        if ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $proximaFecha  = $resultado['FECHA_INICIO'];
+        }
+
+
+        $query = "SELECT MAX(FECHA) FECHA FROM FASES  WHERE TORNEO_ID = :torneo_id AND FASE_ID < :fase_id ";
+        $datos= [
+            'torneo_id' => $torneo,
+            'fase_id' => $fase,
+        ];
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        if ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            if (isset($resultado['FECHA'])) {
+                $proximaFecha  = $resultado['FECHA'];
+            }
+        }
+
+        $query = "SELECT CASE DIA_ID WHEN 'D' THEN 0 WHEN 'L' THEN 1 WHEN 'M' THEN 2 WHEN 'X' THEN 3 WHEN 'J' THEN 4 WHEN 'V' THEN 5  ELSE 6 END DIA_ID FROM DIAS_TORNEO WHERE TORNEO_ID = :torneo_id ORDER BY 1";
+        $datos= [
+            'torneo_id' => $torneo
+        ];
+
+        $diasEnNumeros = [];
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        while ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $diasEnNumeros [] = $resultado['DIA_ID'];
+        }
+
+
+        while (self::existeFaseTorneoEnFecha($torneo, $proximaFecha)  ||  !self::BuscarDiaEnDiasTorneo( date('w', strtotime($proximaFecha )), $diasEnNumeros) ){
+            $proximaFecha = date("Y-m-d",strtotime($proximaFecha  ."+ 1 days"));
+        }
+
+        return $proximaFecha;
+    }
+
+
+    public static function existeFaseTorneoEnFecha($torneo, $fecha){
+        $query = "SELECT 'X' FROM FASES WHERE TORNEO_ID = :torneo_id AND FECHA = :fecha";
+
+        $datos= [
+            'torneo_id' => $torneo,
+            'fecha' => $fecha
+        ];
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+
+    }
+
+
+    public static function imprimir($algo){
+        echo "<pre>";
+        print_r ($algo);
+        echo "</pre>";
+    }
+
+
+    protected static function BuscarDiaEnDiasTorneo($dia, $array){
+        foreach ($array as $i) {
+            if ($dia == $i) {
+                Fase::Imprimir("devuelveVerdadero");
+                return true;
+            }
+        }
+        Fase::Imprimir("devuelveFalso");
+        return false;
+    }
 }
