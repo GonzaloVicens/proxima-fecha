@@ -1102,5 +1102,13 @@ class Torneo
         };
         return "";
     }
+
+    public static function esCopa($torneo)
+    {
+        $query = "SELECT 'X' FROM TORNEOS WHERE TORNEO_ID = :torneo_id AND TIPO_TORNEO_ID = 'C' ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $torneo]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }
 

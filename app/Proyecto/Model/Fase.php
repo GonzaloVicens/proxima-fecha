@@ -274,7 +274,7 @@ class Fase
         }
 
 
-        while (self::existeFaseTorneoEnFecha($torneo, $proximaFecha)  ||  !self::BuscarDiaEnDiasTorneo( date('w', strtotime($proximaFecha )), $diasEnNumeros) ){
+        while (self::ExisteFaseTorneoEnFecha($torneo, $proximaFecha)  ||  !self::BuscarDiaEnDiasTorneo( date('w', strtotime($proximaFecha )), $diasEnNumeros) ){
             $proximaFecha = date("Y-m-d",strtotime($proximaFecha  ."+ 1 days"));
         }
 
@@ -282,7 +282,7 @@ class Fase
     }
 
 
-    public static function existeFaseTorneoEnFecha($torneo, $fecha){
+    public static function ExisteFaseTorneoEnFecha($torneo, $fecha){
         $query = "SELECT 'X' FROM FASES WHERE TORNEO_ID = :torneo_id AND FECHA = :fecha";
 
         $datos= [
@@ -313,4 +313,7 @@ class Fase
         Fase::Imprimir("devuelveFalso");
         return false;
     }
+
+
+
 }

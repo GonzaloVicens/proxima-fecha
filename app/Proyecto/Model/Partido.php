@@ -554,6 +554,7 @@ class Partido
 
 
     public function agregarFicha($tipo_Ficha, $equipo_Ficha, $jugador_Ficha){
+
         $nuevaFicha = Ficha::InsertarFicha($this->torneo_id , $this->fase_id, $this->partido_id, $tipo_Ficha, $equipo_Ficha, $jugador_Ficha);
         $this->fichas[] = new Ficha($this->torneo_id , $this->fase_id, $this->partido_id, $nuevaFicha) ;
 
@@ -586,18 +587,59 @@ class Partido
             'fase_id'       => $this->fase_id,
             'partido_id'    => $this->partido_id,
             'puntos_local'  => $this->puntos_local,
-            'puntos_visita' => $this->puntos_visita,
-            'fecha'         => date('Y/m/d'),
-            'hora'          => date('H:i:s')
+            'puntos_visita' => $this->puntos_visita
         ];
 
-        $script = "UPDATE PARTIDOS SET PUNTOS_LOCAL = :puntos_local , PUNTOS_VISITA = :puntos_visita , FECHA=:fecha, HORA=:hora ,  JUGADO = 'Y' WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
+        $script = "UPDATE PARTIDOS SET PUNTOS_LOCAL = :puntos_local , PUNTOS_VISITA = :puntos_visita , JUGADO = 'Y' WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
         $stmt = DBConnection::getStatement($script );
         if(! $stmt->execute($datos)) {
             print_r($stmt->errorInfo());
             throw new PartidoNoGrabadoException("Error al grabar el partido.");
         }
 
+
+        if (Torneo::esCopa($this->torneo_id)) {
+            $ganador = 0;
+            if ($this->puntos_local > $this->puntos_visita) {
+                $ganador = $this->local_id;
+            }
+
+            if ($this->puntos_local < $this->puntos_visita) {
+                $ganador = $this->visita_id;
+            }
+
+            Partido::ActualizarPartidoFase($this->torneo_id, $this->fase_id  ,  $this->partido_id,  $ganador );
+
+        }
+
+    }
+
+    public static function ActualizarPartidoFase($torneo , $fase , $partido, $equipo ){
+        $faseAActualizar = $fase +1 ;
+        if ( Fase::ExisteFase($torneo , $faseAActualizar )) {
+
+            $partidoFaseAActualizar = intdiv($partido + 1, 2);
+
+            $datos = [
+                'torneo_id' => $torneo,
+                'fase_id' => $faseAActualizar,
+                'partido_id' => $partidoFaseAActualizar,
+                'equipo_id' => $equipo
+            ];
+
+
+            if (($partido % 2) == 1) {
+                $script = "UPDATE PARTIDOS SET LOCAL_ID = :equipo_id WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
+            } else {
+                $script = "UPDATE PARTIDOS SET VISITA_ID = :equipo_id WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
+            }
+
+            $stmt = DBConnection::getStatement($script );
+            if(! $stmt->execute($datos)) {
+                print_r($stmt->errorInfo());
+                throw new PartidoNoGrabadoException("Error al grabar el partido.");
+            }
+        }
     }
 
 

@@ -58,13 +58,14 @@ $datosPartido = $partidoActual->getInfoPartido();
                     </div>
                     <?php
                     echo "<p class='colorGris4 text-center'><span class='font-regular-bold'> Arbitro del encuentro:</span> " . $partidoActual->getArbitroDescr();
-
-                    if($usuario->esCapitanDeEquipo($partidoActual->getLocalID()) || $usuario->esCapitanDeEquipo($partidoActual->getVisitaID())) {
+                IF ( Session::has('logueado')){
+                    if(($usuario->esCapitanDeEquipo($partidoActual->getLocalID()) || $usuario->esCapitanDeEquipo($partidoActual->getVisitaID())) && ($usuario->getUsuarioID() != $partidoActual->getArbitroID())) {
                         // Configuro el origen del chat para el botón "Volver" de la conversacion;
                         Session::set('origenChat', '/torneos/' . $partidoActual->getTorneoID() . "/" . $partidoActual->getFaseID() . "/" . $partidoActual->getPartidoID() );
 
                         echo  "<a href='". App::$urlPath . "/mensajes/" . $usuario->getUsuarioID() . "/" . $partidoActual->getArbitroID() . "' class='enviar-mensaje'>Enviar Mensaje</a>";
                     }
+                }
                     echo "</p>";
                     ?>
                 </div>
