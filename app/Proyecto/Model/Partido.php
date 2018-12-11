@@ -639,6 +639,8 @@ class Partido
                 print_r($stmt->errorInfo());
                 throw new PartidoNoGrabadoException("Error al grabar el partido.");
             }
+        } else {
+            Torneo::actualizarEstadoTorneo($torneo, "F");
         }
     }
 

@@ -728,8 +728,9 @@ class Torneo
     }
 
 
-    public function actualizarEstadoTorneo($nuevoEstado){
-        $datos = ['torneo_id' => $this->torneo_id,
+
+    public static function actualizarEstadoTorneo($torneo, $nuevoEstado){
+        $datos = ['torneo_id' => $torneo,
                 'estado_torneo_id' => $nuevoEstado
             ];
 
@@ -740,15 +741,15 @@ class Torneo
     }
 
     public function comenzar(){
-        $this->actualizarEstadoTorneo("C");
+        Torneo::actualizarEstadoTorneo($this->torneo_id, "C");
     }
 
     public function finalizar(){
-        $this->actualizarEstadoTorneo("F");
+        Torneo::actualizarEstadoTorneo($this->torneo_id, "F");
     }
 
     public function reiniciar(){
-        $this->actualizarEstadoTorneo("I");
+        Torneo::actualizarEstadoTorneo($this->torneo_id, "I");
         $this->eliminarFixture();
     }
 
