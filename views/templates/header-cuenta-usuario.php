@@ -28,8 +28,17 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
     <meta charset="utf-8">
     <link href="<?= App::$urlPath;?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/estilo.css" rel="stylesheet">
+
+    <link href="<?= App::$urlPath;?>/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="<?= App::$urlPath;?>/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+
     <link href="<?= App::$urlPath;?>/fontawesome/css/all.css" rel="stylesheet">
+
+    <script src="<?= App::$urlPath;?>/owlcarousel/assets/vendors/jquery.min.js"></script>
+    <script src="<?= App::$urlPath;?>/owlcarousel/owl.carousel.js"></script>
+
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({
             google_ad_client: "ca-pub-9226700858522421",

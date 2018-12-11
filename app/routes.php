@@ -39,6 +39,7 @@ Route::addRoute('GET' , '/torneos/finalizar-torneo'                            ,
 Route::addRoute('GET' , '/torneos/reiniciar-torneo'                            , 'TorneoController@reiniciarTorneo');
 Route::addRoute('GET' , '/torneos/generar-fixture'                             , 'TorneoController@generarFixture');
 Route::addRoute('GET' , '/torneos/ver-fixture-completo'                        , 'TorneoController@verFixtureCompleto');
+Route::addRoute('GET' , '/torneos/ver-fixture-torneo-completo'                 , 'TorneoController@verFixtureTorneoCompleto');
 Route::addRoute('POST', '/torneos/{torneo}/{fase}/agregar-ficha-partido'       , 'TorneoController@agregarFichaPartido');
 Route::addRoute('GET' , '/torneos/{torneo}/{fase}/{partido}'                   , 'TorneoController@verPartido');
 Route::addRoute('GET' , '/ver-proxima-fecha'                                   , 'TorneoController@verProximaFecha');

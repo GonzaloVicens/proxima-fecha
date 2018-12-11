@@ -23,9 +23,6 @@ $torneo->actualizar();
                     <span class="d-block font-weight-normal colorGris2 h4 mb-2"><i class="fas fa-trophy"></i> <?= $torneo->getDescrTipoTorneo()?></span>
                     <span class=""><?= $torneo->getNombre()?></span>
                 </h2>
-
-
-                <h2 class="mb-3 pfgreen h2"></h2>
                 <h4 class="mb-3 h3 naranjaFecha">Fixture Completo</h4>
             </div>
 

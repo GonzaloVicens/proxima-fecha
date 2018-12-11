@@ -325,6 +325,23 @@ class TorneoController
 
     }
 
+    public function verFixtureTorneoCompleto()
+    {
+        $torneo = Session::get('torneo');
+        View::render('web/ver-fixture-torneo-completo',compact('torneo'), 3);
+
+        /*
+        if (Session::has("torneo")) {
+            $torneo = Session::get('torneo');
+            $torneo ->actualizar();
+            View::render('web/ver-fixture-torneo-completo',compact('torneo'), 3);
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };*/
+
+    }
+
 
     public function editarOrganizadores()
     {
