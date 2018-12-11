@@ -586,9 +586,9 @@ class Torneo
             for( $i = 0; $i < $cantidadPartidos ; $i++) {
                 $organizadorRandom = mt_rand(0, count($this->organizadores) - 1);
                 if ($faseACrear == 1) {
-                    $nuevaFase->insertarPartido($this->equipos[$i], $this->equipos[$i + $cantidadPartidos], $this->organizadores[$organizadorRandom], $this->sede_id);
+                    $nuevaFase->insertarPartido($this->equipos[$i], $this->equipos[$i + $cantidadPartidos], $this->organizadores[$organizadorRandom], $nuevaFase->getFecha(), $this->sede_id);
                 }else{
-                    $nuevaFase->insertarPartido(0 , 0, $this->organizadores[$organizadorRandom], $this->sede_id);
+                    $nuevaFase->insertarPartido(0 , 0, $this->organizadores[$organizadorRandom], $nuevaFase->getFecha(), $this->sede_id);
                 }
             }
             $faseACrear++;
