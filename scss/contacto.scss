@@ -1,0 +1,42 @@
+@import "colors.scss";
+@import "fonts.scss";
+@import "mixins.scss";
+
+.contacto{
+
+  form {
+    label {
+      font-weight: $font-regular-bold;
+      color: $bgcol_verde;
+    }
+
+    a {
+      &.btn-link {
+        color: $bgcol_naranja;
+        &:hover {
+          @include hover-txt($col_gris4);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  i{
+    &.fas {
+      &.fa-envelope {
+
+        &:before {
+          @include icon-in-circle($bgcol_verde3, #ebebeb);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  //styles here
+}
+
+@media (min-width: 992px) {
+  //styles here
+}

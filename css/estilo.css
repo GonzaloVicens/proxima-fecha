@@ -1011,7 +1011,7 @@ nav {
 .registro .cancel {
   color: #ff8c00; }
   .registro .cancel:hover {
-    color: #dc3545;
+    color: #666666;
     transition: color .2s ease-in-out;
     text-decoration: none; }
 .registro label {
@@ -1255,6 +1255,8 @@ section.portada {
 .fixture-torneo-completo .equipo_container {
   margin: 20px;
   width: 220px; }
+.fixture-torneo-completo owl-item.active {
+  z-index: 99; }
 .fixture-torneo-completo .torneo_equipo {
   border: 1px solid grey;
   width: 100%;
@@ -1311,7 +1313,7 @@ section.portada {
   position: relative;
   text-align: right;
   z-index: 9999 !important; }
-  .fixture-torneo-completo .octavos.llave_b .equipo_container:nth-child(even):after {
+  .fixture-torneo-completo .octavos.llave_b .equipo_container:nth-child(even):before {
     content: '';
     border: 3px solid orange;
     border-right: none;
@@ -1366,33 +1368,50 @@ section.portada {
     z-index: -1; }
 .fixture-torneo-completo .final {
   z-index: 999; }
-.fixture-torneo-completo .semifinal.llave_a .equipo_container {
-  position: relative; }
-  .fixture-torneo-completo .semifinal.llave_a .equipo_container:nth-child(even):after {
-    content: '';
-    border: none;
-    border-top: 3px solid orange;
-    background-color: transparent;
-    width: 300px;
-    display: block;
-    height: 360px;
-    position: absolute;
-    top: 30px;
-    z-index: -1; }
-.fixture-torneo-completo .semifinal.llave_b .equipo_container {
-  position: relative; }
-  .fixture-torneo-completo .semifinal.llave_b .equipo_container:nth-child(even):after {
-    content: '';
-    border: none;
-    border-top: 3px solid orange;
-    background-color: transparent;
-    width: 300px;
-    display: block;
-    height: 360px;
-    position: absolute;
-    right: 0;
-    top: 30px;
-    z-index: -99; }
+.fixture-torneo-completo .semifinal {
+    /*
+    &.llave_a {
+
+      .equipo_container {
+        position: relative;
+
+        &:nth-child(even):after {
+          content:'';
+          border: none;
+          border-top: 3px solid orange;
+          background-color: transparent;
+          width: 300px;
+          display: block;
+          height: 360px;
+          position: absolute;
+          top: 30px;
+          z-index: -1;
+        }
+      }
+    }
+
+    &.llave_b {
+
+      .equipo_container {
+        position: relative;
+
+        &:nth-child(even):after {
+          content:'';
+          border: none;
+          border-top: 3px solid orange;
+          background-color: transparent;
+          width: 300px;
+          display: block;
+          height: 360px;
+          position: absolute;
+          right: 0;
+          top: 30px;
+          z-index: -99;
+        }
+      }
+    }
+
+*/ }
 .fixture-torneo-completo .dieciseisavos, .fixture-torneo-completo .octavos {
   position: relative;
   padding: 30px; }
@@ -1442,5 +1461,26 @@ section.portada {
   width: 100%;
   color: #006B33;
   z-index: 99999; }
+
+.contacto form label {
+  font-weight: 600;
+  color: #006B33; }
+.contacto form a.btn-link {
+  color: #ff8c00; }
+  .contacto form a.btn-link:hover {
+    color: #666666;
+    transition: color .2s ease-in-out;
+    text-decoration: none; }
+.contacto i.fas.fa-envelope:before {
+  font-size: 1.5rem;
+  color: #ebebeb;
+  padding: .5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #18C25D;
+  margin-right: .4rem;
+  display: block;
+  text-align: center; }
 
 /*# sourceMappingURL=estilo.css.map */

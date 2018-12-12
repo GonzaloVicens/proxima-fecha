@@ -6,7 +6,7 @@
   .cancel {
     color: $bgcol_naranja;
     &:hover {
-      @include hover-txt(#dc3545);
+      @include hover-txt($col_gris4);
       text-decoration: none;
     }
   }

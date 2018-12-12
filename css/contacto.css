@@ -1,18 +1,13 @@
-.registro .cancel {
+.contacto form label {
+  font-weight: 600;
+  color: #006B33; }
+.contacto form a.btn-link {
   color: #ff8c00; }
-  .registro .cancel:hover {
+  .contacto form a.btn-link:hover {
     color: #666666;
     transition: color .2s ease-in-out;
     text-decoration: none; }
-.registro label {
-  color: #666666; }
-.registro .terminos_condiciones {
-  font-size: .8rem;
-  margin: 0 .8em 1.5em .5em; }
-.registro .rta-validacion {
-  font-style: italic;
-  margin-left: .5rem; }
-.registro i.fas.fa-user:before {
+.contacto i.fas.fa-envelope:before {
   font-size: 1.5rem;
   color: #ebebeb;
   padding: .5rem;
@@ -24,4 +19,4 @@
   display: block;
   text-align: center; }
 
-/*# sourceMappingURL=registro.css.map */
+/*# sourceMappingURL=contacto.css.map */

@@ -8,6 +8,13 @@
     margin:20px;
     width:220px;}
 
+  owl-item {
+
+    &.active {
+      z-index: 99;
+    }
+  }
+
   .torneo_equipo {
     border:1px solid grey;
     width:100%;
@@ -100,7 +107,7 @@
         text-align: right;
         z-index: 9999 !important;
 
-        &:nth-child(even):after {
+        &:nth-child(even):before {
           content:'';
           border: 3px solid orange;
           border-right: none;
@@ -192,7 +199,7 @@
   }
 
   .semifinal {
-
+    /*
     &.llave_a {
 
       .equipo_container {
@@ -234,7 +241,7 @@
       }
     }
 
-
+*/
   }
 
 

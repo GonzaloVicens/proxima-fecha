@@ -18,28 +18,29 @@ use Proyecto\Core\App;
             <div class="col-md-2">
                 <p class="h5 mb-3">Organizadores</p>
                 <ul class="list-unstyled fontSize14">
-                    <li class="mb-3"><a href="#" class="text-white">Organizar un Torneo</a></li>
-                    <li class="mb-3"><a href="#" class="text-white">Registrarme</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-white">Organizar un Torneo</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/contacto" class="text-white">Contacto</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/registrarse" class="text-white">Registrarme</a></li>
                     <li class="mb-3"><a href="#" class="text-white">Ingresar</a></li>
-                    <li class="mb-3"><a href="#" class="text-white">Gratuidad del Serivicio</a></li>
                 </ul>
             </div>
             <div class="col-md-2">
                 <p class="h5 mb-3">Jugadores</p>
                 <ul class="list-unstyled fontSize14">
                     <li class="mb-3"><a href="#" class="text-white">Buscar Campeonato</a></li>
-                    <li class="mb-3"><a href="#" class="text-white">Registrarme</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/contacto" class="text-white">Contacto</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/registrarse" class="text-white">Registrarme</a></li>
                     <li class="mb-3"><a href="#" class="text-white">Ingresar</a></li>
                 </ul>
             </div>
             <div class="col-md-3">
                 <p class="h5 mb-3">Preguntas Frecuentes</p>
                 <ul class="list-unstyled fontSize14">
-                    <li class="mb-3"><a href="#" class="text-white">¿Es necesario hacerme un usuario?</a></li>
-                    <li class="mb-3"><a href="#" class="text-white">¿Es gratis el servicio?</a></li>
-                    <li class="mb-3"><a href="#" class="text-white">¿Que tipos de torneo puedo organizar?</a></li>
-                    <li class="mb-3"><a href="#" class="text-white">¿Puedo organizar un campeonato siendo jugador de otro?</a></li>
-                    <li class="mb-3"><a href="#" class="text-white">¿Cuántos campeonatos puedo organizar?</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-white">¿Es necesario hacerme un usuario?</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-white">¿Es gratis el servicio?</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-white">¿Que tipos de torneo puedo organizar?</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-white">¿Puedo organizar un campeonato siendo jugador de otro?</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-white">¿Cuántos campeonatos puedo organizar?</a></li>
                 </ul>
             </div>
             <div class="col-md-2">

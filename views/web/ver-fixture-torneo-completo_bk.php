@@ -25,7 +25,7 @@ use Proyecto\Core\App;
                     <div class="owl-stage">
                     <div class="owl-carousel">
                         <div class="item dieciseisavos llave_a">
-                            <span class='fase_torneo'>OCTAVOS</span>
+                            <span class='fase_torneo'>Llave A - 16avos</span>
                             <div class='equipo_container list-group primero list-group'>
                                 <div class='torneo_equipo list-group-item list-group-item'>Equipo</div>
                                 <div class='torneo_equipo list-group-item list-group-item'>Equipo</div>
@@ -60,7 +60,7 @@ use Proyecto\Core\App;
                             </div>
                         </div>
                         <div class="item octavos llave_a">
-                            <span class='fase_torneo'>CUARTOS</span>
+                            <span class='fase_torneo'>Llave A <br>8avos</span>
                             <div class='equipo_container list-group primero'>
                                 <div class='torneo_equipo list-group-item'>Equipo</div>
                                 <div class='torneo_equipo list-group-item'>Equipo</div>
@@ -79,7 +79,7 @@ use Proyecto\Core\App;
                             </div>
                         </div>
                         <div class="item cuartos llave_a">
-                            <span class='fase_torneo'>SEMIFINAL</span>
+                            <span class='fase_torneo'>Llave A <br>4tos</span>
                             <div class='equipo_container list-group primero'>
                                 <div class='torneo_equipo list-group-item'>Equipo</div>
                                 <div class='torneo_equipo list-group-item'>Equipo</div>
@@ -90,8 +90,87 @@ use Proyecto\Core\App;
                             </div>
                         </div>
                         <div class="item semifinal llave_a">
+                            <span class='fase_torneo'>Llave A <br>Semifinal</span>
+                            <div class='equipo_container list-group unico'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                        </div>
+                        <div class="item final">
                             <span class='fase_torneo'>FINAL</span>
                             <div class='equipo_container list-group unico'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                        </div>
+                        <div class="item semifinal llave_b">
+                            <span class='fase_torneo'>Llave B <br>Semifinal</span>
+                            <div class='equipo_container list-group unico'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                        </div>
+                        <div class="item cuartos llave_b">
+                            <span class='fase_torneo'>Llave B <br>4tos</span>
+                            <div class='equipo_container list-group primero'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group ultimo'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                        </div>
+                        <div class="item octavos llave_b">
+                            <span class='fase_torneo'>Llave B <br>8avos</span>
+                            <div class='equipo_container list-group primero'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group ultimo'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                        </div>
+                        <div class="item dieciseisavos llave_b">
+                            <span class='fase_torneo'>Llave B - 16avos</span>
+                            <div class='equipo_container list-group primero'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group'>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                                <div class='torneo_equipo list-group-item'>Equipo</div>
+                            </div>
+                            <div class='equipo_container list-group'>
                                 <div class='torneo_equipo list-group-item'>Equipo</div>
                                 <div class='torneo_equipo list-group-item'>Equipo</div>
                             </div>
