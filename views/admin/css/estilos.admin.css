@@ -1,0 +1,144 @@
+body{
+    margin:0;
+   
+}
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('../../fonts/roboto-regular-webfont.woff2') format('woff2'),
+    url('../../fonts/roboto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    *{padding:0px;
+    margin:0px;
+    font-family:robotoregular;
+}
+
+
+#todo {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+img {
+    width: 200px;
+    margin:0;
+}
+
+
+#chulengo {
+    padding: 100px;
+}
+
+h1{
+    font-family: robotoregular;
+    text-align: center;
+}
+
+h2{
+        font-family: robotoregular;
+        padding: 1em;
+        text-align: center;
+}
+
+#logo>h1{
+    display: inline-flex;
+    text-align: right;
+    margin-left: 290px;
+}
+
+#logo>h1{
+
+}
+
+#nav{
+	height: auto;	
+	background-color: green;
+	margin: auto;
+    padding:2px 0 2px 0;
+    top: 0;
+    width: 100%;
+}
+
+#nav > ul {
+	display: inline-block;
+	list-style-type: none;
+	color: white;
+}
+
+#nav ul li {
+	margin: 0 1em;
+	padding: 0px ;
+    display: inline;
+	text-align:center;
+	font-family: robotoregular;
+	font-size:20px;	
+	color: white;
+    
+}
+
+#nav ul li a {
+    
+	text-decoration: none;
+	color:white;
+}
+
+	
+#nav ul li a:hover {
+    
+	color:black;
+	background: white;
+	
+}
+
+#todo div {
+    display: block;
+}
+
+form { padding: 50px; width: 400px; } 
+
+label { font-size: 14px; font-family: robotoregular,Arial, Helvetica, sans-serif; color: black; display: block; } 
+
+.campo { margin-bottom: 20px; } 
+
+table {     
+    font-family: robotoregular;
+    font-size: 12px;      
+    width: 100%; 
+    text-align: left;    
+    border-collapse: collapse; 
+    }
+
+th {     
+    font-size: 13px;     
+    font-weight: normal;     
+    padding: 8px;     
+    background: #b9c9fe;
+    border-top: 2px solid;    
+    border-bottom: 1px solid; 
+    color: black; 
+}
+
+td {    
+    padding: 8px;     
+    background: white;     
+    border-bottom: 1px solid black;
+    color: #669;    
+    border-top: 1px solid black ; }
+
+a{
+    text-decoration: none;
+    color:black;
+    margin: 0 5px;
+}
+
+    *{padding:0px;
+    margin:0px;
+    font-family:'robotoregular';
+}
+

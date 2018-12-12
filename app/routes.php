@@ -6,6 +6,11 @@ use Proyecto\Core\Route;
 
 Route::addRoute('GET' , '/'                                                    , 'HomeController@index');
 Route::addRoute('POST', '/'                                                    , 'UsuarioController@loguear');
+Route::addRoute('GET' , '/adminPF'                                             , 'AdminController@login');
+Route::addRoute('POST', '/adminPF'                                             , 'AdminController@loguear');
+Route::addRoute('GET' , '/adminPF/home'                                        , 'AdminController@verHome');
+Route::addRoute('GET' , '/adminPF/desactivar-usuario/{usuario_id}'             , 'AdminController@desactivarUsuario');
+Route::addRoute('GET' , '/adminPF/activar-usuario/{usuario_id}'                , 'AdminController@activarUsuario');
 Route::addRoute('GET' , '/desloguear'                                          , 'UsuarioController@desloguear');
 Route::addRoute('GET' , '/usuarios/notificaciones'                             , 'UsuarioController@notificaciones');
 Route::addRoute('GET' , '/usuarios/{usuario_id}'                               , 'UsuarioController@ver');
