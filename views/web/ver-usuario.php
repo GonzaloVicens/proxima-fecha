@@ -77,19 +77,25 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
             <div class="col-md-12 mb-3">
                 <h2>Acciones</h2>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-3 text-center">
+                <a href="<?= App::$urlPath;?>/usuarios/crear-sede" class="d-block accion h-16rem border  m-auto w-75 rounded py-4 shadow-sm">
+                    <h3 class="h4">Crear Sede</h3>
+                    <div class="sede"></div>
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
                 <a href="<?= App::$urlPath;?>/usuarios/crear-torneo" class="d-block accion h-16rem border  m-auto w-75 rounded py-4 shadow-sm">
                     <h3 class="h4">Crear Torneo</h3>
                     <div class="copa"></div>
                 </a>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-3 text-center">
                 <div id='agregar_equipo' class="accion h-16rem border m-auto w-75 rounded py-4 shadow-sm">
                     <h3 class="h4">Crear Equipo</h3>
                     <div class="escudo"></div>
                 </div>
             </div>
-            <div class="col-md-4 text-center">
+             <div class="col-md-3 text-center">
                 <div id='buscar' class="accion h-16rem border m-auto w-75 rounded py-4 shadow-sm">
                     <h3 class="h4">Buscar</h3>
                     <div class="buscar"></div>

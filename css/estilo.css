@@ -193,11 +193,11 @@
 .h-16rem {
   height: 16rem; }
 
-.copa, .escudo, .buscar {
+.sede, .copa, .escudo, .buscar {
   height: 10rem;
   border-radius: 10px; }
 
-.copa::before, .escudo::before, .buscar::before {
+.sede::before, .copa::before, .escudo::before, .buscar::before {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -206,7 +206,7 @@
   color: rgba(244, 183, 70, 0.8);
   font-size: 7rem; }
 
-.accion:hover .copa::before, .accion:hover .escudo::before, .accion:hover .buscar::before {
+.accion:hover .sede::before, .accion:hover .copa::before, .accion:hover .escudo::before, .accion:hover .buscar::before {
   color: #f4b746; }
 
 a.accion, div.accion {
@@ -226,6 +226,9 @@ a.accion, div.accion {
     text-decoration: none; }
   a.accion div:hover, div.accion div:hover {
     text-decoration: none; }
+
+.sede::before {
+  content: '\f015'; }
 
 .copa::before {
   content: '\f091'; }

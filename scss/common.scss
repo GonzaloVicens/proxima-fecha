@@ -289,13 +289,13 @@ $font-size-1-3rem: 1.3rem;
   height: 16rem;
 }
 
-.copa, .escudo, .buscar{
+.sede, .copa, .escudo, .buscar{
   height: 10rem;
   border-radius: 10px;
 
 }
 
-.copa::before, .escudo::before, .buscar::before{
+.sede, .copa::before, .escudo::before, .buscar::before{
   @include flexcenter;
   height: 10rem;
   font-family: $FA;
@@ -303,7 +303,7 @@ $font-size-1-3rem: 1.3rem;
   font-size: 7rem;
 }
 
-.accion:hover .copa::before, .accion:hover .escudo::before, .accion:hover .buscar::before{
+.accion:hover .sede::before,.accion:hover .copa::before, .accion:hover .escudo::before, .accion:hover .buscar::before{
   color: rgba(244, 183, 70, 1);
 
 }
@@ -336,6 +336,11 @@ a.accion, div.accion {
     text-decoration: none;
   }
 }
+
+.sede::before{
+  content:'\f015';
+}
+
 .copa::before{
   content:'\f091';
 }
