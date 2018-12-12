@@ -609,9 +609,9 @@ class Partido
             }
 
             Partido::ActualizarPartidoFase($this->torneo_id, $this->fase_id  ,  $this->partido_id,  $ganador );
-
         }
 
+        Torneo::FinalizarTorneo($this->torneo_id);
     }
 
     public static function ActualizarPartidoFase($torneo , $fase , $partido, $equipo ){

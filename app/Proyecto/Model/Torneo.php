@@ -1111,5 +1111,15 @@ class Torneo
         $stmt->execute(['torneo_id' => $torneo]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public static function FinalizarTorneo ($torneo) {
+        $query = "SELECT 'X' FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND JUGADO = 'N' ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $torneo]);
+        if (!$stmt->fetch(\PDO::FETCH_ASSOC)){
+            Torneo::actualizarEstadoTorneo($torneo, "F");
+        }
+    }
+
 }
 
