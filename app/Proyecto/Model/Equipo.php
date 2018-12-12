@@ -254,9 +254,9 @@ class Equipo
         while ($a = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             echo "<tr><td>$a[EQUIPO_ID]</td><td>$a[NOMBRE]</td><td>$a[CAPITAN_ID]</td><td>$a[ACTIVOSTRING]</td>";
             if ($a['ACTIVO'] == 1) {
-                echo "<td><a title='Inactivar $a[EQUIPO_ID]' href='php/equipo.desactivar.php?id=$a[EQUIPO_ID]'>Inactivar</a></td>";
+                echo "<td><a title='Inactivar $a[EQUIPO_ID]' href='desactivar-equipo/$a[EQUIPO_ID]'>Inactivar</a></td>";
             } else {
-                echo "<td><a title='Activar $a[EQUIPO_ID]' href='php/equipo.activar.php?id=$a[EQUIPO_ID]'>Activar</a></td>";
+                echo "<td><a title='Activar $a[EQUIPO_ID]' href='activar-equipo/$a[EQUIPO_ID]'>Activar</a></td>";
             }
             echo "</tr>";
         };

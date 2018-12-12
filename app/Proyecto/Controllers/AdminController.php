@@ -9,6 +9,7 @@
 
 namespace Proyecto\Controllers;
 use Proyecto\Model\Usuario;
+use Proyecto\Model\Equipo;
 use Proyecto\View\View;
 use Proyecto\Session\Session;
 use Proyecto\Core\App;
@@ -68,8 +69,48 @@ class AdminController //implements JsonSerializable
                 Usuario::ActualizarEstado($usuario_id, "1");
             };
         };
-        header("Location: ../index.php?c=equipos" );
+        header('Location: ' . App::$urlPath .'/adminPF/home');
 
     }
+
+    public function desactivarUsuario(){
+        $routeParams = Route::getRouteParams();
+        $usuario_id = $routeParams['usuario_id'];
+
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
+            if(isset($usuario_id) && !empty($usuario_id)) {
+                Usuario::ActualizarEstado($usuario_id, "0");
+            };
+        };
+        header('Location: ' . App::$urlPath .'/adminPF/home');
+
+    }
+
+    public function activarEquipo(){
+        $routeParams = Route::getRouteParams();
+        $equipo_id = $routeParams['equipo_id'];
+
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
+            if(isset($equipo_id) && !empty($equipo_id)) {
+                Equipo::ActualizarEstado($equipo_id, "1");
+            };
+        };
+        header('Location: ' . App::$urlPath .'/adminPF/home');
+
+    }
+
+    public function desactivarEquipo(){
+        $routeParams = Route::getRouteParams();
+        $equipo_id = $routeParams['equipo_id'];
+
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
+            if(isset($equipo_id) && !empty($equipo_id)) {
+                Equipo::ActualizarEstado($equipo_id, "0");
+            };
+        };
+        header('Location: ' . App::$urlPath .'/adminPF/home');
+
+    }
+
 }
 
