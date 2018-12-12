@@ -11,6 +11,8 @@ Route::addRoute('POST', '/adminPF'                                             ,
 Route::addRoute('GET' , '/adminPF/home'                                        , 'AdminController@verHome');
 Route::addRoute('GET' , '/adminPF/desactivar-usuario/{usuario_id}'             , 'AdminController@desactivarUsuario');
 Route::addRoute('GET' , '/adminPF/activar-usuario/{usuario_id}'                , 'AdminController@activarUsuario');
+Route::addRoute('GET' , '/adminPF/desactivar-equipo/{equipo_id}'               , 'AdminController@desactivarEquipo');
+Route::addRoute('GET' , '/adminPF/activar-equipo/{equipo_id}'                  , 'AdminController@activarEquipo');
 Route::addRoute('GET' , '/desloguear'                                          , 'UsuarioController@desloguear');
 Route::addRoute('GET' , '/usuarios/notificaciones'                             , 'UsuarioController@notificaciones');
 Route::addRoute('GET' , '/usuarios/{usuario_id}'                               , 'UsuarioController@ver');
@@ -115,4 +117,4 @@ Route::addRoute('POST', '/abm/abm_articulos/volver-a-editar', 'ABMController@ver
 Route::addRoute('POST', '/abm/abm_articulos/eliminar', 'ABMController@eliminarArticuloPost');
 Route::addRoute('POST', '/abm/abm_alimentos/eliminar', 'ABMController@eliminarAlimentoPost');
 
-*/
+ */
