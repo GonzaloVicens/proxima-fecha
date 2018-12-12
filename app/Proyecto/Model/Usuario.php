@@ -87,6 +87,28 @@ class Usuario
     }
 
 
+    /**
+     * Usuario constructor por Mail.
+     * @param string $mail
+     * @param null $pwd
+     */
+    public static function getDatosUsuarioPorMail($email)
+    {
+        $rta = [];
+        $rta['USUARIO_ID'] = " ";
+        $rta['NOMBRE'] = " ";
+
+        $query = "SELECT USUARIO_ID , NOMBRE , APELLIDO FROM USUARIOS WHERE EMAIL = :email";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['email'=> $email]);
+        if($datos = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            $rta['USUARIO_ID'] = $datos['USUARIO_ID'];
+            $rta['NOMBRE'] = $datos['NOMBRE'] . " " . $datos['APELLIDO'];
+        }
+        return $rta;
+    }
+
+
 
     /**
      * Valida el usuario instanciado existe en la base de datos y está activo;
@@ -300,11 +322,13 @@ class Usuario
      * Además actualiza la contraseña del usuario con una temporal hasta que el usuario decida cambiarla
      */
 
-    public static function EnviarPassword ($usuario_id){
-        $usuarioOlvidado = new Usuario($usuario_id);
+    public static function EnviarPassword ($email ){
+        $usuarioOlvidado = Usuario::getDatosUsuarioPorMail ($email );
 
-        $destinoMail = $usuarioOlvidado->getEmail();
-        $destinoNombre = $usuarioOlvidado->getNombreCompleto();
+        $destinoMail = $email;
+        $usuario_id = $usuarioOlvidado['USUARIO_ID'];
+        $destinoNombre = $usuarioOlvidado['NOMBRE'];
+
         //genero una nueva clave de 8 digitos;
         $clave = "PF";
         for ($i = 0; $i <= 8 ; $i++) {
@@ -381,6 +405,18 @@ class Usuario
         $query = "SELECT 'X' FROM USUARIOS WHERE USUARIO_ID = :usuario_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $usuario_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+    /**
+     * Verifica en la base de datos si existe el mail pasado por parámetro
+     * @param $usuario_id
+     * @return mixed
+     */
+    public static function existeMail ($eMail){
+        $query = "SELECT 'X' FROM USUARIOS WHERE EMAIL = :email";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['email' => $eMail]);
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 

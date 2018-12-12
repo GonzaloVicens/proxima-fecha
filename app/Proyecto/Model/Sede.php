@@ -71,23 +71,34 @@ class Sede
         }
     }
 
-    public static function CrearSede($nombre, $pais_id, $provincia_id, $codigo_postal, $calle, $altura, $telefono, $detalles){
+    public static function CrearSede($inputs, $duenio){
         $sede= [
-            'nombre' => $nombre,
-            'pais_id' => $pais_id,
-            'provincia_id' => $provincia_id,
-            'codigo_postal'   =>  $codigo_postal,
-            'calle'   =>  $calle,
-            'altura' => $altura,
-            'telefono' => $telefono,
-            'detalles' => $detalles
+            'nombre' => $inputs['nombre'],
+            'pais_id' => 'ARG',
+            'provincia_id' => $inputs['provincia'],
+            'codigo_postal'   =>  $inputs['postal'],
+            'calle'   =>  $inputs['calle'],
+            'altura' => $inputs['altura'],
+            'telefono' => $inputs['telefono'],
+            'detalles' => $inputs['detalles']
         ];
 
         $script = "INSERT INTO SEDES VALUES ( null, :nombre, :pais_id, :provincia_id, :codigo_postal, :calle, :altura, :telefono, :detalles)";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($sede)) {
-            $idSede= DBConnection::getConnection()->lastInsertId();
-            return $idSede;
+            $sede_id= DBConnection::getConnection()->lastInsertId();
+
+            $organizador= [
+                'sede_id' => $sede_id,
+                'usuario_id'   =>  $duenio
+            ];
+
+            $script = "INSERT INTO DUENOS VALUES (:sede_id, :usuario_id, 1)";
+            $stmt = DBConnection::getStatement($script );
+            $stmt->execute($organizador);
+
+
+            return $sede_id;
         } else {
             throw new SedeNoGrabadaException("Error al grabar la sede.");
         }
@@ -179,5 +190,22 @@ class Sede
             echo "<option value='" . $datos['SEDE_ID'] . "' ". $selected. ">" . $datos['NOMBRE']  . "</option>";
         }       ;
     }
+
+    public static function printOptionsProvincias($elegida = null){
+        $query = "SELECT PROVINCIA_ID , PROVINCIA FROM PROVINCIA WHERE PAIS = 'ARG'";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute();
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+
+            if ($datos['PROVINCIA_ID'] == $elegida) {
+                $selected = " selected ";
+            } else {
+                $selected = " ";
+            }
+            echo "<option value='" . $datos['PROVINCIA_ID'] . "' ". $selected. ">" . $datos['PROVINCIA']  . "</option>";
+        }       ;
+    }
+
+
 
 }

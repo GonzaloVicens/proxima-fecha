@@ -107,7 +107,12 @@ class FormValidator
                 break;
 
             case 'email':
-                return $this->validarCampoEspecifico($campo, '/^([\w\.]{3,}@[a-z0-9\-]{3,}(\.[a-z]{2,4})+)?$/i', "El campo no es un correo válido");
+                $rta =  $this->validarCampoEspecifico($campo, '/^([\w\.]{3,}@[a-z0-9\-]{3,}(\.[a-z]{2,4})+)?$/i', "El campo no es un correo válido");
+                if (!$rta) {
+                    return $this->validarEMailExistente($campo);
+                } else{
+                    return $rta ;
+                }
 
                 break;
 
@@ -201,6 +206,19 @@ class FormValidator
         $rta = "";
         if (Usuario::existeUsuario($usuario)){
             $rta = "El usuario elegido ya existe en la base de datos";
+        }
+        return $rta;
+    }
+
+    /**
+     * Valida si el mail que se pasa por parámetro existe en la base de datos.
+     * @param $usuario
+     * @return string
+     */
+    public function validarEMailExistente($eMail){
+        $rta = "";
+        if (Usuario::existeMail($eMail)){
+            $rta = "El correo elegido ya existe en la base de datos";
         }
         return $rta;
     }

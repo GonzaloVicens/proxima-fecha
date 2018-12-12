@@ -21,6 +21,8 @@ Route::addRoute('POST', '/usuarios/agregarMensaje'                             ,
 Route::addRoute('POST', '/usuarios/crear-equipo'                               , 'EquipoController@registrar');
 Route::addRoute('GET' , '/usuarios/crear-torneo'                               , 'UsuarioController@verCrearTorneo');
 Route::addRoute('POST', '/usuarios/crear-torneo'                               , 'TorneoController@registrar');
+Route::addRoute('GET' , '/usuarios/crear-sede'                                 , 'UsuarioController@verCrearSede');
+Route::addRoute('POST', '/usuarios/crear-sede'                                 , 'SedeController@registrar');
 Route::addRoute('GET' , '/usuarios/editar-datos'                               , 'UsuarioController@verEditarUsuario');
 Route::addRoute('POST', '/usuarios/editar-datos'                               , 'UsuarioController@editarUsuario');
 Route::addRoute('POST', '/usuarios/actualizarFotoPerfil'                       , 'UsuarioController@actualizarFotoPerfil');
@@ -34,6 +36,8 @@ Route::addRoute('GET' , '/equipos'                                             ,
 Route::addRoute('GET' , '/torneos/{torneo_id}'                                 , 'TorneoController@ver');
 Route::addRoute('GET' , '/torneos/editar-torneo'                               , 'TorneoController@editarTorneo');
 Route::addRoute('POST', '/torneos/editar-torneo'                               , 'TorneoController@actualizar');
+Route::addRoute('GET' , '/sedes/editar-sede'                                   , 'SedeController@editarSede');
+Route::addRoute('POST', '/sedes/editar-sede'                                   , 'SedeController@actualizar');
 Route::addRoute('GET' , '/torneos/editar-organizadores'                        , 'TorneoController@editarOrganizadores');
 Route::addRoute('POST', '/torneos/agregar-organizador'                         , 'TorneoController@agregarOrganizador');
 Route::addRoute('POST', '/torneos/editar-organizador'                          , 'TorneoController@editarOrganizador');

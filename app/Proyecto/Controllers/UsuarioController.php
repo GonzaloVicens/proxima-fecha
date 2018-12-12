@@ -133,20 +133,20 @@ class UsuarioController
     public function recuperarPassword()
     {
         $inputs = Request::getData();
-        $usuario_id = $inputs ["usuario"];
+        $email = $inputs ["email"];
         $error = "";
-        if (isset($usuario_id ) && !empty($usuario_id )) {
-            if (!Usuario::existeUsuario ($usuario_id)){
-                $error = "El usuario no existe en el sistema";
+        if (isset($email ) && !empty($email )) {
+            if (!Usuario::existeMail ($email )){
+                $error = "El correo no existe en el sistema";
             }
         } else {
-            $error = "No ha ingresado el usuario";
+            $error = "No ha ingresado correo";
         }
         if ($error){
             Session::set('errorLogin', $error);
 
         } else {
-            $respuesta = Usuario::EnviarPassword($usuario_id );
+            $respuesta = Usuario::EnviarPassword($email  );
             Session::set('errorLogin', $respuesta );
             Session::set('mailEnviado',"Y");
         }

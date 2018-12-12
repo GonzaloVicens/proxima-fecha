@@ -24,11 +24,11 @@ if (Session::has("errorLogin")){
                 <h2 class="mt-5 mb-4 pfgreen"><i class="fas fa-user"></i> Recuperar Contraseña</h2>
                 <form class='formRegistro' action="<?= App::$urlPath;?>/usuarios/recuperar-password"  method="post">
                     <div class="form-group">
-                       <label for="usuario">Usuario</label>
-                       <input type="text" <?= "value='$usuario'"?> class="form-control" name="usuario" id="usuario" placeholder="Elige tu usuario">
+                       <label for="email">E-Mail</label>
+                       <input type="text" class="form-control" name="email" id="email" placeholder="Ingresa tu correo">
                         <?php
-                        if (isset($camposError['usuario'])) {
-                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['usuario'] . "</small><p>";
+                        if (isset($camposError['email'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['email'] . "</small><p>";
                         }
                         ?>
                     </div>
