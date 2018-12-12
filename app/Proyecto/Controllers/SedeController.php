@@ -5,7 +5,6 @@ use Proyecto\View\View;
 use Proyecto\Core\Route;
 use Proyecto\Core\Request;
 use Proyecto\Model\Equipo;
-use Proyecto\Model\Torneo;
 use Proyecto\Model\Sede;
 use Proyecto\Model\Usuario;
 use Proyecto\Model\Partido;
@@ -26,8 +25,8 @@ class SedeController
         if (Sede::existeSede($sede_id)) {
             $sede = new Sede($sede_id);
             Session::set("sede",$sede);
-            $dueniosActivos= $sede->getODueniosActivos();
-            View::render('web/ver-sede',compact('sede','dueniosActivos'), 3);
+            $duenosActivos= $sede->getDuenosActivos();
+            View::render('web/ver-sede',compact('sede','duenosActivos'), 3);
         } else{
             View::render('web/error404',[], 2);
         };
@@ -48,14 +47,12 @@ class SedeController
                 Session::set("camposError", $formValidator->getCamposError());
                 Session::set("campos", $formValidator->getCampos());
                 header('Location: ' . App::$urlPath . '/usuarios/crear-sede');
-
             } else {
                 Session::clearValue("camposError");
                 Session::clearValue("campos");
                 $usuario = Session::get('usuario');
                 $sede_id = Sede::CrearSede($inputs, $usuario->getUsuarioId());
                 header('Location: ' . App::$urlPath . '/sedes/' . $sede_id);
-
             };
         }else {
             header('Location: ' . App::$urlPath . '/error404');
@@ -63,61 +60,15 @@ class SedeController
     }
 
 
-    public function verProximaFecha()
+
+
+
+    public function editarSede()
     {
         if (Session::has("usuario")) {
             $usuario = Session::get('usuario');
             $usuario_id = $usuario->getUsuarioID();
-            View::render('web/ver-proxima-fecha',compact('usuario','usuario_id'), 3);
-
-        } else {
-            header('Location: ' . App::$urlPath . '/error404');
-        };
-    }
-
-
-
-
-    public function verAgregarEquipos()
-    {
-        $puedeAgregarEquipos = false;
-        if (Session::has("usuario")) {
-            $usuario = Session::get('usuario');
-            if (Session::has("torneo")) {
-                $torneo = Session::get('torneo');
-                $torneo->actualizar();
-                $puedeAgregarEquipos = $usuario->puedeAgregarEquiposEnTorneo($torneo->getTorneoID());
-            }
-        };
-
-        if ($puedeAgregarEquipos ){
-            if (Session::has('resultados')){
-                $resultados = Session::get('resultados');
-                Session::clearValue('resultados');
-            }
-            if (Session::has('inputsBusqueda')){
-                $inputsBusqueda = Session::get('inputsBusqueda');
-                Session::clearValue('inputsBusqueda');
-                Session::set('inputsBuscados',$inputsBusqueda);
-            } else {
-                $inputsBusqueda = [];
-                $inputsBusqueda['nombre']= "";
-                $inputsBusqueda['id']= "";
-            }
-            View::render('web/agregar-equipos',compact('usuario','torneo','resultados','inputsBusqueda' ), 3);
-        } else {
-            header('Location: ' . App::$urlPath . '/error404');
-        };
-    }
-
-
-    public function editarTorneo()
-    {
-        if (Session::has("usuario")) {
-            $usuario = Session::get('usuario');
-            $usuario_id = $usuario->getUsuarioID();
-            View::render('web/editar-torneo',compact('usuario','usuario_id'), 3);
-
+            View::render('web/editar-sede',compact('usuario','usuario_id'), 3);
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         };
@@ -131,7 +82,7 @@ class SedeController
     {
         if (Session::has("usuario")) {
             $inputs = Request::getData();
-            $torneo_id = $inputs['torneo_id'];
+            $sede_id = $inputs['sede_id'];
 
             $formValidator = new FormValidator($inputs, true);
 
@@ -139,7 +90,7 @@ class SedeController
             if (!empty($formValidator->getCamposError())) {
                 Session::set("camposError", $formValidator->getCamposError());
                 Session::set("campos", $formValidator->getCampos());
-                header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
+                header('Location: ' . App::$urlPath . '/usuarios/crear-sede');
 
             } else {
                 if (!isset($inputs['D']) &&
@@ -154,13 +105,13 @@ class SedeController
                     $camposError = [];
                     $camposError ['dias'] = 'Debe elegir al menos un día';
                     Session::set("camposError", $camposError);
-                    header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
+                    header('Location: ' . App::$urlPath . '/usuarios/crear-sede');
                 } else {
                     Session::clearValue("camposError");
                     Session::clearValue("campos");
                     $usuario = Session::get('usuario');
-                    Torneo::ActualizarTorneo($inputs);
-                    header('Location: ' . App::$urlPath . '/torneos/' . $torneo_id);
+                    Sede::ActualizarSede($inputs);
+                    header('Location: ' . App::$urlPath . '/sedes/' . $sede_id);
                 }
             };
         } else {
@@ -175,7 +126,7 @@ class SedeController
 
 
     /**
-     * Método que controla la eliminazión de un torneo
+     * Método que controla la eliminazión de un sede
      */
     public function eliminar(){
         if (Session::has("usuario")) {
@@ -184,17 +135,17 @@ class SedeController
 
             $inputs = Request::getData();
 
-            $torneo_id = $inputs['torneo_id'];
+            $sede_id = $inputs['sede_id'];
             $confirmar = $inputs['confirmar'];
 
             if ($confirmar == "SI"){
-                $torneo = new Torneo($torneo_id);
-                $torneo->eliminarTorneo();
-                Session::clearValue('torneo');
+                $sede = new Sede($sede_id);
+                $sede->eliminarSede();
+                Session::clearValue('sede');
                 $usuario->actualizar();
                 header('Location: ' . App::$urlPath . '/usuarios/'. $usuario_id);
             } ELSE {
-                header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
+                header('Location: ' . App::$urlPath . '/sedes/'. $sede_id);
             }
 
         } else {
@@ -218,42 +169,42 @@ class SedeController
 
         $resultados = Equipo::BuscarEquipos($inputs );
         Session::set('resultados',$resultados);
-        header('Location: ' . App::$urlPath . '/torneos/agregar-equipos');
+        header('Location: ' . App::$urlPath . '/sedes/agregar-equipos');
     }
 
 
     /**
-     * Método que agrega un Equipo en el Torneo
+     * Método que agrega un Equipo en el Sede
      */
     public function agregarEquipo()
     {
         $inputs = Request::getData();
         Session::clearValue("errorAgregarEquipo");
         Session::clearValue("IDAgregarEquipo");
-        $torneo = Session::get('torneo');
+        $sede = Session::get('sede');
         if (isset($inputs ["equipo_id"]) && !empty($inputs ["equipo_id"])) {
             $equipo_id = $inputs ['equipo_id'];
             $nombre = $inputs ['nombre'];
             Session::set("IDAgregarEquipo", $equipo_id );
-            if ($torneo->getLugaresLibres() > 0) {
+            if ($sede->getLugaresLibres() > 0) {
 
-                if ($torneo->existeEquipo($equipo_id)) {
-                    Session::set("errorAgregarEquipo", $nombre  . " ya es un equipo del torneo");
+                if ($sede->existeEquipo($equipo_id)) {
+                    Session::set("errorAgregarEquipo", $nombre  . " ya es un equipo del sede");
                 } else {
                     if (Equipo::existeEquipo($equipo_id)) {
-                        $torneo->insertarEquipo($equipo_id);
-                        Session::set("errorAgregarEquipo", $nombre  . " fue agregado al torneo");
+                        $sede->insertarEquipo($equipo_id);
+                        Session::set("errorAgregarEquipo", $nombre  . " fue agregado al sede");
                     } else {
                         Session::set("errorAgregarEquipo", $equipo_id . " no existe en el sistema");
                     }
                 };
             } else {
-                Session::set("errorAgregarEquipo", "El torneo ya esta lleno");
+                Session::set("errorAgregarEquipo", "El sede ya esta lleno");
             }
         } else {
                 Session::set("errorAgregarEquipo", " Ingrese un equipo");
         }
-        $torneo->actualizar();
+        $sede->actualizar();
         if (Session::has('inputsBuscados')){
             $inputsBusqueda = Session::get('inputsBuscados');
             Session::set('inputsBusqueda',$inputsBusqueda);
@@ -261,43 +212,43 @@ class SedeController
             Session::set('resultados',$resultados);
         }
 
-        header('Location: ' . App::$urlPath . '/torneos/agregar-equipos');
+        header('Location: ' . App::$urlPath . '/sedes/agregar-equipos');
 
     }
 
     /**
-     * Método que elimina un Equipo en el Torneo
+     * Método que elimina un Equipo en el Sede
      */
     public function eliminarEquipo()
     {
         $inputs = Request::getData();
         if (isset($inputs ["equipo_id"]) && !empty($inputs ["equipo_id"])) {
-            $torneo = Session::get('torneo');
+            $sede = Session::get('sede');
             $equipo_id = $inputs ['equipo_id'];
             $origen = $inputs ['origen'];
-            if ($torneo->existeEquipo($equipo_id)) {
-                $torneo->eliminarEquipo($equipo_id);
+            if ($sede->existeEquipo($equipo_id)) {
+                $sede->eliminarEquipo($equipo_id);
             };
         }
-        $torneo->actualizar();
-         header('Location: ' . App::$urlPath . '/torneos/' . $origen);
+        $sede->actualizar();
+         header('Location: ' . App::$urlPath . '/sedes/' . $origen);
 
     }
 
     public function generarFixture(){
-        $torneo = Session::get('torneo');
-        $torneo->actualizar();
-        $torneo->generarFixture();
-        Session::set('torneo',$torneo);
-        header('Location: ' . App::$urlPath . '/torneos/ver-fixture-completo' );
+        $sede = Session::get('sede');
+        $sede->actualizar();
+        $sede->generarFixture();
+        Session::set('sede',$sede);
+        header('Location: ' . App::$urlPath . '/sedes/ver-fixture-completo' );
     }
 
     public function verFixtureCompleto()
     {
-        if (Session::has("torneo")) {
-            $torneo = Session::get('torneo');
-            $torneo ->actualizar();
-            View::render('web/ver-fixture-completo',compact('torneo'), 3);
+        if (Session::has("sede")) {
+            $sede = Session::get('sede');
+            $sede ->actualizar();
+            View::render('web/ver-fixture-completo',compact('sede'), 3);
 
         } else {
             header('Location: ' . App::$urlPath . '/error404');
@@ -305,16 +256,16 @@ class SedeController
 
     }
 
-    public function verFixtureTorneoCompleto()
+    public function verFixtureSedeCompleto()
     {
-        $torneo = Session::get('torneo');
-        View::render('web/ver-fixture-torneo-completo',compact('torneo'), 3);
+        $sede = Session::get('sede');
+        View::render('web/ver-fixture-sede-completo',compact('sede'), 3);
 
         /*
-        if (Session::has("torneo")) {
-            $torneo = Session::get('torneo');
-            $torneo ->actualizar();
-            View::render('web/ver-fixture-torneo-completo',compact('torneo'), 3);
+        if (Session::has("sede")) {
+            $sede = Session::get('sede');
+            $sede ->actualizar();
+            View::render('web/ver-fixture-sede-completo',compact('sede'), 3);
 
         } else {
             header('Location: ' . App::$urlPath . '/error404');
@@ -325,12 +276,12 @@ class SedeController
 
     public function editarOrganizadores()
     {
-        if (Session::has("usuario") && Session::has('torneo')) {
+        if (Session::has("usuario") && Session::has('sede')) {
             $usuario = Session::get('usuario');
-            $torneo = Session::get('torneo');
-            $torneo->actualizar();
-            $organizadores= $torneo->getTodosLosOrganizadores();
-            View::render('web/editar-organizadores',compact('usuario','torneo','organizadores'), 3);
+            $sede = Session::get('sede');
+            $sede->actualizar();
+            $organizadores= $sede->getTodosLosOrganizadores();
+            View::render('web/editar-organizadores',compact('usuario','sede','organizadores'), 3);
 
         } else {
             header('Location: ' . App::$urlPath . '/error404');
@@ -338,25 +289,25 @@ class SedeController
     }
 
     /**
-     * Método que agrega un Organizador en el Torneo
+     * Método que agrega un Organizador en el Sede
      */
     public function agregarOrganizador()
     {
         $inputs = Request::getData();
 
-        if (isset($inputs["torneo_id"]) && !empty($inputs ["torneo_id"]) ){
-            $torneo_id = $inputs ['torneo_id'];
-            $torneo = new Torneo($torneo_id);
+        if (isset($inputs["sede_id"]) && !empty($inputs ["sede_id"]) ){
+            $sede_id = $inputs ['sede_id'];
+            $sede = new Sede($sede_id);
 
             if (isset($inputs ["organizador_id"]) && !empty($inputs ["organizador_id"])) {
 
                 $organizador_id = $inputs ['organizador_id'];
 
-                if ($torneo->existeOrganizador($organizador_id)) {
-                    Session::set("errorAgregarOrganizador", $organizador_id . " ya es un organizador del torneo");
+                if ($sede->existeOrganizador($organizador_id)) {
+                    Session::set("errorAgregarOrganizador", $organizador_id . " ya es un organizador del sede");
                 } else {
                     if (Usuario::existeUsuario($organizador_id)) {
-                        $torneo->insertarOrganizador($organizador_id);
+                        $sede->insertarOrganizador($organizador_id);
                         Session::clearValue("errorAgregarOrganizador");
                     } else {
                         Session::set("errorAgregarOrganizador", $organizador_id . " no existe en el sistema");
@@ -367,34 +318,34 @@ class SedeController
             }
         }
 
-        header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
+        header('Location: ' . App::$urlPath . '/sedes/editar-organizadores');
     }
 
 
     /**
-     * Método que activa/desactiva un Organizador en el Torneo
+     * Método que activa/desactiva un Organizador en el Sede
      */
     public function editarOrganizador()
     {
         $inputs = Request::getData();
 
-        if (isset($inputs["torneo_id"]) && !empty($inputs ["torneo_id"]) ){
-            $torneo_id = $inputs ['torneo_id'];
-            $torneo = new Torneo($torneo_id);
+        if (isset($inputs["sede_id"]) && !empty($inputs ["sede_id"]) ){
+            $sede_id = $inputs ['sede_id'];
+            $sede = new Sede($sede_id);
 
             if (isset($inputs ["organizador_id"]) && !empty($inputs ["organizador_id"])) {
 
                 $organizador_id = $inputs ['organizador_id'];
                 $activo = $inputs ['activo'];
 
-                if (!$torneo->existeOrganizador($organizador_id)) {
-                    Session::set("errorAgregarOrganizador", $organizador_id . " no es un organizador del torneo");
+                if (!$sede->existeOrganizador($organizador_id)) {
+                    Session::set("errorAgregarOrganizador", $organizador_id . " no es un organizador del sede");
                 } else {
-                    if ($torneo->tieneOtrosOrganizadores($organizador_id)) {
-                        $torneo->editarOrganizador($organizador_id, $activo);
+                    if ($sede->tieneOtrosOrganizadores($organizador_id)) {
+                        $sede->editarOrganizador($organizador_id, $activo);
                         Session::clearValue("errorAgregarOrganizador");
                     } else {
-                        Session::set("errorAgregarOrganizador",  "No quedan organizadores en el torneo");
+                        Session::set("errorAgregarOrganizador",  "No quedan organizadores en el sede");
                     }
                 };
             } else {
@@ -402,79 +353,79 @@ class SedeController
             }
         }
 
-      //  header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
+      //  header('Location: ' . App::$urlPath . '/sedes/editar-organizadores');
     }
 
 
 
 
     /**
-     * Método que da por decide la actualización del Torneo
+     * Método que da por decide la actualización del Sede
      */
-    protected function actualizarEstadoTorneo($estado)
+    protected function actualizarEstadoSede($estado)
     {
         if (Session::has("usuario")) {
             $usuario = Session::get('usuario');
             $usuario->actualizar();
 
-            if (Session::has("torneo")) {
-                $torneo = Session::get('torneo');
-                $torneo->actualizar();
+            if (Session::has("sede")) {
+                $sede = Session::get('sede');
+                $sede->actualizar();
 
-                if ($torneo->tieneOrganizadorActivo($usuario->getUsuarioID())) {
+                if ($sede->tieneOrganizadorActivo($usuario->getUsuarioID())) {
                     switch ($estado){
                         case "C":
-                            $torneo->comenzar();
+                            $sede->comenzar();
                             break;
                         case "F":
-                            $torneo->finalizar();
+                            $sede->finalizar();
                             break;
                         case "R":
-                            $torneo->reiniciar();
+                            $sede->reiniciar();
                             break;
                     }
                 }
             };
         }
 
-        $torneo->actualizar();
-        header('Location: ' . App::$urlPath . '/torneos/' . $torneo->getTorneoID());
+        $sede->actualizar();
+        header('Location: ' . App::$urlPath . '/sedes/' . $sede->getSedeID());
 
     }
 
     /**
-     * Método que da por comenzado el Torneo
+     * Método que da por comenzado el Sede
      */
-    public function comenzarTorneo()
+    public function comenzarSede()
     {
-        $this->actualizarEstadoTorneo("C");
+        $this->actualizarEstadoSede("C");
     }
 
     /**
-     * Método que da por finalizado el Torneo
+     * Método que da por finalizado el Sede
      */
-    public function finalizarTorneo()
+    public function finalizarSede()
     {
-        $this->actualizarEstadoTorneo("F");
+        $this->actualizarEstadoSede("F");
     }
 
     /**
-     * Método que da por finalizado el Torneo
+     * Método que da por finalizado el Sede
      */
-    public function reiniciarTorneo()
+    public function reiniciarSede()
     {
-        $this->actualizarEstadoTorneo("R");
+        $this->actualizarEstadoSede("R");
     }
 
 
     public function verPartido(){
 
         $routeParams = Route::getRouteParams();
-        $torneo_id = $routeParams['torneo'];
+        $sede_id = $routeParams['sede'];
         $fase_id = $routeParams['fase'];
         $partido_id = $routeParams['partido'];
-        if (Partido::existePartido($torneo_id, $fase_id, $partido_id)) {
-            $partidoActual = new Partido($torneo_id, $fase_id, $partido_id) ;
+        if (Partido::existePartido($sede_id, $fase_id, $partido_id)) {
+            $partidoActual = new Partido($sede_id, $fase_id, $partido_id) ;
             $local = new Equipo ($partidoActual->getLocalId());
             $visita = new Equipo ($partidoActual->getVisitaId());
             View::render('web/ver-partido',compact('partidoActual', 'local','visita'), 3);
@@ -486,18 +437,18 @@ class SedeController
     public function agregarFichaPartido(){
         $inputs = Request::getData();
 
-        if ( (isset($inputs["torneo"]) && !empty($inputs ["torneo"]) )
+        if ( (isset($inputs["sede"]) && !empty($inputs ["sede"]) )
         &&  (isset($inputs["fase"]) && !empty($inputs ["fase"]) )
         &&  (isset($inputs["partido"]) && !empty($inputs ["partido"]) )
         &&  (isset($inputs["equipo"]) && !empty($inputs ["equipo"]) )
         &&  (isset($inputs["jugador"]) && !empty($inputs ["jugador"]) )
         &&  (isset($inputs["tipo"]) && !empty($inputs ["tipo"]) )){
 
-            $partido = New Partido($inputs["torneo"], $inputs["fase"], $inputs["partido"]);
+            $partido = New Partido($inputs["sede"], $inputs["fase"], $inputs["partido"]);
             $partido->agregarFicha($inputs["tipo"], $inputs["equipo"], $inputs["jugador"]);
         }
 
-        header('Location: ' . App::$urlPath . '/torneos/' . $inputs["torneo"] . "/". $inputs["fase"] ."/". $inputs["partido"]);
+        header('Location: ' . App::$urlPath . '/sedes/' . $inputs["sede"] . "/". $inputs["fase"] ."/". $inputs["partido"]);
 
     }
 }
