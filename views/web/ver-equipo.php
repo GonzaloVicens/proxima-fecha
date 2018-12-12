@@ -53,9 +53,7 @@ if(isset($equipoAMostrar)){
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-miequipo" role="tabpanel" aria-labelledby="nav-miequipo-tab">
-                        <h4 class='pfgreen mt-5 mb-4'>Integrantes del equipo <span class='font-weight-normal'><?=$equipoAMostrar->getNombre()?></span></h4>
                         <?php
-                        $equipoAMostrar->printJugadoresEnUL();
                         if  (Session::has("usuario")){
                             if (! $equipoAMostrar->participaEnTorneo() && $equipoAMostrar->getCapitanID() == Session::get("usuario")->getUsuarioID()) {
                                 ?>
@@ -64,7 +62,7 @@ if(isset($equipoAMostrar)){
                                         <div id="AgregarCompanero">
                                             <div>
                                                 <div id='cabeceraAgregarCompanero'>
-                                                    <h4 class='pfgreen mt-5 mb-4'>Agregar Jugador a tu Equipo</h4>
+                                                    <h4 class='pfgreen mt-5 mb-4'>Agregar Jugador <span class="font-weight-normal">a tu Equipo</span></h4>
                                                 </div>
                                                 <div id='cuerpoAgregarCompanero'>
                                                     <form class='formRegistro d-none' action="agregar-jugador" method="POST">
@@ -94,7 +92,7 @@ if(isset($equipoAMostrar)){
                                                         <div class='DivErrores'>
                                                             <p class="text-danger font-italic ml-5"><?=Session::get("errorAgregarJugador")?></p>
                                                         </div>
-                                                    <?php Session::clearValue('errorAgregarJugador');
+                                                        <?php Session::clearValue('errorAgregarJugador');
                                                     } ?>
                                                 </div>
                                             </div>
@@ -103,6 +101,10 @@ if(isset($equipoAMostrar)){
                                 </div>
                             <?php }
                         }?>
+                        <h4 class='pfgreen mt-5 mb-4'>Integrantes del equipo <span class='font-weight-normal'><?=$equipoAMostrar->getNombre()?></span></h4>
+                        <?php
+                        $equipoAMostrar->printJugadoresEnUL();
+                        ?>
                     </div>
                     <?php if ($estaJugandoTorneo){?>
                         <div class='tab-pane fade ' id='nav-proximafecha' role='tabpanel' aria-labelledby='nav-proximafecha-tab'>

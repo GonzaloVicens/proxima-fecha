@@ -23,7 +23,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
             <div class="col-md-8">
                 <h2 class="mt-5 mb-4 pfgreen"><i class="fas fa-envelope"></i> Contacto</h2>
                 <h3 class="mb-5 text-muted h5 font-weight-normal">Envianos tu consulta, duda o sugerencia. Te responderemos a la brevedad.</h3>
-                <form action="#" enctype="application/x-www-form-urlencoded" method="get">
+                <form action="<?= App::$urlPath;?>/contacto" enctype="application/x-www-form-urlencoded" method="get">
                     <div class="form-group row">
                         <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">

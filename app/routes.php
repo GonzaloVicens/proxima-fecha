@@ -51,6 +51,7 @@ Route::addRoute('POST', '/torneos/{torneo}/{fase}/agregar-ficha-partido'       ,
 Route::addRoute('GET' , '/torneos/{torneo}/{fase}/{partido}'                   , 'TorneoController@verPartido');
 Route::addRoute('GET' , '/ver-proxima-fecha'                                   , 'TorneoController@verProximaFecha');
 Route::addRoute('GET' , '/contacto'                                            , 'HomeController@contacto');
+Route::addRoute('POST', '/contacto'                                            , 'HomeController@contactoEnviar');
 Route::addRoute('GET' , '/preguntas-frecuentes'                                , 'HomeController@preguntasFrecuentes');
 Route::addRoute('GET' , '/registrarse'                                         , 'HomeController@registrarse');
 Route::addRoute('GET' , '/recuperar-password'                                  , 'HomeController@verRecuperarPassword');

@@ -25,7 +25,7 @@ class AdminController //implements JsonSerializable
         Session::clearValue('admin');
         Session::clearValue('logueadoAdmin');
 
-        View::render('admin/login', [], 1);
+        View::render('admin/login', [], 2);
     }
 
 
