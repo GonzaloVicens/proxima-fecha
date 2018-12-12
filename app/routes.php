@@ -9,6 +9,7 @@ Route::addRoute('POST', '/'                                                    ,
 Route::addRoute('GET' , '/adminPF'                                             , 'AdminController@login');
 Route::addRoute('POST', '/adminPF'                                             , 'AdminController@loguear');
 Route::addRoute('GET' , '/adminPF/home'                                        , 'AdminController@verHome');
+Route::addRoute('GET' , '/adminPF/desloguear'                                  , 'AdminController@desloguear');
 Route::addRoute('GET' , '/adminPF/desactivar-usuario/{usuario_id}'             , 'AdminController@desactivarUsuario');
 Route::addRoute('GET' , '/adminPF/activar-usuario/{usuario_id}'                , 'AdminController@activarUsuario');
 Route::addRoute('GET' , '/adminPF/desactivar-equipo/{equipo_id}'               , 'AdminController@desactivarEquipo');

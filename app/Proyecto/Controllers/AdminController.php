@@ -55,6 +55,28 @@ class AdminController //implements JsonSerializable
         };
     }
 
+
+
+    /**
+     * Método que controla el cierre de sesión
+     * @param Request $request
+     */
+    public function desloguear()
+    {
+        Session::clearValue('logueado');
+        Session::clearValue('usuario');
+        Session::clearValue('logueadoAdmin');
+        Session::clearValue('admin');
+        header('Location: ' . App::$urlPath . '/');
+    }
+
+
+
+
+
+
+
+
     public function verHome(){
         $admin = Session::get('admin');
         View::render('admin/home',compact('admin'), 3);
