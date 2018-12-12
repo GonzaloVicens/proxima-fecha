@@ -17,20 +17,20 @@ use Proyecto\Model\Usuario;
         <div class="row">
               <div class="col-md-10">
                 <div>
-                    <h2>Listado de Equipos</h2>
+                    <h2 class="my-5 pfgreen">Listado de Equipos</h2>
                     <?php
                     Equipo::imprimirEquiposEnTabla();
                     ?>
                 </div>
                 <div>
-                    <h2>Listado de Usuarios</h2>
+                    <h2  class="my-5 pfgreen">Listado de Usuarios</h2>
                     <?php
                     Usuario::imprimirUsuariosEnTabla();
                     ?>
                 </div>
             </div>
             <div class="col-md-2">
-                <a href="<?= App::$urlPath . '/adminPF/desloguear'?>" class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> Cerrar Sesion</a>
+                <a href="<?= App::$urlPath . '/adminPF/desloguear'?>" class="btn btn-outline-secondary float-right"><i class="fas fa-door-open"></i> Cerrar Sesion</a>
             </div>
         </div>
     </div>

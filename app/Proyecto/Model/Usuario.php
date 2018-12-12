@@ -523,9 +523,9 @@ class Usuario
         while ($a = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             echo "<tr><td>$a[USUARIO_ID]</td><td>$a[NOMBRE] $a[APELLIDO]</td><td>$a[EMAIL]</td><td>$a[ACTIVOSTRING]</td>";
             if ($a['ACTIVO'] == 1) {
-                echo "<td><a class='fa fa-trash fa-2x' title='Inactivar $a[USUARIO_ID]' href='desactivar-usuario/$a[USUARIO_ID]'>Inactivar</a></td>";
+                echo "<td><a class='text-danger' title='Inactivar $a[USUARIO_ID]' href='desactivar-usuario/$a[USUARIO_ID]'><i class='fas fa-user-slash'></i> Inactivar</a></td>";
             } else {
-                echo "<td><a class='fa fa-pencil fa-2x' title='Activar $a[USUARIO_ID]' href='activar-usuario/$a[USUARIO_ID]'>Activar</a></td>";
+                echo "<td><a class='text-success' title='Activar $a[USUARIO_ID]' href='activar-usuario/$a[USUARIO_ID]'><i class='fas fa-user-check'></i> Activar</a></td>";
             }
             echo "</tr>";
         };
