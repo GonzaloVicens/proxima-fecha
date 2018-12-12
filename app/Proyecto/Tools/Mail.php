@@ -3,7 +3,7 @@ namespace Proyecto\Tools;
 
 class Mail{
 
-    public static function enviarNuevoPassword($destinoNombre,$destinoMail,  $clave)
+    public static function enviarNuevoPassword($destinoNombre,$destinoMail, $usuario,  $clave)
     {
 
         $mail = new PHPMailer();
@@ -13,8 +13,9 @@ class Mail{
         $mail->Password = "p4ssw0rdPF"; // El Password de tu casilla de correos
 
 
-        $mail->Host = "localhost";
-        $mail->From = "contacto@proximafecha.com";
+        //$mail->Host = "localhost";
+        $mail->Host = "p4000541.ferozo.com";
+        $mail->From = "no-reply@proximafecha.com";
         $mail->FromName = "Contacto ProximaFecha";
         $mail->Subject = "Recupero de Usuario";
         $mail->AddAddress($destinoMail,$destinoNombre);
@@ -24,6 +25,7 @@ class Mail{
         $mail->WordWrap = 50;
 
         $body = '<b>Estimado:</b> ' . $destinoNombre . '<br>';
+        $body .= '<b>Tu usuario es:</b> ' . $usuario . '<br>';
         $body .= '<b>Tu nueva clave es:</b> ' . $clave. '<br>';
         $body .= '<b>Te recomendamos cambiarla una ve que inicies sesión:</b><br><br>';
         $body .= '<b>Saludos,</b><br>';

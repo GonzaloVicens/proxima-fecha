@@ -343,8 +343,7 @@ class Usuario
         $script = "UPDATE USUARIOS  SET PASSWORD = :password WHERE USUARIO_ID = :usuario_id";
         $stmt = DBConnection::getStatement($script);
         if ($stmt->execute($usuario)) {
-            Mail::enviarNuevoPassword($destinoNombre,$destinoMail,  $clave);
-
+            Mail::enviarNuevoPassword($destinoNombre,$destinoMail, $usuario_id,  $clave);
         }else{
             echo "<pre>";
             print_r($stmt->errorInfo());
