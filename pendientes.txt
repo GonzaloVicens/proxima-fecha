@@ -2,15 +2,13 @@ Pendientes/Notas:
 	
 	1) Los términos y condiciones
 	2) Las Sedes
-	3) Mecanismos para el recupero de clave en el caso de los usuarios que las hayan perdido. -> hecho 
-	4) Los administradores del sistema deben poder ejercer tareas de auditoría sobre los usuarios según los términos y condiciones (bannear usuarios o publicaciones).
+	4) Los administradores del sistema deben poder ejercer tareas de auditoría  (bannear usuarios o publicaciones). -> Falta Diseño
 	5) Tener acceso a estadísticas del sistema.
 	6) Links pie de pagina	
 	7) Buscador
 	8) Formulario de Contacto
-	9) Copa -> Jugar PArtido
 	10) Mostrar torneos en el Home sin loguearse y poder inscribirse si estas logueado
 	11) Corregir diseño AgregarCompañero -> AgregarEquipo
+	12) Fixture Torneo
 		
 		
-	
