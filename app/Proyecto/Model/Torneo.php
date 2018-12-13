@@ -389,7 +389,7 @@ class Torneo
             $equipo = New Equipo($id);
 
 
-            echo "<li class='list-group-item'><img src='" . App::$urlPath . "/img/equipos/". $equipo->getEquipoId() ."_logo_200.jpg'><a href='" . App::$urlPath . "/equipos/" . $equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a>";
+            echo "<li class='list-group-item'><img src='" . App::$urlPath . "/img/equipos/". $equipo->getEquipoId() ."_logo_200.jpg'><a href='" . App::$urlPath . "/equipos/" . $equipo->getEquipoID()."' class='pfgreen hoverVerde' title='Ver Equipo'>" . $equipo->getNombre() ."</a>";
             if (Session::has('logueado')) {
                 $usuario = Session::get('usuario');
                 if ($this->tieneOrganizador($usuario->getUsuarioID()) && $this->estado_torneo_id == "I") {
