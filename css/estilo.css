@@ -197,7 +197,7 @@
   height: 10rem;
   border-radius: 10px; }
 
-.sede::before, .copa::before, .escudo::before, .buscar::before {
+.sede, .copa::before, .escudo::before, .buscar::before {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1025,7 +1025,7 @@ nav {
 .registro .rta-validacion {
   font-style: italic;
   margin-left: .5rem; }
-.registro i.fas.fa-user:before {
+.registro i.fas.fa-user:before, .registro i.fas.fa-key:before {
   font-size: 1.5rem;
   color: #ebebeb;
   padding: .5rem;
@@ -1036,6 +1036,8 @@ nav {
   margin-right: .4rem;
   display: block;
   text-align: center; }
+.registro.recuperar-pass {
+  min-height: 450px; }
 
 section.portada {
   position: relative;
@@ -1254,6 +1256,21 @@ section.portada {
       .torneo .equipos_participan li a:hover {
         color: #00CD5E;
         transition: color .2s ease-in-out; }
+.torneo.agregar-equipo .list-group-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 10px 0 0; }
+  .torneo.agregar-equipo .list-group-item img + a {
+    margin-right: 15px; }
+.torneo.agregar-equipo .list-group-item .eliminar-button {
+  background: none;
+  border: none;
+  color: #ff8c00;
+  cursor: pointer; }
+  .torneo.agregar-equipo .list-group-item .eliminar-button i:hover {
+    color: #FFCD5E;
+    transition: color .2s ease-in-out; }
 
 .fixture-torneo-completo .equipo_container {
   margin: 20px;

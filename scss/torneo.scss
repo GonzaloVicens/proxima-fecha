@@ -29,5 +29,31 @@
       }
     }
   }
+
+  &.agregar-equipo {
+
+    .list-group-item {
+      img {
+        @include border-radius-50(50px, 0, 10px, 0, 0);
+
+        &+a {
+          margin-right: 15px;
+        }
+      }
+
+      .eliminar-button {
+        background: none;
+        border: none;
+        color: $bgcol_naranja;
+        cursor: pointer;
+
+        i {
+          &:hover {
+            @include hover-txt($col_naranja1);
+          }
+        }
+      }
+    }
+  }
 }
 

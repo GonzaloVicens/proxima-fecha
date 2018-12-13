@@ -396,7 +396,7 @@ class Torneo
                     echo "<form style='display:inline' action='eliminar-equipo' method='POST'>";
                     echo "<input type='hidden' name='equipo_id' value='" . $equipo->getEquipoId() ."'/>";
                     echo "<input type='hidden' name='origen' value='". $origen . "'/>";
-                    echo "<input type='submit' value='Eliminar'/></form>";
+                    echo "<button type='submit' class='eliminar-button float-right mt-2 d-inline-block'><i class='far fa-trash-alt'></i><span class='d-none'>Eliminar</span></button></form>";
                 }
             }
             echo "</li>";

@@ -12,7 +12,7 @@
 .registro .rta-validacion {
   font-style: italic;
   margin-left: .5rem; }
-.registro i.fas.fa-user:before {
+.registro i.fas.fa-user:before, .registro i.fas.fa-key:before {
   font-size: 1.5rem;
   color: #ebebeb;
   padding: .5rem;
@@ -23,5 +23,7 @@
   margin-right: .4rem;
   display: block;
   text-align: center; }
+.registro.recuperar-pass {
+  min-height: 450px; }
 
 /*# sourceMappingURL=registro.css.map */

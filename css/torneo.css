@@ -15,5 +15,20 @@
       .torneo .equipos_participan li a:hover {
         color: #00CD5E;
         transition: color .2s ease-in-out; }
+.torneo.agregar-equipo .list-group-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 10px 0 0; }
+  .torneo.agregar-equipo .list-group-item img + a {
+    margin-right: 15px; }
+.torneo.agregar-equipo .list-group-item .eliminar-button {
+  background: none;
+  border: none;
+  color: #ff8c00;
+  cursor: pointer; }
+  .torneo.agregar-equipo .list-group-item .eliminar-button i:hover {
+    color: #FFCD5E;
+    transition: color .2s ease-in-out; }
 
 /*# sourceMappingURL=torneo.css.map */

@@ -27,7 +27,8 @@
 
   i{
     &.fas {
-      &.fa-user {
+      &.fa-user,
+      &.fa-key {
 
         &:before {
           @include icon-in-circle($col_verde1, $col_gris6)
@@ -35,6 +36,11 @@
       }
     }
   }
+
+  &.recuperar-pass {
+    min-height: 450px;
+  }
+
 }
 
 @media (max-width: 991px) {

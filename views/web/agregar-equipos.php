@@ -11,7 +11,7 @@ use Proyecto\Session\Session;
 $torneo->actualizar();
 
 ?>
-<main class="py-4 mb-4">
+<main class="py-4 mb-4 torneo agregar-equipo">
     <div class="container">
         <div class="row">
             <div class="col-md-10">

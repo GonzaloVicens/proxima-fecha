@@ -25,3 +25,11 @@
   display: block;
   text-align: center;
 }
+
+@mixin border-radius-50($medida, $mt, $mr, $mb, $ml) {
+  width: $medida;
+  height: $medida;
+  border-radius: 50%;
+  margin: $mt $mr $mb $ml;
+}
+
