@@ -3,6 +3,20 @@
 
 .torneo {
 
+
+  .eliminar-button {
+    background: none;
+    border: none;
+    color: $bgcol_naranja;
+    cursor: pointer;
+
+    i {
+      &:hover {
+        @include hover-txt($col_naranja1);
+      }
+    }
+  }
+
   .equipos_participan {
   width: 415px;
 
@@ -54,6 +68,10 @@
         }
       }
     }
+  }
+
+  &.editar-organizadores {
+
   }
 }
 

@@ -109,7 +109,18 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                                 }?>
                             </ul>
                         </div>
-
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMisSedes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sedes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMisSedes">
+                            <ul class="list-unstyled">
+                                <li class='dropdown-item'><a href='#' title='Ver Sede'> Nombre Sede </a></li>
+                                <!-- una opción u otra -->
+                                <li class='dropdown-item no-options d-none'>Sin sedes por el momento.</li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
                 <ul class="navbar-nav userdropdown">

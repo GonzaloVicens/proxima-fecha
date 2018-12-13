@@ -460,7 +460,8 @@ nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav .n
       nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item a:active {
         background-color: #BDBDBD !important; }
 nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav #navbarDropdownMisTorneos:after,
-nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav #navbarDropdownMisEquipos:after {
+nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav #navbarDropdownMisEquipos:after,
+nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav #navbarDropdownMisSedes:after {
   display: none; }
 nav.navbar.navbar-expand-lg.navbar-white.navbar-dark.fondoHeader2 .navbar-nav.userdropdown li a img {
   width: 38px;
@@ -1239,6 +1240,14 @@ section.portada {
         color: #00CD5E;
         transition: color .2s ease-in-out; }
 
+.torneo .eliminar-button {
+  background: none;
+  border: none;
+  color: #ff8c00;
+  cursor: pointer; }
+  .torneo .eliminar-button i:hover {
+    color: #FFCD5E;
+    transition: color .2s ease-in-out; }
 .torneo .equipos_participan {
   width: 415px; }
   .torneo .equipos_participan li {

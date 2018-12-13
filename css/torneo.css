@@ -1,3 +1,11 @@
+.torneo .eliminar-button {
+  background: none;
+  border: none;
+  color: #ff8c00;
+  cursor: pointer; }
+  .torneo .eliminar-button i:hover {
+    color: #FFCD5E;
+    transition: color .2s ease-in-out; }
 .torneo .equipos_participan {
   width: 415px; }
   .torneo .equipos_participan li {
