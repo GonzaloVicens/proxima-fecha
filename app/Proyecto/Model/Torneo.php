@@ -700,7 +700,7 @@ class Torneo
         $stmt->execute($datos );
         $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        if ($activo = '0') {
+        if ($activo == '0') {
             $this->reasignarOrganizador($organizador_id);
         }
     }
