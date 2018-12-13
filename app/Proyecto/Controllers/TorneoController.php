@@ -425,7 +425,7 @@ class TorneoController
             }
         }
 
-      //  header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
+        header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
     }
 
 

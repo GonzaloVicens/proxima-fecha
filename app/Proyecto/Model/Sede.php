@@ -98,14 +98,14 @@ class Sede
         if($stmt->execute($sede)) {
             $sede_id= DBConnection::getConnection()->lastInsertId();
 
-            $organizador= [
+            $dueno= [
                 'sede_id' => $sede_id,
                 'usuario_id'   =>  $duenio
             ];
 
             $script = "INSERT INTO DUENOS VALUES (:sede_id, :usuario_id, 1)";
             $stmt = DBConnection::getStatement($script );
-            $stmt->execute($organizador);
+            $stmt->execute($dueno);
 
 
             return $sede_id;
@@ -115,6 +115,26 @@ class Sede
     }
 
 
+    public static function ActualizarSede($inputs){
+
+        $sede= [
+            'sede_id' => $inputs['sede_id'],
+            'nombre' => $inputs['nombre'],
+            'pais_id' => 'ARG',
+            'provincia_id' => $inputs['provincia'],
+            'codigo_postal'   =>  $inputs['postal'],
+            'calle'   =>  $inputs['calle'],
+            'altura' => $inputs['altura'],
+            'telefono' => $inputs['telefono'],
+            'detalles' => $inputs['detalles']
+        ];
+
+        $script = "UPDATE SEDES SET NOMBRE = :nombre, PAIS_ID = :pais_id, PROVINCIA_ID = :provincia_id, CODIGO_POSTAL= :codigo_postal, CALLE= :calle , ALTURA = :altura, TELEFONO= :telefono, DETALLES= :detalles WHERE SEDE_ID = :sede_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($sede)) {
+            throw new SedeNoGrabadaException("Error al grabar la sede.");
+        };
+    }
 
 
     public static function existeSede($sede_id){
@@ -332,5 +352,71 @@ class Sede
             echo "</li>";
         }
     }
+
+
+    public function existeDueno($dueno_id){
+        $datos = ['sede_id' => $this->sede_id,
+            'dueno_id' => $dueno_id
+        ];
+
+        $query = "SELECT 'X' FROM DUENOS WHERE SEDE_ID = :sede_id AND USUARIO_ID = :dueno_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+
+    public function tieneOtrosDuenos($dueno_id){
+        $datos = ['sede_id' => $this->sede_id,
+            'dueno_id' => $dueno_id
+        ];
+
+        $query = "SELECT 'X' FROM DUENOS WHERE SEDE_ID = :sede_id AND USUARIO_ID != :dueno_id AND ACTIVO = '1' ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+    public function tieneDuenoActivo($dueno_id){
+        $datos = ['sede_id' => $this->sede_id,
+            'dueno_id' => $dueno_id
+        ];
+
+        $query = "SELECT 'X' FROM DUENOS WHERE SEDE_ID = :sede_id AND USUARIO_ID = :dueno_id AND ACTIVO = '1'";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+    public function editarDueno($dueno_id, $activo)
+    {
+
+        if ($activo) {
+            $activo = '0';
+        } else {
+            $activo = '1';
+        }
+
+        $datos = ['sede_id' => $this->sede_id,
+            'dueno_id'  => $dueno_id,
+            'activo'          => $activo
+        ];
+        $query = "UPDATE DUENOS SET ACTIVO = :activo WHERE SEDE_ID = :sede_id AND USUARIO_ID =  :dueno_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos );
+        $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function insertarDueno($dueno_id){
+        $datos = ['sede_id' => $this->sede_id,
+            'dueno_id' => $dueno_id
+        ];
+        $query = "INSERT INTO DUENOS VALUE (:sede_id , :dueno_id, '1')";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos );
+        $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+
 
 }

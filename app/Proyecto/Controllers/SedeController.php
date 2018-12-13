@@ -90,29 +90,14 @@ class SedeController
             if (!empty($formValidator->getCamposError())) {
                 Session::set("camposError", $formValidator->getCamposError());
                 Session::set("campos", $formValidator->getCampos());
-                header('Location: ' . App::$urlPath . '/usuarios/crear-sede');
+                header('Location: ' . App::$urlPath . '/usuarios/editar-sede');
 
             } else {
-                if (!isset($inputs['D']) &&
-                    !isset($inputs['L']) &&
-                    !isset($inputs['M']) &&
-                    !isset($inputs['X']) &&
-                    !isset($inputs['J']) &&
-                    !isset($inputs['V']) &&
-                    !isset($inputs['S'])
-                ) {
-
-                    $camposError = [];
-                    $camposError ['dias'] = 'Debe elegir al menos un día';
-                    Session::set("camposError", $camposError);
-                    header('Location: ' . App::$urlPath . '/usuarios/crear-sede');
-                } else {
-                    Session::clearValue("camposError");
-                    Session::clearValue("campos");
-                    $usuario = Session::get('usuario');
-                    Sede::ActualizarSede($inputs);
-                    header('Location: ' . App::$urlPath . '/sedes/' . $sede_id);
-                }
+                Session::clearValue("camposError");
+                Session::clearValue("campos");
+                $usuario = Session::get('usuario');
+                Sede::ActualizarSede($inputs);
+                header('Location: ' . App::$urlPath . '/sedes/' . $sede_id);
             };
         } else {
             header('Location: ' . App::$urlPath . '/error404');
@@ -274,14 +259,14 @@ class SedeController
     }
 
 
-    public function editarOrganizadores()
+    public function editarDuenos()
     {
         if (Session::has("usuario") && Session::has('sede')) {
             $usuario = Session::get('usuario');
             $sede = Session::get('sede');
             $sede->actualizar();
-            $organizadores= $sede->getTodosLosOrganizadores();
-            View::render('web/editar-organizadores',compact('usuario','sede','organizadores'), 3);
+            $duenos= $sede->getTodosLosDuenos();
+            View::render('web/editar-duenos',compact('usuario','sede','duenos'), 3);
 
         } else {
             header('Location: ' . App::$urlPath . '/error404');
@@ -289,9 +274,9 @@ class SedeController
     }
 
     /**
-     * Método que agrega un Organizador en el Sede
+     * Método que agrega un Dueno en el Sede
      */
-    public function agregarOrganizador()
+    public function agregarDueno()
     {
         $inputs = Request::getData();
 
@@ -299,33 +284,33 @@ class SedeController
             $sede_id = $inputs ['sede_id'];
             $sede = new Sede($sede_id);
 
-            if (isset($inputs ["organizador_id"]) && !empty($inputs ["organizador_id"])) {
+            if (isset($inputs ["dueno_id"]) && !empty($inputs ["dueno_id"])) {
 
-                $organizador_id = $inputs ['organizador_id'];
+                $dueno_id = $inputs ['dueno_id'];
 
-                if ($sede->existeOrganizador($organizador_id)) {
-                    Session::set("errorAgregarOrganizador", $organizador_id . " ya es un organizador del sede");
+                if ($sede->existeDueno($dueno_id)) {
+                    Session::set("errorAgregarDueno", $dueno_id . " ya es un dueno del sede");
                 } else {
-                    if (Usuario::existeUsuario($organizador_id)) {
-                        $sede->insertarOrganizador($organizador_id);
-                        Session::clearValue("errorAgregarOrganizador");
+                    if (Usuario::existeUsuario($dueno_id)) {
+                        $sede->insertarDueno($dueno_id);
+                        Session::clearValue("errorAgregarDueno");
                     } else {
-                        Session::set("errorAgregarOrganizador", $organizador_id . " no existe en el sistema");
+                        Session::set("errorAgregarDueno", $dueno_id . " no existe en el sistema");
                     }
                 };
             } else {
-                Session::set("errorAgregarOrganizador",  " Ingrese un organizador");
+                Session::set("errorAgregarDueno",  " Ingrese un dueno");
             }
         }
 
-        header('Location: ' . App::$urlPath . '/sedes/editar-organizadores');
+        header('Location: ' . App::$urlPath . '/sedes/editar-duenos');
     }
 
 
     /**
-     * Método que activa/desactiva un Organizador en el Sede
+     * Método que activa/desactiva un Dueno en el Sede
      */
-    public function editarOrganizador()
+    public function editarDueno()
     {
         $inputs = Request::getData();
 
@@ -333,122 +318,29 @@ class SedeController
             $sede_id = $inputs ['sede_id'];
             $sede = new Sede($sede_id);
 
-            if (isset($inputs ["organizador_id"]) && !empty($inputs ["organizador_id"])) {
+            if (isset($inputs ["dueno_id"]) && !empty($inputs ["dueno_id"])) {
 
-                $organizador_id = $inputs ['organizador_id'];
+                $dueno_id = $inputs ['dueno_id'];
                 $activo = $inputs ['activo'];
 
-                if (!$sede->existeOrganizador($organizador_id)) {
-                    Session::set("errorAgregarOrganizador", $organizador_id . " no es un organizador del sede");
+                if (!$sede->existeDueno($dueno_id)) {
+                    Session::set("errorAgregarDueno", $dueno_id . " no es un dueno del sede");
                 } else {
-                    if ($sede->tieneOtrosOrganizadores($organizador_id)) {
-                        $sede->editarOrganizador($organizador_id, $activo);
-                        Session::clearValue("errorAgregarOrganizador");
+                    if ($sede->tieneOtrosDuenos($dueno_id)) {
+                        $sede->editarDueno($dueno_id, $activo);
+                        Session::clearValue("errorAgregarDueno");
                     } else {
-                        Session::set("errorAgregarOrganizador",  "No quedan organizadores en el sede");
+                        Session::set("errorAgregarDueno",  "No quedan duenos en el sede");
                     }
                 };
             } else {
-                Session::set("errorAgregarOrganizador",  " Ingrese un organizador");
+                Session::set("errorAgregarDueno",  " Ingrese un dueno");
             }
         }
 
-      //  header('Location: ' . App::$urlPath . '/sedes/editar-organizadores');
+        header('Location: ' . App::$urlPath . '/sedes/editar-duenos');
     }
 
 
 
-
-    /**
-     * Método que da por decide la actualización del Sede
-     */
-    protected function actualizarEstadoSede($estado)
-    {
-        if (Session::has("usuario")) {
-            $usuario = Session::get('usuario');
-            $usuario->actualizar();
-
-            if (Session::has("sede")) {
-                $sede = Session::get('sede');
-                $sede->actualizar();
-
-                if ($sede->tieneOrganizadorActivo($usuario->getUsuarioID())) {
-                    switch ($estado){
-                        case "C":
-                            $sede->comenzar();
-                            break;
-                        case "F":
-                            $sede->finalizar();
-                            break;
-                        case "R":
-                            $sede->reiniciar();
-                            break;
-                    }
-                }
-            };
-        }
-
-        $sede->actualizar();
-        header('Location: ' . App::$urlPath . '/sedes/' . $sede->getSedeID());
-
-    }
-
-    /**
-     * Método que da por comenzado el Sede
-     */
-    public function comenzarSede()
-    {
-        $this->actualizarEstadoSede("C");
-    }
-
-    /**
-     * Método que da por finalizado el Sede
-     */
-    public function finalizarSede()
-    {
-        $this->actualizarEstadoSede("F");
-    }
-
-    /**
-     * Método que da por finalizado el Sede
-     */
-    public function reiniciarSede()
-    {
-        $this->actualizarEstadoSede("R");
-    }
-
-
-    public function verPartido(){
-
-        $routeParams = Route::getRouteParams();
-        $sede_id = $routeParams['sede'];
-        $fase_id = $routeParams['fase'];
-        $partido_id = $routeParams['partido'];
-        if (Partido::existePartido($sede_id, $fase_id, $partido_id)) {
-            $partidoActual = new Partido($sede_id, $fase_id, $partido_id) ;
-            $local = new Equipo ($partidoActual->getLocalId());
-            $visita = new Equipo ($partidoActual->getVisitaId());
-            View::render('web/ver-partido',compact('partidoActual', 'local','visita'), 3);
-        } else{
-            View::render('web/error404',[], 2);
-        };
-    }
-
-    public function agregarFichaPartido(){
-        $inputs = Request::getData();
-
-        if ( (isset($inputs["sede"]) && !empty($inputs ["sede"]) )
-        &&  (isset($inputs["fase"]) && !empty($inputs ["fase"]) )
-        &&  (isset($inputs["partido"]) && !empty($inputs ["partido"]) )
-        &&  (isset($inputs["equipo"]) && !empty($inputs ["equipo"]) )
-        &&  (isset($inputs["jugador"]) && !empty($inputs ["jugador"]) )
-        &&  (isset($inputs["tipo"]) && !empty($inputs ["tipo"]) )){
-
-            $partido = New Partido($inputs["sede"], $inputs["fase"], $inputs["partido"]);
-            $partido->agregarFicha($inputs["tipo"], $inputs["equipo"], $inputs["jugador"]);
-        }
-
-        header('Location: ' . App::$urlPath . '/sedes/' . $inputs["sede"] . "/". $inputs["fase"] ."/". $inputs["partido"]);
-
-    }
 }
