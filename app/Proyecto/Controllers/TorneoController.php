@@ -31,10 +31,10 @@ class TorneoController
         $routeParams = Route::getRouteParams();
         $torneo_id = $routeParams['torneo_id'];
         if (Torneo::existeTorneo($torneo_id)) {
-            $torneo = new Torneo($torneo_id);
-            Session::set("torneo",$torneo);
-            $organizadoresActivos= $torneo->getOrganizadoresActivos();
-            View::render('web/ver-torneo',compact('torneo','organizadoresActivos'), 3);
+            $torneoAMostrar = new Torneo($torneo_id);
+            Session::set("torneo",$torneoAMostrar);
+            $organizadoresActivos= $torneoAMostrar->getOrganizadoresActivos();
+            View::render('web/ver-torneo',compact('torneoAMostrar','organizadoresActivos'), 3);
         } else{
             View::render('web/error404',[], 2);
         };
@@ -45,6 +45,7 @@ class TorneoController
      * Método que controla la creación de un torneo
      */
     public function registrar(){
+
         if (Session::has("usuario")) {
             $inputs = Request::getData();
 
@@ -68,6 +69,7 @@ class TorneoController
                     $camposError = [];
                     $camposError ['dias'] = 'Debe elegir al menos un día';
                     Session::set("camposError", $camposError);
+                    Session::set("campos", $formValidator->getCampos());
                     header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
                 } else {
                     Session::clearValue("camposError");
@@ -80,6 +82,7 @@ class TorneoController
         }else {
             header('Location: ' . App::$urlPath . '/error404');
         };
+
     }
 
 

@@ -173,6 +173,22 @@ class UsuarioController
 
 
 
+    /**
+     * Método que muestra el formulario para crear la Sede
+     */
+    public function verCrearSede()
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            View::render('web/crear-sede',compact('usuario','usuario_id'), 3);
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+
+    }
+
+
     public function notificaciones()
     {
         if (Session::has("usuario")) {

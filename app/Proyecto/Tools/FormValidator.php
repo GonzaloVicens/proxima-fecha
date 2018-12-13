@@ -106,6 +106,7 @@ class FormValidator
                 return $this->validarCampoEspecifico($campo, '/^\d{8,}$/', "El campo solo admite números (Mínimo 8)");
                 break;
 
+
             case 'email':
                 $rta =  $this->validarCampoEspecifico($campo, '/^([\w\.]{3,}@[a-z0-9\-]{3,}(\.[a-z]{2,4})+)?$/i', "El campo no es un correo válido");
                 if (!$rta) {
@@ -116,6 +117,7 @@ class FormValidator
 
                 break;
 
+            case 'fechaInicio':
             case 'deporte':
             case 'tipoTorneo':
                 if ($campo == "" ){

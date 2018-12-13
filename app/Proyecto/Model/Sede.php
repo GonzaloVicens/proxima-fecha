@@ -192,7 +192,7 @@ class Sede
     }
 
     public static function printOptionsProvincias($elegida = null){
-        $query = "SELECT PROVINCIA_ID , PROVINCIA FROM PROVINCIA WHERE PAIS = 'ARG'";
+        $query = "SELECT PROVINCIA_ID , PROVINCIA FROM PROVINCIAS WHERE PAIS_ID = 'ARG'";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute();
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
