@@ -3,6 +3,9 @@ namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
 use Proyecto\Exceptions\SedeNoGrabadaException;
+use Proyecto\Session\Session;
+use Proyecto\Core\App;
+
 
 /**
  * Implementación de la clase Sede
@@ -58,6 +61,11 @@ class Sede
      */
     protected $canchas;
 
+    /**
+     * @var array of Canchas;
+     */
+    protected $duenos;
+
 
 
     /**
@@ -68,6 +76,8 @@ class Sede
     {
         if(!is_null($sede)) {
             $this->setSede($sede);
+            $this->setCanchas();
+            $this->setDuenos();
         }
     }
 
@@ -132,18 +142,28 @@ class Sede
             $this->telefono = $datos['TELEFONO'];
             $this->detalles = $datos['DETALLES'];
         };
-        $this->canchas = [];
+
     }
 
 
     public function setCanchas()
     {
-        $this->equipos = [];
+        $this->canchas = [];
         $query = "SELECT CANCHA_ID FROM CANCHAS WHERE SEDE_ID = :sede_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['sede_id' => $this->sede_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->canchas[] = New Cancha($this->sede_id, $datos['CANCHA_ID']);
+        };
+    }
+
+    public function setDuenos(){
+        $this->duenos= [];
+        $query = "SELECT USUARIO_ID FROM DUENOS WHERE SEDE_ID = :sede_id  AND ACTIVO = '1'  ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['sede_id' => $this->sede_id]);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $this->duenos[] = $datos['USUARIO_ID'];
         };
     }
 
@@ -206,6 +226,63 @@ class Sede
         }       ;
     }
 
+    public function getDuenos() {
+        return $this->duenos;
+    }
 
+    public function getDuenosActivos(){
+        return $this->getTodosLosDuenos(" AND B.ACTIVO = '1' ");
+    }
+
+
+    public function getTodosLosDuenos($where = null){
+        $respuesta= [];
+        $query = "SELECT B.USUARIO_ID, A.NOMBRE, A.APELLIDO, B.ACTIVO FROM USUARIOS A, DUENOS B WHERE A.USUARIO_ID = B.USUARIO_ID AND B.SEDE_ID = :sede_id ";
+
+        if (isset($where)){
+            $query .= $where ;
+        }
+
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['sede_id' => $this->sede_id]);
+
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta[] = $datos;
+        };
+
+        return $respuesta;
+    }
+
+    public function actualizar(){
+        $this->setSede($this->sede_id);
+        $this->setCanchas();
+        $this->setDuenos();
+        Session::clearValue('sede');
+        Session::set('sede',$this);
+    }
+
+    public function getPaisDescr() {
+        return Pais::getDescripcion($this->pais);
+    }
+
+    public function getProvinciaDescr() {
+        return Provincia::getDescripcion($this->pais, $this->provincia);
+    }
+
+    public function getDireccionCompleta() {
+        return $this->calle . " " . $this->altura . ", " .  $this->codigo_postal;
+    }
+
+    public function getTelefono(){
+        return $this->telefono;
+    }
+
+    public function getDetalles() {
+        return $this->detalles;
+    }
+
+    public function tieneCanchas(){
+        return !empty($this->canchas[0]);
+    }
 
 }

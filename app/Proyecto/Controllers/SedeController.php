@@ -23,10 +23,10 @@ class SedeController
         $routeParams = Route::getRouteParams();
         $sede_id = $routeParams['sede_id'];
         if (Sede::existeSede($sede_id)) {
-            $sede = new Sede($sede_id);
-            Session::set("sede",$sede);
-            $duenosActivos= $sede->getDuenosActivos();
-            View::render('web/ver-sede',compact('sede','duenosActivos'), 3);
+            $sedeAMostrar = new Sede($sede_id);
+            Session::set("sede",$sedeAMostrar);
+            $duenosActivos= $sedeAMostrar->getDuenosActivos();
+            View::render('web/ver-sede',compact('sedeAMostrar','duenosActivos'), 3);
         } else{
             View::render('web/error404',[], 2);
         };
