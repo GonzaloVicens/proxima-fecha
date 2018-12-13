@@ -79,6 +79,7 @@ class FormValidator
         switch($nombre){
             case 'nombre':
             case 'apellido':
+            case 'calle':
                     $buscar = array( '/á/i', '/é/i', '/í/i', '/ó/i', '/ú/i', '/ñ/i' );
                     $poner = array( 'a', 'e', 'i', 'o', 'u', 'n' );
                     $texto2 = preg_replace( $buscar, $poner, $campo );
@@ -104,6 +105,11 @@ class FormValidator
 
             case 'telefono':
                 return $this->validarCampoEspecifico($campo, '/^\d{8,}$/', "El campo solo admite números (Mínimo 8)");
+                break;
+
+            case 'postal':
+            case 'altura':
+                return $this->validarCampoEspecifico($campo, '/^\d{1,}$/', "El campo solo admite números ");
                 break;
 
 

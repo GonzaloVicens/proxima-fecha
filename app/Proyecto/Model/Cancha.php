@@ -32,6 +32,10 @@ class Cancha
      */
     protected $deporte_id;
 
+
+    protected $deporte_descr;
+
+
     /**
      * @var integer
      */
@@ -76,22 +80,20 @@ class Cancha
     }
 
 
-    public function setCancha($sedeId, $canchaId)
+    public function setCancha($sede, $cancha)
     {
-        $this->sede_id = $sedeId;
-        $this->cancha_id = $canchaId;
 
-        $cancha= [
-            'sede_id' => $sedeId,
-            'cancha_id'   =>  $canchaId
-        ];
+        $this->sede_id = $sede;
+        $this->cancha_id = $cancha;
 
-        $query = "SELECT DESCRIPCION, DEPORTE_ID, PRECIO FROM CANCHAS WHERE SEDE_ID = :sede_id AND CANCHA_ID = :cancha_id ";
+        $query = "SELECT A.DESCRIPCION DESCR_CANCHA, A.DEPORTE_ID DEPORTE_ID, A.PRECIO PRECIO , B.DESCRIPCION DESCR_DEPORTE FROM CANCHAS A, DEPORTES B WHERE A.DEPORTE_ID = B.DEPORTE_ID AND A.SEDE_ID = :sede AND A.CANCHA_ID = :cancha ";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute($cancha);
+        $stmt->execute(['sede' => $sede, 'cancha'   =>  $cancha]);
+
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $this->decripcion = $datos['DESCRIPCION'];
+            $this->decripcion = $datos['DESCR_CANCHA'];
             $this->deporte_id = $datos['DEPORTE_ID'];
+            $this->deporte_descr = $datos['DESCR_DEPORTE'];
             $this->precio = $datos['PRECIO'];
         };
     }
@@ -116,6 +118,12 @@ class Cancha
     {
         return $this->deporte_id;
     }
+
+    public function getDeporteDescr()
+    {
+        return $this->deporte_descr;
+    }
+
 
     public function getPrecio()
     {

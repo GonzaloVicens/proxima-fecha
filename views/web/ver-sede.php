@@ -26,7 +26,8 @@ $sedeAMostrar->actualizar();
                 <!-- Nombre de Sede Debajo, tendría que ser dinámico -->
                 <h2 class="mb-4 pfgreen h1"><?= $sedeAMostrar->getNombre() ?></h2>
                 <p class="text-muted"><i class="far fa-calendar-alt"></i> País: <?=$sedeAMostrar->getPaisDescr()?> - Provincia: <span><?= $sedeAMostrar->getProvinciaDescr() ?></span></p>
-                <p class="text-muted"><i class="far fa-calendar-alt"></i> Direccion: <span class="font-italic"><?= $sedeAMostrar->getDireccionCompleta() ?></span></p>
+                <p class="text-muted"><i class="far fa-calendar-alt"></i> Direccion: <span class="font-italic"><?= $sedeAMostrar->getDireccion() ?></span></p>
+                <p class="text-muted"><i class="far fa-calendar-alt"></i> Código Postal: <span class="font-italic"><?= $sedeAMostrar->getCodigoPostal() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Teléfono: <span><?= $sedeAMostrar->getTelefono() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i><span><?= $sedeAMostrar->getDetalles() ?></span></p>
 

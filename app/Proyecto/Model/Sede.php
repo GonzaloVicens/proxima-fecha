@@ -261,17 +261,39 @@ class Sede
         Session::set('sede',$this);
     }
 
+    public function getPais() {
+        return $this->pais;
+    }
+
+
     public function getPaisDescr() {
         return Pais::getDescripcion($this->pais);
+    }
+
+    public function getProvincia() {
+        return $this->provincia;
     }
 
     public function getProvinciaDescr() {
         return Provincia::getDescripcion($this->pais, $this->provincia);
     }
 
-    public function getDireccionCompleta() {
-        return $this->calle . " " . $this->altura . ", " .  $this->codigo_postal;
+    public function getCalle() {
+        return $this->calle ;
     }
+
+    public function getAltura() {
+        return $this->altura ;
+    }
+
+    public function getDireccion() {
+        return $this->calle . " " . $this->altura ;
+    }
+
+    public function getCodigoPostal() {
+        return $this->codigo_postal;
+    }
+
 
     public function getTelefono(){
         return $this->telefono;
@@ -283,6 +305,32 @@ class Sede
 
     public function tieneCanchas(){
         return !empty($this->canchas[0]);
+    }
+
+    public function tieneDueno($usuario_id){
+        $query = "SELECT 'Y' FROM DUENO WHERE SEDE_ID = :sede_id AND USUARIO_ID = :usuario_id AND ACTIVO = 1 ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['usuario_id' => $usuario_id, 'sede_id' => $this->sede_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
+
+
+    public  function printCanchasEnLi($origen){
+        foreach ($this->canchas as $canchaAMostrar) {
+
+            echo "<li class='list-group-item'>" . $canchaAMostrar->getNombre() ;
+            echo "<ul><li>Deporte: ".  $canchaAMostrar->getDeporteDescr() ."</li><li> Precio: $" . $canchaAMostrar->getPrecio() . "</li></ul>";
+            if (Session::has('logueado')) {
+                $usuario = Session::get('usuario');
+                if ($this->tieneDueno($usuario->getUsuarioID()) ) {
+                    echo "<form style='display:inline' action='eliminar-cancha' method='POST'>";
+                    echo "<input type='hidden' name='cancha_id' value='" . $canchaAMostrar->getCanchaId() ."'/>";
+                    echo "<input type='hidden' name='origen' value='". $origen . "'/>";
+                    echo "<input type='submit' value='Eliminar'/></form>";
+                }
+            }
+            echo "</li>";
+        }
     }
 
 }

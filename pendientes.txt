@@ -2,6 +2,7 @@ Pendientes/Notas:
 	
 	1) Los términos y condiciones
 	2) Las Sedes
+	3) verEditarTorneo -> autocompletar formulario
 	4) Los administradores del sistema deben poder ejercer tareas de auditoría  (bannear usuarios o publicaciones). -> Falta Diseño
 	5) Tener acceso a estadísticas del sistema.
 	6) Links pie de pagina	
