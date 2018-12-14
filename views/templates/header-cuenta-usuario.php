@@ -36,7 +36,6 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
 
     <script src="<?= App::$urlPath;?>/owlcarousel/assets/vendors/jquery.min.js"></script>
     <script src="<?= App::$urlPath;?>/owlcarousel/owl.carousel.js"></script>
-
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <script>

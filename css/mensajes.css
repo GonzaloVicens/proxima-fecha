@@ -1,3 +1,17 @@
+/*
+@mixin llave-fixture($widbor, $colbor, $bordernone, $width, $height, $top) {
+  content:'';
+  border: $widbor solid $colbor;
+  $bordernone: none;
+  background-color: transparent;
+  width: $width;
+  display: block;
+  height: $height;
+  position: absolute;
+  top: $top;
+  z-index: -999;
+}
+*/
 .mensajes h2 i.fas.fa-comments:before {
   font-size: 1.4rem;
   color: #ebebeb;

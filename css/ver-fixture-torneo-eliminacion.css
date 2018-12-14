@@ -1,7 +1,21 @@
+/*
+@mixin llave-fixture($widbor, $colbor, $bordernone, $width, $height, $top) {
+  content:'';
+  border: $widbor solid $colbor;
+  $bordernone: none;
+  background-color: transparent;
+  width: $width;
+  display: block;
+  height: $height;
+  position: absolute;
+  top: $top;
+  z-index: -999;
+}
+*/
 .fixture-torneo-completo .equipo_container {
   margin: 20px;
   width: 220px; }
-.fixture-torneo-completo owl-item.active {
+.fixture-torneo-completo .owl-item.active {
   z-index: 99; }
 .fixture-torneo-completo .torneo_equipo {
   border: 1px solid grey;
@@ -20,12 +34,25 @@
     border: 3px solid orange;
     border-left: none;
     background-color: transparent;
-    width: 300px;
+    width: 270px;
     display: block;
     height: 100px;
     position: absolute;
     top: 25px;
     z-index: -999; }
+  .fixture-torneo-completo .dieciseisavos.llave_a .equipo_container:nth-child(even):before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: orange;
+    border-right-color: transparent;
+    position: absolute;
+    top: 64px;
+    left: 269px;
+    right: none;
+    z-index: 999; }
 .fixture-torneo-completo .dieciseisavos.llave_b .equipo_container {
   position: relative;
   text-align: right;
@@ -35,13 +62,26 @@
     border: 3px solid orange;
     border-right: none;
     background-color: transparent;
-    width: 300px;
+    width: 270px;
     display: block;
     height: 100px;
     position: absolute;
     top: 25px;
     right: 0;
     z-index: -9999999; }
+  .fixture-torneo-completo .dieciseisavos.llave_b .equipo_container:nth-child(even):after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: transparent;
+    border-right-color: orange;
+    position: absolute;
+    top: 65px;
+    left: none;
+    right: 269px;
+    z-index: 999; }
 .fixture-torneo-completo .octavos.llave_a .equipo_container {
   position: relative; }
   .fixture-torneo-completo .octavos.llave_a .equipo_container:nth-child(even):after {
@@ -49,12 +89,25 @@
     border: 3px solid orange;
     border-left: none;
     background-color: transparent;
-    width: 300px;
+    width: 263px;
     display: block;
     height: 180px;
     position: absolute;
     top: 30px;
     z-index: -1; }
+  .fixture-torneo-completo .octavos.llave_a .equipo_container:nth-child(even):before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: orange;
+    border-right-color: transparent;
+    position: absolute;
+    top: 105px;
+    left: 262px;
+    right: none;
+    z-index: 999; }
 .fixture-torneo-completo .octavos.llave_b .equipo_container {
   position: relative;
   text-align: right;
@@ -64,13 +117,26 @@
     border: 3px solid orange;
     border-right: none;
     background-color: transparent;
-    width: 300px;
+    width: 272px;
     display: block;
     height: 180px;
     position: absolute;
     top: 30px;
     right: 0;
     z-index: -99999 !important; }
+  .fixture-torneo-completo .octavos.llave_b .equipo_container:nth-child(even):after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: transparent;
+    border-right-color: orange;
+    position: absolute;
+    top: 105px;
+    left: none;
+    right: 272px;
+    z-index: 999; }
 .fixture-torneo-completo .cuartos.llave_a .equipo_container {
   position: relative; }
   .fixture-torneo-completo .cuartos.llave_a .equipo_container:nth-child(even):after {
@@ -78,26 +144,25 @@
     border: 3px solid orange;
     border-left: none;
     background-color: transparent;
-    width: 300px;
+    width: 269px;
     display: block;
     height: 360px;
     position: absolute;
     top: 30px;
     z-index: -1; }
-.fixture-torneo-completo .cuartos.llave_b .equipo_container {
-  position: relative; }
-  .fixture-torneo-completo .cuartos.llave_b .equipo_container:nth-child(even):after {
+  .fixture-torneo-completo .cuartos.llave_a .equipo_container:nth-child(even):before {
     content: '';
-    border: 3px solid orange;
-    border-right: none;
-    background-color: transparent;
-    width: 300px;
     display: block;
-    height: 360px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: orange;
+    border-right-color: transparent;
     position: absolute;
-    right: 0;
-    top: 30px;
-    z-index: -99999; }
+    top: 189px;
+    left: 268px;
+    right: none;
+    z-index: 999; }
 .fixture-torneo-completo .cuartos.llave_b .equipo_container {
   position: relative; }
   .fixture-torneo-completo .cuartos.llave_b .equipo_container:nth-child(even):before {
@@ -105,59 +170,53 @@
     border: 3px solid orange;
     border-right: none;
     background-color: transparent;
-    width: 300px;
+    width: 270px;
+    display: block;
+    height: 360px;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    z-index: -99999; }
+  .fixture-torneo-completo .cuartos.llave_b .equipo_container:nth-child(even):after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: transparent;
+    border-right-color: orange;
+    position: absolute;
+    top: 189px;
+    left: none;
+    right: 268px;
+    z-index: 999; }
+.fixture-torneo-completo .semifinal.llave_a .equipo_container {
+  position: relative; }
+  .fixture-torneo-completo .semifinal.llave_a .equipo_container:nth-child(even):after {
+    content: '';
+    border: none;
+    border-top: 3px solid orange;
+    background-color: transparent;
+    width: 280px;
     display: block;
     height: 360px;
     position: absolute;
     top: 30px;
-    right: 0;
     z-index: -1; }
-.fixture-torneo-completo .final {
-  z-index: 999; }
-.fixture-torneo-completo .semifinal {
-    /*
-    &.llave_a {
-
-      .equipo_container {
-        position: relative;
-
-        &:nth-child(even):after {
-          content:'';
-          border: none;
-          border-top: 3px solid orange;
-          background-color: transparent;
-          width: 300px;
-          display: block;
-          height: 360px;
-          position: absolute;
-          top: 30px;
-          z-index: -1;
-        }
-      }
-    }
-
-    &.llave_b {
-
-      .equipo_container {
-        position: relative;
-
-        &:nth-child(even):after {
-          content:'';
-          border: none;
-          border-top: 3px solid orange;
-          background-color: transparent;
-          width: 300px;
-          display: block;
-          height: 360px;
-          position: absolute;
-          right: 0;
-          top: 30px;
-          z-index: -99;
-        }
-      }
-    }
-
-*/ }
+.fixture-torneo-completo .semifinal.llave_b .equipo_container {
+  position: relative; }
+  .fixture-torneo-completo .semifinal.llave_b .equipo_container:nth-child(even):after {
+    content: '';
+    border: none;
+    border-top: 3px solid orange;
+    background-color: transparent;
+    width: 280px;
+    display: block;
+    height: 360px;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    z-index: -99; }
 .fixture-torneo-completo .dieciseisavos, .fixture-torneo-completo .octavos {
   position: relative;
   padding: 30px; }
@@ -172,16 +231,16 @@
 .fixture-torneo-completo .semifinal > div,
 .fixture-torneo-completo .final > div {
   margin: 300px auto; }
-.fixture-torneo-completo .dieciseisavos .primero,
-.fixture-torneo-completo .octavos .primero,
-.fixture-torneo-completo .cuartos .primero,
-.fixture-torneo-completo .semifinal .unico,
-.fixture-torneo-completo .final .unico {
+.fixture-torneo-completo .dieciseisavos .equipo_container:nth-child(1n),
+.fixture-torneo-completo .octavos .equipo_container:nth-child(1n),
+.fixture-torneo-completo .cuartos .equipo_container:nth-child(1n),
+.fixture-torneo-completo .semifinal .equipo_container:nth-child(1n),
+.fixture-torneo-completo .final .equipo_container:nth-child(1n) {
   margin-top: 0; }
 .fixture-torneo-completo .octavos {
   padding-top: 75px;
   padding-bottom: 1px; }
-.fixture-torneo-completo .octavos .ultimo {
+.fixture-torneo-completo .octavos:nth-child(4n) {
   margin-bottom: 104px; }
 .fixture-torneo-completo .cuartos {
   padding-top: 160px;
@@ -190,10 +249,10 @@
 .fixture-torneo-completo .final {
   padding-top: 330px;
   padding-bottom: 1px; }
-.fixture-torneo-completo .semifinal .unico,
-.fixture-torneo-completo .final .unico {
+.fixture-torneo-completo .semifinal .equipo_container,
+.fixture-torneo-completo .final .equipo_container {
   margin-bottom: 389px; }
-.fixture-torneo-completo .cuartos .ultimo {
+.fixture-torneo-completo .cuartos:nth-child(2n) {
   margin-bottom: 199px; }
 .fixture-torneo-completo .fase_torneo {
   height: 20px;

@@ -8,7 +8,7 @@
     margin:20px;
     width:220px;}
 
-  owl-item {
+  .owl-item {
 
     &.active {
       z-index: 99;
@@ -40,16 +40,17 @@
             border: 3px solid orange;
             border-left: none;
             background-color: transparent;
-            width: 300px;
+            width: 270px;
             display: block;
             height: 100px;
             position: absolute;
             top: 25px;
             z-index: -999;
           }
-        .torneo_equipo {
 
-        }
+          &:nth-child(even):before {
+            @include pico-llave(10px, orange, transparent, 64px, 269px, none)
+          }
       }
     }
 
@@ -65,7 +66,7 @@
           border: 3px solid orange;
           border-right: none;
           background-color: transparent;
-          width: 300px;
+          width: 270px;
           display: block;
           height: 100px;
           position: absolute;
@@ -73,6 +74,11 @@
           right: 0;
           z-index: -9999999;
 
+        }
+
+
+        &:nth-child(even):after {
+          @include pico-llave(10px, transparent, orange, 65px, none, 269px)
         }
       }
     }
@@ -90,12 +96,16 @@
           border: 3px solid orange;
           border-left: none;
           background-color: transparent;
-          width: 300px;
+          width: 263px;
           display: block;
           height: 180px;
           position: absolute;
           top: 30px;
           z-index: -1;
+        }
+
+        &:nth-child(even):before {
+          @include pico-llave(10px, orange, transparent, 105px, 262px, none)
         }
       }
     }
@@ -112,7 +122,7 @@
           border: 3px solid orange;
           border-right: none;
           background-color: transparent;
-          width: 300px;
+          width: 272px;
           display: block;
           height: 180px;
           position: absolute;
@@ -120,6 +130,10 @@
           right: 0;
           z-index: -99999 !important;
 
+        }
+
+        &:nth-child(even):after {
+          @include pico-llave(10px, transparent, orange, 105px, none, 272px)
         }
       }
     }
@@ -138,34 +152,16 @@
           border: 3px solid orange;
           border-left: none;
           background-color: transparent;
-          width: 300px;
+          width: 269px;
           display: block;
           height: 360px;
           position: absolute;
           top: 30px;
           z-index: -1;
         }
-      }
-    }
 
-
-    &.llave_b {
-
-      .equipo_container {
-        position: relative;
-
-        &:nth-child(even):after {
-          content:'';
-          border: 3px solid orange;
-          border-right: none;
-          background-color: transparent;
-          width: 300px;
-          display: block;
-          height: 360px;
-          position: absolute;
-          right: 0;
-          top: 30px;
-          z-index: -99999;
+        &:nth-child(even):before {
+          @include pico-llave(10px, orange, transparent, 189px, 268px, none)
         }
       }
     }
@@ -181,25 +177,24 @@
           border: 3px solid orange;
           border-right: none;
           background-color: transparent;
-          width: 300px;
+          width: 270px;
           display: block;
           height: 360px;
           position: absolute;
-          top: 30px;
           right: 0;
-          z-index: -1;
+          top: 30px;
+          z-index: -99999;
+        }
+
+        &:nth-child(even):after {
+          @include pico-llave(10px, transparent, orange, 189px, none, 268px)
         }
       }
     }
-
-  }
-
-  .final{
-    z-index: 999;
   }
 
   .semifinal {
-    /*
+
     &.llave_a {
 
       .equipo_container {
@@ -210,7 +205,7 @@
           border: none;
           border-top: 3px solid orange;
           background-color: transparent;
-          width: 300px;
+          width: 280px;
           display: block;
           height: 360px;
           position: absolute;
@@ -230,7 +225,7 @@
           border: none;
           border-top: 3px solid orange;
           background-color: transparent;
-          width: 300px;
+          width: 280px;
           display: block;
           height: 360px;
           position: absolute;
@@ -240,8 +235,6 @@
         }
       }
     }
-
-*/
   }
 
 
@@ -271,11 +264,11 @@
   }
 
 
-  .dieciseisavos .primero,
-  .octavos .primero,
-  .cuartos .primero,
-  .semifinal .unico,
-  .final .unico
+  .dieciseisavos .equipo_container:nth-child(1n),
+  .octavos .equipo_container:nth-child(1n),
+  .cuartos .equipo_container:nth-child(1n),
+  .semifinal .equipo_container:nth-child(1n),
+  .final .equipo_container:nth-child(1n)
   {
     margin-top:0;
   }
@@ -285,7 +278,7 @@
     padding-bottom: 1px;
   }
 
-  .octavos .ultimo {
+  .octavos:nth-child(4n) {
     margin-bottom: 104px;
   }
 
@@ -303,12 +296,12 @@
   }
 
 
-  .semifinal .unico,
-  .final .unico{
+  .semifinal .equipo_container,
+  .final .equipo_container{
     margin-bottom: 389px;
   }
 
-  .cuartos .ultimo {
+  .cuartos:nth-child(2n) {
     margin-bottom: 199px;
   }
 

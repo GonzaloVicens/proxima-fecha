@@ -20,14 +20,14 @@ use Proyecto\Core\App;
             </div>
             <div class="col-md-4">
                 <ul class="list-unstyled fontSize14">
-                    <li class="mb-2"><a href="#" class="text-muted">Gratuidad del Serivicio</a></li>
-                    <li class="mb-2"><a href="#" class="text-muted">¿Es necesario hacerme un usuario?</a></li>
+                    <li class="mb-2"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-muted">Gratuidad del Serivicio</a></li>
+                    <li class="mb-2"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-muted">¿Es necesario hacerme un usuario?</a></li>
                 </ul>
             </div>
             <div class="col-md-4">
                 <ul class="list-unstyled fontSize14">
-                    <li class="mb-2"><a href="#" class="text-muted">¿Que tipos de torneo puedo organizar?</a></li>
-                    <li class="mb-2"><a href="#" class="text-muted">¿Cuántos campeonatos puedo organizar?</a></li>
+                    <li class="mb-2"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-muted">¿Que tipos de torneo puedo organizar?</a></li>
+                    <li class="mb-2"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-muted">¿Cuántos campeonatos puedo organizar?</a></li>
                 </ul>
             </div>
             <div class="col-md-4 text-center">

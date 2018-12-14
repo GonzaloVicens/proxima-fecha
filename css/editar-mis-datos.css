@@ -1,3 +1,17 @@
+/*
+@mixin llave-fixture($widbor, $colbor, $bordernone, $width, $height, $top) {
+  content:'';
+  border: $widbor solid $colbor;
+  $bordernone: none;
+  background-color: transparent;
+  width: $width;
+  display: block;
+  height: $height;
+  position: absolute;
+  top: $top;
+  z-index: -999;
+}
+*/
 @media (max-width: 991px) {
   .editar-mis-datos form.formEditarDatos .user-photo-block {
     display: flex;
