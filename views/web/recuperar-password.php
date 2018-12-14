@@ -55,7 +55,7 @@ if (Session::has("errorLogin")){
                 <?php
                 if (Session::has('mailEnviado')){
                     if (Session::get('mailEnviado') == "Y"){
-                        echo "<p> Se ha enviado un e-mail a su cuenta con una nueva contraseña.<br> Revise su casilla de correo para poder iniciar sesión</p>";
+                        echo "<p> Se ha enviado un e-mail a su cuenta con una nueva contraseña.</p><p> Revise su casilla de correo para poder iniciar sesión</p>";
                     };
                 };
                 Session::clearValue('mailEnviado');

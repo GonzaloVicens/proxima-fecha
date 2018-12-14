@@ -34,10 +34,10 @@ class FormValidator
      * FormValidator constructor.
      * @param $formulario
      */
-    public function __construct($formulario, $formEditar =null)
+    public function __construct($formulario, $firmoTerminos =null)
     {
         $this->campos = $formulario;
-        $this->formEditar= $formEditar;
+        $this->firmarTerminos = $firmoTerminos;
         $this->validarFormulario();
     }
 
@@ -48,7 +48,7 @@ class FormValidator
         // Valido los inputs;
         $firmoTerminos = false;
 
-        if ( $this->formEditar) {
+        if ( $this->firmarTerminos ) {
             $firmoTerminos = true;
         }
         foreach( $this->campos as $nombreCampo => $valor){
@@ -113,6 +113,9 @@ class FormValidator
                 return $this->validarCampoEspecifico($campo, '/^\d{1,}$/', "El campo solo admite números ");
                 break;
 
+            case 'contacto':
+                return $this->validarCampoEspecifico($campo, '/^([\w\.]{3,}@[a-z0-9\-]{3,}(\.[a-z]{2,4})+)?$/i', "El campo no es un correo válido");
+                break;
 
             case 'email':
                 $rta =  $this->validarCampoEspecifico($campo, '/^([\w\.]{3,}@[a-z0-9\-]{3,}(\.[a-z]{2,4})+)?$/i', "El campo no es un correo válido");
@@ -127,6 +130,7 @@ class FormValidator
             case 'fechaInicio':
             case 'deporte':
             case 'tipoTorneo':
+            case 'mensaje':
                 if ($campo == "" ){
                     return "El campo es requerido";
                 }else{

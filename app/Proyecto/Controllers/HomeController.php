@@ -8,9 +8,14 @@
  */
 
 namespace Proyecto\Controllers;
-use Proyecto\Model\Usuario;
-use Proyecto\View\View;
 use Proyecto\Session\Session;
+use Proyecto\Core\Request;
+use Proyecto\Core\Route;
+use Proyecto\Core\App;
+use Proyecto\View\View;
+use Proyecto\Model\Usuario;
+use Proyecto\Tools\Mail;
+use Proyecto\Tools\FormValidator;
 
 
 class HomeController //implements JsonSerializable
@@ -57,7 +62,22 @@ class HomeController //implements JsonSerializable
 
     public function contactoEnviar()
     {
-        //code here...
+        $inputs = Request::getData();
+
+        $formValidator = new FormValidator( $inputs, true);
+
+        // Si hay algún campo en error, vuelvo al formulario, indicando que hay errores;
+        if ( !empty($formValidator->getCamposError()) ){
+            Session::set("camposError",$formValidator->getCamposError());
+            Session::set("campos",$formValidator->getCampos());
+        } else {
+            Session::clearValue("camposError");
+            Session::clearValue("campos");
+            Mail::EnviarMailContacto ($inputs);
+            Session::set('mailEnviado',"Y");
+        }
+        header('Location: ' . App::$urlPath . '/contacto');
+
     }
 
     /**

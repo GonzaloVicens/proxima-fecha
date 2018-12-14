@@ -8,11 +8,18 @@
 use Proyecto\Core\App;
 use Proyecto\Session\Session;
 
-if (Session::has('logueado') && Session::get('logueado')=='S') {
-    $usuarioLogueado = true;
-}else{
-    $usuarioLogueado = false;
-}
+if (Session::has("camposError")) {
+    $camposError = Session::get("camposError");
+    $camposViejos = Session::get("campos");
+
+    Session::clearValue("camposError");
+    Session::clearValue("campos");
+} else {
+    $camposError = "";
+    $camposViejos = "";
+
+} ;
+
 
 ?>
 <main class="py-4 mb-4 contacto">
@@ -23,17 +30,17 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
             <div class="col-md-8">
                 <h2 class="mt-5 mb-4 pfgreen"><i class="fas fa-envelope"></i> Contacto</h2>
                 <h3 class="mb-5 text-muted h5 font-weight-normal">Envianos tu consulta, duda o sugerencia. Te responderemos a la brevedad.</h3>
-                <form action="<?= App::$urlPath;?>/contacto" enctype="application/x-www-form-urlencoded" method="get">
+                <form action="<?= App::$urlPath;?>/contacto" enctype="application/x-www-form-urlencoded" method="post">
                     <div class="form-group row">
                         <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name='nombre' id="nombre" placeholder="Nombre">
+                            <input type="text" class="form-control" name='nombre' id="nombre" placeholder="Nombre" required />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" name='email' class="form-control" id="email" placeholder="Email">
+                            <input type="email" name='contacto' class="form-control" id="email" placeholder="Email" required />
                         </div>
                     </div>
                     <div class="form-group row">
@@ -52,6 +59,32 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                 </form>
             </div>
             <div class="col-md-2">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6 pfgreen h6 text-center">
+            <?php
+                if (isset($camposError) && $camposError!= "") {
+                    echo("<div class='DivErrores'><ul>");
+                    foreach ($camposError as $error => $descr) {
+                        echo ("<li style='color:#F00'>".ucfirst($error).": ".$descr. "</li>");
+                    }
+                    echo("</ul></div>");
+                }
+
+                if (Session::has('mailEnviado')){
+                    if (Session::get('mailEnviado') == "Y"){
+                        echo "<p> Hemos recibido tu contacto.</p><p> Te responderemos a la brevedad.</p>";
+                    };
+                };
+                Session::clearValue('mailEnviado');
+            ?>
+            </div>
+            <div class="col-md-3">
             </div>
         </div>
     </div>
