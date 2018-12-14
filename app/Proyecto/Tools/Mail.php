@@ -61,7 +61,7 @@ class Mail{
         $mail->From = "no-reply@proximafecha.com";
         $mail->FromName = "Contacto ProximaFecha";
         $mail->Subject = "Contacto desde la web";
-        $mail->AddAddress("contacto@proximafecha.com","Administrador");
+        $mail->AddAddress("admin@proximafecha.com","Administrador");
 
         $mail->IsHTML(true);
 
