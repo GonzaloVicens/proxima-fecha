@@ -70,6 +70,7 @@ Route::addRoute('GET' , '/sedes/deshabilitar-sede'                             ,
 Route::addRoute('GET' , '/contacto'                                            , 'HomeController@contacto');
 Route::addRoute('POST', '/contacto'                                            , 'HomeController@contactoEnviar');
 Route::addRoute('GET' , '/preguntas-frecuentes'                                , 'HomeController@preguntasFrecuentes');
+Route::addRoute('GET' , '/terminos-y-condiciones-de-uso'                       , 'HomeController@terminosYCondiciones');
 Route::addRoute('GET' , '/registrarse'                                         , 'HomeController@registrarse');
 Route::addRoute('GET' , '/recuperar-password'                                  , 'HomeController@verRecuperarPassword');
 Route::addRoute('GET' , '/error404'                                            , 'HomeController@error404');

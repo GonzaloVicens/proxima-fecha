@@ -80,6 +80,13 @@ class HomeController //implements JsonSerializable
 
     }
 
+
+    public function terminosYCondiciones()
+    {
+        View::render('web/terminos-y-condiciones',[], 2);
+    }
+
+
     /**
      * Método que renderiza la vista de erorr en caso que algo falle
      */
