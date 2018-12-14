@@ -1,0 +1,108 @@
+/*
+@mixin llave-fixture($widbor, $colbor, $bordernone, $width, $height, $top) {
+  content:'';
+  border: $widbor solid $colbor;
+  $bordernone: none;
+  background-color: transparent;
+  width: $width;
+  display: block;
+  height: $height;
+  position: absolute;
+  top: $top;
+  z-index: -999;
+}
+*/
+.usuario .hover-camera {
+  position: relative;
+  transition: background-color 4s ease-in-out; }
+.usuario .hover-camera:hover::before,
+.usuario .hover-camera:hover::after {
+  position: absolute;
+  z-index: 99999;
+  width: 100%;
+  height: 110%;
+  cursor: pointer;
+  line-height: 100%;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; }
+.usuario .hover-camera:hover::before {
+  content: "\f030";
+  font-size: 3em;
+  font-family: "FontAwesome";
+  top: -10%;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4); }
+.usuario .hover-camera:hover::after {
+  font-family: "Arial", sans-serif;
+  content: 'Cambiar Foto';
+  top: 10%;
+  color: rgba(0, 0, 0, 0.5); }
+.usuario .nombreUser {
+  color: #006B33; }
+.usuario .editar_user::after {
+  position: absolute;
+  content: '\f044';
+  font-family: "FontAwesome";
+  font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+  color: #bbbbbb; }
+.usuario .editar_user:hover::after {
+  color: #FFCD5E; }
+.usuario .tipo-de-cuenta {
+  margin-top: 78px; }
+.usuario .h-14rem {
+  height: 14rem; }
+.usuario .sede, .usuario .copa, .usuario .escudo, .usuario .buscar {
+  height: 10rem;
+  border-radius: 10px; }
+.usuario .sede, .usuario .copa::before, .usuario .escudo::before, .usuario .buscar::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  font-family: "FontAwesome";
+  color: rgba(244, 183, 70, 0.8);
+  font-size: 5rem; }
+.usuario .accion:hover .sede::before, .usuario .accion:hover .copa::before, .usuario .accion:hover .escudo::before, .usuario .accion:hover .buscar::before {
+  color: #f4b746; }
+.usuario a.accion, .usuario div.accion {
+  text-decoration: none; }
+  .usuario a.accion:hover, .usuario div.accion:hover {
+    color: #006B33;
+    cursor: pointer;
+    box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.2) !important;
+    transition: all .1s ease-in-out; }
+    .usuario a.accion:hover h3.h4, .usuario div.accion:hover h3.h4 {
+      color: #18C25D;
+      text-decoration: underline;
+      transition: all .1s ease-in-out; }
+  .usuario a.accion h3.h4, .usuario div.accion h3.h4 {
+    color: #006B33;
+    text-decoration: none; }
+  .usuario a.accion div:hover, .usuario div.accion div:hover {
+    text-decoration: none; }
+.usuario .sede::before {
+  content: '\f015'; }
+.usuario .copa::before {
+  content: '\f091'; }
+.usuario .escudo::before {
+  content: '\f3ed'; }
+.usuario .buscar::before {
+  content: '\f002'; }
+.usuario .main-info ul li a {
+  color: #006B33; }
+  .usuario .main-info ul li a:hover {
+    color: #18C25D;
+    transition: color .2s ease-in-out; }
+.usuario .main-info i.fas.fa-crown, .usuario .main-info i.fas.fa-info-circle {
+  font-size: .9rem; }
+
+/*# sourceMappingURL=usuario.css.map */

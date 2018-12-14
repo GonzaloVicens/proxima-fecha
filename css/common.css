@@ -185,74 +185,6 @@
 .clase2 {
   color: #006B33; }
 
-.nombreUser {
-  color: #006B33; }
-
-.editar_user::after {
-  position: absolute;
-  content: '\f044';
-  font-family: "FontAwesome";
-  font-size: 1.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  display: block;
-  right: 20px;
-  top: 10px;
-  cursor: pointer;
-  color: #bbbbbb; }
-
-.editar_user:hover::after {
-  color: #FFCD5E; }
-
-.h-16rem {
-  height: 16rem; }
-
-.sede, .copa, .escudo, .buscar {
-  height: 10rem;
-  border-radius: 10px; }
-
-.sede, .copa::before, .escudo::before, .buscar::before {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10rem;
-  font-family: "FontAwesome";
-  color: rgba(244, 183, 70, 0.8);
-  font-size: 7rem; }
-
-.accion:hover .sede::before, .accion:hover .copa::before, .accion:hover .escudo::before, .accion:hover .buscar::before {
-  color: #f4b746; }
-
-a.accion, div.accion {
-  text-decoration: none;
-  color: red; }
-  a.accion:hover, div.accion:hover {
-    color: #006B33;
-    cursor: pointer;
-    box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.2) !important;
-    transition: all .1s ease-in-out; }
-    a.accion:hover h3.h4, div.accion:hover h3.h4 {
-      color: #18C25D;
-      text-decoration: underline;
-      transition: all .1s ease-in-out; }
-  a.accion h3.h4, div.accion h3.h4 {
-    color: #006B33;
-    text-decoration: none; }
-  a.accion div:hover, div.accion div:hover {
-    text-decoration: none; }
-
-.sede::before {
-  content: '\f015'; }
-
-.copa::before {
-  content: '\f091'; }
-
-.escudo::before {
-  content: '\f3ed'; }
-
-.buscar::before {
-  content: '\f002'; }
-
 .awesome {
   color: #000000; }
 
@@ -414,5 +346,21 @@ button.btn.btn-outline-warning:hover {
 
 footer {
   margin-top: 3rem; }
+
+.tooltip-inner {
+  background-color: #6c757d;
+  color: #ffffff; }
+
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+  border-top-color: #6c757d !important; }
+
+.bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="right"] .arrow::before {
+  border-right-color: #6c757d !important; }
+
+.bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+  border-bottom-color: #6c757d !important; }
+
+.bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="left"] .arrow::before {
+  border-left-color: #6c757d !important; }
 
 /*# sourceMappingURL=common.css.map */

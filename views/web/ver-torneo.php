@@ -120,6 +120,7 @@ $torneoAMostrar->actualizar();
                     <a href="ver-fixture-completo" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</a>
                 </p>
             <?php } ?>
+
             </div>
         </div>
     </div>

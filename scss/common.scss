@@ -2,12 +2,6 @@
 @import "fonts.scss";
 @import "mixins.scss";
 
-$FA:'FontAwesome';
-$font-size-1-6rem: 1.6rem;
-$font-size-1-5rem: 1.5rem;
-$font-size-1-4rem: 1.4rem;
-$font-size-1-3rem: 1.3rem;
-
 @font-face {
   src:url('../fontawesome/webfonts/fa-solid-900.ttf');
   font-family: FontAwesome;
@@ -263,97 +257,6 @@ $font-size-1-3rem: 1.3rem;
   color:$bgcol_verde;
 }
 
-.nombreUser{
-  color:$bgcol_verde;
-}
-
-.editar_user::after{
-  position:absolute;
-  content:'\f044';
-  font-family:$FA;
-  font-size: 1.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  display: block;
-  right:20px;
-  top:10px;
-  cursor:pointer;
-  color:#bbbbbb;
-}
-
-.editar_user:hover::after{
-  color:#FFCD5E;
-}
-
-.h-16rem{
-  height: 16rem;
-}
-
-.sede, .copa, .escudo, .buscar{
-  height: 10rem;
-  border-radius: 10px;
-
-}
-
-.sede, .copa::before, .escudo::before, .buscar::before{
-  @include flexcenter;
-  height: 10rem;
-  font-family: $FA;
-  color: rgba(244, 183, 70, .8);
-  font-size: 7rem;
-}
-
-.accion:hover .sede::before,.accion:hover .copa::before, .accion:hover .escudo::before, .accion:hover .buscar::before{
-  color: rgba(244, 183, 70, 1);
-
-}
-
-a.accion, div.accion {
-
-  text-decoration: none;
-  color: red;
-
-  &:hover{
-    color: $bgcol_verde;
-    cursor: pointer;
-    box-shadow: 0 2px 1px 1px rgba(0, 0, 0, .2) !important;
-    transition: all .1s ease-in-out;
-
-    h3.h4{
-      color: $bgcol_verde3;
-      text-decoration: underline;
-      transition: all .1s ease-in-out;
-    }
-
-  }
-
-  h3.h4{
-    color: $bgcol_verde;
-    text-decoration: none;
-  }
-
-  div:hover{
-    text-decoration: none;
-  }
-}
-
-.sede::before{
-  content:'\f015';
-}
-
-.copa::before{
-  content:'\f091';
-}
-
-.escudo::before{
-  content:'\f3ed';
-}
-
-.buscar::before{
-  content:'\f002';
-}
-
-
 .awesome{
   color:#000000;
 }
@@ -594,4 +497,27 @@ button.btn.btn-outline-warning:hover{
 
 footer {
   margin-top: 3rem;
+}
+
+
+.tooltip-inner {
+  background-color: #6c757d;
+  color: $col_blanco;
+}
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+  border-top-color: #6c757d !important;
+}
+
+.bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="right"] .arrow::before {
+  border-right-color: #6c757d !important;
+}
+
+
+.bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+  border-bottom-color: #6c757d !important;
+}
+
+
+.bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="left"] .arrow::before {
+  border-left-color: #6c757d !important;
 }

@@ -1,0 +1,159 @@
+@import "colors.scss";
+@import "fonts.scss";
+@import "mixins.scss";
+
+.usuario {
+
+  .hover-camera{
+    position: relative;
+    transition:background-color 4s ease-in-out;
+  }
+
+  .hover-camera:hover::before,
+  .hover-camera:hover::after{
+    position:absolute;
+    z-index: 99999;
+    width: 100%;
+    height: 110%;
+    cursor: pointer;
+    line-height: 100%;
+    font-size: 1.5rem;
+
+    @include flexcenter;
+
+    text-align: center;
+  }
+
+  .hover-camera:hover::before{
+    content:"\f030";
+    font-size: 3em;
+    font-family: "FontAwesome";
+    top:-10%;
+    color:rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .hover-camera:hover::after{
+    font-family: "Arial", sans-serif;
+    content:'Cambiar Foto';
+    top:10%;
+    color:rgba(0,0,0,0.5);
+
+  }
+
+  .nombreUser{
+    color:$bgcol_verde;
+  }
+
+  .editar_user::after{
+    position:absolute;
+    content:'\f044';
+    font-family:$FA;
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    right:20px;
+    top:10px;
+    cursor:pointer;
+    color:#bbbbbb;
+  }
+
+  .editar_user:hover::after{
+    color:#FFCD5E;
+  }
+
+  .tipo-de-cuenta {
+    margin-top: 78px;
+  }
+
+  .h-14rem{
+    height: 14rem;
+  }
+
+  .sede, .copa, .escudo, .buscar{
+    height: 10rem;
+    border-radius: 10px;
+
+  }
+
+  .sede, .copa::before, .escudo::before, .buscar::before{
+    @include flexcenter;
+    height: 10rem;
+    font-family: $FA;
+    color: rgba(244, 183, 70, .8);
+    font-size: 5rem;
+  }
+
+  .accion:hover .sede::before,.accion:hover .copa::before, .accion:hover .escudo::before, .accion:hover .buscar::before{
+    color: rgba(244, 183, 70, 1);
+  }
+
+  a.accion, div.accion {
+
+    text-decoration: none;
+    &:hover{
+      color: $bgcol_verde;
+      cursor: pointer;
+      box-shadow: 0 2px 1px 1px rgba(0, 0, 0, .2) !important;
+      transition: all .1s ease-in-out;
+
+      h3.h4{
+        color: $bgcol_verde3;
+        text-decoration: underline;
+        transition: all .1s ease-in-out;
+      }
+
+    }
+
+    h3.h4{
+      color: $bgcol_verde;
+      text-decoration: none;
+    }
+
+    div:hover{
+      text-decoration: none;
+    }
+  }
+
+  .sede::before{
+    content:'\f015';
+  }
+
+  .copa::before{
+    content:'\f091';
+  }
+
+  .escudo::before{
+    content:'\f3ed';
+  }
+
+  .buscar::before{
+    content:'\f002';
+  }
+
+  .main-info {
+    ul {
+      li {
+        a {
+          color: $bgcol_verde;
+
+          &:hover {
+            @include hover-txt($col_verde1);
+          }
+        }
+      }
+    }
+
+    i {
+      &.fas {
+        &.fa-crown,
+        &.fa-info-circle {
+          font-size: .9rem;
+        }
+      }
+    }
+  }
+}
+
+

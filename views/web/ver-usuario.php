@@ -15,7 +15,7 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
 ?>
 <main class="py-4 mb-4 usuario">
     <div class="container">
-        <div class="row border-bottom">
+        <div class="row border-bottom main-info">
             <div class="col-md-4 p-3">
                 <?php
                     if(isset($usuarioAMostrar) and file_exists('img/usuarios/'. $usuarioAMostrar->getUsuarioId() . '.jpg')){
@@ -26,16 +26,15 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                 ?>
 
             </div>
-            <div class="col-md-8 pl-4">
+            <div class="col-md-4 pl-4">
                 <ul class="list-unstyled">
-                    <a href = "editar-datos" class="editar_user"></a>
                     <li class='nombreUser mt-4 mb-3'><h2><?= $usuarioAMostrar->getNombreCompleto()?></h2></li>
                     <li><span class='font-weight-bold text-dark'>Equipos</span>
                         <ul class="list-unstyled">
                             <?php
                             if($usuarioAMostrar->tieneEquipo()){
                                 foreach ($usuarioAMostrar->getEquipos() as $equipo) {
-                                    echo "<li class='text-secondary'><a class='negrita' href='". App::$urlPath ."/equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
+                                    echo "<li class='text-secondary'><a href='". App::$urlPath ."/equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
                                 }
                             }else{
                                 echo "<li class='text-secondary'>Todavía no sos parte de ningún equipo.</li>";
@@ -71,6 +70,16 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                     </li>
                 </ul>
             </div>
+            <div class="col-md-4 pl-4">
+                <a href = "editar-datos" class="editar_user"></a>
+                <ul class="list-unstyled tipo-de-cuenta">
+                    <li><span class='font-weight-bold text-dark'>Tipo de cuenta</span>
+                        <p class="my-1 text-secondary">Cuenta Standar <i class="fas fa-info-circle text-muted" data-toggle="tooltip" data-placement="top" title="No puedes organizar más de un torneo en simultáneo"></i></p>
+                        <p class="my-1"><a href="<?= App::$urlPath ?>/usuarios/pasar-a-cuenta-pro" class="pfgreen hoverVerde"><i class="fas fa-crown"></i> Pasar a Cuenta Pro</a></p>
+                    </li>
+                </ul>
+
+            </div>
         </div>
         <?php if  (Session::has("logueado") && $usuarioAMostrar->getUsuarioID() == Session::get('usuario')->getUsuarioID()){ ?>
         <div class="row pt-5">
@@ -78,25 +87,25 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                 <h2>Acciones</h2>
             </div>
             <div class="col-md-3 text-center">
-                <a href="<?= App::$urlPath;?>/usuarios/crear-sede" class="d-block accion h-16rem border  m-auto w-75 rounded py-4 shadow-sm">
+                <a href="<?= App::$urlPath;?>/usuarios/crear-sede" class="d-block accion h-14rem border  m-auto w-75 rounded py-4 shadow-sm">
                     <h3 class="h4">Crear Sede</h3>
                     <div class="sede"></div>
                 </a>
             </div>
             <div class="col-md-3 text-center">
-                <a href="<?= App::$urlPath;?>/usuarios/crear-torneo" class="d-block accion h-16rem border  m-auto w-75 rounded py-4 shadow-sm">
+                <a href="<?= App::$urlPath;?>/usuarios/crear-torneo" class="d-block accion h-14rem border  m-auto w-75 rounded py-4 shadow-sm">
                     <h3 class="h4">Crear Torneo</h3>
                     <div class="copa"></div>
                 </a>
             </div>
             <div class="col-md-3 text-center">
-                <div id='agregar_equipo' class="accion h-16rem border m-auto w-75 rounded py-4 shadow-sm">
+                <div id='agregar_equipo' class="accion h-14rem border m-auto w-75 rounded py-4 shadow-sm">
                     <h3 class="h4">Crear Equipo</h3>
                     <div class="escudo"></div>
                 </div>
             </div>
              <div class="col-md-3 text-center">
-                <div id='buscar' class="accion h-16rem border m-auto w-75 rounded py-4 shadow-sm">
+                <div id='buscar' class="accion h-14rem border m-auto w-75 rounded py-4 shadow-sm">
                     <h3 class="h4">Buscar</h3>
                     <div class="buscar"></div>
                 </div>

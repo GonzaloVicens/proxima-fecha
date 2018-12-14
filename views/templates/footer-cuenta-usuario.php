@@ -19,7 +19,7 @@ use Proyecto\Core\App;
             <div class="col-md-4">
                 <ul class="list-unstyled fontSize14">
                     <li class="mb-2"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-muted">Gratuidad del Serivicio</a></li>
-                    <li class="mb-2"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-muted">¿Es necesario hacerme un usuario?</a></li>
+                    <li class="mb-2"><a href="<?= App::$urlPath;?>/usuarios/pasar-a-cuenta-pro" class="text-muted">Pasar a cuenta <em>Pro</em></a></li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -35,6 +35,11 @@ use Proyecto\Core\App;
         </div>
     </div>
 </footer>
+<script>
+$(function () {
+$('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 <div class="modal fade bd-example-modal-lg" id='modal_agregar_equipo' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

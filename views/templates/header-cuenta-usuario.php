@@ -34,6 +34,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
 
     <link href="<?= App::$urlPath;?>/fontawesome/css/all.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="<?= App::$urlPath;?>/owlcarousel/assets/vendors/jquery.min.js"></script>
     <script src="<?= App::$urlPath;?>/owlcarousel/owl.carousel.js"></script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -198,7 +199,11 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                             <ul class="list-unstyled">
 
                                 <li class="dropdown-item">
-                                    <a href="<?= App::$urlPath;?>/desloguear">cerrar sesión</a>
+                                    <a href="<?= App::$urlPath;?>/usuarios/editar-datos">Mis datos</a>
+                                </li>
+
+                                <li class="dropdown-item">
+                                    <a href="<?= App::$urlPath;?>/desloguear">Salir</a>
                                 </li>
                             </ul>
                             <!--a class="dropdown-item" href="#">Another action</a>
