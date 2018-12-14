@@ -61,9 +61,8 @@ Route::addRoute('POST', '/sedes/editar-sede'                                   ,
 Route::addRoute('GET' , '/sedes/editar-duenos'                                 , 'SedeController@editarduenos');
 Route::addRoute('POST', '/sedes/agregar-dueno'                                 , 'SedeController@agregardueno');
 Route::addRoute('POST', '/sedes/editar-dueno'                                  , 'SedeController@editardueno');
-Route::addRoute('GET' , '/sedes/agregar-canchas'                               , 'SedeController@verAgregarcanchas');
-Route::addRoute('POST', '/sedes/agregar-cancha'                                , 'SedeController@agregarcancha');
-Route::addRoute('POST', '/sedes/eliminar-cancha'                               , 'SedeController@eliminarcancha');
+Route::addRoute('POST', '/sedes/agregar-cancha'                                , 'SedeController@agregarCancha');
+Route::addRoute('POST', '/sedes/eliminar-cancha'                               , 'SedeController@eliminarCancha');
 Route::addRoute('POST', '/sedes/buscar-cancha'                                 , 'SedeController@buscarcancha');
 Route::addRoute('POST', '/sedes/eliminar-sede'                                 , 'SedeController@eliminar');
 Route::addRoute('GET' , '/sedes/habilitar-sede'                                , 'SedeController@habilitarsede');

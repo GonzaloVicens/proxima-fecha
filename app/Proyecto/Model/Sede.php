@@ -4,6 +4,7 @@ namespace Proyecto\Model;
 use Proyecto\DB\DBConnection;
 use Proyecto\Exceptions\SedeNoGrabadaException;
 use Proyecto\Session\Session;
+use Proyecto\Model\Cancha;
 use Proyecto\Core\App;
 
 
@@ -143,6 +144,34 @@ class Sede
         $stmt->execute(['sede_id' => $sede_id]);
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
+
+
+    public function eliminarSede(){
+
+        $sede= [
+            'sede_id' => $this->sede_id
+        ];
+
+        $script = "DELETE FROM CANCHAS WHERE SEDE_ID = :sede_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($sede)) {
+            throw new SedeNoGrabadaException("Error al grabar la sede.");
+        };
+
+        $script = "DELETE FROM DUENOS WHERE SEDE_ID = :sede_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($sede)) {
+            throw new SedeNoGrabadaException("Error al grabar la sede.");
+        };
+
+        $script = "DELETE FROM SEDES WHERE SEDE_ID = :sede_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($sede)) {
+            throw new SedeNoGrabadaException("Error al grabar la sede.");
+        };
+
+    }
+
 
 
     public function setSede($sede)
@@ -328,7 +357,7 @@ class Sede
     }
 
     public function tieneDueno($usuario_id){
-        $query = "SELECT 'Y' FROM DUENO WHERE SEDE_ID = :sede_id AND USUARIO_ID = :usuario_id AND ACTIVO = 1 ";
+        $query = "SELECT 'Y' FROM DUENOS WHERE SEDE_ID = :sede_id AND USUARIO_ID = :usuario_id AND ACTIVO = 1 ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $usuario_id, 'sede_id' => $this->sede_id]);
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
@@ -340,12 +369,12 @@ class Sede
 
             echo "<li class='list-group-item'>" . $canchaAMostrar->getNombre() ;
             echo "<ul><li>Deporte: ".  $canchaAMostrar->getDeporteDescr() ."</li><li> Precio: $" . $canchaAMostrar->getPrecio() . "</li></ul>";
-            if (Session::has('logueado')) {
+            if (Session::has('usuario')) {
                 $usuario = Session::get('usuario');
                 if ($this->tieneDueno($usuario->getUsuarioID()) ) {
                     echo "<form style='display:inline' action='eliminar-cancha' method='POST'>";
+                    echo "<input type='hidden' name='sede_id' value='" . $this->getSedeId() ."'/>";
                     echo "<input type='hidden' name='cancha_id' value='" . $canchaAMostrar->getCanchaId() ."'/>";
-                    echo "<input type='hidden' name='origen' value='". $origen . "'/>";
                     echo "<input type='submit' value='Eliminar'/></form>";
                 }
             }
@@ -417,6 +446,12 @@ class Sede
         $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function agregarCancha($inputs){
+        Cancha::CrearCancha($inputs);
+    }
 
+    public function eliminarCancha($inputs){
+        Cancha::EliminarCancha($inputs);
+    }
 
 }

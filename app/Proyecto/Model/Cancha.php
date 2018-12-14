@@ -53,15 +53,33 @@ class Cancha
     }
 
 
-    public static function CrearCancha($sede, $decripcion , $deporte, $precio){
+    public static function CrearCancha($inputs){
+
+        //Busco la ultima cancha creada para la sede;
+        $nuevaCancha= 0;
+        $query = "SELECT MAX(CANCHA_ID) CANCHA_ID FROM CANCHAS WHERE SEDE_ID = :sede_id  ";
+        $datos= [
+            'sede_id' => $inputs['sede_id']
+        ];
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+
+        IF ($ultimaCancha = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $nuevaCancha = $ultimaCancha['CANCHA_ID'];
+        }
+
+        $nuevaCancha++;
+
+
         $cancha= [
-            'sede_id' => $sede,
-            'decripcion' => $decripcion,
-            'deporte_id'   =>  $deporte,
-            'precio'   =>  $precio
+            'sede_id' => $inputs['sede_id'],
+            'cancha_id' => $nuevaCancha,
+            'decripcion' => $inputs['nombre'],
+            'deporte_id'   =>  $inputs['deporte'],
+            'precio'   =>  $inputs['precio']
         ];
 
-        $script = "INSERT INTO CANCHAS VALUES (:sede, null, :decripcion, :deporte_id, :precio)";
+        $script = "INSERT INTO CANCHAS VALUES (:sede_id, :cancha_id, :decripcion, :deporte_id, :precio)";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($cancha)) {
             $idCancha = DBConnection::getConnection()->lastInsertId();
@@ -128,6 +146,19 @@ class Cancha
     public function getPrecio()
     {
         return $this->precio;
+    }
+
+
+    public static function EliminarCancha($cancha){
+
+
+        $script = "DELETE FROM CANCHAS WHERE SEDE_ID = :sede_id AND CANCHA_ID = :cancha_id";
+        $stmt = DBConnection::getStatement($script );
+        if(!$stmt->execute($cancha)) {
+            throw new CanchaNoGrabadaException("Error al grabar la cancha.");
+        };
+
+
     }
 
 

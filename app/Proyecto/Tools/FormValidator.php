@@ -107,6 +107,7 @@ class FormValidator
                 return $this->validarCampoEspecifico($campo, '/^\d{8,}$/', "El campo solo admite números (Mínimo 8)");
                 break;
 
+            case 'precio':
             case 'postal':
             case 'altura':
                 return $this->validarCampoEspecifico($campo, '/^\d{1,}$/', "El campo solo admite números ");

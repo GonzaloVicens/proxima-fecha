@@ -7,7 +7,7 @@ use Proyecto\Core\Request;
 use Proyecto\Model\Equipo;
 use Proyecto\Model\Sede;
 use Proyecto\Model\Usuario;
-use Proyecto\Model\Partido;
+use Proyecto\Model\Cancha;
 use Proyecto\Session\Session;
 use Proyecto\Core\App;
 class SedeController
@@ -158,105 +158,6 @@ class SedeController
     }
 
 
-    /**
-     * Método que agrega un Equipo en el Sede
-     */
-    public function agregarEquipo()
-    {
-        $inputs = Request::getData();
-        Session::clearValue("errorAgregarEquipo");
-        Session::clearValue("IDAgregarEquipo");
-        $sede = Session::get('sede');
-        if (isset($inputs ["equipo_id"]) && !empty($inputs ["equipo_id"])) {
-            $equipo_id = $inputs ['equipo_id'];
-            $nombre = $inputs ['nombre'];
-            Session::set("IDAgregarEquipo", $equipo_id );
-            if ($sede->getLugaresLibres() > 0) {
-
-                if ($sede->existeEquipo($equipo_id)) {
-                    Session::set("errorAgregarEquipo", $nombre  . " ya es un equipo del sede");
-                } else {
-                    if (Equipo::existeEquipo($equipo_id)) {
-                        $sede->insertarEquipo($equipo_id);
-                        Session::set("errorAgregarEquipo", $nombre  . " fue agregado al sede");
-                    } else {
-                        Session::set("errorAgregarEquipo", $equipo_id . " no existe en el sistema");
-                    }
-                };
-            } else {
-                Session::set("errorAgregarEquipo", "El sede ya esta lleno");
-            }
-        } else {
-                Session::set("errorAgregarEquipo", " Ingrese un equipo");
-        }
-        $sede->actualizar();
-        if (Session::has('inputsBuscados')){
-            $inputsBusqueda = Session::get('inputsBuscados');
-            Session::set('inputsBusqueda',$inputsBusqueda);
-            $resultados = Equipo::BuscarEquipos($inputsBusqueda );
-            Session::set('resultados',$resultados);
-        }
-
-        header('Location: ' . App::$urlPath . '/sedes/agregar-equipos');
-
-    }
-
-    /**
-     * Método que elimina un Equipo en el Sede
-     */
-    public function eliminarEquipo()
-    {
-        $inputs = Request::getData();
-        if (isset($inputs ["equipo_id"]) && !empty($inputs ["equipo_id"])) {
-            $sede = Session::get('sede');
-            $equipo_id = $inputs ['equipo_id'];
-            $origen = $inputs ['origen'];
-            if ($sede->existeEquipo($equipo_id)) {
-                $sede->eliminarEquipo($equipo_id);
-            };
-        }
-        $sede->actualizar();
-         header('Location: ' . App::$urlPath . '/sedes/' . $origen);
-
-    }
-
-    public function generarFixture(){
-        $sede = Session::get('sede');
-        $sede->actualizar();
-        $sede->generarFixture();
-        Session::set('sede',$sede);
-        header('Location: ' . App::$urlPath . '/sedes/ver-fixture-completo' );
-    }
-
-    public function verFixtureCompleto()
-    {
-        if (Session::has("sede")) {
-            $sede = Session::get('sede');
-            $sede ->actualizar();
-            View::render('web/ver-fixture-completo',compact('sede'), 3);
-
-        } else {
-            header('Location: ' . App::$urlPath . '/error404');
-        };
-
-    }
-
-    public function verFixtureSedeCompleto()
-    {
-        $sede = Session::get('sede');
-        View::render('web/ver-fixture-sede-completo',compact('sede'), 3);
-
-        /*
-        if (Session::has("sede")) {
-            $sede = Session::get('sede');
-            $sede ->actualizar();
-            View::render('web/ver-fixture-sede-completo',compact('sede'), 3);
-
-        } else {
-            header('Location: ' . App::$urlPath . '/error404');
-        };*/
-
-    }
 
 
     public function editarDuenos()
@@ -341,6 +242,56 @@ class SedeController
         header('Location: ' . App::$urlPath . '/sedes/editar-duenos');
     }
 
+
+    /**
+     * Método que agrega una Cancha en la Sede
+     */
+    public function agregarCancha()
+    {
+        $inputs = Request::getData();
+
+        if (isset($inputs["sede_id"]) && !empty($inputs ["sede_id"]) ){
+            $sede_id = $inputs ['sede_id'];
+            $sede = new Sede($sede_id);
+
+            $formValidator = new FormValidator($inputs, true);
+
+            // Si hay algún campo en error, vuelvo al formulario, indicando que hay errores;
+            if (!empty($formValidator->getCamposError())) {
+                Session::set("camposError", $formValidator->getCamposError());
+                Session::set("campos", $formValidator->getCampos());
+                header('Location: ' . App::$urlPath . '/sedes/' . $sede_id);
+            } else {
+                $sede->agregarCancha($inputs);
+                Session::clearValue("camposError");
+                Session::clearValue("campos");
+                header('Location: ' . App::$urlPath . '/sedes/' . $sede_id);
+            }
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        }
+
+    }
+
+
+    /**
+     * Método que controla la eliminazión de una cancha de la sede
+     */
+    public function eliminarCancha(){
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+
+            $inputs = Request::getData();
+
+
+            Cancha::eliminarCancha($inputs);
+            header('Location: ' . App::$urlPath . '/sedes/'. $inputs['sede_id']);
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
 
 
 }

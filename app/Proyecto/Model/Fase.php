@@ -306,11 +306,9 @@ class Fase
     protected static function BuscarDiaEnDiasTorneo($dia, $array){
         foreach ($array as $i) {
             if ($dia == $i) {
-                Fase::Imprimir("devuelveVerdadero");
                 return true;
             }
         }
-        Fase::Imprimir("devuelveFalso");
         return false;
     }
 

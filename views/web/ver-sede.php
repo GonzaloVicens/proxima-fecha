@@ -7,10 +7,24 @@
  */
 use Proyecto\Core\App;
 
-use Proyecto\Model\Sede;
+use Proyecto\Model\Deporte;
 use Proyecto\Session\Session;
 
 $sedeAMostrar->actualizar();
+
+
+if (Session::has("camposError")) {
+    $camposError = Session::get("camposError");
+    $camposViejos = Session::get("campos");
+
+    Session::clearValue("camposError");
+    Session::clearValue("campos");
+} else {
+    $camposError = "";
+    $camposViejos = "";
+
+} ;
+
 ?>
 
 <main class="py-4 mb-4 torneo">
@@ -60,10 +74,10 @@ $sedeAMostrar->actualizar();
             <div class="col-md-4">
                 <h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>
                 <?php if (isset($usuario) && $usuario->esDuenoDeSede($sedeAMostrar->getSedeID())) { ?>
-                    <p>
-                        <a href="<?= App::$urlPath; ?>/sedes/editar-sede" class="naranjaFecha hoverVerde"><i
+                <p>
+                    <a href="<?= App::$urlPath; ?>/sedes/editar-sede" class="naranjaFecha hoverVerde"><i
                                 class="far fa-edit"></i> Modificar Datos de la Sede</a>
-                    </p>
+                </p>
                 <p>
                     <a href="<?= App::$urlPath; ?>/sedes/editar-duenos" class="naranjaFecha hoverVerde"><i
                             class="far fa-edit"></i> Administrar Dueños</a>
@@ -73,11 +87,44 @@ $sedeAMostrar->actualizar();
                             class="fas fa-times-circle"></i> Eliminar Sede
                     </button>
                 </p>
-                <p>
-                    <a href="<?= App::$urlPath; ?>/sedes/agregar-canchas" class="naranjaFecha hoverVerde"><i
-                            class="fas fa-plus-circle"></i> Agregar Cancha</a>
-                </p>
                 <?php } ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <h2 class="mb-4 pfgreen h1">Agregar Nueva Cancha</h2>
+                <form action="agregar-cancha" method="POST">
+                    <input type="hidden" name="sede_id" value="<?= $sedeAMostrar->getSedeID()?>" />
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" required name="nombre" id="nombre"   />
+                    </div>
+                    <div class="form-group">
+                        <label for="deporte">Deporte</label>
+                        <select name="deporte" id="deporte" class="form-control"  >
+                            <?=Deporte::printOptionsDeportes()?>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input type="text" class="form-control" name="precio" id="precio"   required />
+                    </div>
+                    <button type="submit" class="btn btn-danger">Agregar</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <?php
+                if (isset($camposError) && $camposError!= "") {
+                    echo("<div class='DivErrores'><ul>");
+                    foreach ($camposError as $error => $descr) {
+                        echo ("<li style='color:#F00'>".ucfirst($error).": ".$descr. "</li>");
+                    }
+                    echo("</ul></div>");
+                }
+                ?>
             </div>
         </div>
     </div>
