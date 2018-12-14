@@ -12,12 +12,29 @@
   z-index: -999;
 }
 */
-.notificaciones .fecha {
+.cuenta-pro .seguridad {
+  overflow: hidden; }
+  .cuenta-pro .seguridad:after {
+    content: '\f023';
+    font-family: 'FontAwesome';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24px;
+    height: 26px;
+    padding: 3px 3px 5px;
+    background-color: #BDBDBD;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center; }
+.cuenta-pro .fecha {
   color: #18C25D;
   font-style: italic;
   font-size: .8rem;
   margin-right: .6rem; }
-.notificaciones i.fas.fa-bell:before, .notificaciones i.fas.fa-comments:before, .notificaciones i.fas.fa-crown:before {
+.cuenta-pro i.fas.fa-bell:before, .cuenta-pro i.fas.fa-comments:before, .cuenta-pro i.fas.fa-crown:before {
   font-size: 1.5rem;
   color: #ebebeb;
   padding: .5rem;
@@ -28,10 +45,13 @@
   margin-right: .4rem;
   display: block;
   text-align: center; }
-.notificaciones i.fas.fa-crown {
+.cuenta-pro i.fas.fa-crown {
   margin-bottom: 20px; }
-  .notificaciones i.fas.fa-crown:before {
+  .cuenta-pro i.fas.fa-crown:before {
     padding: 7px 5px 5px;
     font-size: 23px; }
 
-/*# sourceMappingURL=notificaciones.css.map */
+footer {
+  margin-top: 0 !important; }
+
+/*# sourceMappingURL=cuenta-pro.css.map */

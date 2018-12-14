@@ -212,6 +212,22 @@ class UsuarioController
     }
 
 
+    public function cuentaPro()
+    {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+            View::render('web/cuenta-pro',compact('usuario','usuario_id'), 3);
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+    }
+
+    //
+
+
+
+
     /**
      * Método que muestra el chat entre el usuario conectado y el amigo elegido
      */
@@ -342,10 +358,6 @@ class UsuarioController
             header('Location: ' . App::$urlPath . '/error404');
         }
     }
-
-
-
-
 
 
     /**

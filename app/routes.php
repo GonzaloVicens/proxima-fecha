@@ -28,6 +28,7 @@ Route::addRoute('GET' , '/usuarios/notificaciones'                             ,
 Route::addRoute('GET' , '/usuarios/mensajes'                                   , 'UsuarioController@mensajes');
 Route::addRoute('POST', '/usuarios/registrar'                                  , 'UsuarioController@registrar');
 Route::addRoute('POST', '/usuarios/recuperar-password'                         , 'UsuarioController@recuperarPassword');
+Route::addRoute('GET', '/usuarios/pasar-a-cuenta-pro'                         , 'UsuarioController@cuentaPro');
 Route::addRoute('GET' , '/equipos/{equipo_id}'                                 , 'EquipoController@ver');
 Route::addRoute('POST', '/equipos/agregar-jugador'                             , 'EquipoController@agregarJugador');
 Route::addRoute('GET' , '/equipos'                                             , 'EquipoController@verEquipos');

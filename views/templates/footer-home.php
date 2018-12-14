@@ -25,12 +25,13 @@ use Proyecto\Core\App;
                 </ul>
             </div>
             <div class="col-md-2">
-                <p class="h5 mb-3">Jugadores</p>
+                <p class="h5 mb-3">Secciones de Interés</p>
                 <ul class="list-unstyled fontSize14">
-                    <li class="mb-3"><a href="#" class="text-white">Buscar Campeonato</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/terminos-y-condiciones-de-uso" class="text-white">Términos y Condiciones</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/preguntas-frecuentes" class="text-white">Ayuda</a></li>
                     <li class="mb-3"><a href="<?= App::$urlPath;?>/contacto" class="text-white">Contacto</a></li>
                     <li class="mb-3"><a href="<?= App::$urlPath;?>/registrarse" class="text-white">Registrarme</a></li>
-                    <li class="mb-3"><a href="#" class="text-white">Ingresar</a></li>
+                    <li class="mb-3"><a href="<?= App::$urlPath;?>/recuperar-password" class="text-white">Recuperar Contraseña</a></li>
                 </ul>
             </div>
             <div class="col-md-3">

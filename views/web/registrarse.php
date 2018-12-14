@@ -98,7 +98,7 @@ if (! $usuarioLogueado ){
                     </div>
                     <div class="form-check">
                         <!--input type="checkbox" class="form-check-input" name="terminos" id="terminos"-->
-                        <label class="form-check-label terminos_condiciones"><input type="checkbox" class="form-check-input" name="terminos" id="terminos"> Acepto los términos y condiciones </label>
+                        <label class="form-check-label terminos_condiciones"><input type="checkbox" class="form-check-input" name="terminos" id="terminos"> Acepto los <a href="<?= App::$urlPath;?>/terminos-y-condiciones-de-uso" class='text-muted' target="_blank">términos y condiciones </a></label>
                         <?php
                         if (! $usuarioLogueado && isset($camposError['terminos'])) {
                             echo "<small class='rta-validacion text-danger'>" . $camposError['terminos'] . "</small>";

@@ -10,7 +10,7 @@ use Proyecto\Core\App;
 
 ?>
 
-<footer class="mt-5 pt-4 pb-5 border-top">
+<footer class="pt-4 pb-5 border-top">
     <div class="container pb-4">
         <div class="row text-muted">
             <div class="col-md-12">
