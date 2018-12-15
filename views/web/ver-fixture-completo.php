@@ -17,7 +17,6 @@ $torneo->actualizar();
             <div class="col-md-2">
                 <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
             </div>
-
             <div class="col-md-12">
                 <h2 class="pfgreen mt-4 mb-2">
                     <span class="d-block font-weight-normal colorGris2 h4 mb-2"><i class="fas fa-trophy"></i> <?= $torneo->getDescrTipoTorneo()?></span>

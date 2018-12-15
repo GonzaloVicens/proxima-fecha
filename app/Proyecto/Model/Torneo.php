@@ -1133,6 +1133,46 @@ class Torneo
         }
     }
 
+    protected function mostrarPartidoCopa($partido){
+        $htmlPartido = "<div class='equipo_container list-group '>";
+        $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getLocalNombre() . ": <span>". $partido->getPuntosLocal() . "</span></div>";
+        $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getVisitaNombre() . ": <span>". $partido->getPuntosVisita() . "</span></div>"
+
+        if (Session::has('usuario')) {
+            $usuario = Session::set('usuario');
+        }
+
+        if (isset($usuario) && $partido->esArbitro($usuario->getUsuarioID()) && $this->estaEnCurso() ){
+            $label = "Actualizar Partido";
+            $icon = "<i class='fas fa-edit'></i><span class='d-none'>editar</span>";
+        } else {
+            $label = "Ver Partido";
+            $icon = "<i class='fas fa-eye'></i><span class='d-none'>ver</span>";
+        }
+        $htmlPartido .= "<div class='actualizar_ver'><a href='". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "' title=' $label '>$icon </a></div>";
+        $htmlPartido.= "</div>";
+        return $htmlPartido;
+    }
+
+
+    public function mostrarFixtureCopa($fase_id, $html){
+        $fase = New Fase($this->torneo_id, $fase_id);
+        $canPartidosEnFase = $fase->getCantidadPartidosFase() ;
+        $htmlFinal ="";
+        if ($canPartidosEnFase == 1) {
+            $htmlFinal .= "<div class='item final'><span class='fase_torneo'>" . $fase->getDescripcion() . "</span>";
+            foreach ($fase->getPartidos() as $partido) {
+                $htmlFinal .= $this->mostrarPartidoCopa($partido);
+            };
+            $htmlFinal .= "</div>";
+            return $htmlFinal ;
+        } else {
+
+
+        }
+
+        return $htmlFinal;
+    }
 
 }
 

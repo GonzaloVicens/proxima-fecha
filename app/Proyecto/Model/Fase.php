@@ -313,5 +313,9 @@ class Fase
     }
 
 
+    public function getCantidadPartidosFase(){
+        return Partido::getCantidadPartidosFase($this->torneo_id, $this->fase_id);
+    }
+
 
 }

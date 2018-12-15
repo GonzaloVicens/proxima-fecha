@@ -645,4 +645,20 @@ class Partido
     }
 
 
+    public static function getCantidadPartidosFase($torneo_id, $fase_id) {
+        $datos= [
+            'torneo_id'   => $torneo_id,
+            'fase_id'     => $fase_id
+        ];
+
+        $query = "SELECT COUNT(*) CANTIDAD FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        if ($rta = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            return $rta['CANTIDAD'];
+        } else {
+          return 0;
+        }
+    }
+
 }
