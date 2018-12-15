@@ -54,7 +54,7 @@ class Equipo
             'capitan_id' => $capitan
         ];
 
-        $script = "INSERT INTO EQUIPOS VALUES (null, :nombre, :capitan_id, 1)";
+        $script = "INSERT INTO EQUIPOS VALUES (null, :nombre, :capitan_id, 1, CURDATE())";
         $stmt = DBConnection::getStatement($script);
         if ($stmt->execute($equipo)) {
             $idEquipo = DBConnection::getConnection()->lastInsertId();
@@ -420,31 +420,33 @@ class Equipo
 
     public function printFormularioPartido($partido)
     {
-        if (Session::has('logueado')) {
-            $usuario = Session::get('usuario');
-            if ($usuario->getUsuarioID() == $partido->getArbitroID()) {
-                ?>
-                <div class="form-container-cargar-datos">
-                    <form action='agregar-ficha-partido' method='POST'>
-                        <h4 class='mt-5 mb-4 pfgreen encabezado-cargar-datos'>Agregar Ficha Equipo</h4>
-                        <div class='form-group'>
-                            <select name='tipo' class='form-control'>
-                                <?=TipoEstadistica::printOptions()?>
-                            </select>
-                        </div>
-                        <div class='form-group'>
-                            <select name='jugador' class='form-control'>
-                                <?=$this->printOptionsJugadores()?>
-                            </select>
-                        </div>
-                        <input type="hidden" name="torneo" value="<?= $partido->getTorneoID()?>">
-                        <input type="hidden" name="fase" value="<?= $partido->getFaseID()?>">
-                        <input type="hidden" name="partido" value="<?= $partido->getPartidoID()?>">
-                        <input type="hidden" name="equipo" value="<?= $this->equipo_id?>">
-                        <button type='submit' class='btn btn-light'>Agregar Ficha Partido</button>
-                    </form>
-                </div>
-            <?php
+        if (Torneo::GetEstadoIdPorTorneo($partido->getTorneoID()) == 'C'){
+            if (Session::has('logueado')) {
+                $usuario = Session::get('usuario');
+                if ($usuario->getUsuarioID() == $partido->getArbitroID()) {
+                    ?>
+                    <div class="form-container-cargar-datos">
+                        <form action='agregar-ficha-partido' method='POST'>
+                            <h4 class='mt-5 mb-4 pfgreen encabezado-cargar-datos'>Agregar Ficha Equipo</h4>
+                            <div class='form-group'>
+                                <select name='tipo' class='form-control'>
+                                    <?= TipoEstadistica::printOptions() ?>
+                                </select>
+                            </div>
+                            <div class='form-group'>
+                                <select name='jugador' class='form-control'>
+                                    <?= $this->printOptionsJugadores() ?>
+                                </select>
+                            </div>
+                            <input type="hidden" name="torneo" value="<?= $partido->getTorneoID() ?>">
+                            <input type="hidden" name="fase" value="<?= $partido->getFaseID() ?>">
+                            <input type="hidden" name="partido" value="<?= $partido->getPartidoID() ?>">
+                            <input type="hidden" name="equipo" value="<?= $this->equipo_id ?>">
+                            <button type='submit' class='btn btn-light'>Agregar Ficha Partido</button>
+                        </form>
+                    </div>
+                    <?php
+                }
             }
         }
     }

@@ -210,19 +210,28 @@ class Torneo
             'sede_id'           =>  $inputs['sede']
         ];
 
+
+
         $script = "UPDATE TORNEOS SET NOMBRE = :nombre, DEPORTE_ID = :deporte_id, TIPO_TORNEO_ID = :tipo_torneo_id, CANTIDAD_EQUIPOS = :cantidad_equipos, FECHA_INICIO = :fecha_inicio, SEDE_ID = :sede_id WHERE TORNEO_ID = :torneo_id";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($torneo)) {
             self::InsertarDiasTorneo( $inputs);
+            self::eliminarFixtureDelTorneo( $inputs['torneo_id']);
         }else {
             throw new TorneoNoGrabadoException("Error al grabar el torneo.");
         };
     }
 
 
-    protected function eliminarFixture() {
+    protected function eliminarFixture()
+    {
+        self::eliminarFixtureDelTorneo($this->torneo_id);
+    }
+
+
+    public static function eliminarFixtureDelTorneo ($torneo_id){
         $torneo= [
-            'torneo_id' => $this->torneo_id
+            'torneo_id' => $torneo_id
         ];
 
         $script = "DELETE FROM FICHA_PARTIDO WHERE TORNEO_ID = :torneo_id";
@@ -409,6 +418,10 @@ class Torneo
 
     public function getLugaresLibres(){
         return $this->cantidad_equipos - count($this->equipos);
+    }
+
+    public function getCantidadEquiposAgregados(){
+        return count($this->equipos);
     }
 
     public function esNuevo(){
@@ -645,7 +658,18 @@ class Torneo
     }
 
 
+    public static function GetEstadoIdPorTorneo($torneo_id){
+        $datos = ['torneo_id' => $torneo_id];
 
+        $query = "SELECT ESTADO_TORNEO_ID FROM TORNEOS WHERE TORNEO_ID = :torneo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        IF ($rta = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            return $rta['ESTADO_TORNEO_ID'];
+        } else {
+            return "";
+        }
+    }
 
     public function existeOrganizador($organizador_id){
         $datos = ['torneo_id' => $this->torneo_id,
@@ -1133,41 +1157,97 @@ class Torneo
         }
     }
 
-    protected function mostrarPartidoCopa($partido){
+    protected function mostrarPartidoCopa($partido , $usuario_ID){
         $htmlPartido = "<div class='equipo_container list-group '>";
-        $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getLocalNombre() . ": <span>". $partido->getPuntosLocal() . "</span></div>";
-        $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getVisitaNombre() . ": <span>". $partido->getPuntosVisita() . "</span></div>";
 
-        if (Session::has('usuario')) {
-            $usuario = Session::set('usuario');
-        }
-
-        if (isset($usuario) && $partido->esArbitro($usuario->getUsuarioID()) && $this->estaEnCurso() ){
-            $label = "Actualizar Partido";
-            $icon = "<i class='fas fa-edit'></i><span class='d-none'>editar</span>";
+        if ($partido->getLocalNombre() != "" ) {
+            $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getLocalNombre() . ": <span>" . $partido->getPuntosLocal() . "</span></div>";
         } else {
-            $label = "Ver Partido";
-            $icon = "<i class='fas fa-eye'></i><span class='d-none'>ver</span>";
+            $htmlPartido .= "<div class='torneo_equipo list-group-item'><span></span></div>";
+        };
+
+        if ($partido->getVisitaNombre() != "" ) {
+            $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getVisitaNombre() . ": <span>" . $partido->getPuntosVisita() . "</span></div>";
+
+
+
+        } else {
+            $htmlPartido .= "<div class='torneo_equipo list-group-item'><span></span></div>";
+        };
+
+        if (($partido->getLocalNombre() != "" ) && ( $partido->getVisitaNombre()!= "")){
+            if (isset($usuario_ID) && $partido->esArbitro($usuario_ID) && $this->estaEnCurso() ){
+                $label = "Actualizar Partido";
+                $icon = "<i class='fas fa-edit'></i><span class='d-none'>editar</span>";
+            } else {
+                $label = "Ver Partido" . $this->estaEnCurso();
+                $icon = "<i class='fas fa-eye'></i><span class='d-none'>ver</span>";
+            }
+            $htmlPartido .= "<div class='actualizar_ver'><a href='". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "' title=' $label '>$icon </a></div>";
         }
-        $htmlPartido .= "<div class='actualizar_ver'><a href='". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "' title=' $label '>$icon </a></div>";
+
         $htmlPartido.= "</div>";
         return $htmlPartido;
     }
 
+    public function imprimir($algo){
+        echo "<pre>";
+        print_r($algo);
+        echo "</pre>";
+    }
 
-    public function mostrarFixtureCopa($fase_id, $html){
+
+    public function mostrarFixtureCopa($fase_id, $usuario_ID){
+
+
         $fase = New Fase($this->torneo_id, $fase_id);
         $canPartidosEnFase = $fase->getCantidadPartidosFase() ;
         $htmlFinal ="";
+
         if ($canPartidosEnFase == 1) {
-            $htmlFinal .= "<div class='item final'><span class='fase_torneo'>" . $fase->getDescripcion() . "</span>";
+            $htmlFinal .= "<div class='item final'><span class='fase_torneo'>" .  $fase->getDescripcion() . "</span>";
             foreach ($fase->getPartidos() as $partido) {
-                $htmlFinal .= $this->mostrarPartidoCopa($partido);
+                $htmlFinal .= $this->mostrarPartidoCopa($partido, $usuario_ID);
             };
             $htmlFinal .= "</div>";
             return $htmlFinal ;
         } else {
+            $clase = "";
+            switch ($canPartidosEnFase){
+                case 2:
+                    $clase = "semifinal";
+                    break;
+                case 4:
+                    $clase = "cuartos";
+                    break;
+                case 8:
+                    $clase = "octavos";
+                    break;
+                case 16:
+                    $clase = "dieciseisavos";
+                    break;
+            }
 
+
+            // Primero genero la llave original
+            $mitad = intdiv ( $canPartidosEnFase , 2 );
+            $partidosFase = $fase->getPartidos();
+            $htmlFinal .= "<div class='item " . $clase . " llave_a'><span class='fase_torneo'> Llave A - " . $fase->getDescripcion() . "</span>";
+
+            for ($i = 0 ; $i < $mitad ; $i++) {
+                $partido = $partidosFase[$i];
+                $htmlFinal .= $this->mostrarPartidoCopa($partido, $usuario_ID);
+            };
+            $htmlFinal .= "</div>";
+
+            $htmlFinal .= $this->mostrarFixtureCopa($fase_id +1 , $usuario_ID);
+
+            $htmlFinal .= "<div class='item " . $clase . " llave_b'><span class='fase_torneo'> Llave B - " . $fase->getDescripcion() . "</span>";
+            for ($i = $mitad  ; $i < $canPartidosEnFase ; $i++){
+                $partido = $partidosFase[$i];
+                $htmlFinal .= $this->mostrarPartidoCopa($partido, $usuario_ID);
+            }
+            $htmlFinal .= "</div>";
 
         }
 

@@ -6,6 +6,13 @@
  * Time: 02:47 AM
  */
 use Proyecto\Core\App;
+use Proyecto\Session\Session;
+$usuarioID ="";
+if (Session::has('usuario')) {
+    $usuario = Session::get('usuario');
+    $usuarioID = $usuario->getUsuarioID();
+}
+
 
 $torneo->actualizar();
 ?>
@@ -29,125 +36,7 @@ $torneo->actualizar();
                     <div class="owl-stage-outer">
                         <div class="owl-stage">
                             <div class="owl-carousel">
-                                <?php if ($torneo->getCantidadEquipos() >= 32 ){?>
-                                <div class="item dieciseisavos llave_a">
-                                    <span class='fase_torneo'>Llave A - 16avos</span>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item list-group-item'>Equipo</div>
-                                    </div>
-                                </div>
-
-                                <?php }
-                                if ($torneo->getCantidadEquipos() >= 16 ){?>
-                                <div class="item octavos llave_a">
-                                    <span class='fase_torneo'>Llave A <br>8avos</span>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                </div>
-                                <?php }
-                                if ($torneo->getCantidadEquipos() >= 8 ){?>
-                                <div class="item cuartos llave_a">
-                                    <span class='fase_torneo'>Llave A <br>4tos</span>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                </div>
-                                <?php }
-                                if ($torneo->getCantidadEquipos() >= 4 ){?>
-                                <div class="item semifinal llave_a">
-                                    <span class='fase_torneo'>Llave A <br>Semifinal</span>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                </div>
-                                <?php }
-                                if ($torneo->getCantidadEquipos() >= 2 ){?>
-                                <div class="item final">
-                                    <span class='fase_torneo'>FINAL</span>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                </div>
-                                <?php }
-                                if ($torneo->getCantidadEquipos() >= 4 ){?>
-                                <div class="item semifinal llave_b">
-                                    <span class='fase_torneo'>Llave B <br>Semifinal</span>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                </div>
-                                <div class="item cuartos llave_b">
-                                    <span class='fase_torneo'>Llave B <br>4tos</span>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                </div>
-                                <div class="item octavos llave_b">
-                                    <span class='fase_torneo'>Llave B <br>8avos</span>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                </div>
-                                <div class="item dieciseisavos llave_b">
-                                    <span class='fase_torneo'>Llave B - 16avos</span>
-                                    <div class='equipo_container list-group '>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                    <div class='equipo_container list-group'>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                        <div class='torneo_equipo list-group-item'>Equipo</div>
-                                    </div>
-                                </div>
+                                <?= $torneo->mostrarFixtureCopa(1, $usuarioID ) ?>
                             </div>
                         </div>
                     </div>

@@ -28,6 +28,7 @@ $torneoAMostrar->actualizar();
                 <p class="text-muted"><i class="far fa-calendar-alt"></i> Estado: <?=$torneoAMostrar->getEstadoDescr()?> - Fecha de Inicio: <span><?= $torneoAMostrar->getFechaInicio() ?></span></p>
                 <p class="text-muted"><i class="far fa-calendar-alt"></i> Sede: <span class="font-italic"><?= $torneoAMostrar->getDescrSede() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span><?= $torneoAMostrar->getCantidadEquipos() ?></span></p>
+                <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Agregados: <span><?= $torneoAMostrar->getCantidadEquiposAgregados() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> El torneo se juega los dias: <span><?= $torneoAMostrar->getDiasTorneoEnString() ?></span></p>
 
                 <h3 class="pfgreen h4 mt-4">Organizadores:</h3>

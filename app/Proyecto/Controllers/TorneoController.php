@@ -320,7 +320,12 @@ class TorneoController
         if (Session::has("torneo")) {
             $torneo = Session::get('torneo');
             $torneo ->actualizar();
-            View::render('web/ver-fixture-completo',compact('torneo'), 3);
+
+            if ($torneo->getTipoTorneoId() == "C"){
+                View::render('web/ver-fixture-torneo-completo',compact('torneo'), 3);
+            } else {
+                View::render('web/ver-fixture-completo',compact('torneo'), 3);
+            }
 
         } else {
             header('Location: ' . App::$urlPath . '/error404');
@@ -330,6 +335,10 @@ class TorneoController
 
     public function verFixtureTorneoCompleto()
     {
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+        };
+
         if (Session::has("torneo")) {
             $torneo = Session::get('torneo');
             $torneo ->actualizar();
