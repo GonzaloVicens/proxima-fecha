@@ -17,6 +17,9 @@
     .item {
       .equipo_container {
         .actualizar_ver {
+          position: absolute;
+          bottom: -25px;
+          left: 0;
           i {
             &.fas {
               color: $bgcol_verde5;

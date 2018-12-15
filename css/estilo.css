@@ -1581,11 +1581,15 @@ section.portada {
   width: 220px; }
 .fixture-torneo-completo .owl-item.active {
   z-index: 99; }
-.fixture-torneo-completo .owl-item .item .equipo_container .actualizar_ver i.fas {
-  color: #00CD5E; }
-  .fixture-torneo-completo .owl-item .item .equipo_container .actualizar_ver i.fas:hover {
-    color: #FFCD5E;
-    transition: color .2s ease-in-out; }
+.fixture-torneo-completo .owl-item .item .equipo_container .actualizar_ver {
+  position: absolute;
+  bottom: -25px;
+  left: 0; }
+  .fixture-torneo-completo .owl-item .item .equipo_container .actualizar_ver i.fas {
+    color: #00CD5E; }
+    .fixture-torneo-completo .owl-item .item .equipo_container .actualizar_ver i.fas:hover {
+      color: #FFCD5E;
+      transition: color .2s ease-in-out; }
 .fixture-torneo-completo .torneo_equipo {
   border: 1px solid grey;
   width: 100%;

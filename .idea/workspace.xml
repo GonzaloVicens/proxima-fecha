@@ -99,8 +99,8 @@
       <file leaf-file-name="ver-fixture-torneo-eliminacion.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scss/ver-fixture-torneo-eliminacion.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="23" column="48" lean-forward="false" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+            <state relative-caret-position="340">
+              <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -801,12 +801,12 @@
       <workItem from="1544810709284" duration="9840000" />
       <workItem from="1544834573237" duration="13409000" />
       <workItem from="1544854713062" duration="196000" />
-      <workItem from="1544874131521" duration="20765000" />
+      <workItem from="1544874131521" duration="20998000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="541332000" />
+    <option name="totallyTimeSpent" value="541565000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
@@ -1303,8 +1303,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scss/ver-fixture-torneo-eliminacion.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="23" column="48" lean-forward="false" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+        <state relative-caret-position="340">
+          <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
           <folding />
         </state>
       </provider>
