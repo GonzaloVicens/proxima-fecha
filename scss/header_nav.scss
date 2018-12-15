@@ -11,6 +11,33 @@ nav {
       &.navbar-white {
         &.navbar-dark {
           &.fondoHeader2 {
+
+            .form-buscar {
+              position: relative;
+
+              form {
+                margin-left: 50px;
+                &:after {
+                  content: '\f002';
+                  display: block;
+                  top: 7px;
+                  left: 7px;
+                  width: 28px;
+                  height: 28px;
+                  position: absolute;
+                  color: $col_gris1;
+                  font-family: 'FontAwesome';
+                  font-size: 16px;
+                  margin-left: 50px;
+                }
+
+                input {
+                  width: 250px;
+                  padding-left: 28px;
+                }
+              }
+            }
+
             .navbar-nav {
 
               .nav-item {
@@ -21,16 +48,10 @@ nav {
 
                     &.end-session {
                       min-width: 9rem;
-                      //width: 9rem;
-                      //left: -;
 
                       .dropdown-item {
-                        //width: 9rem;
-                        //min-width: 100px !important;
-                        //background-color: red;
-
                         a {
-                          //width: 100px !important;
+
                         }
                       }
                     }
@@ -117,6 +138,26 @@ nav {
           &.navbar-dark {
             &.fondoHeader2 {
 
+              .form-buscar {
+                position: relative;
+
+                form {
+                  margin-left: 0;
+                  &:after {
+                    top: 7px;
+                    left: 7px;
+                    width: 28px;
+                    height: 28px;
+                    margin-left: 0;
+                  }
+
+                  input {
+                    width: 250px;
+                  }
+                }
+              }
+
+
               .navbar-nav{
 
                 &.userdropdown{
@@ -150,6 +191,8 @@ nav {
   }
 }
 
+
+
 @media (min-width: 992px) {
   nav {
     &.navbar {
@@ -158,9 +201,23 @@ nav {
           &.navbar-dark {
             &.fondoHeader2 {
 
+              font-size: .9rem;
               height: 60px;
               padding-top: 2px;
               padding-bottom: 2px;
+
+              .form-buscar {
+                form {
+                  margin-left: 20px;
+                  &:after {
+                    margin-left: 20px;
+                  }
+
+                  input {
+                    width: 220px;
+                  }
+                }
+              }
 
               div.collapse.navbar-collapse {
                 ul {
@@ -241,6 +298,35 @@ nav {
                         margin-right: 20px;
                       }
                     }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  nav {
+    &.navbar {
+      &.navbar-expand-lg {
+        &.navbar-white {
+          &.navbar-dark {
+            &.fondoHeader2 {
+              font-size: 1rem;
+
+              .form-buscar {
+                form {
+                  margin-left: 50px;
+                  &:after {
+                    margin-left: 50px;
+                  }
+
+                  input {
+                    width: 300px;
+                  }
                 }
               }
             }

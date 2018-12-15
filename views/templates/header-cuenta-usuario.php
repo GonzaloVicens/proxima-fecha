@@ -123,6 +123,12 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                         </div>
                     </li>
                 </ul>
+                <div class="form-buscar">
+                    <form class="form-inline">
+                        <input class="form-control" type="text" placeholder="buscar" aria-label="Search">
+                        <!--button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button-->
+                    </form>
+                </div>
                 <ul class="navbar-nav userdropdown">
                     <li class="nav-item dropdown">
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
