@@ -14,6 +14,7 @@ Route::addRoute('GET' , '/adminPF/desactivar-usuario/{usuario_id}'             ,
 Route::addRoute('GET' , '/adminPF/activar-usuario/{usuario_id}'                , 'AdminController@activarUsuario');
 Route::addRoute('GET' , '/adminPF/desactivar-equipo/{equipo_id}'               , 'AdminController@desactivarEquipo');
 Route::addRoute('GET' , '/adminPF/activar-equipo/{equipo_id}'                  , 'AdminController@activarEquipo');
+Route::addRoute('POST', '/adminPF/buscar-equipo'                               , 'AdminController@buscarEquipo');
 Route::addRoute('GET' , '/desloguear'                                          , 'UsuarioController@desloguear');
 Route::addRoute('GET' , '/usuarios/notificaciones'                             , 'UsuarioController@notificaciones');
 Route::addRoute('GET' , '/usuarios/{usuario_id}'                               , 'UsuarioController@ver');

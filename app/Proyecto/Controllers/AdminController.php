@@ -49,6 +49,7 @@ class AdminController //implements JsonSerializable
         } else {
             Session::clearValue('errorAdmin');
             Session::set('admin', $admin);
+            Session::set('usuario', $admin);
             Session::set('logueadoAdmin', 'S');
             $admin->inicioSesion();
             header('Location: ' . App::$urlPath .'/adminPF/home');
@@ -132,6 +133,26 @@ class AdminController //implements JsonSerializable
         };
         header('Location: ' . App::$urlPath .'/adminPF/home');
 
+    }
+
+
+    /**
+     * Método que busca los equipos que tengan un nombre o id que contenga el parámetro.
+     */
+    public function buscarEquipo()
+    {
+        $inputs = Request::getData();
+
+        Session::clearValue('inputsBusqueda');
+        Session::clearValue("errorAgregarEquipo");
+        Session::clearValue("IDAgregarEquipo");
+        Session::clearValue('inputsBuscados');
+
+        Session::set('inputsBusqueda',$inputs);
+
+        $resultados = Equipo::BuscarEquipos($inputs );
+        Session::set('resultados',$resultados);
+        header('Location: ' . App::$urlPath .'/adminPF/home');
     }
 
 }

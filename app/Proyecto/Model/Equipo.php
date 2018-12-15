@@ -29,6 +29,12 @@ class Equipo
      */
     protected $jugadores;
 
+    protected $activo;
+
+    protected $activoString;
+
+
+
     /**
      * Usuario constructor.
      * @param null $equi
@@ -104,12 +110,14 @@ class Equipo
     {
         $this->equipo_id = $equi;
 
-        $query = "SELECT NOMBRE, CAPITAN_ID FROM EQUIPOS WHERE EQUIPO_ID = :equipo_id ";
+        $query = "SELECT NOMBRE, CAPITAN_ID , ACTIVO, CASE ACTIVO WHEN 1  THEN 'Activo' ELSE 'Inactivo' END AS ACTIVOSTRING FROM EQUIPOS WHERE EQUIPO_ID = :equipo_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['equipo_id' => $this->equipo_id]);
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->nombre = $datos['NOMBRE'];
             $this->capitan_id = $datos['CAPITAN_ID'];
+            $this->activo = $datos['ACTIVO'];
+            $this->activoString = $datos['ACTIVOSTRING'];
         };
         $this->setJugadores();
     }
@@ -146,6 +154,13 @@ class Equipo
         return $this->capitan_id;
     }
 
+    public function estaActivo(){
+        return ($this->activo == 1);
+    }
+
+    public function getActivoString(){
+        return $this->activoString;
+    }
 
     /**
      * @return null|Torneo
@@ -263,6 +278,23 @@ class Equipo
         echo "</table>";
     }
 
+    public static function imprimirEquiposPorArray($array)
+    {
+        echo "<table  class='table table-condensed'>";
+        echo "<tr><th>ID</th><th>NOMBRE</th><th>CAPITAN</th><th>ESTADO</th><th>ACCIONES</th></tr>";
+
+        foreach($array as $a){
+            echo "<tr><td>" . $a->getEquipoID() ."</td><td>". $a->getNombre()."</td><td>". $a->getCapitanID(). "</td><td>" . $a->getActivoString() . "</td>";
+            if ($a->estaActivo()) {
+                echo "<td><a class='text-danger' title='Inactivar ". $a->getEquipoID() . "' href='desactivar-equipo/". $a->getEquipoID() ."'><i class='fas fa-times-circle'></i> Inactivar</a></td>";
+            } else {
+                echo "<td><a class='text-danger' title='Activar ". $a->getEquipoID() . "' href='activar-equipo/". $a->getEquipoID() ."'><i class='fas fa-check'></i> Activar</a></td>";
+            }
+            echo "</tr>";
+        };
+        echo "</table>";
+    }
+
 
     public static function ActualizarEstado($equipo_id, $activo)
     {
@@ -283,10 +315,15 @@ class Equipo
         return ($stmt->fetch(\PDO::FETCH_ASSOC));
     }
 
-    public static function BuscarEquipos($inputs)
+    public static function BuscarEquipos($inputs, $activo = null)
     {
 
-        $where = "WHERE ACTIVO = 1 ";
+        $where = "WHERE 1 = 1 ";
+
+        if ($activo) {
+            $where .= $activo;
+        }
+
         $datos = [];
         if ($inputs['id']) {
             $where .= " AND EQUIPO_ID = :id";
@@ -307,7 +344,6 @@ class Equipo
             $resultados [] = New Equipo ($datos['EQUIPO_ID']);
         }
         return $resultados;
-
     }
 
 

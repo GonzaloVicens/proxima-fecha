@@ -649,14 +649,12 @@ class Usuario
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 
-
     public function puedeAgregarEquiposEnTorneo($torneo_id){
         $query = "SELECT 'Y' FROM TORNEOS A, ORGANIZADORES B WHERE A.TORNEO_ID = B.TORNEO_ID AND A.TORNEO_ID = :torneo_id AND B.ORGANIZADOR_ID = :usuario_id AND A.ESTADO_TORNEO_ID = 'I' AND B.ACTIVO = 1 ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $this->usuario_id, 'torneo_id' => $torneo_id]);
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
-
 
     public function actualizar(){
         $this->setUsuario();
@@ -674,7 +672,5 @@ class Usuario
         } else {
             throw new UsuarioNoEncontradoException ("No existe el usuario.");
         }
-
     }
-    
 }

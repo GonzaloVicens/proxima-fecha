@@ -239,7 +239,7 @@ class TorneoController
 
         Session::set('inputsBusqueda',$inputs);
 
-        $resultados = Equipo::BuscarEquipos($inputs );
+        $resultados = Equipo::BuscarEquipos($inputs , " AND ACTIVO = 1 ");
         Session::set('resultados',$resultados);
         header('Location: ' . App::$urlPath . '/torneos/agregar-equipos');
     }
@@ -280,7 +280,7 @@ class TorneoController
         if (Session::has('inputsBuscados')){
             $inputsBusqueda = Session::get('inputsBuscados');
             Session::set('inputsBusqueda',$inputsBusqueda);
-            $resultados = Equipo::BuscarEquipos($inputsBusqueda );
+            $resultados = Equipo::BuscarEquipos($inputsBusqueda , " AND ACTIVO = 1 ");
             Session::set('resultados',$resultados);
         }
 
