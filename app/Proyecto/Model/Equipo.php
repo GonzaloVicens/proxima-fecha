@@ -337,6 +337,12 @@ class Equipo
 
         $order = " ORDER BY NOMBRE";
         $query = "SELECT EQUIPO_ID FROM EQUIPOS " . $where . $order;
+
+        echo "<pre>";
+        print_r ("SELECT EQUIPO_ID FROM EQUIPOS " . $where . $order);
+        echo "</pre>";
+
+
         $stmt = DBConnection::getStatement($query);
         $resultados = [];
         $stmt->execute($datos);

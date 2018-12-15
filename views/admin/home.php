@@ -15,6 +15,7 @@ use Proyecto\Tools\Estadisticas;
 
 if (Session::has('resultadosEquipo') ) {
     $resultadosEquipo = Session::get('resultadosEquipo');
+
 }
 Session::clearValue('resultadosEquipo');
 

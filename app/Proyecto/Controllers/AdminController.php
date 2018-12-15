@@ -144,7 +144,7 @@ class AdminController //implements JsonSerializable
         $inputs = Request::getData();
 
         $resultados = Equipo::BuscarEquipos($inputs );
-        Session::set('resultadosEquipos',$resultados);
+        Session::set('resultadosEquipo',$resultados);
         header('Location: ' . App::$urlPath .'/adminPF/home');
     }
 
