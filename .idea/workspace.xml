@@ -59,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editar-duenos.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="editar-duenos.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/web/editar-duenos.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="167">
@@ -79,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pendientes.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pendientes.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pendientes.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="9" column="33" lean-forward="false" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -265,12 +265,12 @@
         <option value="$PROJECT_DIR$/views/web/editar-mis-datos.php" />
         <option value="$PROJECT_DIR$/scss/estilo.scss" />
         <option value="$PROJECT_DIR$/app/Proyecto/Model/Sede.php" />
-        <option value="$PROJECT_DIR$/pendientes.txt" />
         <option value="$PROJECT_DIR$/views/web/crear-sede.php" />
         <option value="$PROJECT_DIR$/scss/sedes.scss" />
         <option value="$PROJECT_DIR$/views/web/ver-sede.php" />
         <option value="$PROJECT_DIR$/views/web/editar-sede.php" />
         <option value="$PROJECT_DIR$/views/web/editar-duenos.php" />
+        <option value="$PROJECT_DIR$/pendientes.txt" />
       </list>
     </option>
   </component>
@@ -795,12 +795,12 @@
       <workItem from="1544810709284" duration="9840000" />
       <workItem from="1544834573237" duration="13409000" />
       <workItem from="1544854713062" duration="196000" />
-      <workItem from="1544874131521" duration="30655000" />
+      <workItem from="1544874131521" duration="31099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="551222000" />
+    <option name="totallyTimeSpent" value="551666000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
@@ -1182,14 +1182,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pendientes.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/web/editar-mis-datos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1262,6 +1254,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
           <caret line="86" column="26" lean-forward="false" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pendientes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="33" lean-forward="false" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
           <folding />
         </state>
       </provider>
