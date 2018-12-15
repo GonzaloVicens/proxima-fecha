@@ -27,11 +27,11 @@ if (Session::has("camposError")) {
 
 ?>
 
-<main class="py-4 mb-4 torneo">
+<main class="py-4 mb-4 sede">
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h3 class="mt-4 mb-1 h4 colorGris2 font-weight-normal"><i class="fas fa-home"></i>Sede</h3>
+                <h3 class="mt-4 mb-1 h4 colorGris2 font-weight-normal"><i class="fas fa-map-marker-alt"></i> Sede</h3>
             </div>
             <div class="col-md-2">
                 <!--button class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</button-->
@@ -39,11 +39,11 @@ if (Session::has("camposError")) {
             <div class="col-md-8">
                 <!-- Nombre de Sede Debajo, tendría que ser dinámico -->
                 <h2 class="mb-4 pfgreen h1"><?= $sedeAMostrar->getNombre() ?></h2>
-                <p class="text-muted"><i class="far fa-calendar-alt"></i> País: <?=$sedeAMostrar->getPaisDescr()?> - Provincia: <span><?= $sedeAMostrar->getProvinciaDescr() ?></span></p>
-                <p class="text-muted"><i class="far fa-calendar-alt"></i> Direccion: <span class="font-italic"><?= $sedeAMostrar->getDireccion() ?></span></p>
-                <p class="text-muted"><i class="far fa-calendar-alt"></i> Código Postal: <span class="font-italic"><?= $sedeAMostrar->getCodigoPostal() ?></span></p>
-                <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Teléfono: <span><?= $sedeAMostrar->getTelefono() ?></span></p>
-                <p class="text-muted"><i class="fas fa-shield-alt"></i></i><span><?= $sedeAMostrar->getDetalles() ?></span></p>
+                <p class="text-muted"><i class="fas fa-globe-americas"></i> País: <?=$sedeAMostrar->getPaisDescr()?> - Provincia: <span><?= $sedeAMostrar->getProvinciaDescr() ?></span></p>
+                <p class="text-muted"><i class="fas fa-map-marked-alt"></i> Direccion: <span class="font-italic"><?= $sedeAMostrar->getDireccion() ?></span></p>
+                <p class="text-muted"><i class="fas fa-map-marker-alt"></i> Código Postal: <span class="font-italic"><?= $sedeAMostrar->getCodigoPostal() ?></span></p>
+                <p class="text-muted"><i class="fas fa-phone"></i> Teléfono: <span> <?= $sedeAMostrar->getTelefono() ?></span></p>
+                <p class="text-muted"><i class="fas fa-info-circle"></i><span> <?= $sedeAMostrar->getDetalles() ?></span></p>
 
                 <h3 class="pfgreen h4 mt-4">Dueños:</h3>
                 <ul class="list-unstyled">
@@ -61,7 +61,7 @@ if (Session::has("camposError")) {
                             }
                         }
 
-                        echo "<li>" . $duenoActual['APELLIDO'] . ", " . $duenoActual['NOMBRE'] . $boton . "</li>";
+                        echo "<li class='text-muted'><i class='fas fa-user'></i> " . $duenoActual['APELLIDO'] . ", " . $duenoActual['NOMBRE'] . $boton . "</li>";
                          } ?>
                 </ul>
             <?php if ( $sedeAMostrar->tieneCanchas() ){ ?>
@@ -94,29 +94,39 @@ if (Session::has("camposError")) {
             <div class="col-md-3">
             </div>
             <div class="col-md-6">
-                <h2 class="mb-4 pfgreen h1">Agregar Nueva Cancha</h2>
+                <h2 class="mb-4 pfgreen"><i class="fas fa-futbol"></i> Agregar Nueva Cancha</h2>
                 <form action="agregar-cancha" method="POST">
                     <input type="hidden" name="sede_id" value="<?= $sedeAMostrar->getSedeID()?>" />
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" required name="nombre" id="nombre"   />
+                        <input type="text" class="form-control"  name="nombre" id="nombre"   />
+                        <?php
+                        if (isset($camposError['nombre'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['nombre'] . "</small><p>";
+                        }
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="deporte">Deporte</label>
                         <select name="deporte" id="deporte" class="form-control"  >
                             <?=Deporte::printOptionsDeportes()?>
                         </select>
-
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio</label>
-                        <input type="text" class="form-control" name="precio" id="precio"   required />
+                        <input type="text" class="form-control" name="precio" id="precio"    />
+                        <?php
+                        if (isset($camposError['precio'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['precio'] . "</small><p>";
+                        }
+                        ?>
                     </div>
-                    <button type="submit" class="btn btn-danger">Agregar</button>
+                    <button type="submit" class="btn btn-outline-success">Agregar</button>
                 </form>
             </div>
             <div class="col-md-3">
                 <?php
+                /*
                 if (isset($camposError) && $camposError!= "") {
                     echo("<div class='DivErrores'><ul>");
                     foreach ($camposError as $error => $descr) {
@@ -124,6 +134,7 @@ if (Session::has("camposError")) {
                     }
                     echo("</ul></div>");
                 }
+                */
                 ?>
             </div>
         </div>
