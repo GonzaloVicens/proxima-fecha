@@ -476,7 +476,8 @@ class Equipo
         return $partidos;
     }
 
-    public function getUltimaFecha(){
+    public function getUltimaFecha()
+    {
 
         $query = "SELECT A.TORNEO_ID TORNEO_ID , C.NOMBRE NOMBRE, A.FASE_ID FASE_ID , D.DESCRIPCION FASE_DESCR, A.PARTIDO_ID PARTIDO_ID FROM PARTIDOS  A, TORNEOS C , FASES D WHERE A.TORNEO_ID = C.TORNEO_ID AND :equipo_id IN (A.LOCAL_ID, A.VISITA_ID) AND D.TORNEO_ID = A.TORNEO_ID AND D.FASE_ID = A.FASE_ID AND A.FECHA = (SELECT MAX(B.FECHA) FROM PARTIDOS B WHERE A.TORNEO_ID = B.TORNEO_ID AND :equipo_id IN (A.LOCAL_ID, A.VISITA_ID) AND A.JUGADO = 'Y' )";
         $stmt = DBConnection::getStatement($query);
@@ -484,6 +485,21 @@ class Equipo
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+
+    public static function GetEquiposCreados ($dias) {
+        $query = "SELECT COUNT(*) CANTIDAD FROM EQUIPOS WHERE  DATEDIFF(CURDATE() , REGISTRADO_DT) <= :dias";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['dias' => $dias]);
+        if ($respuesta = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            RETURN $respuesta['CANTIDAD'];
+        } ELSE {
+            RETURN 0;
+        }
+    }
+
+
+
 }
 
 

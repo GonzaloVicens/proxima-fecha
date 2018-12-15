@@ -739,5 +739,16 @@ class Usuario
         return $resultados;
     }
 
+    public static function GetUsuariosCreados ($dias) {
+        $query = "SELECT COUNT(*) CANTIDAD FROM USUARIOS WHERE  DATEDIFF(CURDATE() , REGISTRADO_DT) <= :dias";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['dias' => $dias]);
+        if ($respuesta = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            RETURN $respuesta['CANTIDAD'];
+        } ELSE {
+            RETURN 0;
+        }
+    }
+
 
 }

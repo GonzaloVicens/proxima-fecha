@@ -190,7 +190,7 @@ class Torneo
             $stmt = DBConnection::getStatement($script );
             $stmt->execute($organizador);
 
-            self::InsertarDiasTorneo($torneoID, $inputs);
+            self::InsertarDiasTorneo($inputs);
 
             return $torneoID;
         } else {
@@ -1120,6 +1120,19 @@ class Torneo
             Torneo::actualizarEstadoTorneo($torneo, "F");
         }
     }
+
+
+    public static function GetTorneosCreados ($dias) {
+        $query = "SELECT COUNT(*) CANTIDAD FROM TORNEOS WHERE  DATEDIFF(CURDATE() , REGISTRADO_DT) <= :dias";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['dias' => $dias]);
+        if ($respuesta = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            RETURN $respuesta['CANTIDAD'];
+        } ELSE {
+            RETURN 0;
+        }
+    }
+
 
 }
 
