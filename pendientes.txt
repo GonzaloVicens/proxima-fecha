@@ -1,10 +1,6 @@
 Pendientes/Notas:
 
-1) Las Sedes -> Falta el Diseño
 2) Buscador
-3) Corregir diseño AgregarCompañero -> AgregarEquipo (no entendí la flechita acá, el de agrear Equipo a Torneo ya estaría Ok)
-4) Fixture Torneo -> Resta Hacerlo Dinámico y Chequear si anda Ok
 5) Notificaciones
 6) Pantalla convertite en usuario Pro + Botón mercado Pago -> Hacerlo Dinámico
-7) Cambiar foto perfil de otros usuarios - Que No se Pued
-8) Cambiar foto perfil Mi Usuario
+7) Admin -> Buscador de equipos
