@@ -1136,7 +1136,7 @@ class Torneo
     protected function mostrarPartidoCopa($partido){
         $htmlPartido = "<div class='equipo_container list-group '>";
         $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getLocalNombre() . ": <span>". $partido->getPuntosLocal() . "</span></div>";
-        $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getVisitaNombre() . ": <span>". $partido->getPuntosVisita() . "</span></div>"
+        $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getVisitaNombre() . ": <span>". $partido->getPuntosVisita() . "</span></div>";
 
         if (Session::has('usuario')) {
             $usuario = Session::set('usuario');

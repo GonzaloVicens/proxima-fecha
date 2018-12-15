@@ -95,10 +95,15 @@ if (Session::has("camposError")){
                     <div class="form-group">
                        <label for="nombre">Nombre Torneo / Liga</label>
                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del torneo" value="<?=$nombre?>" />
+                        <?php
+                        if (isset($camposError['nombre'])) {
+                            echo "<p class='rta-validacion text-danger ml-1'><small>" . $camposError['nombre'] . "</small><p>";
+                        }
+                        ?>
                     </div>
                     <div class="form-group">
                        <label for="deporte">Deporte</label>
-                       <select name="deporte" id="deporte" class="form-control" required>
+                       <select name="deporte" id="deporte" class="form-control">
                         <?=Deporte::printOptionsDeportes($deporte)?>
                        </select>
                         <!--input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingresá tu nombre"-->
@@ -119,7 +124,12 @@ if (Session::has("camposError")){
                     </div>
                     <div class="form-group">
                         <label for="fechainicio">Fecha de Inicio </label>
-                        <input required type="date" name='fechaInicio' class="form-control" id="fechainicio" value="<?=$fechaInicio?>"/>
+                        <input type="date" name='fechaInicio' class="form-control" id="fechainicio" value="<?=$fechaInicio?>"/>
+                        <?php
+                        if (isset($camposError['fechaInicio'])) {
+                            echo "<p class='rta-validacion text-danger ml-1'><small>" . $camposError['fechaInicio'] . "</small><p>";
+                        }
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="sede">Sede</label>
@@ -136,15 +146,20 @@ if (Session::has("camposError")){
                         <label for="jueves">Jueves<input type="checkbox" name='J' <?= $jueves ?> class="form-control" id="jueves"></label>
                         <label for="viernes">Viernes<input type="checkbox" name='V' <?= $viernes ?> class="form-control" id="viernes"></label>
                         <label for="sabado">Sábado<input type="checkbox" name='S' <?= $sabado ?> class="form-control" id="sabado"></label>
+                        <?php
+                        if (isset($camposError['dias'])) {
+                            echo "<p class='rta-validacion text-danger ml-1'><small>" . $camposError['dias'] . "</small><p>";
+                        }
+                        ?>
                     </div>
 
-                    <button type="submit" class="btn btn-lg btn-outline-success">Crear</button>
-                    <a type="button" href="<?=App::$urlPath . '/usuarios/'. $usuario->getUsuarioId()?>" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
+                    <button type="submit" class="btn btn-outline-success">Crear Torneo</button>
+                    <a href="<?=App::$urlPath . '/usuarios/'. $usuario->getUsuarioId()?>" class="btn btn-link colorGris2">Cancelar</a>
                 </form>
             </div>
             <div class="col-md-3">
                 <?php
-
+                /*
                 if (isset($camposError)){
                     echo("<div class='DivErrores'><ul>");
                     foreach ($camposError as $error => $descr) {
@@ -152,6 +167,7 @@ if (Session::has("camposError")){
                     }
                     echo("</ul></div>");
                 }
+                */
                 ?>
             </div>
         </div>

@@ -18,14 +18,14 @@ $torneo->actualizar();
                 <h2 class="mt-4 mb-5 colorGris2 font-weight-normal ">Agregar Equipos al Torneo / Liga</h2>
             </div>
             <div class="col-md-2">
-                <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-primary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
+                <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <h2 class="mb-4 pfgreen fontSize1-6rem"><?= $torneo->getNombre()?></h2>
 
                 <?php if ( $torneo->tieneEquipos() ){ ?>
                     <h4 class="mb-3 fontSize font-weight-normal colorGris2">Equipos que participan en este torneo</h4>
-                    <ul>
+                    <ul class="list-unstyled">
                         <?= $torneo->printEquiposEnLi("agregar-equipos") ?>
                     </ul>
                     <!-- Agregar clase d-none o d-block de acuerdo a si quedan equipos por agregar o no -->
@@ -60,9 +60,7 @@ $torneo->actualizar();
                     <button type="submit" class="btn btn-outline-success">Buscar</button>
                 </form>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-4">
                 <h4 class="mb-4 pfgreen fontSize1-4rem colorGris2 font-weight-normal">Resultado de Búsqueda</h4>
                     <?php
                     if (isset($resultados) && !empty($resultados [0]) ){
@@ -76,18 +74,19 @@ $torneo->actualizar();
                         } else {
                             $errorAgregarEquipo ="";
                         };
+
                         foreach ($resultados as $resultado){
                     ?>
-                            <div class="my-1">
+                            <div class="my-1 pb-2 mt-2 border-bottom">
                                 <form action="agregar-equipo" method="POST">
                                     <input  name="equipo_id" type="hidden" value="<?= $resultado->getEquipoID() ?>" />
-                                    <label class='m-0 naranjaFecha' for="nombre">Nombre Equipo</label><br>
-                                    <input  class="inputNoStyle minWidth100" type="text" value="<?= $resultado->getNombre() ?>" id="nombre" name="nombre" disabled/>
-                                    <button type="submit" class="btn btn-outline-success"><i class="fas fa-plus"></i> Agregar Equipo</button>
+                                    <label class='mr-1 verde3 font-weight-bold' for="nombre">Equipo: </label>
+                                    <input  class="inputNoStyle" type="text" value="<?= $resultado->getNombre() ?>" id="nombre" name="nombre" disabled/>
+                                    <button type="submit" class="btn btn-outline-success py-1"><i class="fas fa-plus"></i> Agregar</button>
                                 </form>
                                 <?php
                                 if ($idAgregarEquipo == $resultado->getEquipoID()){
-                                    echo "<p> $errorAgregarEquipo </p>";
+                                    echo "<small class='text-info'> $errorAgregarEquipo </small>";
                                 }
                                 ?>
                             </div>

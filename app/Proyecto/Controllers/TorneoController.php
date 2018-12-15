@@ -271,7 +271,7 @@ class TorneoController
                     }
                 };
             } else {
-                Session::set("errorAgregarEquipo", "El torneo ya esta lleno");
+                Session::set("errorAgregarEquipo", "El torneo ya está completo");
             }
         } else {
                 Session::set("errorAgregarEquipo", " Ingrese un equipo");
