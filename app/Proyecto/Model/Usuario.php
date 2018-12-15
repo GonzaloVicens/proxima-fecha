@@ -40,6 +40,9 @@ class Usuario
      * @var string
      */
     protected $activo;
+
+    protected $activoString ;
+
     /**
      * @var string
      */
@@ -189,7 +192,7 @@ class Usuario
      */
     public function setUsuario()
     {
-        $query = "SELECT NOMBRE, APELLIDO, EMAIL, ACTIVO, TELEFONO, ULTIMA_VEZ_ONLINE FROM USUARIOS WHERE USUARIO_ID = :usuario_id ";
+        $query = "SELECT NOMBRE, APELLIDO, EMAIL, ACTIVO, TELEFONO, ULTIMA_VEZ_ONLINE , CASE ACTIVO WHEN 1  THEN 'Activo' ELSE 'Inactivo' END AS ACTIVOSTRING FROM USUARIOS WHERE USUARIO_ID = :usuario_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $this->usuario_id]);
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -199,8 +202,19 @@ class Usuario
             $this->activo = $datos['ACTIVO'];
             $this->telefono = $datos['TELEFONO'];
             $this->ultimaVez = $datos['ULTIMA_VEZ_ONLINE'];
+            $this->activoString = $datos['ACTIVOSTRING'];
         };
     }
+
+
+    public function estaActivo(){
+        return ($this->activo == 1);
+    }
+
+    public function getActivoString(){
+        return $this->activoString;
+    }
+
 
     public function tieneEquipo() {
         return !empty($this->equipos[0]);
@@ -529,7 +543,6 @@ class Usuario
         $stmt->execute(['dato' => $dato]);
         $resultados = [];
         while($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-
             $resultados [] = New Usuario( $datos['USUARIO_ID'] );
         }
         return $resultados ;
@@ -673,4 +686,58 @@ class Usuario
             throw new UsuarioNoEncontradoException ("No existe el usuario.");
         }
     }
+
+    public static function imprimirUsuariosPorArray($array)
+    {
+        echo"<table  class='table table-condensed'>";
+        echo "<tr><th>USUARIO</th><th>NOMBRE</th><th>EMAIL</th><th>ESTADO</th><th>ACCIONES</th></tr>";
+
+        foreach($array as $a){
+            echo "<tr><td>" . $a->getUsuarioID() . "</td><td>" . $a->getNombreCompleto() . "</td><td>" . $a->getEmail() . "</td><td>" . $a->getActivoString() .  "</td>";
+            if ($a->estaActivo() ) {
+                echo "<td><a class='text-danger' title='Inactivar ". $a->getUsuarioID() . "' href='desactivar-usuario/" . $a->getUsuarioID() . "'><i class='fas fa-user-slash'></i> Inactivar</a></td>";
+            } else {
+                echo "<td><a class='text-success' title='Activar " . $a->getUsuarioID() . "' href='activar-usuario/" . $a->getUsuarioID() . "'><i class='fas fa-user-check'></i> Activar</a></td>";
+            }
+            echo "</tr>";
+        };
+
+        echo "</table>";
+
+    }
+
+
+    public static function BuscarUsuariosEnAdmin($inputs)
+    {
+
+        $where = "WHERE 1 = 1 ";
+
+        $datos = [];
+        if ($inputs['id']) {
+            $where .= " AND UPPER(USUARIO_ID) LIKE concat('%', UPPER(:id) , '%')  ";
+            $datos['id'] = $inputs['id'];
+        }
+
+        if ($inputs['nombre']) {
+            $where .= " AND UPPER(NOMBRE) LIKE concat('%', UPPER(:nombre) , '%')  ";
+            $datos['nombre'] = $inputs['nombre'];
+        }
+
+        if ($inputs['apellido']) {
+            $where .= " AND UPPER(APELLIDO) LIKE concat('%', UPPER(:apellido) , '%')  ";
+            $datos['apellido'] = $inputs['apellido'];
+        }
+
+        $order = " ORDER BY USUARIO_ID";
+        $query = "SELECT USUARIO_ID FROM USUARIOS " . $where . $order;
+        $stmt = DBConnection::getStatement($query);
+        $resultados = [];
+        $stmt->execute($datos);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $resultados [] = New Usuario ($datos['USUARIO_ID']);
+        }
+        return $resultados;
+    }
+
+
 }

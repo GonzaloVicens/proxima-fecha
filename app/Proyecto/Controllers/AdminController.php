@@ -143,17 +143,33 @@ class AdminController //implements JsonSerializable
     {
         $inputs = Request::getData();
 
-        Session::clearValue('inputsBusqueda');
-        Session::clearValue("errorAgregarEquipo");
-        Session::clearValue("IDAgregarEquipo");
-        Session::clearValue('inputsBuscados');
-
-        Session::set('inputsBusqueda',$inputs);
-
         $resultados = Equipo::BuscarEquipos($inputs );
-        Session::set('resultados',$resultados);
+        Session::set('resultadosEquipos',$resultados);
         header('Location: ' . App::$urlPath .'/adminPF/home');
     }
+
+
+
+
+
+    /**
+     * Método que busca los usaurios que tengan un nombre o id que contenga el parámetro.
+     */
+    public function buscarUsuario()
+    {
+        $inputs = Request::getData();
+
+        $resultados = Usuario::BuscarUsuariosEnAdmin($inputs);
+        Session::set('resultadosUsuario',$resultados);
+        header('Location: ' . App::$urlPath .'/adminPF/home');
+    }
+
+
+
+
+
+
+
 
 }
 
