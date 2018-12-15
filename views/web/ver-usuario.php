@@ -18,10 +18,15 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
         <div class="row border-bottom main-info">
             <div class="col-md-4 p-3">
                 <?php
+                    $claseCamara = "";
+                    if ($usuarioAMostrar->getUsuarioID() == $usuario->getUsuarioID()) {
+                        $claseCamara = " hover-camera ";
+                    }
+
                     if(isset($usuarioAMostrar) and file_exists('img/usuarios/'. $usuarioAMostrar->getUsuarioId() . '.jpg')){
-                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='hover-camera rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/".$usuarioAMostrar->getUsuarioId() . ".jpg' alt='foto perfil' /></div></div>";
+                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='". $claseCamara ." rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/".$usuarioAMostrar->getUsuarioId() . ".jpg' alt='foto perfil' /></div></div>";
                     }else {
-                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='hover-camera rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' /></div></div>";
+                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='". $claseCamara ." rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' /></div></div>";
                     }
                 ?>
 
@@ -71,7 +76,9 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                 </ul>
             </div>
             <div class="col-md-4 pl-4">
-                <a href = "editar-datos" class="editar_user"></a>
+                <?php if ($usuarioAMostrar->getUsuarioID() == $usuario->getUsuarioID()) {
+                    echo "<a href = 'editar-datos' class='editar_user'></a>";
+                }?>
                 <ul class="list-unstyled tipo-de-cuenta">
                     <li><span class='font-weight-bold text-dark'>Tipo de cuenta</span>
                         <p class="my-1 text-secondary">Cuenta Standar <i class="fas fa-info-circle text-muted" data-toggle="tooltip" data-placement="top" title="No puedes organizar más de un torneo en simultáneo"></i></p>
