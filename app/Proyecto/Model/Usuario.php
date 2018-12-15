@@ -72,6 +72,9 @@ class Usuario
     protected $contactos;
 
 
+    protected $esPro;
+
+    protected $esProDt;
     /**
      * Usuario constructor.
      * @param string $usu
@@ -168,7 +171,7 @@ class Usuario
 
     public function setTorneos(){
         $this->torneos = [];
-        $query = "SELECT DISTINCT A.TORNEO_ID FROM TORNEOS A, EQUIPOS_TORNEO B , JUGADORES C WHERE A.TORNEO_ID = B.TORNEO_ID AND B.EQUIPO_ID = C.EQUIPO_ID AND C.JUGADOR_ID = :usuario_id ";
+        $query = "SELECT DISTINCT A.TORNEO_ID FROM TORNEOS A, EQUIPOS_TORNEO B , JUGADORES C WHERE A.TORNEO_ID = B.TORNEO_ID AND B.EQUIPO_ID = C.EQUIPO_ID AND C.JUGADOR_ID = :usuario_id AND A.ESTADO_TORNEO_ID != 'F' ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $this->usuario_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -178,7 +181,7 @@ class Usuario
 
     public function setTorneosPropios(){
         $this->torneosPropios = [];
-        $query = "SELECT DISTINCT TORNEO_ID FROM ORGANIZADORES  WHERE ACTIVO = 1 AND ORGANIZADOR_ID =  :usuario_id ";
+        $query = "SELECT DISTINCT A.TORNEO_ID TORNEO_ID FROM TORNEOS A, ORGANIZADORES B WHERE A.TORNEO_ID = B.TORNEO_ID AND B.ACTIVO = 1 AND ORGANIZADOR_ID =  :usuario_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $this->usuario_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -192,7 +195,7 @@ class Usuario
      */
     public function setUsuario()
     {
-        $query = "SELECT NOMBRE, APELLIDO, EMAIL, ACTIVO, TELEFONO, ULTIMA_VEZ_ONLINE , CASE ACTIVO WHEN 1  THEN 'Activo' ELSE 'Inactivo' END AS ACTIVOSTRING FROM USUARIOS WHERE USUARIO_ID = :usuario_id ";
+        $query = "SELECT NOMBRE, APELLIDO, EMAIL, ACTIVO, TELEFONO, ULTIMA_VEZ_ONLINE , CASE ACTIVO WHEN 1  THEN 'Activo' ELSE 'Inactivo' END AS ACTIVOSTRING , ES_PRO, ES_PRO_DT FROM USUARIOS WHERE USUARIO_ID = :usuario_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $this->usuario_id]);
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -203,6 +206,8 @@ class Usuario
             $this->telefono = $datos['TELEFONO'];
             $this->ultimaVez = $datos['ULTIMA_VEZ_ONLINE'];
             $this->activoString = $datos['ACTIVOSTRING'];
+            $this->esPro= $datos['ES_PRO'];
+            $this->esProDt= $datos['ES_PRO_DT'];
         };
     }
 
@@ -765,6 +770,43 @@ class Usuario
 
 
     public function puedeCrearTorneo() {
-        return false;
+
+        if ($this->esUsuarioPro()){
+            return true;
+        } else {
+
+            $query = "SELECT COUNT(*) CANTIDAD FROM TORNEOS A, ORGANIZADORES B WHERE A.TORNEO_ID = B.TORNEO_ID AND B.ACTIVO = 1 AND B.ORGANIZADOR_ID =  :usuario_id AND A.ESTADO_TORNEO_ID != 'F' ";
+            $stmt = DBConnection::getStatement($query);
+            $stmt->execute(['usuario_id' => $this->usuario_id]);
+            IF ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+               if ($datos['CANTIDAD'] == 0){
+                   return TRUE;
+               } else {
+                   return false;
+               }
+            } else {
+                return true;
+            }
+        }
+
+        $query = "SELECT ES_PRO, ES_PRO_DT FROM USUARIOS WHERE  DATEDIFF(CURDATE() , REGISTRADO_DT) <= :dias";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['dias' => $dias]);
+        if ($respuesta = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            RETURN $respuesta['CANTIDAD'];
+        } ELSE {
+            RETURN 0;
+        }
+    }
+
+    public function esUsuarioPro(){
+        if (($this->esPro == "Y") && ($this->esProDt >= date("Y-m-d") )) {
+            return true;
+        } else {
+            $script = "UPDATE USUARIOS SET ES_PRO = 'N', ES_PRO_DT = null WHERE USUARIO_ID = :usuario_id";
+            $stmt = DBConnection::getStatement($script );
+            $stmt->execute(['usuario_id' => $this->usuario_id]);
+            return false;
+        }
     }
 }

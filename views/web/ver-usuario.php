@@ -102,8 +102,12 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                     <a href = 'editar-datos' class='editar_user'></a>
                     <ul class="list-unstyled tipo-de-cuenta">
                         <li><span class='font-weight-bold text-dark'>Tipo de cuenta</span>
-                            <p class="my-1 text-secondary">Cuenta Standar <i class="fas fa-info-circle text-muted" data-toggle="tooltip" data-placement="top" title="No puedes organizar más de un torneo en simultáneo"></i></p>
-                            <p class="my-1"><a href="<?= App::$urlPath ?>/usuarios/pasar-a-cuenta-pro" class="pfgreen hoverVerde"><i class="fas fa-crown"></i> Pasar a Cuenta Pro</a></p>
+                            <?php if ($usuario->esUsuarioPro() ) { ?>
+                                <p class="my-1 text-secondary">Cuenta Pro <i class="fas fa-info-circle text-muted" data-toggle="tooltip" data-placement="top" title="Puedes organizar más de un torneo en simultáneo"></i></p>
+                            <?php } else { ?>
+                                <p class="my-1 text-secondary">Cuenta Standar <i class="fas fa-info-circle text-muted" data-toggle="tooltip" data-placement="top" title="No puedes organizar más de un torneo en simultáneo"></i></p>
+                                <p class="my-1"><a href="<?= App::$urlPath ?>/usuarios/pasar-a-cuenta-pro" class="pfgreen hoverVerde"><i class="fas fa-crown"></i> Pasar a Cuenta Pro</a></p>
+                            <?php } ?>
                         </li>
                     </ul>
                 <?php }?>
