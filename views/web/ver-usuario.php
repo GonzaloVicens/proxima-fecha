@@ -28,6 +28,15 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                     }else {
                         echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='". $claseCamara ." rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' /></div></div>";
                     }
+
+                    if (Session::has('errorImagenNoJPG') ){
+                        if (Session::get('errorImagenNoJPG') == 'Y'){
+                            echo "<h1>HUBO UN ERROR EN EL FORMATO</h1>";
+                            echo "<h1>111" .Session::get('errorImagenNoJPG2') . "222</h1>" ;
+                            Session::clearValue('errorImagenNoJPG') ;
+                            Session::clearValue('errorImagenNoJPG2') ;
+                        }
+                    }
                 ?>
 
             </div>

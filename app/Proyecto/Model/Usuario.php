@@ -426,10 +426,22 @@ class Usuario
      * @param $usuario_id
      * @return mixed
      */
-    public static function existeMail ($eMail){
+    public static function existeMail ($eMail, $usuario = null ){
+
         $query = "SELECT 'X' FROM USUARIOS WHERE EMAIL = :email";
+
+        if (isset($usuario) && ($usuario !="")) {
+            $query .= " AND USUARIO_ID != :usuario_id " ;
+            $datos = ['email' => $eMail, 'usuario_id' => $usuario];
+
+        } else {
+            $datos = ['email' => $eMail];
+
+        }
+
+
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute(['email' => $eMail]);
+        $stmt->execute($datos);
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 

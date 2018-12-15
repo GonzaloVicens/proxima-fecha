@@ -43,6 +43,7 @@ if (Session::has("camposError")){
                             <h2 class="mt-5 mb-4 pfgreen">Editar <span class="font-weight-normal">Mis Datos</span></h2>
                             <label>Usuario</label>
                             <h3 class="pfgreen h4"><?= $usuario->getUsuarioId() ?></h3>
+                            <input type="text" value='<?= $usuario->getUsuarioID()?>' class="form-control" name="usuario" id="usuario" />
                         </div>
                         <div class="photo-block text-center mx-auto">
                             <?php

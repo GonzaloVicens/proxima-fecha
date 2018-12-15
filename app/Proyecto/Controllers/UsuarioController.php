@@ -315,7 +315,7 @@ class UsuarioController
             if ( !empty($formValidator->getCamposError()) ){
                 Session::set("camposError",$formValidator->getCamposError());
                 Session::set("campos",$formValidator->getCampos());
-                header('Location: ' . App::$urlPath . '/usuarios/editar-datos');
+                  header('Location: ' . App::$urlPath . '/usuarios/editar-datos');
 
             } else {
                 Session::clearValue("camposError");

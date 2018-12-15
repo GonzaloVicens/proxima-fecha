@@ -5,6 +5,10 @@ use Proyecto\Model\Usuario;
 
 class FormValidator
 {
+
+
+    protected $usuarioValidando ;
+
     /**
      * Campos que se mandan a validar
      * @var array
@@ -34,10 +38,10 @@ class FormValidator
      * FormValidator constructor.
      * @param $formulario
      */
-    public function __construct($formulario, $firmoTerminos =null)
+    public function __construct($formulario, $esEditar =null)
     {
         $this->campos = $formulario;
-        $this->firmarTerminos = $firmoTerminos;
+        $this->editar  = $esEditar ;
         $this->validarFormulario();
     }
 
@@ -48,7 +52,7 @@ class FormValidator
         // Valido los inputs;
         $firmoTerminos = false;
 
-        if ( $this->firmarTerminos ) {
+        if ( $this->editar  ) {
             $firmoTerminos = true;
         }
         foreach( $this->campos as $nombreCampo => $valor){
@@ -87,16 +91,22 @@ class FormValidator
                 break;
             case 'clave':
                 $this->confClave = $campo;
-                if ( !$this->formEditar ) {
+                if ( !$this->editar ) {
                     return $this->validarCampoEspecifico($campo, '/^.+$/i', "El campo es requerido");
                 }
                 break;
             case 'usuario':
-                $rta = $this->validarCampoEspecifico($campo, '/^[a-z\d]+$/i', "El campo solo puede ser texto o números");
-                if (!$rta) {
-                    return $this->validarUsuarioExistente($campo);
-                } else{
-                    return $rta ;
+                $this->usuarioValidando = $campo;
+                if ( !$this->editar  ) {
+                    $rta = $this->validarCampoEspecifico($campo, '/^[a-z\d]+$/i', "El campo solo puede ser texto o números");
+                    if (!$rta) {
+                        return $this->validarUsuarioExistente($campo);
+                    } else {
+                        return $rta;
+                    }
+                } else {
+                        return "";
+
                 }
                 break;
             case 'confClave':
@@ -120,7 +130,7 @@ class FormValidator
             case 'email':
                 $rta =  $this->validarCampoEspecifico($campo, '/^([\w\.]{3,}@[a-z0-9\-]{3,}(\.[a-z]{2,4})+)?$/i', "El campo no es un correo válido");
                 if (!$rta) {
-                    return $this->validarEMailExistente($campo);
+                    return $this->validarEMailExistente($campo, $this->usuarioValidando );
                 } else{
                     return $rta ;
                 }
@@ -228,9 +238,9 @@ class FormValidator
      * @param $usuario
      * @return string
      */
-    public function validarEMailExistente($eMail){
+    public function validarEMailExistente($eMail, $usuarioID = null){
         $rta = "";
-        if (Usuario::existeMail($eMail)){
+        if (Usuario::existeMail($eMail, $usuarioID)){
             $rta = "El correo elegido ya existe en la base de datos";
         }
         return $rta;
