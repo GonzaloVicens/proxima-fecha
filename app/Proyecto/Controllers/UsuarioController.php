@@ -299,6 +299,8 @@ class UsuarioController
      */
     public function editarUsuario()
     {
+        Session::clearValue('errorImagenNoJPG');
+
         if (Session::has("usuario")){
             $usuario = Session::get('usuario');
             $usuario->actualizar();
@@ -333,22 +335,26 @@ class UsuarioController
                 $files = Request::getFiles();
 
                 if (isset($files['foto']['tmp_name']) && !empty($files ['foto']['tmp_name'])) {
-                    $archivo_tmp = $files ['foto']['tmp_name'];
-                    $original = imagecreatefromjpeg($archivo_tmp);
-                    $ancho = imagesx($original);
-                    $alto = imagesy($original);
+                    if  (! stristr($files ['foto']['name'], '.jpg')){
+                        Session::set('errorImagenNoJPG', 'Y');
+                    } else {
+                        $archivo_tmp = $files ['foto']['tmp_name'];
+                        $original = imagecreatefromjpeg($archivo_tmp);
+                        $ancho = imagesx($original);
+                        $alto = imagesy($original);
 
-                    $alto_max = 200;
-                    //$ancho_max = round($ancho * $alto_max / $alto);
-                    $ancho_max = 200;
+                        $alto_max = 200;
+                        //$ancho_max = round($ancho * $alto_max / $alto);
+                        $ancho_max = 200;
 
-                    $copia = imagecreatetruecolor($ancho_max, $alto_max);
-                    imagecopyresampled($copia, $original,
-                        0, 0, 0, 0,
-                        $ancho_max, $alto_max,
-                        $ancho, $alto);
-                    $nombre_nuevo = App::$rootPath . "/img/usuarios/" . $usuario->getUsuarioID() . ".jpg";
-                    imagejpeg($copia, $nombre_nuevo);
+                        $copia = imagecreatetruecolor($ancho_max, $alto_max);
+                        imagecopyresampled($copia, $original,
+                            0, 0, 0, 0,
+                            $ancho_max, $alto_max,
+                            $ancho, $alto);
+                        $nombre_nuevo = App::$rootPath . "/img/usuarios/" . $usuario->getUsuarioID() . ".jpg";
+                        imagejpeg($copia, $nombre_nuevo);
+                    }
                 }
                 header('Location: ' . App::$urlPath . '/usuarios/' . $usuario->getUsuarioID());
             } else {
@@ -366,28 +372,34 @@ class UsuarioController
      */
     public function actualizarFotoPerfil()
     {
+        Session::clearValue('errorImagenNoJPG');
+
         if (Session::has("usuario")){
             $inputs = Request::getData();
             $files =  Request::getFiles();
 
             $usuario = $inputs['usuario_id'];
             if (isset($files['foto']['tmp_name']) && !empty($files ['foto']['tmp_name'])){
-                $archivo_tmp = $files ['foto']['tmp_name'];
-                $original = imagecreatefromjpeg($archivo_tmp);
-                $ancho = imagesx( $original );
-                $alto = imagesy( $original );
+                if  (! stristr($files ['foto']['name'], '.jpg')){
+                    Session::set('errorImagenNoJPG', 'Y');
+                } else {
+                    $archivo_tmp = $files ['foto']['tmp_name'];
+                    $original = imagecreatefromjpeg($archivo_tmp);
+                    $ancho = imagesx( $original );
+                    $alto = imagesy( $original );
 
-                $alto_max= 200;
-                //$ancho_max = round( $ancho *  $alto_max / $alto );
-                $ancho_max = 200;
+                    $alto_max= 200;
+                    //$ancho_max = round( $ancho *  $alto_max / $alto );
+                    $ancho_max = 200;
 
-                $copia = imagecreatetruecolor( $ancho_max, $alto_max );
-                imagecopyresampled( $copia, $original,
-                    0,0, 0,0,
-                    $ancho_max,$alto_max,
-                    $ancho,$alto);
-                $nombre_nuevo = App::$rootPath . "/img/usuarios/$usuario".".jpg";
-                imagejpeg( $copia , $nombre_nuevo);
+                    $copia = imagecreatetruecolor( $ancho_max, $alto_max );
+                    imagecopyresampled( $copia, $original,
+                                        0,0, 0,0,
+                                    $ancho_max,$alto_max,
+                                    $ancho,$alto);
+                    $nombre_nuevo = App::$rootPath . "/img/usuarios/$usuario".".jpg";
+                    imagejpeg( $copia , $nombre_nuevo);
+                }
             }
             header('Location: ' . App::$urlPath . '/usuarios/'.$usuario);
         } else {
