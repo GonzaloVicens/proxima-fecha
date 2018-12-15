@@ -763,4 +763,8 @@ class Usuario
     }
 
 
+
+    public function puedeCrearTorneo() {
+        return false;
+    }
 }

@@ -163,8 +163,14 @@ class UsuarioController
     {
         if (Session::has("usuario")) {
             $usuario = Session::get('usuario');
+            $usuario->actualizar();
             $usuario_id = $usuario->getUsuarioID();
-            View::render('web/crear-torneo',compact('usuario','usuario_id'), 3);
+            if ($usuario->puedeCrearTorneo()){
+                View::render('web/crear-torneo',compact('usuario','usuario_id'), 3);
+            } else {
+                Session::set('errorUsuarioStandard','Y');
+                header('Location: ' . App::$urlPath . '/usuarios/' . $usuario->getUsuarioID());
+            }
         } else {
             header('Location: ' . App::$urlPath . '/error404');
         };
