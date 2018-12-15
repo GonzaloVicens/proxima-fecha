@@ -1,10 +1,9 @@
 Pendientes/Notas:
 
-1) Buscador
-2) Notificaciones
+1) Dar Estilo al Buscador
+2) Notificaciones  <<--- !!!!
 3) Pantalla convertite en usuario Pro + Botón mercado Pago -> Hacerlo Dinámico
 4) Eliminar -> Sedes
 5) Eliminar -> Equipos
 6) Header nuevo para admin
 7) Listar Sedes en menu header usuario "Mis Sedes" <<--- !!
-8) Marcar el Capitán en Mi Equipo

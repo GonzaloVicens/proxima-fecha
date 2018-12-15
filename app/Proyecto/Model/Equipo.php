@@ -205,10 +205,12 @@ class Equipo
 
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $idCapitan = "";
+            $iconCapitan = "";
             $boton = "";
             $jugadorID = $datos['JUGADOR_ID'];
             IF ($datos['JUGADOR_ID'] == $this->capitan_id) {
                 $idCapitan = "id='capitan'";
+                $iconCapitan = "<i class='fas fa-copyright' data-toggle='tooltip' data-placement='top' title='Capitán del Equipo'></i>";
             }
 
             if (Session::has('logueado')) {
@@ -235,7 +237,7 @@ class Equipo
             }
 
 
-            echo "<li class='li-listado-jugadores-img list-group-item'><a href='../usuarios/" . $datos['JUGADOR_ID'] . "' title='Ver'><img src='$rutaImagen' alt='Foto del Jugador " . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "'/></a><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $datos['JUGADOR_ID'] . "' title='Ver'><span " . $idCapitan . "></span><span class='nombre_apellido_jugador'>" . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "</span><span class='ml-3 font-italic colorGris2 hoverVerde'> " . $datos['JUGADOR_ID'] . "</span></a>" . $boton . "</li>";
+            echo "<li class='li-listado-jugadores-img list-group-item'><a href='../usuarios/" . $datos['JUGADOR_ID'] . "' title='Ver'><img src='$rutaImagen' alt='Foto del Jugador " . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "'/></a><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $datos['JUGADOR_ID'] . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['NOMBRE'] . " " . $datos['APELLIDO'] . "</span><span class='ml-3 font-italic colorGris2 hoverVerde'> " . $datos['JUGADOR_ID'] . "</span></a><span " . $idCapitan . "> ". $iconCapitan ."</span>" . $boton . "</li>";
         }
         echo "</ul>";
     }

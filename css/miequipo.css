@@ -98,6 +98,9 @@ section.portada {
 
 .lista_jugadores {
   width: 70%; }
+  .lista_jugadores #capitan {
+    color: #006B33;
+    margin: 0 5px; }
   .lista_jugadores li:nth-child(odd) {
     background-color: #F9F9F9; }
   .lista_jugadores li img {

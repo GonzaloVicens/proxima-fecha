@@ -159,6 +159,11 @@ section{
 
 .lista_jugadores{
 
+  #capitan {
+    color: $bgcol_verde;
+    margin: 0 5px;
+  }
+
   width: 70%;
   li{
     &:nth-child(odd){
