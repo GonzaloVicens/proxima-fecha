@@ -54,23 +54,56 @@ if (Session::has("camposError")){
                             ?>
                             <span id='cambiar-foto-perfil' class="mt-2 btn btn-outline-info">Cambiar foto</span>
                             <input type="file" id='cambiar-foto-perfil-input' name="foto" class="d-none">
+                            <br><small class="text-muted font-italic">sólo formato <span class="font-regular-bold">.jpg</span></small>
                         </div>
                     </div>
                     <div class="form-group">
                        <label for="nombre">Nombre</label>
                         <input type="text" value='<?= $usuario->getNombre()?>' class="form-control" name="nombre" id="nombre" aria-describedby="emailHelp" placeholder="Ingresá tu nombre">
+
+                        <?php
+                        if (isset($camposError['nombre'])) {
+                            echo "<p class='rta-validacion text-danger ml-2 font-italic'><small>" . $camposError['nombre'] . "</small><p>";
+                        }
+                        ?>
+
                     </div>
                     <div class="form-group">
                         <label for="apellido">Apellido</label>
                         <input type="text" value='<?= $usuario->getApellido()?>' class="form-control" name="apellido" id="apellido"  placeholder="Ingresá tu apellido">
+
+                        <?php
+                        if (isset($camposError['apellido'])) {
+                            echo "<p class='rta-validacion text-danger ml-2 font-italic'><small>" . $camposError['apellido'] . "</small><p>";
+                        }
+                        ?>
+
+
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" value='<?= $usuario->getEmail()?>' class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Tu dirección de e-mail">
+
+
+                        <?php
+                        if (isset($camposError['email'])) {
+                            echo "<p class='rta-validacion text-danger ml-2 font-italic'><small>" . $camposError['email'] . "</small><p>";
+                        }
+                        ?>
+
                     </div>
                     <div class="my-4">
                         <span id='edit_pass' class="btn btn-outline-info">Cambiar Contraseña</span>
-                            <div class="d-none edit-pass-field mt-2">
+                        <?php
+                        if (isset($camposError['clave'])) {
+                            echo "<p class='d-inline-block rta-validacion text-danger ml-2 font-italic'><small>" . $camposError['clave'] . "</small></p>";
+                        }
+                        ?>
+                            <div class="<?php
+                                        if (!isset($camposError['clave'])) {
+                                            echo "d-none";
+                                        }
+                                        ?> edit-pass-field mt-2">
                                 <div class="form-group mb-4">
                                     <label for="confirmarpassword">Nuevo Password</label>
                                     <input type="password" class="form-control" name="clave" id="nuevopassword" placeholder="Nuevo Password">
@@ -82,11 +115,12 @@ if (Session::has("camposError")){
                             </div>
                     </div>
                     <button type="submit" class="btn btn-outline-success">Enviar</button>
-                    <a href="<?=App::$urlPath . '/'?>" type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
+                    <a href="<?=App::$urlPath . '/'?>" class="btn btn-link text-muted">Cancelar</a>
                 </form>
             </div>
             <div class="col-md-3">
                 <?php
+                /*
                 if (isset($camposError)){
                     echo("<div class='DivErrores'><ul>");
                     foreach ($camposError as $error => $descr) {
@@ -94,6 +128,7 @@ if (Session::has("camposError")){
                     }
                     echo("</ul></div>");
                 }
+                */
                 ?>
             </div>
         </div>
