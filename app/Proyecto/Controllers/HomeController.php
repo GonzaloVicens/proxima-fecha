@@ -26,9 +26,14 @@ class HomeController //implements JsonSerializable
     {
         if (Session::has("usuario")) {
             $usuario = Session::get('usuario');
-            if (Usuario::ExisteUsuario($usuario->getUsuarioID())) {
+            if (Usuario::existeUsuario($usuario->getUsuarioID())) {
                 $usuario->actualizar();
-                header('Location: ' . 'usuarios/' . $usuario->getUsuarioID());
+
+                if ($usuario->getUsuarioID() == 'pf_admin') {
+                    header('Location: ' . 'adminPF/home');
+                } else {
+                    header('Location: ' . 'usuarios/' . $usuario->getUsuarioID());
+                }
             } else {
                 Session::clearValue("usuario");
                 View::render('web/home', [], 1);
