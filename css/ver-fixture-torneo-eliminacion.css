@@ -17,6 +17,11 @@
   width: 220px; }
 .fixture-torneo-completo .owl-item.active {
   z-index: 99; }
+.fixture-torneo-completo .owl-item .item .equipo_container .actualizar_ver i.fas {
+  color: #00CD5E; }
+  .fixture-torneo-completo .owl-item .item .equipo_container .actualizar_ver i.fas:hover {
+    color: #FFCD5E;
+    transition: color .2s ease-in-out; }
 .fixture-torneo-completo .torneo_equipo {
   border: 1px solid grey;
   width: 100%;
@@ -26,7 +31,18 @@
   overflow: hidden;
   font-size: 1em;
   color: #006B33;
-  background-color: #F9F9F9; }
+  background-color: #F9F9F9;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
+  .fixture-torneo-completo .torneo_equipo span {
+    width: 30px;
+    background: #00CD5E;
+    color: #ffffff;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 0; }
+.fixture-torneo-completo .llave_b .torneo_equipo {
+  text-align: left; }
 .fixture-torneo-completo .dieciseisavos.llave_a .equipo_container {
   position: relative; }
   .fixture-torneo-completo .dieciseisavos.llave_a .equipo_container:nth-child(even):after {

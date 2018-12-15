@@ -13,6 +13,21 @@
     &.active {
       z-index: 99;
     }
+
+    .item {
+      .equipo_container {
+        .actualizar_ver {
+          i {
+            &.fas {
+              color: $bgcol_verde5;
+              &:hover {
+                @include hover-txt($col_naranja1);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   .torneo_equipo {
@@ -25,7 +40,25 @@
     font-size: 1em;
     color: $bgcol_verde;
     background-color: $col_gris5;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+
+    span {
+      width: 30px;
+      background: $bgcol_verde5;
+      color: $col_blanco;
+      text-align: center;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
+
+  .llave_b {
+    .torneo_equipo {
+      text-align: left;
+    }
+  }
+
 
 
   .dieciseisavos {
@@ -257,12 +290,10 @@
     margin: 300px auto;
   }
 
-
   .semifinal > div,
   .final > div {
     margin: 300px auto;
   }
-
 
   .dieciseisavos .equipo_container:nth-child(1n),
   .octavos .equipo_container:nth-child(1n),
@@ -317,7 +348,6 @@
     width: 100%;
     color: $bgcol_verde;
     z-index: 99999;
-
   }
 
 }
