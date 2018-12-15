@@ -809,4 +809,8 @@ class Usuario
             return false;
         }
     }
+
+    public function getVencimientoPro() {
+        return $this->esProDt ;
+    }
 }
