@@ -6,6 +6,7 @@ use Proyecto\Core\Route;
 
 Route::addRoute('GET' , '/'                                                    , 'HomeController@index');
 Route::addRoute('POST', '/'                                                    , 'UsuarioController@loguear');
+Route::addRoute('POST', '/buscar'                                              , 'HomeController@buscar');
 Route::addRoute('GET' , '/adminPF'                                             , 'AdminController@login');
 Route::addRoute('POST', '/adminPF'                                             , 'AdminController@loguear');
 Route::addRoute('GET' , '/adminPF/home'                                        , 'AdminController@verHome');

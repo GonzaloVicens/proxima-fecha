@@ -34,12 +34,12 @@ use Proyecto\Core\App;
         </a>
     </div>
     <div class="flexbox navbar-nav ml-md-auto">
-        <form class="d-none d-md-block d-lg-block">
+        <form method="post" action="buscar" class="d-none d-md-block d-lg-block">
             <div class="input-group">
                 <div class="input-group-prepend justify-content-center">
                     <span class="input-group-text" id="inputGroupPrepend2"><i class="fas fa-search"></i></span>
                 </div>
-                <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Buscar..." aria-describedby="inputGroupPrepend2" required>
+                <input name="criterio" type="text" class="form-control" placeholder="Buscar..." aria-describedby="inputGroupPrepend2" required>
             </div>
         </form>
     </div>

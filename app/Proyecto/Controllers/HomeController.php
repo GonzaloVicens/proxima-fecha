@@ -16,6 +16,7 @@ use Proyecto\View\View;
 use Proyecto\Model\Usuario;
 use Proyecto\Tools\Mail;
 use Proyecto\Tools\FormValidator;
+use Proyecto\Tools\Buscador;
 
 
 class HomeController //implements JsonSerializable
@@ -104,6 +105,14 @@ class HomeController //implements JsonSerializable
 
     public function verRecuperarPassword(){
         View::render('web/recuperar-password',[], 3);
+    }
+
+
+    public function buscar(){
+        $inputs = Request::getData();
+        $criterio = $inputs ['criterio'];
+        $resultados = Buscador::Buscar($criterio);
+        View::render('web/ver-resultados',compact('resultados'), 3);
     }
 }
 
