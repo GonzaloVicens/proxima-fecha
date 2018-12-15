@@ -40,9 +40,9 @@ if (Session::has('sede')){
                             <input type="hidden" name='dueno_id' value="<?=$duenoActual['USUARIO_ID']?>"/>
                             <input type="hidden" name='activo' value="<?=$duenoActual['ACTIVO']?>"/>
                             <?php if ($duenoActual['ACTIVO'] == "1"){
-                                $label = "Desactivar Organizador";
+                                $label = "Desactivar Dueño";
                             } else {
-                                $label = "Activar Organizador";
+                                $label = "Activar Dueño";
                             }; ?>
                             <input class='btn btn-sm btn-outline-primary' type="submit" value="<?=$label?>"/>
                         </form>

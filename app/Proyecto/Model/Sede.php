@@ -92,9 +92,10 @@ class Sede
             'altura' => $inputs['altura'],
             'telefono' => $inputs['telefono'],
             'detalles' => $inputs['detalles']
+
         ];
 
-        $script = "INSERT INTO SEDES VALUES ( null, :nombre, :pais_id, :provincia_id, :codigo_postal, :calle, :altura, :telefono, :detalles)";
+        $script = "INSERT INTO SEDES VALUES ( null, :nombre, :pais_id, :provincia_id, :codigo_postal, :calle, :altura, :telefono, :detalles, CURDATE())";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($sede)) {
             $sede_id= DBConnection::getConnection()->lastInsertId();

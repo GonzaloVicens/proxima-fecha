@@ -177,7 +177,7 @@ class Torneo
 
 
 //        $script = "INSERT INTO TORNEOS VALUES (null, :nombre, :deporte_id, :tipo_torneo_id, :cantidad_equipos, STR_TO_DATE(:fecha_inicio, '%Y/%m/%d'), :sede_id, :estado_torneo_id)";
-        $script = "INSERT INTO TORNEOS VALUES (null, :nombre, :deporte_id, :tipo_torneo_id, :cantidad_equipos, :fecha_inicio, :sede_id, :estado_torneo_id)";
+        $script = "INSERT INTO TORNEOS VALUES (null, :nombre, :deporte_id, :tipo_torneo_id, :cantidad_equipos, :fecha_inicio, :sede_id, :estado_torneo_id, CURDATE() )";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($torneo)) {
             $torneoID = DBConnection::getConnection()->lastInsertId();

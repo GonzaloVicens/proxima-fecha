@@ -282,7 +282,7 @@ class Usuario
             'ultima_vez' => date("Y-m-d")
         ];
 
-        $script = "INSERT INTO USUARIOS  VALUES (:usuario_id, :password, :nombre , :apellido, :email, :activo, :telefono, :ultima_vez)";
+        $script = "INSERT INTO USUARIOS  VALUES (:usuario_id, :password, :nombre , :apellido, :email, :activo, :telefono, :ultima_vez, CURDATE(),'N',null)";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($usuario)) {
             return $vUsuario['usuario'];
@@ -676,8 +676,5 @@ class Usuario
         }
 
     }
-
-
-
+    
 }
-
