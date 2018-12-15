@@ -21,21 +21,62 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="header-cuenta-usuario.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/templates/header-cuenta-usuario.php">
+      <file leaf-file-name="ver-equipo.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/web/ver-equipo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2006">
-              <caret line="125" column="28" lean-forward="false" selection-start-line="125" selection-start-column="28" selection-end-line="125" selection-end-column="28" />
+            <state relative-caret-position="388">
+              <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+              <folding>
+                <element signature="n#nav#0;n#div#0;n#div#0;n#div#0;n#main#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#main#0;n#!!top" expanded="false" />
+                <element signature="e#7677#12016#0#PHP" expanded="false" />
+                <element signature="e#12038#14780#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Proyecto/Controllers/AdminController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="69" column="37" lean-forward="true" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ver-equipo.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/web/ver-equipo.php">
+      <file leaf-file-name="home.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/admin/home.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3536">
-              <caret line="211" column="0" lean-forward="false" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
+            <state relative-caret-position="131">
+              <caret line="214" column="100" lean-forward="false" selection-start-line="214" selection-start-column="100" selection-end-line="214" selection-end-column="100" />
+              <folding>
+                <element signature="e#11232#11582#0#PHP" expanded="true" />
+                <element signature="e#13836#14179#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Estadisticas.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Proyecto/Tools/Estadisticas.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="14" column="160" lean-forward="false" selection-start-line="14" selection-start-column="160" selection-end-line="14" selection-end-column="160" />
+              <folding>
+                <marker date="1544885906398" expanded="true" signature="250:251" ph="..." />
+                <marker date="1544885906398" expanded="true" signature="250:396" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scss/common.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="303">
+              <caret line="267" column="1" lean-forward="false" selection-start-line="267" selection-start-column="1" selection-end-line="267" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -53,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="agregar-equipos.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="agregar-equipos.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/web/agregar-equipos.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -80,7 +121,7 @@
       <file leaf-file-name="Sede.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Proyecto/Model/Sede.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4369">
+            <state relative-caret-position="4301">
               <caret line="257" column="27" lean-forward="false" selection-start-line="257" selection-start-column="27" selection-end-line="257" selection-end-column="27" />
               <folding>
                 <marker date="1544848927387" expanded="true" signature="1669:1801" ph="INSERT INTO SEDES... " />
@@ -131,27 +172,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>zI</find>
-      <find>login</find>
-      <find>printEquiposEnLi</find>
-      <find>li</find>
-      <find>after</find>
-      <find>primero</find>
-      <find>unico</find>
-      <find>ultimo</find>
-      <find>$col_verde1</find>
-      <find>sede</find>
-      <find>h-16</find>
-      <find>tipo</find>
-      <find>font-weight-bold</find>
-      <find>$bgcol_verde4</find>
-      <find>tool</find>
-      <find>editar</find>
-      <find>cerrar</find>
-      <find>stamd</find>
-      <find>tabs</find>
       <find>ta</find>
-      <find>t</find>
       <find>)</find>
       <find>).ta</find>
       <find>50</find>
@@ -161,6 +182,26 @@
       <find>dangeri</find>
       <find>).tab</find>
       <find>El torneo ya esta lleno</find>
+      <find>tabs_miequipo</find>
+      <find>tabs_admin</find>
+      <find>t</find>
+      <find>tabs</find>
+      <find>tab</find>
+      <find>active</find>
+      <find>fo</find>
+      <find>font</find>
+      <find>fontS</find>
+      <find>fontSi</find>
+      <find>fontSizw</find>
+      <find>fontSizq</find>
+      <find>fontSiz</find>
+      <find>fontSize</find>
+      <find>c</find>
+      <find>co</find>
+      <find>col</find>
+      <find>color</find>
+      <find>colorG</find>
+      <find>Estadisticas</find>
     </findStrings>
     <replaceStrings>
       <replace>VS</replace>
@@ -173,17 +214,17 @@
       <replace>#6c757d</replace>
       <replace>class=&quot;&quot;</replace>
       <replace>secondary</replace>
+      <replace>tabs_admin</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\app</dir>
       <dir>C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\scss</dir>
       <dir>C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\views</dir>
+      <dir>C:\wamp64\www\proxima-fecha-master\proxima-fecha\trunk\app</dir>
     </dirStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/web/conversacion.php" />
         <option value="$PROJECT_DIR$/views/web/mensajes.php" />
         <option value="$PROJECT_DIR$/scss/mensajes.scss" />
         <option value="$PROJECT_DIR$/scss/miequipo.scss" />
@@ -196,12 +237,10 @@
         <option value="$PROJECT_DIR$/owlcarousel/assets/vendors/foundation.min.js" />
         <option value="$PROJECT_DIR$/scss/contacto.scss" />
         <option value="$PROJECT_DIR$/views/web/contacto.php" />
-        <option value="$PROJECT_DIR$/views/web/ver-equipo.php" />
         <option value="$PROJECT_DIR$/app/Proyecto/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/views/admin/login.php" />
         <option value="$PROJECT_DIR$/app/Proyecto/Model/Usuario.php" />
         <option value="$PROJECT_DIR$/app/Proyecto/Model/Equipo.php" />
-        <option value="$PROJECT_DIR$/views/admin/home.php" />
         <option value="$PROJECT_DIR$/scss/registro.scss" />
         <option value="$PROJECT_DIR$/views/web/recuperar-password.php" />
         <option value="$PROJECT_DIR$/views/web/editar-organizadores.php" />
@@ -224,7 +263,6 @@
         <option value="$PROJECT_DIR$/scss/estilo.scss" />
         <option value="$PROJECT_DIR$/scss/fonts.scss" />
         <option value="$PROJECT_DIR$/scss/usuario.scss" />
-        <option value="$PROJECT_DIR$/scss/common.scss" />
         <option value="$PROJECT_DIR$/views/web/ver-usuario.php" />
         <option value="$PROJECT_DIR$/views/web/ver-torneo.php" />
         <option value="$PROJECT_DIR$/pendientes.txt" />
@@ -234,6 +272,10 @@
         <option value="$PROJECT_DIR$/app/Proyecto/Model/TipoTorneo.php" />
         <option value="$PROJECT_DIR$/views/web/crear-torneo.php" />
         <option value="$PROJECT_DIR$/views/web/agregar-equipos.php" />
+        <option value="$PROJECT_DIR$/views/web/ver-equipo.php" />
+        <option value="$PROJECT_DIR$/scss/common.scss" />
+        <option value="$PROJECT_DIR$/app/Proyecto/Tools/Estadisticas.php" />
+        <option value="$PROJECT_DIR$/views/admin/home.php" />
       </list>
     </option>
   </component>
@@ -265,8 +307,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -757,20 +799,23 @@
       <workItem from="1544787458018" duration="12439000" />
       <workItem from="1544810709284" duration="9840000" />
       <workItem from="1544834573237" duration="13409000" />
-      <workItem from="1544854713062" duration="90000" />
+      <workItem from="1544854713062" duration="196000" />
+      <workItem from="1544874131521" duration="12084000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="520461000" />
+    <option name="totallyTimeSpent" value="532651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29648608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24921136" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -782,7 +827,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -818,13 +862,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Proyecto/Model/Fase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2397">
-          <caret line="141" column="27" lean-forward="false" selection-start-line="141" selection-start-column="27" selection-end-line="141" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/owlcarousel/assets/vendors/highlight.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -868,22 +905,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Proyecto/Controllers/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
-          <folding>
-            <marker date="1544840786802" expanded="true" signature="1903:2004" ph="..." />
-            <marker date="1544840786802" expanded="true" signature="2044:2442" ph="..." />
-            <marker date="1544840786802" expanded="true" signature="2226:2371" ph="..." />
-            <marker date="1544840786802" expanded="true" signature="2286:2360" ph="..." />
-            <marker date="1544840786802" expanded="true" signature="2485:2883" ph="..." />
-            <marker date="1544840786802" expanded="true" signature="2667:2812" ph="..." />
-            <marker date="1544840786802" expanded="true" signature="2727:2801" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -902,13 +923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3825">
           <caret line="229" column="5" lean-forward="false" selection-start-line="229" selection-start-column="5" selection-end-line="229" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/admin/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="32" column="148" lean-forward="false" selection-start-line="32" selection-start-column="148" selection-end-line="32" selection-end-column="148" />
         </state>
       </provider>
     </entry>
@@ -1068,13 +1082,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scss/common.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8551">
-          <caret line="503" column="27" lean-forward="false" selection-start-line="503" selection-start-column="27" selection-end-line="503" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sql/Scripts_Creacion_FINAL.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1147,14 +1154,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/web/ver-equipo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3536">
-          <caret line="211" column="0" lean-forward="false" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/web/registrarse.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1462">
@@ -1165,7 +1164,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Proyecto/Model/Sede.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4369">
+        <state relative-caret-position="4301">
           <caret line="257" column="27" lean-forward="false" selection-start-line="257" selection-start-column="27" selection-end-line="257" selection-end-column="27" />
           <folding>
             <marker date="1544848927387" expanded="true" signature="1669:1801" ph="INSERT INTO SEDES... " />
@@ -1221,6 +1220,57 @@
         <state relative-caret-position="17">
           <caret line="71" column="37" lean-forward="false" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/web/ver-equipo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+          <folding>
+            <element signature="n#nav#0;n#div#0;n#div#0;n#div#0;n#main#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#main#0;n#!!top" expanded="false" />
+            <element signature="e#7677#12016#0#PHP" expanded="false" />
+            <element signature="e#12038#14780#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Proyecto/Controllers/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="69" column="37" lean-forward="true" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scss/common.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="267" column="1" lean-forward="false" selection-start-line="267" selection-start-column="1" selection-end-line="267" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Proyecto/Tools/Estadisticas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" column="160" lean-forward="false" selection-start-line="14" selection-start-column="160" selection-end-line="14" selection-end-column="160" />
+          <folding>
+            <marker date="1544885906398" expanded="true" signature="250:251" ph="..." />
+            <marker date="1544885906398" expanded="true" signature="250:396" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="214" column="100" lean-forward="false" selection-start-line="214" selection-start-column="100" selection-end-line="214" selection-end-column="100" />
+          <folding>
+            <element signature="e#11232#11582#0#PHP" expanded="true" />
+            <element signature="e#13836#14179#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
