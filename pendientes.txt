@@ -9,3 +9,4 @@ Pendientes/Notas:
 7) Notificaciones
 8) Pantalla, convertite en usuario Pro + Botón mercado Pago
 9) Mejorar Usabilidad de Agregar Equipo
+10) Cambiar foto perfil otros usuarios 
