@@ -1941,4 +1941,46 @@ section.portada {
 .cuenta-pro + footer {
   margin-top: 0 !important; }
 
+/*
+@mixin llave-fixture($widbor, $colbor, $bordernone, $width, $height, $top) {
+  content:'';
+  border: $widbor solid $colbor;
+  $bordernone: none;
+  background-color: transparent;
+  width: $width;
+  display: block;
+  height: $height;
+  position: absolute;
+  top: $top;
+  z-index: -999;
+}
+*/
+.sedes .cancel {
+  color: #ff8c00; }
+  .sedes .cancel:hover {
+    color: #666666;
+    transition: color .2s ease-in-out;
+    text-decoration: none; }
+.sedes label {
+  color: #666666; }
+.sedes .terminos_condiciones {
+  font-size: .8rem;
+  margin: 0 .8em 1.5em .5em; }
+.sedes .rta-validacion {
+  font-style: italic;
+  margin-left: .5rem; }
+.sedes i.fas.fa-user:before, .sedes i.fas.fa-map-marker-alt:before, .sedes i.fas.fa-key:before {
+  font-size: 1.5rem;
+  color: #ebebeb;
+  padding: .5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #18C25D;
+  margin-right: .4rem;
+  display: block;
+  text-align: center; }
+.sedes.recuperar-pass {
+  min-height: 450px; }
+
 /*# sourceMappingURL=estilo.css.map */

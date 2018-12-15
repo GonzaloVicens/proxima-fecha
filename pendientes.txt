@@ -1,6 +1,9 @@
 Pendientes/Notas:
 
-2) Buscador
-5) Notificaciones
-6) Pantalla convertite en usuario Pro + Botón mercado Pago -> Hacerlo Dinámico
-7) Admin -> Buscador de equipos
+1) Buscador
+2) Notificaciones
+3) Pantalla convertite en usuario Pro + Botón mercado Pago -> Hacerlo Dinámico
+4) Admin -> Buscador de equipos
+5) Agregar estilos a las siguientes pantallas de Sedes: ver, editar, agregar dueños)
+6) Header nuevo para admin
+7) Listar Sedes en menu header usuario "Mis Sedes" <<--- !!

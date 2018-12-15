@@ -1,0 +1,53 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+.sedes {
+
+  .cancel {
+    color: $bgcol_naranja;
+    &:hover {
+      @include hover-txt($col_gris4);
+      text-decoration: none;
+    }
+  }
+
+  label {
+    color: $col_gris4;
+  }
+
+  .terminos_condiciones {
+    font-size: .8rem;
+    margin: 0 .8em 1.5em .5em;
+  }
+
+  .rta-validacion {
+    font-style: italic;
+    margin-left: .5rem;
+  }
+
+  i{
+    &.fas {
+      &.fa-user,
+      &.fa-map-marker-alt,
+      &.fa-key {
+
+        &:before {
+          @include icon-in-circle($col_verde1, $col_gris6)
+        }
+      }
+    }
+  }
+
+  &.recuperar-pass {
+    min-height: 450px;
+  }
+
+}
+
+@media (max-width: 991px) {
+  //styles here
+}
+
+@media (min-width: 992px) {
+  //styles here
+}
