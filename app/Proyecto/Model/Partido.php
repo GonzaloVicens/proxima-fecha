@@ -437,21 +437,20 @@ class Partido
         $script = "INSERT INTO PARTIDOS VALUES (:torneo_id, :fase_id, :partido_id, :local_id, :visita_id, :fecha, null, :arbitro_id, 0,0, ' ', ' ' , :sede_id, :cancha_id, 'N')";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($datos)) {
-            $partidoCreado = DBConnection::getConnection()->lastInsertId();
 
             $notificacion = ['usuario_id' => $arbitro_id,
                 'torneo_id' => $torneo,
                 'fase_id' => $fase,
-                'partido_id' => $partidoCreado,
-                'mensaje' => "Has Sido elegido como árbitro en el partido entre " . Equipo::getNombrePorID($local_id) . " y " . Equipo::getNombrePorID($visita_id) . " del torneo " .  Torneo::GetNombreTorneoPorID($torneo)];
+                'partido_id' => $nuevoPartido,
+                'mensaje' => "Has Sido elegido como árbitro en el partido entre '" . Equipo::getNombrePorID($local_id) . "' y '" . Equipo::getNombrePorID($visita_id) . "' del torneo '" .  Torneo::GetNombreTorneoPorID($torneo) . "'"];
             Notificacion::CrearNotificacion($notificacion);
 
             foreach (Equipo::GetJugadoresDelEquipo($local_id) as $jugador) {
                 $notificacion = ['usuario_id' => $jugador,
                     'torneo_id' => $torneo,
                     'fase_id' => $fase,
-                    'partido_id' => $partidoCreado,
-                    'mensaje' => "Se ha creado el partido entre tu equipo " . Equipo::getNombrePorID($local_id) . " y " . Equipo::getNombrePorID($visita_id) . " en el torneo " .  Torneo::GetNombreTorneoPorID($torneo)];
+                    'partido_id' => $nuevoPartido,
+                    'mensaje' => "Se ha creado el partido entre tu equipo '" . Equipo::getNombrePorID($local_id) . "' y '" . Equipo::getNombrePorID($visita_id) . "' en el torneo '" .  Torneo::GetNombreTorneoPorID($torneo) . "'"];
                 Notificacion::CrearNotificacion($notificacion);
             }
 
@@ -459,12 +458,12 @@ class Partido
                 $notificacion = ['usuario_id' => $jugador,
                     'torneo_id' => $torneo,
                     'fase_id' => $fase,
-                    'partido_id' => $partidoCreado,
-                    'mensaje' => "Se ha creado el partido entre tu equipo " . Equipo::getNombrePorID($visita_id) . " y " . Equipo::getNombrePorID($local_id) . " en el torneo " .  Torneo::GetNombreTorneoPorID($torneo)];
+                    'partido_id' => $nuevoPartido,
+                    'mensaje' => "Se ha creado el partido entre tu equipo '" . Equipo::getNombrePorID($visita_id) . "' y '" . Equipo::getNombrePorID($local_id) . "' en el torneo '" .  Torneo::GetNombreTorneoPorID($torneo) . "'"];
                 Notificacion::CrearNotificacion($notificacion);
             }
 
-            return $partidoCreado;
+            return $nuevoPartido;
         } else {
             print_r($stmt->errorInfo());
             throw new PartidoNoGrabadoException("Error al grabar el partido.");
@@ -513,7 +512,7 @@ class Partido
                     'torneo_id' => $this->torneo_id,
                     'fase_id' => $this->fase_id,
                     'partido_id' => $this->partido_id,
-                    'mensaje' => "Has Sido elegido como árbitro en el partido entre " . $this->getLocalNombre() . " y " . $this->getVisitaNombre() . " del torneo " .  Torneo::GetNombreTorneoPorID($this->torneo_id)];
+                    'mensaje' => "Has Sido elegido como árbitro en el partido entre '" . $this->getLocalNombre() . "' y '" . $this->getVisitaNombre() . "' del torneo '" .  Torneo::GetNombreTorneoPorID($this->torneo_id) . "'"];
             Notificacion::CrearNotificacion($notificacion);
         } else {
             print_r($stmt->errorInfo());
@@ -677,7 +676,7 @@ class Partido
                         'torneo_id' => $torneo,
                         'fase_id' => $faseAActualizar,
                         'partido_id' => $partidoFaseAActualizar,
-                        'mensaje' => "Has Sido elegido como árbitro en el partido entre " . Equipo::getNombrePorID($datos['LOCAL_ID']) . " y " . Equipo::getNombrePorID($datos['VISITA_ID']) . " del torneo " . Torneo::GetNombreTorneoPorID($torneo)];
+                        'mensaje' => "Has Sido elegido como árbitro en el partido entre '" . Equipo::getNombrePorID($datos['LOCAL_ID']) . "' y '" . Equipo::getNombrePorID($datos['VISITA_ID']) . "' del torneo '" . Torneo::GetNombreTorneoPorID($torneo) . "'"];
                     Notificacion::CrearNotificacion($notificacion);
 
                     foreach (Equipo::GetJugadoresDelEquipo($datos['LOCAL_ID']) as $jugador) {
@@ -685,7 +684,7 @@ class Partido
                             'torneo_id' => $torneo,
                             'fase_id' => $faseAActualizar,
                             'partido_id' => $partidoFaseAActualizar,
-                            'mensaje' => "Se ha creado el partido entre tu equipo " . Equipo::getNombrePorID($datos['LOCAL_ID']) . " y " . Equipo::getNombrePorID($datos['VISITA_ID']) . " en el torneo " . Torneo::GetNombreTorneoPorID($torneo)];
+                            'mensaje' => "Se ha creado el partido entre tu equipo '" . Equipo::getNombrePorID($datos['LOCAL_ID']) . "' y '" . Equipo::getNombrePorID($datos['VISITA_ID']) . "' en el torneo '" . Torneo::GetNombreTorneoPorID($torneo) . "'"];
                         Notificacion::CrearNotificacion($notificacion);
                     }
 
@@ -694,7 +693,7 @@ class Partido
                             'torneo_id' => $torneo,
                             'fase_id' => $faseAActualizar,
                             'partido_id' => $partidoFaseAActualizar,
-                            'mensaje' => "Se ha creado el partido entre tu equipo " . Equipo::getNombrePorID($datos['VISITA_ID']) . " y " . Equipo::getNombrePorID($datos['LOCAL_ID']) . " en el torneo " . Torneo::GetNombreTorneoPorID($torneo)];
+                            'mensaje' => "Se ha creado el partido entre tu equipo '" . Equipo::getNombrePorID($datos['VISITA_ID']) . "' y '" . Equipo::getNombrePorID($datos['LOCAL_ID']) . "'' en el torneo '" . Torneo::GetNombreTorneoPorID($torneo) . "'"];
                         Notificacion::CrearNotificacion($notificacion);
                     }
                 }

@@ -9,10 +9,7 @@ use Proyecto\Core\App;
 use Proyecto\Session\Session;
 
 if (Session::has('logueado') && Session::get('logueado')=='S') {
-    $usuarioLogueado = true;
-}else{
-    $usuarioLogueado = false;
-}
+
 ?>
 
 <main class="py-4 mb-4 notificaciones">
@@ -23,9 +20,30 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
             <div class="col-md-8">
                 <h2 class="mt-5 mb-5 pfgreen"><i class="fas fa-bell"></i> Notificaciones</h2>
                 <ul class="list-group colorGris2">
-                    <li class="list-group-item"><span class="fecha">11/12/18</span> Has sido invitado al equipo Los Paisanos Enfermos</li>
-                    <li class="list-group-item"><span class="fecha">21/11/18</span> Lorem ipsum dolor, upstea git upstream pre-prod. No por mucho madrugar se amanece mas temprano amaicha del valle, añola kit kat dos por uno</li>
-                    <li class="list-group-item"><span class="fecha">03/08/18</span> Mensaje de Carlitos Cepeda: bartoleo quinoa cecha</li>
+                    <?php foreach($notificaciones as $notif) {
+                        $boton ="";
+                        IF (isset($notif['PARTIDO_ID']) && !empty($notif['PARTIDO_ID'])){
+                            $boton .= "<a href='../torneos/" . $notif['TORNEO_ID'] . "/" . $notif['FASE_ID'] . "/" . $notif['PARTIDO_ID'] .  "' alt='ver partido'> ver Partido </a>";
+                        } else {
+                            if (isset($notif['TORNEO_ID']) && !empty($notif['TORNEO_ID'])){
+                                $boton .= "<a href='../torneos/" . $notif['TORNEO_ID'] . "' alt='ver torneo'> ver Torneo </a>";
+                            }
+                        }
+
+
+                        IF (isset($notif['EQUIPO_ID']) && !empty($notif['EQUIPO_ID'])){
+                            $boton .= "<a href='../equipos/" . $notif['EQUIPO_ID'] . "' alt='ver equipo'> ver Equipo </a>";
+                        }
+
+                        IF (isset($notif['SEDE_ID']) && !empty($notif['SEDE_ID'])){
+                            $boton .= "<a href='../sedes/" .  $notif['SEDE_ID'] .  "' alt='ver sede'> ver Sede </a>";
+                        }
+                        ?>
+                        <li class="list-group-item">
+                            <span class="fecha"><?= $notif['FECHA'] ?></span> <?= $notif['MENSAJE'] . $boton?>
+                        </li>
+
+                    <?php } ?>
                 </ul>
             </div>
             <div class="col-md-2">
@@ -35,4 +53,4 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
     </div>
 </main>
 
-
+<?php } ?>

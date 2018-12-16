@@ -111,7 +111,7 @@ class Sede
 
             $notificacion = ['usuario_id' => $duenio  ,
                 'sede_id' => $sede_id,
-                'mensaje' =>   "Has creado la sede " . $inputs['nombre']];
+                'mensaje' =>   "Has creado la sede '" . $inputs['nombre'] . "'"];
 
             Notificacion::CrearNotificacion($notificacion );
 
@@ -157,6 +157,15 @@ class Sede
         $sede= [
             'sede_id' => $this->sede_id
         ];
+
+
+        foreach($this->duenos as $dueno) {
+            $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
+                'sede_id' => $this->sede_id,
+                'mensaje' =>   "Se ha elimiando la Sede '" . $this->nombre  . "'"];
+
+            Notificacion::CrearNotificacion($notificacion );
+        }
 
         $script = "DELETE FROM CANCHAS WHERE SEDE_ID = :sede_id";
         $stmt = DBConnection::getStatement($script );
@@ -251,7 +260,7 @@ class Sede
             $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
                             'sede_id' => $this->sede_id,
                             'cancha_id' => $canchaCreada,
-                            'mensaje' =>   "Has creado la cancha " . $descripcion . "en al Sede " . $this->nombre ];
+                            'mensaje' =>   "Has creado la cancha '" . $descripcion . "' en la Sede '" . $this->nombre  . "'"];
 
             Notificacion::CrearNotificacion($notificacion );
         }
@@ -437,10 +446,10 @@ class Sede
 
         if ($activo) {
             $activo = '0';
-            $mensaje = "Se ha inactivado el dueño" . $dueno_id  . "en al Sede " . $this->nombre;
+            $mensaje = "Se ha inactivado el dueño '" . $dueno_id  . "'en la Sede '" . $this->nombre  . "'";
         } else {
             $activo = '1';
-            $mensaje = "Se ha activado el dueño" . $dueno_id  . "en al Sede " . $this->nombre ;
+            $mensaje = "Se ha activado el dueño '" . $dueno_id  . "' en la Sede '" . $this->nombre  . "'";
         }
 
         $datos = ['sede_id' => $this->sede_id,
@@ -473,7 +482,7 @@ class Sede
             foreach($this->duenos as $dueno) {
                 $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
                     'sede_id' => $this->sede_id,
-                    'mensaje' =>   "Se ha agregado al dueño" . $dueno_id  . "en al Sede " . $this->nombre  ];
+                    'mensaje' =>   "Se ha agregado al dueño '" . $dueno_id  . "' en la Sede '" . $this->nombre   . "'"];
                 Notificacion::CrearNotificacion($notificacion );
             }
         } else {
@@ -489,7 +498,7 @@ class Sede
             $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
                 'sede_id' => $this->sede_id,
                 'cancha_id' => $inputs['cancha_id'],
-                'mensaje' =>   "Se ha eliminado la cancha" . $inputs['cancha_id'] . "de al Sede " . $this->nombre  ];
+                'mensaje' =>   "Se ha eliminado la cancha '" . $inputs['cancha_id'] . "' de la Sede '" . $this->nombre   . "'"];
             Notificacion::CrearNotificacion($notificacion );
         }
     }

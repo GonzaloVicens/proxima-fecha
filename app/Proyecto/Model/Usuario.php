@@ -768,9 +768,9 @@ class Usuario
      * Devuelve un array con todas las Notificaciones del
      * @return array
      */
-    public function getNotificaciones ()
+    public function getUltimasNotificaciones ($cantidad)
     {
-        return Notificacion::GetNotificaciones($this->usuario_id ) ;
+        return Notificacion::GetNotificaciones($this->usuario_id ,$cantidad) ;
     }
 
     /**

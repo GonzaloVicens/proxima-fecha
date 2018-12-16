@@ -11,7 +11,7 @@ use Proyecto\Model\Equipo;
 use Proyecto\Session\Session;
 use Proyecto\Tools\FormValidator;
 use Proyecto\Exceptions\UsuarioNoGrabadoException;
-use Proyecto\Exceptions\EquipoNoGrabadoException;
+use Proyecto\Exceptions\NotificacionesNoLeidas;
 
 
 class UsuarioController
@@ -194,13 +194,28 @@ class UsuarioController
 
     public function notificaciones()
     {
-        if (Session::has("usuario")) {
+        if (Session::has("usuario")){
             $usuario = Session::get('usuario');
             $usuario_id = $usuario->getUsuarioID();
-            View::render('web/notificaciones',compact('usuario','usuario_id'), 3);
+
+            if (Usuario::existeUsuario($usuario_id) ){
+                $usuario->actualizar();
+
+                $notificaciones = $usuario->getUltimasNotificaciones(20);
+
+                View::render('web/notificaciones',compact('usuario','usuario_id','notificaciones'), 3);
+                try {
+                    $usuario->leerNotificaciones();
+                } catch (NotificacionesNoLeidas $err)   {
+                    alert($err.message);
+                    header('Location: ' . App::$urlPath . '/error404');
+                }
+            } else{
+                header('Location: ' . App::$urlPath . '/error404');
+            };
         } else {
             header('Location: ' . App::$urlPath . '/error404');
-        };
+        }
     }
 
     public function mensajes()

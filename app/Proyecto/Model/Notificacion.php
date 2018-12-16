@@ -51,6 +51,12 @@ class Notificacion
         $this->notif_id = $mens;
         if($datos) {
             $this->usuario_id  = $datos['USUARIO_ID'];
+            $this->equipo_id  = $datos['EQUIPO_ID'];
+            $this->torneo_id  = $datos['TORNEO_ID'];
+            $this->fase_id  = $datos['FASE_ID'];
+            $this->partido_id  = $datos['PARTIDO_ID'];
+            $this->sede_id  = $datos['SEDE_ID'];
+            $this->cancha_id  = $datos['CANCHA_ID'];
             $this->mensaje = $datos['MENSAJE'];
             $this->fecha = $datos['FECHA'];
             $this->hora = $datos['HORA'];
@@ -65,11 +71,17 @@ class Notificacion
      */
     public function setNotificacion()
     {
-        $query = "SELECT USUARIO_ID, MENSAJE , FECHA, HORA, LEIDO FROM NOTIFICACIONES WHERE NOTIF_ID = :notif_id";
+        $query = "SELECT USUARIO_ID, EQUIPO_ID, TORNEO_ID, FASE_ID, PARTIDO_ID, SEDE_ID, CANCHA_ID, MENSAJE , FECHA, HORA, LEIDO FROM NOTIFICACIONES WHERE NOTIF_ID = :notif_id";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['NOTIF_ID' => $this->notif_id]);
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->usuario_id  = $datos['USUARIO_ID'];
+            $this->equipo_id  = $datos['EQUIPO_ID'];
+            $this->torneo_id  = $datos['TORNEO_ID'];
+            $this->fase_id  = $datos['FASE_ID'];
+            $this->partido_id  = $datos['PARTIDO_ID'];
+            $this->sede_id  = $datos['SEDE_ID'];
+            $this->cancha_id  = $datos['CANCHA_ID'];
             $this->mensaje = $datos['MENSAJE'];
             $this->fecha = $datos['FECHA'];
             $this->hora = $datos['HORA'];
@@ -153,16 +165,20 @@ class Notificacion
      * @param $usuario
      * @return array
      */
-    public static function GetNotificaciones ($usuario)
+    public static function GetNotificaciones ($usuario , $cantidad)
     {
-        $query = "SELECT NOTIF_ID, USUARIO_ID,  MENSAJE, FECHA, HORA, LEIDO FROM NOTIFICACIONES WHERE USUARIO_ID = :usuario_id ORDER BY NOTIF_ID ";
-
+        $query = "SELECT NOTIF_ID, USUARIO_ID, EQUIPO_ID, TORNEO_ID, FASE_ID, PARTIDO_ID, SEDE_ID, CANCHA_ID, MENSAJE , FECHA, HORA, LEIDO FROM NOTIFICACIONES WHERE USUARIO_ID = :usuario_id ORDER BY NOTIF_ID DESC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $usuario]);
         $notificaciones = [];
 
-        while($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $notificaciones[] = New Notificacion( $datos['NOTIF_ID'] ,$datos );
+        $i = 0;
+        while($datos = $stmt->fetch(\PDO::FETCH_ASSOC) ) {
+            //$notificaciones[] = New Notificacion( $datos['NOTIF_ID'] ,$datos );
+            if ( $i < $cantidad ) {
+                $notificaciones[] = $datos ;
+                $i++;
+            }
         }
         return $notificaciones  ;
     }

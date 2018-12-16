@@ -69,7 +69,7 @@ class Equipo
             if ($stmt->execute($jugador)) {
                 $notificacion = ['usuario_id' => $capitan,
                         'equipo_id' => $idEquipo,
-                        'mensaje' => "Se ha creado el equipo " .  $nombre   ];
+                        'mensaje' => "Se ha creado el equipo '" .  $nombre . "'"  ];
                 Notificacion::CrearNotificacion($notificacion);
                 return $idEquipo;
             } else {
@@ -112,13 +112,13 @@ class Equipo
         if ( $stmt->execute($datos)) {
             $notificacion = ['usuario_id' => $jugador_id,
                 'equipo_id' => $this->equipo_id,
-                'mensaje' => "Has sido agregado al equipo " . $this->nombre];
+                'mensaje' => "Has sido agregado al equipo '" . $this->nombre . "'"];
             Notificacion::CrearNotificacion($notificacion);
 
             foreach($this->jugadores as $jugador) {
                 $notificacion = ['usuario_id' => $jugador,
                     'equipo_id' => $this->equipo_id,
-                    'mensaje' => "Se ha agregado al jugador " . $jugador . "al equipo " . $this->nombre];
+                    'mensaje' => "Se ha agregado al jugador " . $jugador . " al equipo '" . $this->nombre . "'"];
                 Notificacion::CrearNotificacion($notificacion);
             }
         } else {
@@ -329,9 +329,9 @@ class Equipo
         if ($stmt->execute($param)){
             $nombre = Equipo::getNombrePorID($equipo_id);
             if ($activo == "1") {
-                $mensaje = "Se ha activado el equipo ". $nombre;
+                $mensaje = "Se ha activado el equipo '". $nombre  . "'";
             } else {
-                $mensaje = "Se ha desactivado el equipo ". $nombre;
+                $mensaje = "Se ha desactivado el equipo '". $nombre . "'";
             }
             foreach(Equipo::GetJugadoresDelEquipo($equipo_id) as $jugador) {
                 $notificacion = ['usuario_id' => $jugador,
