@@ -139,6 +139,27 @@ class Torneo
     }
 
 
+    public static function GetOrganizadoresActivosDelTorneo($torneo_id){
+        $organizadores= [];
+        $query = "SELECT ORGANIZADOR_ID FROM ORGANIZADORES WHERE TORNEO_ID = :torneo_id  AND ACTIVO = '1'  ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $torneo_id]);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $organizadores[] = $datos['ORGANIZADOR_ID'];
+        };
+        RETURN $organizadores;
+    }
+
+    public static function GetNombreTorneoPorID($torneo_id){
+        $query = "SELECT NOMBRE FROM TORNEOS WHERE TORNEO_ID = :torneo_id  ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $torneo_id]);
+        IF ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            RETURN $datos['NOMBRE'];
+        };
+        RETURN "";
+    }
+
     public function setTorneo($torneo)
     {
         $this->torneo_id = $torneo;
@@ -170,8 +191,7 @@ class Torneo
             $cantidadFinal = $inputs['cantidad'];
         }
 
-
-            $torneo= [
+         $torneo= [
             'nombre'           => $inputs['nombre'],
             'deporte_id'       =>  $inputs['deporte'],
             'tipo_torneo_id'   =>  $inputs['tipoTorneo'],
@@ -194,9 +214,18 @@ class Torneo
             ];
             $script = "INSERT INTO ORGANIZADORES VALUES (:torneo_id, :organizador_id, 1)";
             $stmt = DBConnection::getStatement($script );
-            $stmt->execute($organizador);
+            if ($stmt->execute($organizador)) {
 
-            self::InsertarDiasTorneo($inputs);
+                self::InsertarDiasTorneo($inputs);
+
+                $notificacion = ['usuario_id' => $organizador_id  ,
+                                'torneo_id' => $torneoID,
+                                'mensaje' =>   "Se ha creado el torneo " . $torneoID . " con nombre " . $inputs['nombre']];
+
+                Notificacion::CrearNotificacion($notificacion );
+            } else {
+                throw new TorneoNoGrabadoException("Error al Grabar el Organizador del Torneo");
+            };
 
             return $torneoID;
         } else {
@@ -223,6 +252,13 @@ class Torneo
         if($stmt->execute($torneo)) {
             self::InsertarDiasTorneo( $inputs);
             self::eliminarFixtureDelTorneo( $inputs['torneo_id']);
+
+            foreach(Torneo::GetOrganizadoresActivosDelTorneo($inputs['torneo_id']) as $organizador) {
+                $notificacion = ['usuario_id' => $organizador  ,
+                    'torneo_id' => $inputs['torneo_id'],
+                    'mensaje' =>   "Se ha actualizado el torneo " . $inputs['torneo_id']. " con nombre " . $inputs['nombre']];
+                Notificacion::CrearNotificacion($notificacion );
+            }
         }else {
             throw new TorneoNoGrabadoException("Error al grabar el torneo.");
         };
@@ -266,6 +302,13 @@ class Torneo
         $torneo= [
             'torneo_id' => $this->torneo_id
         ];
+
+        foreach($this->organizadores as $organizador) {
+            $notificacion = ['usuario_id' => $organizador  ,
+                'mensaje' =>   "Se ha eliminado el torneo " . $this->torneo_id. " con nombre " . $this->nombre];
+            Notificacion::CrearNotificacion($notificacion );
+        }
+
 
         $script = "DELETE FROM EQUIPOS_TORNEO WHERE TORNEO_ID = :torneo_id";
         $stmt = DBConnection::getStatement($script );
@@ -336,7 +379,7 @@ class Torneo
 
     public function getEstadoDescr()
     {
-        if (!isset($this->estado_torneo_descr)) {
+        if (!isset($this->estado_torneo_descr) || empty ($this->estado_torneo_descr)) {
 
             $query = "SELECT DESCRIPCION FROM ESTADOS_TORNEO WHERE ESTADO_TORNEO_ID  = :estado_torneo_id ";
             $stmt = DBConnection::getStatement($query);
@@ -455,6 +498,23 @@ class Torneo
         $stmt = DBConnection::getStatement($query);
         $stmt->execute($datos );
         $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $nombreEquipo = Equipo::getNombrePorID($equipo_id);
+
+        foreach($this->organizadores as $organizador) {
+            $notificacion = ['usuario_id' => $organizador  ,
+                'torneo_id' => $this->torneo_id,
+                'mensaje' =>   "Se ha agreado el equipo ". $nombreEquipo ." al torneo " . $this->nombre];
+            Notificacion::CrearNotificacion($notificacion );
+        }
+
+        foreach(Equipo::GetJugadoresDelEquipo($equipo_id) as $jugador) {
+            $notificacion = ['usuario_id' => $jugador  ,
+                'torneo_id' => $this->torneo_id,
+                'mensaje' =>   "Tu equipo ". $nombreEquipo ." ha sido agregado al torneo " . $this->nombre];
+            Notificacion::CrearNotificacion($notificacion );
+        }
+
     }
 
     public function eliminarEquipo($equipo_id){
@@ -467,6 +527,15 @@ class Torneo
         IF ($stmt->execute($datos )){
             $this->eliminarFixture();
             $this->actualizar();
+
+            $nombreEquipo = Equipo::getNombrePorID($equipo_id);
+            foreach($this->organizadores as $organizador) {
+                $notificacion = ['usuario_id' => $organizador  ,
+                    'torneo_id' => $this->torneo_id,
+                    'mensaje' =>   "Se ha eliminado el equipo ". $nombreEquipo ." del torneo " . $this->nombre];
+                Notificacion::CrearNotificacion($notificacion );
+            }
+
         } else {
             throw new TorneoNoGrabadoException("Error al grabar el torneo.");
         }
@@ -513,6 +582,14 @@ class Torneo
                 break;
         }
         $this-> actualizar();
+
+        foreach($this->organizadores as $organizador) {
+            $notificacion = ['usuario_id' => $organizador  ,
+                'torneo_id' => $this->torneo_id,
+                'mensaje' =>   "Se ha generado el fixture del torneo " . $this->nombre];
+            Notificacion::CrearNotificacion($notificacion );
+        }
+
     }
 
     public function existeFase($fase_id) {
@@ -647,7 +724,7 @@ class Torneo
 
     public function getTodosLosOrganizadores($where = null){
         $respuesta= [];
-        $query = "SELECT B.ORGANIZADOR_ID, A.NOMBRE, A.APELLIDO, B.ACTIVO FROM USUARIOS A, ORGANIZADORES B WHERE A.USUARIO_ID = B.ORGANIZADOR_ID AND B.TORNEO_ID = :torneo_id ";
+        $query = "SELECT B.ORGANIZADOR_ID ORGANIZADOR_ID ,  A.NOMBRE NOMBRE , A.APELLIDO APELLIDO , B.ACTIVO ACTIVO FROM USUARIOS A, ORGANIZADORES B WHERE A.USUARIO_ID = B.ORGANIZADOR_ID AND B.TORNEO_ID = :torneo_id ";
 
         if (isset($where)){
             $query .= $where ;
@@ -662,6 +739,7 @@ class Torneo
 
         return $respuesta;
     }
+
 
 
     public static function GetEstadoIdPorTorneo($torneo_id){
@@ -716,9 +794,10 @@ class Torneo
 
         if ($activo) {
             $activo = '0';
-            $this->reasignarOrganizador($organizador_id);
+            $mensaje = "Se ha desactivado al organizador " . $organizador_id . " del torneo " . $this->nombre;
         } else {
             $activo = '1';
+            $mensaje = "Se ha activado al organizador " . $organizador_id . " del torneo " . $this->nombre;
         }
 
         $datos = ['torneo_id' => $this->torneo_id,
@@ -727,8 +806,19 @@ class Torneo
         ];
         $query = "UPDATE ORGANIZADORES SET ACTIVO = :activo WHERE TORNEO_ID = :torneo_id AND ORGANIZADOR_ID =  :organizador_id";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute($datos );
-        $stmt->fetch(\PDO::FETCH_ASSOC);
+        if ($stmt->execute($datos )) {
+            //$stmt->fetch(\PDO::FETCH_ASSOC);
+            $this->setOrganizadores();
+            foreach($this->organizadores as $organizador) {
+                $notificacion = ['usuario_id' => $organizador  ,
+                    'torneo_id' => $this->torneo_id,
+                    'mensaje' =>   $mensaje];
+                Notificacion::CrearNotificacion($notificacion );
+            }
+
+        } else {
+            throw new TorneoNoGrabadoException( "Error al actualizar un organizador") ;
+        }
 
         if ($activo == '0') {
             $this->reasignarOrganizador($organizador_id);
@@ -741,8 +831,24 @@ class Torneo
         ];
         $query = "INSERT INTO ORGANIZADORES VALUE (:torneo_id , :organizador_id, '1')";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute($datos );
-        $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if ( $stmt->execute($datos )) {
+            $notificacion = ['usuario_id' => $organizador_id  ,
+                'torneo_id' => $this->torneo_id,
+                'mensaje' =>   "Has sido agregado como organizador del torneo " . $this->nombre];
+            Notificacion::CrearNotificacion($notificacion );
+
+
+            foreach($this->organizadores as $organizador) {
+                $notificacion = ['usuario_id' => $organizador  ,
+                    'torneo_id' => $this->torneo_id,
+                    'mensaje' =>   "Se ha agregado el organizador ". $organizador_id." al torneo " . $this->nombre];
+                Notificacion::CrearNotificacion($notificacion );
+            }
+
+        } else {
+            throw new TorneoNoGrabadoException( "Error al insertar un Organizador");
+        }
     }
 
     public function estaEnCurso(){
@@ -766,8 +872,30 @@ class Torneo
 
         $query = "UPDATE TORNEOS SET ESTADO_TORNEO_ID = :estado_torneo_id WHERE TORNEO_ID = :torneo_id ";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute($datos );
-        $stmt->fetch(\PDO::FETCH_ASSOC);
+        if ($stmt->execute($datos )) {
+            //$stmt->fetch(\PDO::FETCH_ASSOC);
+
+
+            $nombre = Torneo::GetNombreTorneoPorID($torneo);
+
+            switch ( $nuevoEstado) {
+                case "I":
+                    $mensaje = "Se ha reiniciado el torneo " . $nombre;
+                case "C":
+                    $mensaje = "Se ha comenzado el torneo " . $nombre;
+                case "F":
+                    $mensaje = "Se ha finalizado el torneo " . $nombre;
+            }
+            foreach(Torneo::getOrganizadoresActivosDelTorneo($torneo) as $organizador) {
+                $notificacion = ['usuario_id' => $organizador  ,
+                    'torneo_id' => $torneo,
+                    'mensaje' =>   $mensaje];
+                Notificacion::CrearNotificacion($notificacion );
+            }
+
+        } else {
+            throw new TorneoNoGrabadoException("Erorr al Actualizar el Estado del Torneo");
+        }
     }
 
     public function comenzar(){
@@ -1259,6 +1387,7 @@ class Torneo
 
         return $htmlFinal;
     }
+
 
 }
 

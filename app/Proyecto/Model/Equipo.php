@@ -66,8 +66,16 @@ class Equipo
 
             $script = "INSERT INTO JUGADORES VALUES (:equipo_id, :jugador_id)";
             $stmt = DBConnection::getStatement($script);
-            $stmt->execute($jugador);
-            return $idEquipo;
+            if ($stmt->execute($jugador)) {
+                $notificacion = ['usuario_id' => $capitan,
+                        'equipo_id' => $idEquipo,
+                        'mensaje' => "Se ha creado el equipo " .  $nombre   ];
+                Notificacion::CrearNotificacion($notificacion);
+                return $idEquipo;
+            } else {
+                throw new EquipoNoGrabadoException( "Error al insertar un jugador en el equipo");
+            }
+
         } else {
             throw new EquipoNoGrabadoException("Error al grabar el equipo.");
         }
@@ -101,8 +109,22 @@ class Equipo
         ];
         $query = "INSERT INTO JUGADORES VALUE (:equipo_id , :jugador_id)";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute($datos);
-        $stmt->fetch(\PDO::FETCH_ASSOC);
+        if ( $stmt->execute($datos)) {
+            $notificacion = ['usuario_id' => $jugador_id,
+                'equipo_id' => $this->equipo_id,
+                'mensaje' => "Has sido agregado al equipo " . $this->nombre];
+            Notificacion::CrearNotificacion($notificacion);
+
+            foreach($this->jugadores as $jugador) {
+                $notificacion = ['usuario_id' => $jugador,
+                    'equipo_id' => $this->equipo_id,
+                    'mensaje' => "Se ha agregado al jugador " . $jugador . "al equipo " . $this->nombre];
+                Notificacion::CrearNotificacion($notificacion);
+            }
+        } else {
+            throw new EquipoNoGrabadoException( "Error al insertar un jugador en el equipo");
+        }
+
     }
 
 
@@ -304,9 +326,38 @@ class Equipo
         $stmt = DBConnection::getStatement($query);
         $param = ['activo' => $activo,
             'equipo_id' => $equipo_id];
-        $stmt->execute($param);
-        $stmt->fetch(\PDO::FETCH_ASSOC);
+        if ($stmt->execute($param)){
+            $nombre = Equipo::getNombrePorID($equipo_id);
+            if ($activo == "1") {
+                $mensaje = "Se ha activado el equipo ". $nombre;
+            } else {
+                $mensaje = "Se ha desactivado el equipo ". $nombre;
+            }
+            foreach(Equipo::GetJugadoresDelEquipo($equipo_id) as $jugador) {
+                $notificacion = ['usuario_id' => $jugador,
+                    'equipo_id' => $equipo_id,
+                    'mensaje' => $mensaje];
+                Notificacion::CrearNotificacion($notificacion);
+            }
+        } else {
+            throw new EquipoNoGrabadoException("Error al actualizar el estado del equipo");
+        }
+
     }
+
+    public static function GetJugadoresDelEquipo($equipo) {
+        $jugadores = [];
+
+        $query = "SELECT JUGADOR_ID FROM JUGADORES WHERE EQUIPO_ID = :equipo_id  ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['equipo_id' => $equipo]);
+
+        while($datos = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            $jugadores[] = $datos['JUGADOR_ID'];
+        }
+        return $jugadores;
+    }
+
 
     public function estaJugandoTorneo()
     {

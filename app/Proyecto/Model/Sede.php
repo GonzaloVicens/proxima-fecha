@@ -109,6 +109,11 @@ class Sede
             $stmt = DBConnection::getStatement($script );
             $stmt->execute($dueno);
 
+            $notificacion = ['usuario_id' => $duenio  ,
+                'sede_id' => $sede_id,
+                'mensaje' =>   "Has creado la sede " . $inputs['nombre']];
+
+            Notificacion::CrearNotificacion($notificacion );
 
             return $sede_id;
         } else {
@@ -239,8 +244,17 @@ class Sede
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 
-    public function insertarCancha($decripcion , $deporte, $precio){
-        Cancha::CrearCancha($this->sede_id, $decripcion , $deporte, $precio);
+    public function insertarCancha($descripcion , $deporte, $precio){
+        $canchaCreada = Cancha::CrearCancha($this->sede_id, $descripcion , $deporte, $precio);
+
+        foreach($this->duenos as $dueno) {
+            $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
+                            'sede_id' => $this->sede_id,
+                            'cancha_id' => $canchaCreada,
+                            'mensaje' =>   "Has creado la cancha " . $descripcion . "en al Sede " . $this->nombre ];
+
+            Notificacion::CrearNotificacion($notificacion );
+        }
     }
 
 
@@ -423,8 +437,10 @@ class Sede
 
         if ($activo) {
             $activo = '0';
+            $mensaje = "Se ha inactivado el dueño" . $dueno_id  . "en al Sede " . $this->nombre;
         } else {
             $activo = '1';
+            $mensaje = "Se ha activado el dueño" . $dueno_id  . "en al Sede " . $this->nombre ;
         }
 
         $datos = ['sede_id' => $this->sede_id,
@@ -433,8 +449,17 @@ class Sede
         ];
         $query = "UPDATE DUENOS SET ACTIVO = :activo WHERE SEDE_ID = :sede_id AND USUARIO_ID =  :dueno_id";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute($datos );
-        $stmt->fetch(\PDO::FETCH_ASSOC);
+        if ($stmt->execute($datos )) {
+            // $stmt->fetch(\PDO::FETCH_ASSOC);
+            foreach($this->duenos as $dueno) {
+                $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
+                    'sede_id' => $this->sede_id,
+                    'mensaje' =>   $mensaje  ];
+                Notificacion::CrearNotificacion($notificacion );
+            }
+        } else {
+            throw New SedeNoGrabadaException("Error al actualizar el dueño");
+        }
     }
 
     public function insertarDueno($dueno_id){
@@ -443,16 +468,30 @@ class Sede
         ];
         $query = "INSERT INTO DUENOS VALUE (:sede_id , :dueno_id, '1')";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute($datos );
-        $stmt->fetch(\PDO::FETCH_ASSOC);
+        if ($stmt->execute($datos )) {
+            // $stmt->fetch(\PDO::FETCH_ASSOC);
+            foreach($this->duenos as $dueno) {
+                $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
+                    'sede_id' => $this->sede_id,
+                    'mensaje' =>   "Se ha agregado al dueño" . $dueno_id  . "en al Sede " . $this->nombre  ];
+                Notificacion::CrearNotificacion($notificacion );
+            }
+        } else {
+            throw New SedeNoGrabadaException("Error al actualizar el dueño");
+        }
     }
 
-    public function agregarCancha($inputs){
-        Cancha::CrearCancha($inputs);
-    }
 
     public function eliminarCancha($inputs){
         Cancha::EliminarCancha($inputs);
+
+        foreach($this->duenos as $dueno) {
+            $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
+                'sede_id' => $this->sede_id,
+                'cancha_id' => $inputs['cancha_id'],
+                'mensaje' =>   "Se ha eliminado la cancha" . $inputs['cancha_id'] . "de al Sede " . $this->nombre  ];
+            Notificacion::CrearNotificacion($notificacion );
+        }
     }
 
 
@@ -464,6 +503,17 @@ class Sede
             RETURN $respuesta['CANTIDAD'];
         } ELSE {
             RETURN 0;
+        }
+    }
+
+    public static function GetNombreSede ($sede) {
+        $query = "SELECT NOMBRE FROM SEDES WHERE  SEDE_ID = :sede_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['sede_id' => $sede]);
+        if ($respuesta = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            RETURN $respuesta['NOMBRE'];
+        } ELSE {
+            RETURN "";
         }
     }
 

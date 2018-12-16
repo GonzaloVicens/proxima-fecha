@@ -52,6 +52,7 @@ class SedeController
                 Session::clearValue("campos");
                 $usuario = Session::get('usuario');
                 $sede_id = Sede::CrearSede($inputs, $usuario->getUsuarioId());
+
                 header('Location: ' . App::$urlPath . '/sedes/' . $sede_id);
             };
         }else {

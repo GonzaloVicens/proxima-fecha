@@ -82,8 +82,7 @@ class Cancha
         $script = "INSERT INTO CANCHAS VALUES (:sede_id, :cancha_id, :decripcion, :deporte_id, :precio)";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($cancha)) {
-            $idCancha = DBConnection::getConnection()->lastInsertId();
-            return $idCancha;
+            return $nuevaCancha;
         } else {
             throw new CanchaNoGrabadaException("Error al grabar la cancha.");
         }

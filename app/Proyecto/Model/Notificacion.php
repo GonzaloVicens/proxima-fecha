@@ -109,24 +109,40 @@ class Notificacion
      * @return string
      * @throws NotificacionNoGrabadaException
      */
-    public static function CrearNotificacion($usuario ,  $mensaje){
-        $fecha = date('Y/m/d');
+    public static function CrearNotificacion($mensaje){
+        $mensaje['fecha'] = date('Y/m/d');
+        $mensaje['hora']  = date('H:i:s');
 
-        $hora = date('H:i:s');
+        if (! isset($mensaje['equipo_id']) || empty($mensaje['equipo_id'])){
+            $mensaje['equipo_id'] = null;
+        };
 
+        if (! isset($mensaje['torneo_id']) || empty($mensaje['torneo_id'])){
+            $mensaje['torneo_id'] = null;
+        };
 
-        $mensaje= [
-            'usuario_id' => $usuario,
-            'mensaje'     => $mensaje,
-            'fecha'   =>  $fecha ,
-            'hora'   =>  $hora,
-        ];
+        if (! isset($mensaje['fase_id']) || empty($mensaje['fase_id'])){
+            $mensaje['fase_id'] = null;
+        };
 
-        $script = "INSERT INTO NOTIFICACIONES VALUES (null, :mensaje, :usuario_id, :fecha, :hora, 'N')";
+        if (! isset($mensaje['partido_id']) || empty($mensaje['partido_id'])){
+            $mensaje['partido_id'] = null;
+        };
+
+        if (! isset($mensaje['sede_id']) || empty($mensaje['sede_id'])){
+            $mensaje['sede_id'] = null;
+        };
+
+        if (! isset($mensaje['cancha_id']) || empty($mensaje['cancha_id'])){
+            $mensaje['cancha_id'] = null;
+        };
+
+        $script = "INSERT INTO NOTIFICACIONES VALUES (null, :usuario_id, :equipo_id, :torneo_id, :fase_id, :partido_id, :sede_id, :cancha_id, :mensaje, :fecha, :hora, 'N')";
         $stmt = DBConnection::getStatement($script );
         if($stmt->execute($mensaje)) {
             return DBConnection::getConnection()->lastInsertId();
         } else {
+            print_r($stmt->errorInfo());
             throw new NotificacionNoGrabadaException("Error al grabar a la notificación.");
         }
     }

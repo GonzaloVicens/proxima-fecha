@@ -81,7 +81,8 @@ if (Session::has('torneo')){
                     <div class='DivErrores h5 my-4 text-center'>
                         <p class="text-danger"><?=Session::get("errorAgregarOrganizador")?></p>
                     </div>
-                <?php } ?>
+                <?php  Session::clearValue("errorAgregarOrganizador");
+                } ?>
             </div>
             <div class="col-md-3">
             </div>

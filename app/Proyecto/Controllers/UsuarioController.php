@@ -12,9 +12,6 @@ use Proyecto\Session\Session;
 use Proyecto\Tools\FormValidator;
 use Proyecto\Exceptions\UsuarioNoGrabadoException;
 use Proyecto\Exceptions\EquipoNoGrabadoException;
-//use Proyecto\Exceptions\AmigoNoGrabadoException;
-//use Proyecto\Exceptions\MensajesNoLeidosException;
-//use Proyecto\Exceptions\MensajeNoGrabadoException;
 
 
 class UsuarioController
