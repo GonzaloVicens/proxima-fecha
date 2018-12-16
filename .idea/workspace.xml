@@ -31,7 +31,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="crear-torneo.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="crear-torneo.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/web/crear-torneo.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -89,6 +89,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="pendientes.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pendientes.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="estilo.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scss/estilo.scss">
           <provider selected="true" editor-type-id="text-editor">
@@ -114,16 +124,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
               <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer-home.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/templates/footer-home.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -237,7 +237,6 @@
         <option value="$PROJECT_DIR$/views/web/editar-duenos.php" />
         <option value="$PROJECT_DIR$/app/Proyecto/Model/Equipo.php" />
         <option value="$PROJECT_DIR$/scss/miequipo.scss" />
-        <option value="$PROJECT_DIR$/pendientes.txt" />
         <option value="$PROJECT_DIR$/views/templates/footer-registro.php" />
         <option value="$PROJECT_DIR$/views/templates/footer-home.php" />
         <option value="$PROJECT_DIR$/views/templates/header-cuenta-usuario.php" />
@@ -246,6 +245,7 @@
         <option value="$PROJECT_DIR$/js/date_picker.js" />
         <option value="$PROJECT_DIR$/js/crear-torneo.js" />
         <option value="$PROJECT_DIR$/views/web/crear-torneo.php" />
+        <option value="$PROJECT_DIR$/pendientes.txt" />
       </list>
     </option>
   </component>
@@ -772,12 +772,12 @@
       <workItem from="1544854713062" duration="196000" />
       <workItem from="1544874131521" duration="33378000" />
       <workItem from="1544933382172" duration="1565000" />
-      <workItem from="1544964771483" duration="9669000" />
+      <workItem from="1544964771483" duration="11883000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="565179000" />
+    <option name="totallyTimeSpent" value="567393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
@@ -1168,14 +1168,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pendientes.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/templates/footer-registro.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1269,6 +1261,14 @@
           <folding>
             <element signature="e#7986#8348#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pendientes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
