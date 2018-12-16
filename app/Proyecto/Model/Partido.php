@@ -667,7 +667,7 @@ class Partido
 
             $stmt = DBConnection::getStatement($script );
             if( $stmt->execute($datos)) {
-                $script = "SELECT ARBITRO_ID, LOCAL_ID, VISITA_ID FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id AND LOCAL_ID != ' ' AND  VISITA_ID != ' ' ";
+                $script = "SELECT ARBITRO_ID, LOCAL_ID, VISITA_ID FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id AND LOCAL_ID != 0 AND  VISITA_ID != 0 ";
 
                 $stmt = DBConnection::getStatement($script );
                 $stmt->execute($datos);

@@ -61,6 +61,11 @@ class Usuario
     protected $torneos;
 
     /**
+     * @var array of Sede
+     */
+    protected $sedes;
+
+    /**
      * @var array of Torneo
      */
     protected $torneosPropios;
@@ -88,6 +93,7 @@ class Usuario
         }
         $this->setUsuario();
         $this->setEquipos();
+        $this->setSedes();
         $this->setTorneos();
         $this->setTorneosPropios();
     }
@@ -169,6 +175,16 @@ class Usuario
         };
     }
 
+    public function setSedes(){
+        $this->sedes= [];
+        $query = "SELECT SEDE_ID FROM DUENOS WHERE USUARIO_ID = :usuario_id AND ACTIVO = 1 ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['usuario_id' => $this->usuario_id]);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $this->sedes[] = New Sede($datos['SEDE_ID']);
+        };
+    }
+
     public function setTorneos(){
         $this->torneos = [];
         $query = "SELECT DISTINCT A.TORNEO_ID FROM TORNEOS A, EQUIPOS_TORNEO B , JUGADORES C WHERE A.TORNEO_ID = B.TORNEO_ID AND B.EQUIPO_ID = C.EQUIPO_ID AND C.JUGADOR_ID = :usuario_id AND A.ESTADO_TORNEO_ID != 'F' ";
@@ -235,6 +251,10 @@ class Usuario
 
     public function getEquipos(){
         return $this->equipos;
+    }
+
+    public function getSedes(){
+        return $this->sedes;
     }
 
     public function getTorneos(){
@@ -620,6 +640,7 @@ class Usuario
     public function actualizar(){
         $this->setUsuario();
         $this->setEquipos();
+        $this->setSedes();
         $this->setTorneos();
         $this->setTorneosPropios();
     }
@@ -783,4 +804,11 @@ class Usuario
         return Notificacion::leerNotificaciones($this->usuario_id ) ;
     }
 
+
+    public function tieneSedes(){
+        $query = "SELECT 'Y' FROM DUENOS WHERE USUARIO_ID = :usuario_id AND ACTIVO = 1 ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['usuario_id' => $this->usuario_id]);
+        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+    }
 }
