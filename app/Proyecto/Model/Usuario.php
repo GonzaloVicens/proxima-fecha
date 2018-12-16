@@ -450,77 +450,7 @@ class Usuario
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 
-    /**
-     * Verifica en la base de datos si el usuario tiene algún amigo
-     * @param $usuario_id
-     * @return mixed
-     */
-    public function tieneAmigos (){
-        $query = "SELECT 'X' FROM AMIGOS WHERE USUARIO_ID = :usuario_id OR AMIGO_ID = :usuario_id";
-        $stmt = DBConnection::getStatement($query);
-        $stmt->execute(['usuario_id' =>  $this->usuario_id]);
-        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
-    }
 
-
-
-    /**
-     * Verifica en la base de datos si el usuario tiene como amigo al pasado por parámetro
-     * @param $amigo_id
-     * @return mixed
-     */
-        public function esAmigoDe ($amigo_id){
-        $query = "SELECT 'X' FROM AMIGOS WHERE (USUARIO_ID = :usuario_id AND AMIGO_ID = :amigo_id) OR (USUARIO_ID = :amigo_id AND AMIGO_ID = :usuario_id)";
-        $stmt = DBConnection::getStatement($query);
-        $stmt->execute(['usuario_id' => $this->usuario_id, 'amigo_id' => $amigo_id]);
-        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
-    }
-
-
-    /**
-     * Agrega al amigo pasado por parámetro
-     * @param $amigo_id
-     * @return mixed
-     * @throws AmigoNoGrabadoException
-     */
-    public function agregarAmigo ($amigo_id){
-        $script = "INSERT INTO AMIGOS VALUES (:usuario_id, :amigo_id)";
-        $stmt = DBConnection::getStatement($script );
-        if(!$stmt->execute(['usuario_id' => $this->usuario_id, 'amigo_id' => $amigo_id])) {
-            throw new AmigoNoGrabadoException("Error al grabar el amigo.");
-        };
-    }
-
-    /**
-     * Elimina al amigo pasado por parámetro
-     * @param $amigo_id
-     * @return mixed
-     */
-    public function eliminarAmigo ($amigo_id){
-        $query = "DELETE FROM AMIGOS WHERE (USUARIO_ID = :usuario_id AND AMIGO_ID = :amigo_id) OR (USUARIO_ID = :amigo_id AND AMIGO_ID = :usuario_id)";
-        $stmt = DBConnection::getStatement($query);
-        $stmt->execute(['usuario_id' => $this->usuario_id, 'amigo_id' => $amigo_id]);
-        return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
-    }
-
-
-    /**
-     * Devuelve un array con todos los Usuarios con los que el usuario haya compartido mensajes
-     * @param $posteo
-     * @return array
-     */
-    public function getConversaciones ()
-    {
-        $query = "SELECT AMIGO_ID FROM AMIGOS WHERE USUARIO_ID = :usuario_id UNION SELECT USUARIO_ID AS AMIGO_ID FROM AMIGOS WHERE  AMIGO_ID = :usuario_id";
-        $stmt = DBConnection::getStatement($query);
-        $stmt->execute(['usuario_id' => $this->usuario_id]);
-        $amigos = [];
-
-        while($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $amigos [] = New Usuario( $datos['AMIGO_ID'] );
-        }
-        return $amigos ;
-    }
 
     /**
      * Devuelve un array con todos los Mensajes entre el usuario y su contacto pasado por parámetro
@@ -574,6 +504,7 @@ class Usuario
     {
         return Mensaje::HayMensajesSinLeer($this->usuario_id , $this->usuario_id ) ;
     }
+
 
 
 
@@ -813,4 +744,43 @@ class Usuario
     public function getVencimientoPro() {
         return $this->esProDt ;
     }
+
+
+    /**
+     * Verifica si tiene Notificaciones
+     * @return boolean
+     */
+    public function tieneNotificaciones()
+    {
+        return Notificacion::HayNotificaciones($this->usuario_id ) ;
+    }
+
+    /**
+     * Verifica si tiene Notificaciones sin haberse leído
+     * @return boolean
+     */
+    public function tieneNotificacionesSinLeer ()
+    {
+        return Notificacion::HayNotificacionesSinLeer($this->usuario_id ) ;
+    }
+
+    /**
+     * Devuelve un array con todas las Notificaciones del
+     * @return array
+     */
+    public function getNotificaciones ()
+    {
+        return Notificacion::GetNotificaciones($this->usuario_id ) ;
+    }
+
+    /**
+     * Actualiza los mensajes marcando que ya ha leído los suyos.
+     * @throws MensajesNoLeidosException
+     */
+
+    public function leerNotificaciones ()
+    {
+        return Notificacion::leerNotificaciones($this->usuario_id ) ;
+    }
+
 }

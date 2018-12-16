@@ -4,7 +4,6 @@ use Proyecto\View\View;
 use Proyecto\Core\Route;
 use Proyecto\Core\Request;
 use Proyecto\Model\Equipo;
-//use Proyecto\Model\Mensaje;
 //use Proyecto\Model\Posteo;
 use Proyecto\Model\Usuario;
 use Proyecto\Session\Session;
