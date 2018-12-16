@@ -34,6 +34,9 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
 
     <link href="<?= App::$urlPath;?>/fontawesome/css/all.css" rel="stylesheet">
 
+    <link href="<?= App::$urlPath;?>/js/jqueryui/jquery-ui.min.css" rel="stylesheet">
+    <link href="<?= App::$urlPath;?>/js/jqueryui/jquery-ui.theme.min.css" rel="stylesheet">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="<?= App::$urlPath;?>/owlcarousel/assets/vendors/jquery.min.js"></script>
     <script src="<?= App::$urlPath;?>/owlcarousel/owl.carousel.js"></script>

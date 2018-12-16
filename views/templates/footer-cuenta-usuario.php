@@ -219,6 +219,9 @@ $('[data-toggle="tooltip"]').tooltip()
 
 </body>
 <script src="<?= App::$urlPath;?>/js/jquery-3.3.1.min.js"></script>
-<script src="<?= App::$urlPath;?>/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?= App::$urlPath;?>/js/jqueryui/jquery-ui.min.js"></script>
+<script src="<?= App::$urlPath;?>/js/date_picker.js"></script>
 <script src="<?= App::$urlPath;?>/js/modals-arrows.js"></script>
+<script src="<?= App::$urlPath;?>/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?= App::$urlPath;?>/js/crear-torneo.js"></script>
 </html>
