@@ -118,7 +118,7 @@ class Equipo
             foreach($this->jugadores as $jugador) {
                 $notificacion = ['usuario_id' => $jugador,
                     'equipo_id' => $this->equipo_id,
-                    'mensaje' => "Se ha agregado al jugador " . $jugador . " al equipo '" . $this->nombre . "'"];
+                    'mensaje' => "Se ha agregado al jugador " . $jugador_id . " al equipo '" . $this->nombre . "'"];
                 Notificacion::CrearNotificacion($notificacion);
             }
         } else {

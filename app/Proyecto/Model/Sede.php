@@ -480,7 +480,7 @@ class Sede
         if ($stmt->execute($datos )) {
             // $stmt->fetch(\PDO::FETCH_ASSOC);
             foreach($this->duenos as $dueno) {
-                $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
+                $notificacion = ['usuario_id' => $dueno  ,
                     'sede_id' => $this->sede_id,
                     'mensaje' =>   "Se ha agregado al dueño '" . $dueno_id  . "' en la Sede '" . $this->nombre   . "'"];
                 Notificacion::CrearNotificacion($notificacion );
