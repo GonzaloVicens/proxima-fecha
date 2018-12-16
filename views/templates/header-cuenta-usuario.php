@@ -119,11 +119,25 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMisSedes">
                             <ul class="list-unstyled">
-                                <li class='dropdown-item'><a href='#' title='Ver Sede'> Nombre Sede </a></li>
-                                <!-- una opción u otra -->
-                                <li class='dropdown-item no-options d-none'>Sin sedes por el momento.</li>
+                                <?php
+                                    if($usuario->tieneSedes()) {
+                                        //  echo "<li class='dropdown-item no-options'>Sos dueño de una Sede al menos</li>";
+                                        //echo "Es dueño de sede";
+                                        foreach ($usuario->getSedes() as $sede) {
+                                          echo "<li class='dropdown-item'><a href='" . App::$urlPath . "/sedes/" . $sede->getSedeId() . "' title='Ver Sede'>" . $sede->getNombre() . "</a></li>";
+                                        }
+                                    } else {
+                                        echo "<li class='dropdown-item no-options'>No tenés Sedes creadas<br>a tu nombre.</li>";
+                                    }?>
                             </ul>
                         </div>
+                        <!--div class="dropdown-menu" aria-labelledby="navbarDropdownMisSedes">
+                            <ul class="list-unstyled">
+                                <li class='dropdown-item'><a href='#' title='Ver Sede'> Nombre Sede </a></li>
+                                <!-- una opción u otra>
+                                <li class='dropdown-item no-options d-none'>Sin sedes por el momento.</li>
+                            </ul>
+                        </div-->
                     </li>
                 </ul>
                 <div class="form-buscar">
@@ -169,16 +183,12 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNotification" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class='fas fa-bell'></i>
                             <?php
-                                /*
                                 if($usuario->tieneNotificacionesSinLeer()) {
                                     echo "<i class='fas fa-bell aviso-nuevos'></i>";
                                 } else {
                                     echo "<i class='fas fa-bell'></i>";
                                 }
-                                */
-
                             ?>
                             <span>Notificaciones</span>
                         </a>

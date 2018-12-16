@@ -33,22 +33,88 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pendientes.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pendientes.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pendientes.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="86" lean-forward="false" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="114" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header-cuenta-usuario.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TorneoController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Proyecto/Controllers/TorneoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="158" column="0" lean-forward="true" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header-cuenta-usuario.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/templates/header-cuenta-usuario.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="130" column="64" lean-forward="true" selection-start-line="130" selection-start-column="64" selection-end-line="130" selection-end-column="64" />
+            <state relative-caret-position="289">
+              <caret line="129" column="41" lean-forward="true" selection-start-line="129" selection-start-column="41" selection-end-line="129" selection-end-column="41" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sede.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Proyecto/Model/Sede.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="12">
+              <caret line="233" column="29" lean-forward="true" selection-start-line="233" selection-start-column="20" selection-end-line="233" selection-end-column="29" />
+              <folding>
+                <marker date="1544996866629" expanded="true" signature="1669:1801" ph="INSERT INTO SEDES... " />
+                <marker date="1544996866629" expanded="true" signature="2107:2159" ph="INSERT INTO DUENOS... " />
+                <marker date="1544996866629" expanded="true" signature="3141:3356" ph="UPDATE SEDES... " />
+                <marker date="1544996866629" expanded="true" signature="3610:3656" ph="SELECT 'X' F... SEDES" />
+                <marker date="1544996866629" expanded="true" signature="4262:4306" ph="DELETE FROM " />
+                <marker date="1544996866629" expanded="true" signature="4505:4548" ph="DELETE FROM " />
+                <marker date="1544996866629" expanded="true" signature="4747:4789" ph="DELETE FROM " />
+                <marker date="1544996866629" expanded="true" signature="5070:5192" ph="SELECT NOMBR... SEDES" />
+                <marker date="1544996866629" expanded="true" signature="5864:5918" ph="SELECT CANCH... CANCHAS" />
+                <marker date="1544996866629" expanded="true" signature="6264:6336" ph="SELECT USUAR... DUENOS" />
+                <marker date="1544996866629" expanded="true" signature="6958:7033" ph="SELECT 'X' F... CANCHAS" />
+                <marker date="1544996866629" expanded="true" signature="7864:7898" ph="SELECT SEDE_... SEDES" />
+                <marker date="1544996866629" expanded="true" signature="8423:8492" ph="SELECT PROVI... PROVINCIAS" />
+                <marker date="1544996866629" expanded="true" signature="9223:9359" ph="SELECT B.USU... USUARIOS" />
+                <marker date="1544996866629" expanded="true" signature="10874:10965" ph="SELECT 'Y' F... DUENOS" />
+                <marker date="1544996866629" expanded="true" signature="11694:11708" ph="..." />
+                <marker date="1544996866629" expanded="true" signature="12274:12348" ph="SELECT 'X' F... DUENOS" />
+                <marker date="1544996866629" expanded="true" signature="12656:12748" ph="SELECT 'X' F... DUENOS" />
+                <marker date="1544996866629" expanded="true" signature="13056:13147" ph="SELECT 'X' F... DUENOS" />
+                <marker date="1544996866629" expanded="true" signature="13826:13913" ph="UPDATE DUENO... " />
+                <marker date="1544996866629" expanded="true" signature="14623:14675" ph="INSERT INTO DUENOS... " />
+                <marker date="1544996866629" expanded="true" signature="15863:15950" ph="SELECT COUNT... SEDES" />
+                <marker date="1544996866629" expanded="true" signature="16275:16325" ph="SELECT NOMBR... SEDES" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/common.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6004">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Usuario.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Proyecto/Model/Usuario.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="634" column="43" lean-forward="true" selection-start-line="634" selection-start-column="43" selection-end-line="634" selection-end-column="43" />
+              <folding>
+                <marker date="1545003437932" expanded="true" signature="1059:1081" ph=" @var array of Torneo ..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,18 +122,8 @@
       <file leaf-file-name="Scripts_Creacion_FINAL.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sql/Scripts_Creacion_FINAL.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ver-resultados.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/web/ver-resultados.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="13" column="129" lean-forward="false" selection-start-line="13" selection-start-column="129" selection-end-line="13" selection-end-column="129" />
+            <state relative-caret-position="170">
+              <caret line="10" column="31" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="895" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -95,38 +151,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header-home.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/templates/header-home.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="48" column="9" lean-forward="true" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/web/home.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="83" column="18" lean-forward="true" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
-              <folding>
-                <element signature="e#97#119#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notificaciones.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scss/notificaciones.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="6" lean-forward="true" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -138,22 +162,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>colorG</find>
-      <find>#00CD5E</find>
-      <find>.llave_a</find>
-      <find>owl-item</find>
-      <find>$bgcol_verde5</find>
-      <find>cambiar</find>
-      <find>btn-lg</find>
-      <find>echo</find>
-      <find>nue</find>
-      <find>user</find>
-      <find>required</find>
-      <find>l</find>
       <find>lis</find>
       <find>lista_jugadores</find>
       <find>nombre_apellido_jugador</find>
-      <find>t</find>
       <find>tool</find>
       <find>tooltip</find>
       <find>$idCapitan</find>
@@ -168,6 +179,19 @@
       <find>fontS</find>
       <find>listado_torneos</find>
       <find>gonza</find>
+      <find>seDe</find>
+      <find>sede</find>
+      <find>tieneNotificacionesSinLeer</find>
+      <find>ed</find>
+      <find>editarTorneo</find>
+      <find>t</find>
+      <find>tien</find>
+      <find>tiene</find>
+      <find>tieneSe</find>
+      <find>ge</find>
+      <find>getSedes</find>
+      <find>get</find>
+      <find>getNombre</find>
     </findStrings>
     <replaceStrings>
       <replace>VS</replace>
@@ -243,10 +267,10 @@
         <option value="$PROJECT_DIR$/scss/notificaciones.scss" />
         <option value="$PROJECT_DIR$/scss/common.scss" />
         <option value="$PROJECT_DIR$/views/web/ver-resultados.php" />
-        <option value="$PROJECT_DIR$/views/templates/header-cuenta-usuario.php" />
         <option value="$PROJECT_DIR$/views/web/ver-usuario.php" />
         <option value="$PROJECT_DIR$/views/templates/footer-cuenta-usuario.php" />
         <option value="$PROJECT_DIR$/pendientes.txt" />
+        <option value="$PROJECT_DIR$/views/templates/header-cuenta-usuario.php" />
       </list>
     </option>
   </component>
@@ -774,12 +798,12 @@
       <workItem from="1544854713062" duration="196000" />
       <workItem from="1544874131521" duration="33378000" />
       <workItem from="1544933382172" duration="1565000" />
-      <workItem from="1544964771483" duration="31209000" />
+      <workItem from="1544964771483" duration="35006000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="586719000" />
+    <option name="totallyTimeSpent" value="590516000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
@@ -836,28 +860,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/modals-arrows.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Proyecto/Model/Torneo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1122" column="0" lean-forward="true" selection-start-line="1122" selection-start-column="0" selection-end-line="1122" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scss/header_nav.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -922,37 +924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="80" column="44" lean-forward="true" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Proyecto/Model/Sede.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="261" column="5" lean-forward="true" selection-start-line="261" selection-start-column="5" selection-end-line="261" selection-end-column="5" />
-          <folding>
-            <marker date="1544996866629" expanded="true" signature="1669:1801" ph="INSERT INTO SEDES... " />
-            <marker date="1544996866629" expanded="true" signature="2107:2159" ph="INSERT INTO DUENOS... " />
-            <marker date="1544996866629" expanded="true" signature="2902:3117" ph="UPDATE SEDES... " />
-            <marker date="1544996866629" expanded="true" signature="3371:3417" ph="SELECT 'X' F... SEDES" />
-            <marker date="1544996866629" expanded="true" signature="3706:3750" ph="DELETE FROM " />
-            <marker date="1544996866629" expanded="true" signature="3949:3992" ph="DELETE FROM " />
-            <marker date="1544996866629" expanded="true" signature="4191:4233" ph="DELETE FROM " />
-            <marker date="1544996866629" expanded="true" signature="4514:4636" ph="SELECT NOMBR... SEDES" />
-            <marker date="1544996866629" expanded="true" signature="5308:5362" ph="SELECT CANCH... CANCHAS" />
-            <marker date="1544996866629" expanded="true" signature="5708:5780" ph="SELECT USUAR... DUENOS" />
-            <marker date="1544996866629" expanded="true" signature="6402:6477" ph="SELECT 'X' F... CANCHAS" />
-            <marker date="1544996866629" expanded="true" signature="6861:6895" ph="SELECT SEDE_... SEDES" />
-            <marker date="1544996866629" expanded="true" signature="7420:7489" ph="SELECT PROVI... PROVINCIAS" />
-            <marker date="1544996866629" expanded="true" signature="8220:8356" ph="SELECT B.USU... USUARIOS" />
-            <marker date="1544996866629" expanded="true" signature="9871:9962" ph="SELECT 'Y' F... DUENOS" />
-            <marker date="1544996866629" expanded="true" signature="10691:10705" ph="..." />
-            <marker date="1544996866629" expanded="true" signature="11271:11345" ph="SELECT 'X' F... DUENOS" />
-            <marker date="1544996866629" expanded="true" signature="11653:11745" ph="SELECT 'X' F... DUENOS" />
-            <marker date="1544996866629" expanded="true" signature="12053:12144" ph="SELECT 'X' F... DUENOS" />
-            <marker date="1544996866629" expanded="true" signature="12608:12695" ph="UPDATE DUENO... " />
-            <marker date="1544996866629" expanded="true" signature="12989:13041" ph="INSERT INTO DUENOS... " />
-            <marker date="1544996866629" expanded="true" signature="13431:13518" ph="SELECT COUNT... SEDES" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1125,7 +1096,7 @@
         <state relative-caret-position="240">
           <caret line="121" column="50" lean-forward="true" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="50" />
           <folding>
-            <element signature="e#7995#8357#0#PHP" expanded="true" />
+            <element signature="e#7995#8357#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1274,22 +1245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sql/Scripts_Creacion_FINAL.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/templates/header-cuenta-usuario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="130" column="64" lean-forward="true" selection-start-line="130" selection-start-column="64" selection-end-line="130" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/web/ver-usuario.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1318,10 +1273,84 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Proyecto/Model/Usuario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="634" column="43" lean-forward="true" selection-start-line="634" selection-start-column="43" selection-end-line="634" selection-end-column="43" />
+          <folding>
+            <marker date="1545003437932" expanded="true" signature="1059:1081" ph=" @var array of Torneo ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pendientes.txt">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Proyecto/Controllers/TorneoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="158" column="0" lean-forward="true" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/common.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6004">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/Scripts_Creacion_FINAL.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="31" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="895" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Proyecto/Model/Sede.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="233" column="29" lean-forward="true" selection-start-line="233" selection-start-column="20" selection-end-line="233" selection-end-column="29" />
+          <folding>
+            <marker date="1544996866629" expanded="true" signature="1669:1801" ph="INSERT INTO SEDES... " />
+            <marker date="1544996866629" expanded="true" signature="2107:2159" ph="INSERT INTO DUENOS... " />
+            <marker date="1544996866629" expanded="true" signature="3141:3356" ph="UPDATE SEDES... " />
+            <marker date="1544996866629" expanded="true" signature="3610:3656" ph="SELECT 'X' F... SEDES" />
+            <marker date="1544996866629" expanded="true" signature="4262:4306" ph="DELETE FROM " />
+            <marker date="1544996866629" expanded="true" signature="4505:4548" ph="DELETE FROM " />
+            <marker date="1544996866629" expanded="true" signature="4747:4789" ph="DELETE FROM " />
+            <marker date="1544996866629" expanded="true" signature="5070:5192" ph="SELECT NOMBR... SEDES" />
+            <marker date="1544996866629" expanded="true" signature="5864:5918" ph="SELECT CANCH... CANCHAS" />
+            <marker date="1544996866629" expanded="true" signature="6264:6336" ph="SELECT USUAR... DUENOS" />
+            <marker date="1544996866629" expanded="true" signature="6958:7033" ph="SELECT 'X' F... CANCHAS" />
+            <marker date="1544996866629" expanded="true" signature="7864:7898" ph="SELECT SEDE_... SEDES" />
+            <marker date="1544996866629" expanded="true" signature="8423:8492" ph="SELECT PROVI... PROVINCIAS" />
+            <marker date="1544996866629" expanded="true" signature="9223:9359" ph="SELECT B.USU... USUARIOS" />
+            <marker date="1544996866629" expanded="true" signature="10874:10965" ph="SELECT 'Y' F... DUENOS" />
+            <marker date="1544996866629" expanded="true" signature="11694:11708" ph="..." />
+            <marker date="1544996866629" expanded="true" signature="12274:12348" ph="SELECT 'X' F... DUENOS" />
+            <marker date="1544996866629" expanded="true" signature="12656:12748" ph="SELECT 'X' F... DUENOS" />
+            <marker date="1544996866629" expanded="true" signature="13056:13147" ph="SELECT 'X' F... DUENOS" />
+            <marker date="1544996866629" expanded="true" signature="13826:13913" ph="UPDATE DUENO... " />
+            <marker date="1544996866629" expanded="true" signature="14623:14675" ph="INSERT INTO DUENOS... " />
+            <marker date="1544996866629" expanded="true" signature="15863:15950" ph="SELECT COUNT... SEDES" />
+            <marker date="1544996866629" expanded="true" signature="16275:16325" ph="SELECT NOMBR... SEDES" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/templates/header-cuenta-usuario.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" column="86" lean-forward="false" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
+          <caret line="129" column="41" lean-forward="true" selection-start-line="129" selection-start-column="41" selection-end-line="129" selection-end-column="41" />
           <folding />
         </state>
       </provider>

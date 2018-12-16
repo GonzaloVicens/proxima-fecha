@@ -11,6 +11,7 @@ Pendientes/Notas:
 
 Detalles a corregir
 ===================
+
 a) Ver que cuando vuelve a Editar/Crear torneo con error, no trae la fecha que estaba
 b) Cambiar "Torneo Ida y Vuelta" por "Liga Ida y Vuelta"
 c) Agregar Futbol 7 en opciones deportes
