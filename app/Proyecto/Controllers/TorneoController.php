@@ -77,6 +77,7 @@ class TorneoController
                     $usuario = Session::get('usuario');
                     $torneo_id = Torneo::CrearTorneo($inputs, $usuario->getUsuarioId());
                     header('Location: ' . App::$urlPath . '/torneos/' . $torneo_id);
+
                 }
             };
         }else {

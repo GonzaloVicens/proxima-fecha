@@ -165,11 +165,17 @@ class Torneo
 
     public static function CrearTorneo($inputs, $organizador_id){
 
-        $torneo= [
+        $cantidadFinal = 4;
+        if (isset($inputs ["cantidad"])  && !empty($inputs ["cantidad"])) {
+            $cantidadFinal = $inputs['cantidad'];
+        }
+
+
+            $torneo= [
             'nombre'           => $inputs['nombre'],
             'deporte_id'       =>  $inputs['deporte'],
             'tipo_torneo_id'   =>  $inputs['tipoTorneo'],
-            'cantidad_equipos' =>  $inputs['cantidad'],
+            'cantidad_equipos' =>  $cantidadFinal,
             'fecha_inicio'     =>  $inputs['fechaInicio'],
             'sede_id'          =>  $inputs['sede'],
             'estado_torneo_id'    =>  "I"
