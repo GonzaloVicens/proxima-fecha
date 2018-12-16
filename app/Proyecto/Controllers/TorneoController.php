@@ -151,7 +151,7 @@ class TorneoController
     /**
      * Método que controla la actualización de un torneo
      */
-    public function actualizar()
+    public function actualizarTorneo()
     {
         if (Session::has("usuario")) {
             $inputs = Request::getData();
@@ -178,7 +178,7 @@ class TorneoController
                     $camposError = [];
                     $camposError ['dias'] = 'Debe elegir al menos un día';
                     Session::set("camposError", $camposError);
-                    header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
+                    header('Location: ' . App::$urlPath . '/usuarios/editar-torneo');
                 } else {
                     Session::clearValue("camposError");
                     Session::clearValue("campos");
