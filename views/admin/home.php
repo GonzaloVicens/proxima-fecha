@@ -30,7 +30,7 @@ Session::clearValue('resultadosUsuario');
     <div class="container">
         <div class="row">
             <div class="col-md-12 my-4">
-                <a href="<?= App::$urlPath . '/adminPF/desloguear'?>" class="btn btn-outline-secondary float-right"><i class="fas fa-door-open"></i> Cerrar Sesion</a>
+                <!--a href="<?= App::$urlPath . '/adminPF/desloguear'?>" class="btn btn-outline-secondary float-right"><i class="fas fa-door-open"></i> Cerrar Sesion</a-->
                 <h1 class="pfgreen">Admin PF</h1>
             </div>
             <div class="col-md-12">

@@ -80,7 +80,7 @@ class AdminController //implements JsonSerializable
 
     public function verHome(){
         $admin = Session::get('admin');
-        View::render('admin/home',compact('admin'), 3);
+        View::render('admin/home',compact('admin'), 4);
     }
 
     public function activarUsuario(){

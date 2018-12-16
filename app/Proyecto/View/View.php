@@ -23,10 +23,12 @@ class View
         $header1 = App::$viewPath . '/templates/header-home.php';
         $header2 = App::$viewPath . '/templates/header-registro.php';
         $header3 = App::$viewPath . '/templates/header-cuenta-usuario.php';
+        $header4 = App::$viewPath . '/templates/header-admin.php';
 
         $footer1 = App::$viewPath . '/templates/footer-home.php';
         $footer2 = App::$viewPath . '/templates/footer-registro.php';
         $footer3 = App::$viewPath . '/templates/footer-cuenta-usuario.php';
+        $footer4 = App::$viewPath . '/templates/footer-admin.php';
 
 
         // Calculamos la ruta del template.
@@ -60,6 +62,10 @@ class View
             require $header3;
             require $templatePath;
             require $footer3;
+        } else if($contexto == 4){
+            require $header4;
+            require $templatePath;
+            require $footer4;
         } else {
             require $templatePath;
         }

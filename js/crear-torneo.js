@@ -19,11 +19,11 @@ $(document).ready(function(){
     selectcopa += "</select>";
 
     //ligaiyv
-    var ligaiyv = "<select name='cantidad' id='cantidad' class='form-control'>";
+    var selectligaiyv = "<select name='cantidad' id='cantidad' class='form-control'>";
     for(var i = 2; i < 31; i+= 2) {
-        ligaiyv += "<option value='" + i + "'>" + i + "</option>";
+        selectligaiyv += "<option value='" + i + "'>" + i + "</option>";
     }
-    ligaiyv += "</select>";
+    selectligaiyv += "</select>";
 
     $('#tipoTorneoL').click(function(){
         $('#cantidadEquipos').html(selectliga);
@@ -34,7 +34,7 @@ $(document).ready(function(){
     });
 
     $('#tipoTorneoT').click(function(){
-        $('#cantidadEquipos').html(ligaiyv);
+        $('#cantidadEquipos').html(selectligaiyv);
     })
 
 });
