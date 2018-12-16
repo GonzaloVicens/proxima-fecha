@@ -217,6 +217,9 @@
 .fontSize6rem {
   font-size: 6rem; }
 
+.fontSize5rem {
+  font-size: 5rem; }
+
 .fontSize1-6rem {
   font-size: 1.6rem; }
 
@@ -992,7 +995,7 @@ nav {
   font-style: italic;
   font-size: .8rem;
   margin-right: .6rem; }
-.notificaciones i.fas.fa-bell:before, .notificaciones i.fas.fa-comments:before, .notificaciones i.fas.fa-crown:before {
+.notificaciones h2 i.fas.fa-bell:before, .notificaciones h2 i.fas.fa-comments:before, .notificaciones h2 i.fas.fa-search:before, .notificaciones h2 i.fas.fa-crown:before {
   font-size: 1.5rem;
   color: #ebebeb;
   padding: .5rem;
@@ -1003,9 +1006,9 @@ nav {
   margin-right: .4rem;
   display: block;
   text-align: center; }
-.notificaciones i.fas.fa-crown {
+.notificaciones h2 i.fas.fa-crown {
   margin-bottom: 20px; }
-  .notificaciones i.fas.fa-crown:before {
+  .notificaciones h2 i.fas.fa-crown:before {
     padding: 7px 5px 5px;
     font-size: 23px; }
 

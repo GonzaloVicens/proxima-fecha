@@ -1,15 +1,14 @@
 Pendientes/Notas:
 =================
 
-1) Dar Estilo al Buscador
-2) Terminar Notificaciones
-3) Pantalla convertite en usuario Pro + Botón mercado Pago -> Hacerlo Dinámico
-4) Eliminar -> Sedes
-5) Eliminar -> Equipos
-6) Listar Sedes en menu header usuario "Mis Sedes" <<--- !!
-7) Cambiar los datos de las fichas para que aparezcan abajo del partido
-8) Solicitar Inscribirse en un torneo <<--- !!!
-9) Cuando vuelve el form de Editar Torneo, validado con un error, te lleva a Crear torneo, en vez de Editar Torneo
+1) Terminar Notificaciones
+2) Pantalla convertite en usuario Pro + Botón mercado Pago -> Hacerlo Dinámico
+3) Eliminar -> Sedes
+4) Eliminar -> Equipos
+5) Listar Sedes en menu header usuario "Mis Sedes" <<--- !!
+6) Cambiar los datos de las fichas para que aparezcan abajo del partido
+7) Solicitar Inscribirse en un torneo <<--- !!!
+8) Cuando vuelve el form de Editar Torneo, validado con un error, te lleva a Crear torneo, en vez de Editar Torneo
 
 Detalles a corregir
 ===================

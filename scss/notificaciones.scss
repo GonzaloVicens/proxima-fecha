@@ -9,22 +9,25 @@
     font-size: .8rem;
     margin-right: .6rem;
   }
-  i {
-    &.fas {
-      &.fa-bell,
-      &.fa-comments,
-      &.fa-crown {
+  h2 {
+    i {
+      &.fas {
+        &.fa-bell,
+        &.fa-comments,
+        &.fa-search,
+        &.fa-crown {
 
-        &:before {
-          @include icon-in-circle($col_verde1, $col_gris6)
+          &:before {
+            @include icon-in-circle($col_verde1, $col_gris6)
+          }
         }
-      }
 
-      &.fa-crown {
-        margin-bottom:20px;
-        &:before {
-          padding: 7px 5px 5px;
-          font-size: 23px;
+        &.fa-crown {
+          margin-bottom:20px;
+          &:before {
+            padding: 7px 5px 5px;
+            font-size: 23px;
+          }
         }
       }
     }
