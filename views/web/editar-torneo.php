@@ -99,10 +99,18 @@ if (Session::has("camposError")){
                 <h2 class="mt-5 mb-4 pfgreen">Editar <span class="font-weight-normal">Torneo o Liga</span></h2>
                 <form method='post' action='<?= App::$urlPath;?>/torneos/editar-torneo' >
                     <input type="hidden" name="torneo_id" id="torneo_id"  value='<?= $torneo->getTorneoID() ?>'>
+
                     <div class="form-group">
+
                         <label for="nombre">Nombre Torneo / Liga</label>
                         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del torneo" value="<?=$nombre?>" />
+                        <?php
+                        if (isset($camposError['nombre'])) {
+                            echo "<p class='rta-validacion text-danger ml-1'><small>" . $camposError['nombre'] . "</small><p>";
+                        }
+                        ?>
                     </div>
+
                     <div class="form-group">
                         <label for="deporte">Deporte</label>
                         <select name="deporte" id="deporte"  class="form-control">
@@ -110,24 +118,60 @@ if (Session::has("camposError")){
                         </select>
                         <!--input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingresá tu nombre"-->
                     </div>
+
                     <div class="form-group">
                         <label>Tipo de Competición</label><br>
                         <?=TipoTorneo::printRadiosTiposTorneos($tipoTorneo)?>
                     </div>
+
                     <div class="form-group">
                         <label for="cantidad">Cantidad Equipos</label>
-                        <select name="cantidad" id="cantidad" class="form-control">
-                            <option value='4'  <?php if ($cantidad == 4 ){ echo "selected";} ?> >4</option>
-                            <option value='8'  <?php if ($cantidad == 8 ){ echo "selected";} ?> >8</option>
-                            <option value='16' <?php if ($cantidad == 16){ echo "selected";} ?> >16</option>
-                            <option value='32' <?php if ($cantidad == 32){ echo "selected";} ?> >32</option>
-                        </select>
+                        <div id="cantidadEquipos">
+                        <?php
 
+                        echo "<select name='cantidad' id='cantidad' class='form-control'>";
+
+                        if($tipoTorneo == 'L' || $tipoTorneo == 'T'){
+                            for($i = 2; $i < 31; $i+= 2) {
+                                if($cantidad == $i){
+                                    echo "<option selected value='" . $i . "'>" . $i . "</option>";
+                                } else {
+                                    echo "<option value='" . $i . "'>" . $i . "</option>";
+                                }
+                            }
+                        } else {
+                            for($i = 4; $i < 33; $i*= 2) {
+                                if($cantidad == $i){
+                                    echo "<option selected value='" . $i . "'>" . $i . "</option>";
+                                } else {
+                                    echo "<option value='" . $i . "'>" . $i . "</option>";
+                                }
+                            }
+                        }
+
+                        echo "</select>";
+
+                        ?>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label for="fechainicio">Fecha de Inicio </label>
-                        <input required type="date" name='fechaInicio' class="form-control" id="fechainicio" value="<?=$fechaInicio?>"/>
+                        <input type="text" name='fechaInicio' class="form-control" id="fechainicio" value="<?php
+                        //Se agrega porque cuando vuelve con un error, toma como valor "1"
+                        if($fechaInicio == 1) {
+                            echo "";
+                        } else {
+                            echo $fechaInicio;
+                        }
+                        ?>"/>
+                        <?php
+                        if (isset($camposError['fechaInicio'])) {
+                            echo "<p class='rta-validacion text-danger ml-1'><small>" . $camposError['fechaInicio'] . "</small><p>";
+                        }
+                        ?>
                     </div>
+
                     <div class="form-group">
                         <label for="sede">Sede</label>
                         <select name="sede" class="form-control">
@@ -135,19 +179,42 @@ if (Session::has("camposError")){
                         </select>
                     </div>
 
-
                     <div class="form-group">
                         <p>Días en que se juega el torneo</p>
-                        <label for="domingo">Domingo <input type="checkbox" name='D' <?= $domingo ?>  class="form-control" id="domingo"></label>
-                        <label for="lunes">Lunes<input type="checkbox" name='L' <?= $lunes ?> class="form-control" id="lunes"></label>
-                        <label for="martes">Martes<input type="checkbox" name='M' <?= $martes ?> class="form-control" id="martes"></label>
-                        <label for="miercoles">Miércoles<input type="checkbox" name='X' <?= $miercoles ?> class="form-control" id="miercoles"></label>
-                        <label for="jueves">Jueves<input type="checkbox" name='J' <?= $jueves ?> class="form-control" id="jueves"></label>
-                        <label for="viernes">Viernes<input type="checkbox" name='V' <?= $viernes ?> class="form-control" id="viernes"></label>
-                        <label for="sabado">Sábado<input type="checkbox" name='S' <?= $sabado ?> class="form-control" id="sabado"></label>
                     </div>
-                    <button type="submit" class="btn btn-outline-success">Enviar</button>
-                    <a type="button" href="<?=App::$urlPath . '/torneos/'. $torneo->getTorneoId()?>" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</a>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name='D' <?= $domingo ?>  class="form-check-input" id="domingo"><label for="domingo" class="form-check-label">Dom</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name='L' <?= $lunes ?> class="form-check-input" id="lunes"><label for="lunes" class="form-check-label">Lun</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name='M' <?= $martes ?> class="form-check-input" id="martes"><label for="martes" class="form-check-label">Mar</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name='X' <?= $miercoles ?> class="form-check-input" id="miercoles"><label for="miercoles" class="form-check-label">Mie</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name='J' <?= $jueves ?> class="form-check-input" id="jueves"><label for="jueves" class="form-check-label">Jue</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name='V' <?= $viernes ?> class="form-check-input" id="viernes"><label for="viernes" class="form-check-label">Vie</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name='S' <?= $sabado ?> class="form-check-input" id="sabado"><label for="sabado" class="form-check-label">Sab</label>
+                    </div>
+                    <div>
+                        <?php
+                        if (isset($camposError['dias'])) {
+                            echo "<p class='rta-validacion text-danger ml-1'><small>" . $camposError['dias'] . "</small><p>";
+                        }
+                        ?>
+                    </div>
+
+                    <div class="form-group my-4">
+                        <button type="submit" class="btn btn-outline-success">Editar Torneo</button>
+                        <a href="<?=App::$urlPath . '/torneos/'. $torneo->getTorneoId()?>" class="btn btn-link colorGris2">Cancelar</a>
+                    </div>
                 </form>
             </div>
             <div class="col-md-3">

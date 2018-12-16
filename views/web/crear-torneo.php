@@ -93,14 +93,16 @@ if (Session::has("camposError")){
                 <h2 class="mt-5 mb-4 pfgreen">Crear <span class="font-weight-normal">Torneo o Liga</span></h2>
                 <form method='post' action='<?= App::$urlPath;?>/usuarios/crear-torneo' >
                     <div class="form-group">
-                       <label for="nombre">Nombre Torneo / Liga</label>
-                       <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del torneo" value="<?=$nombre?>" />
+
+                        <label for="nombre">Nombre Torneo / Liga</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del torneo" value="<?=$nombre?>" />
                         <?php
                         if (isset($camposError['nombre'])) {
                             echo "<p class='rta-validacion text-danger ml-1'><small>" . $camposError['nombre'] . "</small><p>";
                         }
                         ?>
                     </div>
+
                     <div class="form-group">
                        <label for="deporte">Deporte</label>
                        <select name="deporte" id="deporte" class="form-control">
@@ -108,11 +110,13 @@ if (Session::has("camposError")){
                        </select>
                         <!--input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingresá tu nombre"-->
                     </div>
+
                     <div class="form-group">
                         <label>Tipo de Competición</label><br>
                         <?=TipoTorneo::printRadiosTiposTorneos($tipoTorneo)?>
 
                     </div>
+
                     <div class="form-group">
                         <label for="cantidad">Cantidad Equipos</label>
                         <div id="cantidadEquipos">
@@ -124,6 +128,7 @@ if (Session::has("camposError")){
                             </select>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="fechainicio">Fecha de Inicio </label>
                         <input type="text" name='fechaInicio' class="form-control" id="fechainicio" value="<?php
@@ -140,12 +145,14 @@ if (Session::has("camposError")){
                         }
                         ?>
                     </div>
+
                     <div class="form-group">
                         <label for="sede">Sede</label>
                         <select name="sede" class="form-control">
                             <?=Sede::printOptionsSedes($sede)?>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <p>Días en que se juega el torneo</p>
                     </div>
