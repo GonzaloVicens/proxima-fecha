@@ -1,14 +1,13 @@
 Pendientes/Notas:
 =================
 
-1) Terminar Notificaciones
-2) Pantalla convertite en usuario Pro + Botón mercado Pago -> Hacerlo Dinámico
-3) Eliminar -> Sedes
-4) Eliminar -> Equipos
-5) Listar Sedes en menu header usuario "Mis Sedes" <<--- !!
-6) Cambiar los datos de las fichas para que aparezcan abajo del partido
-7) Solicitar Inscribirse en un torneo <<--- !!!
-8) Cuando vuelve el form de Editar Torneo, validado con un error, te lleva a Crear torneo, en vez de Editar Torneo
+1) Dar Estilo a Notificaciones
+2) Eliminar -> Sedes
+3) Eliminar -> Equipos
+4) Listar Sedes en menu header usuario "Mis Sedes" <<--- !!
+5) Cambiar los datos de las fichas para que aparezcan abajo del partido
+6) Solicitar Inscribirse en un torneo <<--- !!!
+7) Cuando vuelve el form de Editar Torneo, validado con un error, te lleva a Crear torneo, en vez de Editar Torneo
 
 Detalles a corregir
 ===================
@@ -16,5 +15,6 @@ a) Ver que cuando vuelve a Editar/Crear torneo con error, no trae la fecha que e
 b) Cambiar "Torneo Ida y Vuelta" por "Liga Ida y Vuelta"
 c) Agregar Futbol 7 en opciones deportes
 d) Ver tema Deportes: Carga de Goles para Basquet / Voley / Rugby / Handball / Tenis / Paddle
+e) Cambiar que Cuando Ya Sos Pro aparezca mensaje "renovar Plazo Cuenta Pro" o similar
 
 

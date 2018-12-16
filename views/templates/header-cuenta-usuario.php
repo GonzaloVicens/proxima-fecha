@@ -127,8 +127,8 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                     </li>
                 </ul>
                 <div class="form-buscar">
-                    <form class="form-inline">
-                        <input class="form-control" type="text" placeholder="buscar" aria-label="Search">
+                    <form class="form-inline" action="<?= App::$urlPath ?>/buscar" method="post">
+                        <input class="form-control" name='criterio' type="text" placeholder="buscar" aria-label="Search">
                         <!--button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button-->
                     </form>
                 </div>

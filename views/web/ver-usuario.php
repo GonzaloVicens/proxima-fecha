@@ -24,9 +24,6 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
 ?>
 <main class="py-4 mb-4 usuario">
     <div class="container">
-        <?php if ($errorUsuarioStandard) {
-            echo "<h1 style='color: red;'> Gonza aca va el aviso de que debe ser pro para crear otro torneo </h1>";
-        }?>
         <div class="row border-bottom main-info">
             <div class="col-md-4 p-3">
                 <?php
@@ -152,4 +149,5 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
     header("Location: error404");
 }
 ?>
+
 

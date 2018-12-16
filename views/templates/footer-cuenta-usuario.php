@@ -217,6 +217,40 @@ $('[data-toggle="tooltip"]').tooltip()
     </div>
 </div>
 
+<div class="modal fade bd-example-modal-lg" id='avisoUsuarioPro' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+                <div class="modal-header fondoHeader2 text-white">
+                    <h5 class="modal-title">Ten en cuenta que...</h5>
+                    <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="modal-body my-3 pt-3 pb-3 d-flex align-items-center text-muted">
+                                <div class='mr-4 verde3'>
+                                    <i class="fas fa-crown fontSize5rem"></i>
+                                </div>
+                                <div>
+                                    <p>Para contar con la posiblidad de organizar <em>más de un torneo al mismo tiempo</em>, tienes que pasarte a una <strong>Cuenta Pro</strong>.</p>
+                                    <p>La suscripción tiene un plazo de 6 meses y es renovable.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href='<?= App::$urlPath ?>/usuarios/pasar-a-cuenta-pro' class="btn btn-outline-success">Pasarme a Pro</a>
+                    <a href='' class="btn btn-link text-muted">Cerrar</a>
+                </div>
+
+        </div>
+    </div>
+</div>
+<!--#avisoUsuarioPro-->
 </body>
 <script src="<?= App::$urlPath;?>/js/jquery-3.3.1.min.js"></script>
 <script src="<?= App::$urlPath;?>/js/jqueryui/jquery-ui.min.js"></script>
@@ -224,4 +258,9 @@ $('[data-toggle="tooltip"]').tooltip()
 <script src="<?= App::$urlPath;?>/js/modals-arrows.js"></script>
 <script src="<?= App::$urlPath;?>/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?= App::$urlPath;?>/js/crear-torneo.js"></script>
+<script>
+    <?php if ($errorUsuarioStandard) {
+        echo "$('#avisoUsuarioPro').modal('show')";
+    }?>
+</script>
 </html>
