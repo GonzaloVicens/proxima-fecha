@@ -506,14 +506,14 @@ class Torneo
         foreach($this->organizadores as $organizador) {
             $notificacion = ['usuario_id' => $organizador  ,
                 'torneo_id' => $this->torneo_id,
-                'mensaje' =>   "Se ha agregado el equipo '". $nombreEquipo ."'' al torneo '" . $this->nombre. "'"];
+                'mensaje' =>   "Se ha agregado el equipo '". $nombreEquipo ."' al torneo '" . $this->nombre. "'"];
             Notificacion::CrearNotificacion($notificacion );
         }
 
         foreach(Equipo::GetJugadoresDelEquipo($equipo_id) as $jugador) {
             $notificacion = ['usuario_id' => $jugador  ,
                 'torneo_id' => $this->torneo_id,
-                'mensaje' =>   "Tu equipo '". $nombreEquipo ."'' ha sido agregado al torneo '" . $this->nombre. "'"];
+                'mensaje' =>   "Tu equipo '". $nombreEquipo ."' ha sido agregado al torneo '" . $this->nombre. "'"];
             Notificacion::CrearNotificacion($notificacion );
         }
 
@@ -534,9 +534,21 @@ class Torneo
             foreach($this->organizadores as $organizador) {
                 $notificacion = ['usuario_id' => $organizador  ,
                     'torneo_id' => $this->torneo_id,
-                    'mensaje' =>   "Se ha eliminado el equipo '". $nombreEquipo ."'' del torneo '" . $this->nombre. "'"];
+                    'mensaje' =>   "Se ha eliminado el equipo '". $nombreEquipo ."' del torneo '" . $this->nombre. "'"];
                 Notificacion::CrearNotificacion($notificacion );
             }
+
+
+            $nombreEquipo = Equipo::getNombrePorID($equipo_id);
+            $jugadores = Equipo::GetJugadoresDelEquipo($equipo_id);
+            foreach ($jugadores as $jugador) {
+                $notificacion = ['usuario_id' => $jugador,
+                    'torneo_id' => $this->torneo_id,
+                    'mensaje' =>   "Tu equipo '". $nombreEquipo ."' ha sido eliminado del torneo '" . $this->nombre. "'"
+                ];
+                Notificacion::CrearNotificacion($notificacion);
+            }
+
 
         } else {
             throw new TorneoNoGrabadoException("Error al grabar el torneo.");
@@ -1440,6 +1452,92 @@ class Torneo
         return $nombre;
     }
 
+    public static function InscribirEquipo($datos){
+
+        $query = "INSERT INTO INSCRIPCIONES VALUE (:torneo_id, :equipo_id )";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos );
+        $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $nombreEquipo = Equipo::getNombrePorID($datos['equipo_id']);
+        $nombreTorneo = Torneo::getNombrePorID($datos['torneo_id']);
+        $organizadores = Torneo::GetOrganizadoresActivosDelTorneo($datos['torneo_id']);
+        foreach( $organizadores  as $organizador) {
+            $notificacion = ['usuario_id' => $organizador  ,
+                'torneo_id' => $datos['torneo_id'],
+                'mensaje' =>   "El equipo '". $nombreEquipo ."' ha solicitado inscribirse al torneo '" . $nombreTorneo . "'"];
+            Notificacion::CrearNotificacion($notificacion );
+        }
+
+        foreach(Equipo::GetJugadoresDelEquipo($datos['equipo_id']) as $jugador) {
+            $notificacion = ['usuario_id' => $jugador  ,
+                'torneo_id' => $datos['torneo_id'],
+                'mensaje' =>   "Tu equipo '". $nombreEquipo ."' ha solicitado inscribirse al torneo '" .  $nombreTorneo . "'"];
+            Notificacion::CrearNotificacion($notificacion );
+        }
+
+    }
+
+
+    public function getInscripciones()
+    {
+        $respuesta = [] ;
+        $query = "SELECT A.EQUIPO_ID , A.NOMBRE FROM EQUIPOS A, INSCRIPCIONES B WHERE A.EQUIPO_ID = B.EQUIPO_ID AND B.TORNEO_ID = :torneo_id ORDER BY NOMBRE ";
+
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['torneo_id' => $this->torneo_id]);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta [] = $datos;
+        };
+        return $respuesta ;
+    }
+
+
+
+    public function printInscripcionesEnLi()
+    {
+        if (Session::has('logueado')) {
+            $usuario = Session::get('usuario');
+            if ($this->tieneOrganizador($usuario->getUsuarioID()) && $this->estado_torneo_id == "I") {
+                $inscripciones = $this->getInscripciones();
+                if (count($inscripciones) > 0) {
+                    echo "<h4 class='pfgreen mt-4'>Inscripciones Pendientes </h4>";
+                    echo "<ul class='list-group equipos_participan'>";
+
+                    foreach ($inscripciones as $equipo) {
+                        echo "<li class='list-group-item'><img src='" . App::$urlPath . "/img/equipos/" . $equipo['EQUIPO_ID'] . "_logo_200.jpg'><a href='" . App::$urlPath . "/equipos/" . $equipo['EQUIPO_ID'] . "' class='pfgreen hoverVerde' title='Ver Equipo'>" . $equipo['NOMBRE'] . "</a>";
+
+                        // Insertar Equipo
+                        echo "<form style='display:inline' action='agregar-inscripcion' method='POST'>";
+                        echo "<input type='hidden' name='equipo_id' value='" . $equipo['EQUIPO_ID'] . "'/>";
+                        echo "<input type='hidden' name='torneo_id' value='" . $this->torneo_id . "'/>";
+                        echo "<button type='submit' class='eliminar-button float-right mt-2 d-inline-block'><i class='far fa-check-square'></i><span class='d-none'>Agregar</span></button></form>";
+
+                        // Eliminar Inscripcion
+                        echo "<form style='display:inline' action='eliminar-inscripcion' method='POST'>";
+                        echo "<input type='hidden' name='equipo_id' value='" . $equipo['EQUIPO_ID'] . "'/>";
+                        echo "<input type='hidden' name='torneo_id' value='" . $this->torneo_id . "'/>";
+                        echo "<button type='submit' class='eliminar-button float-right mt-2 d-inline-block'><i class='far fa-trash-alt'></i><span class='d-none'>Eliminar</span></button></form>";
+                        echo "</li>";
+                    }
+                    echo "</ul>";
+                }
+            }
+        }
+    }
+
+
+    public static function EliminarInscripcion($torneo_id , $equipo_id){
+        $datos = ['torneo_id' => $torneo_id,
+            'equipo_id' => $equipo_id
+        ];
+
+        $query = "DELETE FROM INSCRIPCIONES WHERE TORNEO_ID = :torneo_id AND EQUIPO_ID  = :equipo_id ";
+        $stmt = DBConnection::getStatement($query);
+        IF (!$stmt->execute($datos )){
+            throw new TorneoNoGrabadoException("Error al grabar el torneo.");
+        }
+    }
 
 }
 

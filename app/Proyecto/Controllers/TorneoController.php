@@ -1,5 +1,6 @@
 <?php
 namespace Proyecto\Controllers;
+use Proyecto\Model\Notificacion;
 use Proyecto\Tools\FormValidator;
 use Proyecto\View\View;
 use Proyecto\Core\Route;
@@ -553,5 +554,79 @@ class TorneoController
 
         header('Location: ' . App::$urlPath . '/torneos/' . $inputs["torneo"] . "/". $inputs["fase"] ."/". $inputs["partido"]);
 
+    }
+
+
+
+    public function solicitarInscripcion(){
+        $inputs = Request::getData();
+
+        if ( (isset($inputs["torneo_id"]) && !empty($inputs ["torneo_id"]) )
+            &&  (isset($inputs["equipo_id"]) && !empty($inputs ["equipo_id"]) )){
+            Torneo::InscribirEquipo($inputs);
+        }
+        header('Location: ' . App::$urlPath . '/torneos/' . $inputs["torneo_id"] );
+    }
+
+    /**
+     * Método que elimina un Equipo en el Torneo
+     */
+    public function eliminarInscripcion()
+    {
+        $inputs = Request::getData();
+        if (isset($inputs ["equipo_id"]) && !empty($inputs ["equipo_id"])
+            && (isset($inputs ["torneo_id"]) && !empty($inputs ["torneo_id"]))) {
+            $equipo_id = $inputs ['equipo_id'];
+            $torneo_id = $inputs ['torneo_id'];
+            Torneo::EliminarInscripcion($torneo_id, $equipo_id);
+
+            $nombreEquipo = Equipo::getNombrePorID($equipo_id);
+            $jugadores = Equipo::GetJugadoresDelEquipo($equipo_id);
+            $nombreTorneo = Torneo::getNombrePorID($torneo_id);
+            foreach ($jugadores as $jugador) {
+                $notificacion = ['usuario_id' => $jugador,
+                    'torneo_id' => $torneo_id,
+                    'mensaje' => "Tu inscripción al torneo '" . $nombreTorneo . "' con el equipo '" . $nombreEquipo . " ha sido rechazada."
+                ];
+                Notificacion::CrearNotificacion($notificacion);
+            }
+        }
+        header('Location: ' . App::$urlPath . '/torneos/' . $torneo_id);
+
+    }
+
+    /**
+     * Método que agrega un Equipo en el Torneo
+     */
+    public function agregarInscripcion()
+    {
+        $inputs = Request::getData();
+        Session::clearValue("errorAgregarEquipo");
+        Session::clearValue("IDAgregarEquipo");
+        $torneo = Session::get('torneo');
+        if (isset($inputs ["equipo_id"]) && !empty($inputs ["equipo_id"])) {
+            $equipo_id = $inputs ['equipo_id'];
+            $nombre = $inputs ['nombre'];
+            Session::set("IDAgregarEquipo", $equipo_id );
+            if ($torneo->getLugaresLibres() > 0) {
+
+                if ($torneo->existeEquipo($equipo_id)) {
+                    Session::set("errorAgregarEquipo", $nombre  . " ya es un equipo del torneo");
+                } else {
+                    if (Equipo::existeEquipo($equipo_id)) {
+                        $torneo->insertarEquipo($equipo_id);
+                        Torneo::EliminarInscripcion($torneo->getTorneoID(), $equipo_id);
+                    } else {
+                        Session::set("errorAgregarEquipo", $equipo_id . " no existe en el sistema");
+                    }
+                };
+            } else {
+                Session::set("errorAgregarEquipo", "El torneo ya está completo");
+            }
+        } else {
+            Session::set("errorAgregarEquipo", " Ingrese un equipo");
+        }
+        $torneo->actualizar();
+        header('Location: ' . App::$urlPath . '/torneos/' . $torneo->getTorneoID());
     }
 }

@@ -159,10 +159,6 @@ class Usuario
         }
     }
 
-    public function setEquipo($equipo)
-    {
-        $this->equipos[] = New Equipo($equipo);
-    }
 
     public function setEquipos(){
         $this->equipos = [];
@@ -811,4 +807,19 @@ class Usuario
         $stmt->execute(['usuario_id' => $this->usuario_id]);
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
+
+
+    public function getEquiposInscripcion($torneo){
+        $respuesta = [];
+        $query = "SELECT A.EQUIPO_ID, A.NOMBRE FROM EQUIPOS A WHERE A.CAPITAN_ID = :usuario_id AND A.ACTIVO = '1'  AND NOT EXISTS (SELECT 'X' FROM EQUIPOS_TORNEO B WHERE B.TORNEO_ID = :torneo_id AND B.EQUIPO_ID = A.EQUIPO_ID) AND NOT EXISTS (SELECT * FROM INSCRIPCIONES C WHERE C.TORNEO_ID = :torneo_id AND C.EQUIPO_ID = A.EQUIPO_ID)";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['usuario_id' => $this->usuario_id, 'torneo_id' => $torneo ]);
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $respuesta[] = $datos;
+        };
+        return $respuesta;
+    }
+
 }
+
+

@@ -55,10 +55,13 @@ $torneoAMostrar->actualizar();
                 <ul class="list-group equipos_participan">
                     <?= $torneoAMostrar->printEquiposEnLi($torneoAMostrar->getTorneoID()) ?>
                 </ul>
-                <?php }
-                if ($torneoAMostrar->getLugaresLibres() > 0 ){ ?>
+            <?php }
+            if ($torneoAMostrar->getLugaresLibres() > 0 ){ ?>
                 <p class="text-muted font-italic d-block">Resta agregar <?= $torneoAMostrar->getLugaresLibres() ?> equipos aún</p>
-                <?php } ?>
+            <?php }
+            $torneoAMostrar->printInscripcionesEnLi() ;
+            ?>
+
             </div>
             <div class="col-md-4">
                 <h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>
@@ -120,8 +123,21 @@ $torneoAMostrar->actualizar();
                 <p>
                     <a href="ver-fixture-completo" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</a>
                 </p>
+            <?php }
+                $equiposCapitan =  $usuario->getEquiposInscripcion($torneoAMostrar->getTorneoID());
+            if ($torneoAMostrar->estaInicial() && $usuario->esCapitanDeEquipo() && count($equiposCapitan) >0 ){ ?>
+                <form action="solicitar-inscripcion" method="POST" class="container">
+                    <input type="hidden" name="torneo_id" value="<?=$torneoAMostrar->getTorneoID()?>" />
+                    <label for="equipo_id">Mi Equipo</label>
+                    <select name="equipo_id" id="equipo_id" class="form-control">
+                        <?php foreach($equiposCapitan as $equipo){
+                            echo "<option value='" . $equipo['EQUIPO_ID'] . "'>" . $equipo['NOMBRE']  . "</option>";
+                        }
+                        ?>
+                    </select>
+                    <input type="submit" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde" value="Inscribirse en Torneo" />
+                </form>
             <?php } ?>
-
             </div>
         </div>
     </div>
