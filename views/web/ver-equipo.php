@@ -233,7 +233,7 @@ if(isset($equipoAMostrar)){
                                     <?php $fasesAnteriores = Fase::getFasesAnteriores($ultimaFecha['TORNEO_ID'], $ultimaFecha['FASE_ID']);
                                     foreach($fasesAnteriores as $faseAnterior){?>
                                         <tr>
-                                            <td class=""><a href="#"><i class="far fa-calendar-alt"></i> <?=$faseAnterior['DESCRIPCION']?> <span> <?=$faseAnterior['FECHA']?></span></a></td>
+                                            <td class=""><a href="../torneos/<?=$faseAnterior['TORNEO_ID']."/".$faseAnterior['FASE_ID']?>"><i class="far fa-calendar-alt"></i> <?=$faseAnterior['DESCRIPCION']?> <span> <?=$faseAnterior['FECHA']?></span></a></td>
                                         </tr>
                                     <?php } ?>
                                 </table>

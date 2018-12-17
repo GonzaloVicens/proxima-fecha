@@ -183,6 +183,10 @@ class Mensaje
         if($stmt->execute($mensaje)) {
             return DBConnection::getConnection()->lastInsertId();
         } else {
+            echo "<pre>";
+            print_r($stmt->errorInfo());
+            echo "</pre>";
+
             throw new MensajeNoGrabadoException("Error al grabar el mensaje.");
         }
     }

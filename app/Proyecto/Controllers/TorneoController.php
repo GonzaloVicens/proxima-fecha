@@ -9,6 +9,7 @@ use Proyecto\Model\Equipo;
 use Proyecto\Model\Torneo;
 use Proyecto\Model\Usuario;
 use Proyecto\Model\Partido;
+use Proyecto\Model\Fase;
 use Proyecto\Session\Session;
 use Proyecto\Core\App;
 class TorneoController
@@ -457,7 +458,7 @@ class TorneoController
                 }
             }
         }
-        header('Location: ' . App::$urlPath . '/torneos/ver-fixture-torneo-completo');
+        header('Location: ' . App::$urlPath . '/torneos/ver-fixture-completo');
 
     }
 
@@ -519,6 +520,19 @@ class TorneoController
     public function reiniciarTorneo()
     {
         $this->actualizarEstadoTorneo("R");
+    }
+
+    public function verFase(){
+
+        $routeParams = Route::getRouteParams();
+        $torneo_id = $routeParams['torneo'];
+        $fase_id = $routeParams['fase'];
+        if (Fase::ExisteFase($torneo_id, $fase_id)) {
+            $faseActual = new Fase($torneo_id, $fase_id) ;
+            View::render('web/ver-fase',compact('faseActual'), 3);
+        } else{
+            View::render('web/error404',[], 2);
+        };
     }
 
 

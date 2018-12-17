@@ -1,6 +1,7 @@
 <?php
 namespace Proyecto\Controllers;
 
+use Proyecto\Exceptions\MensajeNoGrabadoException;
 use Proyecto\View\View;
 use Proyecto\Core\Request;
 use Proyecto\Core\Route;
@@ -285,7 +286,9 @@ class UsuarioController
      */
     public function agregarMensaje()
     {
+
         if (Session::has("usuario")) {
+
             $inputs = Request::getData();
             if (!empty($inputs['mensaje'])) {
                 try {

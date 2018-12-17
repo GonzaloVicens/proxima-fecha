@@ -34,6 +34,11 @@ $datosPartido = $partidoActual->getInfoPartido();
                         Session::set('partidoAFinalizar',$partidoActual);
                         $hrefBotonVolver  =   App::$urlPath . "/torneos/finalizar-partido";
                         $etiquetaBotonVolver=   "Finalizar";
+                    } else {
+                        if(Session::has('vinoDeFase') && Session::get('vinoDeFase')=="Y"){
+                            $hrefBotonVolver  =   App::$urlPath . "/torneos/" . $partidoActual->getTorneoID() . "/" . $partidoActual->getFaseID();
+                            Session::clearValue('vinoDeFase');
+                        }
                     }
                 }
             };

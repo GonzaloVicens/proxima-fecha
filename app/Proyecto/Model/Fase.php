@@ -2,6 +2,7 @@
 namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
+use Proyecto\Exceptions\FaseNoGrabadaException;
 
 
 /**
@@ -140,7 +141,7 @@ class Fase
 
         $datos= [
             'torneo_id' => $torneo,
-            'fase_id' => $fase,
+            'fase_id' => $fase
         ];
         $stmt = DBConnection::getStatement($query);
         $stmt->execute($datos);
@@ -296,12 +297,6 @@ class Fase
     }
 
 
-    public static function imprimir($algo){
-        echo "<pre>";
-        print_r ($algo);
-        echo "</pre>";
-    }
-
 
     protected static function BuscarDiaEnDiasTorneo($dia, $array){
         foreach ($array as $i) {
@@ -318,4 +313,7 @@ class Fase
     }
 
 
+    public function actualizar(){
+        $this->setFase($this->torneo_id, $this->fase_id);
+    }
 }
