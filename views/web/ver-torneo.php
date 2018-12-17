@@ -26,10 +26,10 @@ $torneoAMostrar->actualizar();
                 <!-- Nombre de Torneo Debajo, tendría que ser dinámico -->
                 <h2 class="mb-4 pfgreen h1"><?= $torneoAMostrar->getNombre() ?></h2>
                 <p class="text-muted"><i class="far fa-calendar-alt"></i> Estado: <?=$torneoAMostrar->getEstadoDescr()?> - Fecha de Inicio: <span><?= $torneoAMostrar->getFechaInicio() ?></span></p>
-                <p class="text-muted"><i class="far fa-calendar-alt"></i> Sede: <span class="font-italic"><?= $torneoAMostrar->getDescrSede() ?></span></p>
+                <p class="text-muted"><i class="fas fa-home"></i> Sede: <span class="font-italic"><?= $torneoAMostrar->getDescrSede() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span><?= $torneoAMostrar->getCantidadEquipos() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Agregados: <span><?= $torneoAMostrar->getCantidadEquiposAgregados() ?></span></p>
-                <p class="text-muted"><i class="fas fa-shield-alt"></i></i> El torneo se juega los dias: <span><?= $torneoAMostrar->getDiasTorneoEnString() ?></span></p>
+                <p class="text-muted"><i class="fas fa-calendar-alt"></i></i> El torneo se juega los dias: <span><?= $torneoAMostrar->getDiasTorneoEnString() ?></span></p>
             <?php
             if ($torneoAMostrar->getLugaresLibres() > 0 ){ ?>
                 <p class="text-muted font-italic d-block">Resta agregar <?= $torneoAMostrar->getLugaresLibres() ?> equipos aún</p>
@@ -141,8 +141,8 @@ $torneoAMostrar->actualizar();
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link pfgreen hoverVerde active" id="nav-miequipo-tab" data-toggle="tab" href="#nav-miequipo" role="tab" aria-controls="nav-miequipo" aria-selected="true">Equipos que Participan</a>
                         <a class="nav-item nav-link pfgreen hoverVerde" id="nav-posiciones-tab" data-toggle="tab" href="#nav-posiciones" role="tab" aria-controls="nav-posiciones" aria-selected="false">Posiciones</a>
-                        <a class="nav-item nav-link pfgreen hoverVerde " id="nav-proximafecha-tab" data-toggle="tab" href="#nav-proximafecha" role="tab" aria-controls="nav-proximafecha" aria-selected="false">Próxima Fecha</a>
-                        <a class="nav-item nav-link pfgreen hoverVerde" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Torneo / Liga</a>
+                        <a class="nav-item nav-link pfgreen hoverVerde " id="nav-proximafecha-tab" data-toggle="tab" href="#nav-proximafecha" role="tab" aria-controls="nav-proximafecha" aria-selected="false">Goleadores</a>
+                        <a class="nav-item nav-link pfgreen hoverVerde" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tarjetas</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -154,12 +154,14 @@ $torneoAMostrar->actualizar();
                             </ul>
                         <?php } ?>
                     </div>
-                    <div class='tab-pane fade ' id='nav-proximafecha' role='tabpanel' aria-labelledby='nav-proximafecha-tab'>
-                    </div>
                     <div class="tab-pane fade" id="nav-posiciones" role="tabpanel" aria-labelledby="nav-posiciones-tab">
                         <?=$torneoAMostrar->imprimirTablaPosiciones();?>
                     </div>
+                    <div class='tab-pane fade ' id='nav-proximafecha' role='tabpanel' aria-labelledby='nav-proximafecha-tab'>
+                        <?=$torneoAMostrar->imprimirTablaGoleadores();?>
+                    </div>
                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <?=$torneoAMostrar->imprimirTablaTarjetas();?>
                     </div>
                 </div>
             </div>

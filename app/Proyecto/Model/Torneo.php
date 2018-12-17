@@ -1011,6 +1011,51 @@ class Torneo
     }
 
 
+    public function imprimirTablaGoleadores(){
+        ?>
+        <h4 class="mb-4 pfgreen mt-5"><span class="font-weight-normal colorGris2">Goleadores</span></h4>
+        <div class="posiciones_table shadow-sm">
+            <table class="">
+                <tr class="fondoHeader2 text-white">
+                    <th>Jugador</th><th>Equipo</th><th>Goles</th>
+                </tr>
+                <?php
+                foreach($this->getTablaGoleadores() as $goleador) {
+                    echo "<tr><td class='nombre_tablaposiciones'>". $goleador['USU_NOMBRE'] . "</td>";
+                    echo "<td class='nombre_tablaposiciones'>". $goleador['EQUI_NOMBRE']. "</td>";
+                    echo "<td class='font-weight-bold'>" . $goleador['CANTIDAD'] ."</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </table>
+        </div>
+        <?php
+    }
+
+
+    public function imprimirTablaTarjetas(){
+        ?>
+        <h4 class="mb-4 pfgreen mt-5"><span class="font-weight-normal colorGris2">Tarjetas</span></h4>
+        <div class="posiciones_table shadow-sm">
+            <table class="">
+                <tr class="fondoHeader2 text-white">
+                    <th>Jugador</th><th>Equipo</th><th>Rojas</th><th>Amarillas</th>
+                </tr>
+                <?php
+                foreach($this->getTablaTarjetas() as $goleador) {
+                    echo "<tr><td class='nombre_tablaposiciones'>". $goleador['USU_NOMBRE'] . "</td>";
+                    echo "<td class='nombre_tablaposiciones'>". $goleador['EQUI_NOMBRE']. "</td>";
+                    echo "<td class='font-weight-bold'>" . $goleador['ROJAS'] ."</td>";
+                    echo "<td class='font-weight-bold'>" . $goleador['AMARILLAS'] ."</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </table>
+        </div>
+        <?php
+    }
+
+
     protected function getPartidosJugadosPorEquipo($equipoID){
         $param = [
             'torneo_id' => $this->torneo_id,
@@ -1172,6 +1217,43 @@ class Torneo
 
         return $respuesta;
     }
+
+    protected function getTablaGoleadores(){
+        $param = [
+            'torneo_id' => $this->torneo_id
+        ];
+
+        $respuesta = [];
+        $query = "SELECT T.EQUIPO_ID EQUIPO_ID,  E.NOMBRE EQUI_NOMBRE  , U.USUARIO_ID USUARIO_ID , CONCAT(U.NOMBRE, ' ' , U.APELLIDO) USU_NOMBRE, count(*) CANTIDAD  FROM FICHA_PARTIDO T , EQUIPOS E , USUARIOS U WHERE T.EQUIPO_ID = E.EQUIPO_ID  AND T.JUGADOR_ID = U.USUARIO_ID AND T.TORNEO_ID = :torneo_id AND T.TIPO_ESTADISTICA_ID = 'G' GROUP BY T.EQUIPO_ID ,  E.NOMBRE , U.USUARIO_ID , U.NOMBRE, U.APELLIDO ORDER BY CANTIDAD DESC";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            if (count($respuesta)<20){
+                $respuesta [] = $datos;
+            }
+        }
+        return $respuesta;
+    }
+
+    protected function getTablaTarjetas(){
+        $param = [
+            'torneo_id' => $this->torneo_id
+        ];
+
+        $respuesta = [];
+        $query = "SELECT T.EQUIPO_ID EQUIPO_ID,  E.NOMBRE EQUI_NOMBRE  , U.USUARIO_ID USUARIO_ID , CONCAT(U.NOMBRE, ' ' , U.APELLIDO) USU_NOMBRE, SUM(CASE T.TIPO_ESTADISTICA_ID WHEN 'R' THEN 1 ELSE 0 END) ROJAS, SUM(CASE T.TIPO_ESTADISTICA_ID WHEN 'A' THEN 1 ELSE 0 END) AMARILLAS FROM FICHA_PARTIDO T , EQUIPOS E , USUARIOS U WHERE T.EQUIPO_ID = E.EQUIPO_ID  AND T.JUGADOR_ID = U.USUARIO_ID AND T.TORNEO_ID = :torneo_id AND T.TIPO_ESTADISTICA_ID  IN ('A','R') GROUP BY T.EQUIPO_ID ,  E.NOMBRE , U.USUARIO_ID , U.NOMBRE, U.APELLIDO ORDER BY ROJAS DESC, AMARILLAS DESC ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            if (count($respuesta)<20){
+                $respuesta [] = $datos;
+            }
+
+        }
+
+        return $respuesta;
+    }
+
 
 
     protected static function  InsertarDiasTorneo($inputs){
