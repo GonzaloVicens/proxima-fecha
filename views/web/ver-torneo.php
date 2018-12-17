@@ -30,7 +30,15 @@ $torneoAMostrar->actualizar();
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Participantes: <span><?= $torneoAMostrar->getCantidadEquipos() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> Cantidad Equipos Agregados: <span><?= $torneoAMostrar->getCantidadEquiposAgregados() ?></span></p>
                 <p class="text-muted"><i class="fas fa-shield-alt"></i></i> El torneo se juega los dias: <span><?= $torneoAMostrar->getDiasTorneoEnString() ?></span></p>
+            <?php
+            if ($torneoAMostrar->getLugaresLibres() > 0 ){ ?>
+                <p class="text-muted font-italic d-block">Resta agregar <?= $torneoAMostrar->getLugaresLibres() ?> equipos aún</p>
+            <?php }
+            $torneoAMostrar->printInscripcionesEnLi() ;
+            ?>
 
+            </div>
+            <div class="col-md-4">
                 <h3 class="pfgreen h4 mt-4">Organizadores:</h3>
                 <ul class="list-unstyled">
                     <?php
@@ -48,22 +56,8 @@ $torneoAMostrar->actualizar();
                         }
 
                         echo "<li>" . $organizadorActual['APELLIDO'] . ", " . $organizadorActual['NOMBRE'] . $boton . "</li>";
-                         } ?>
+                    } ?>
                 </ul>
-            <?php if ( $torneoAMostrar->tieneEquipos() ){ ?>
-                <h4 class="pfgreen mt-4">Equipos que participan en este torneo</h4>
-                <ul class="list-group equipos_participan">
-                    <?= $torneoAMostrar->printEquiposEnLi($torneoAMostrar->getTorneoID()) ?>
-                </ul>
-            <?php }
-            if ($torneoAMostrar->getLugaresLibres() > 0 ){ ?>
-                <p class="text-muted font-italic d-block">Resta agregar <?= $torneoAMostrar->getLugaresLibres() ?> equipos aún</p>
-            <?php }
-            $torneoAMostrar->printInscripcionesEnLi() ;
-            ?>
-
-            </div>
-            <div class="col-md-4">
                 <!--<h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>-->
                 <?php if (isset($usuario) && $usuario->esOrganizadorDeTorneo($torneoAMostrar->getTorneoID())) { ?>
                     <?php if ($torneoAMostrar->esNuevo()) { ?>
@@ -138,6 +132,36 @@ $torneoAMostrar->actualizar();
                     <input type="submit" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde" value="Inscribirse en Torneo" />
                 </form>
             <?php } ?>
+            </div>
+        </div>
+        <div class="main_miequipo row">
+
+            <div class="col-md-9">
+                <nav class="tabs_miequipo">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link pfgreen hoverVerde active" id="nav-miequipo-tab" data-toggle="tab" href="#nav-miequipo" role="tab" aria-controls="nav-miequipo" aria-selected="true">Equipos que Participan</a>
+                        <a class="nav-item nav-link pfgreen hoverVerde" id="nav-posiciones-tab" data-toggle="tab" href="#nav-posiciones" role="tab" aria-controls="nav-posiciones" aria-selected="false">Posiciones</a>
+                        <a class="nav-item nav-link pfgreen hoverVerde " id="nav-proximafecha-tab" data-toggle="tab" href="#nav-proximafecha" role="tab" aria-controls="nav-proximafecha" aria-selected="false">Próxima Fecha</a>
+                        <a class="nav-item nav-link pfgreen hoverVerde" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Torneo / Liga</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-miequipo" role="tabpanel" aria-labelledby="nav-miequipo-tab">
+                        <?php if ( $torneoAMostrar->tieneEquipos() ){ ?>
+                            <h4 class="pfgreen mt-4">Equipos que participan en este torneo</h4>
+                            <ul class="list-group equipos_participan">
+                                <?= $torneoAMostrar->printEquiposEnLi($torneoAMostrar->getTorneoID()) ?>
+                            </ul>
+                        <?php } ?>
+                    </div>
+                    <div class='tab-pane fade ' id='nav-proximafecha' role='tabpanel' aria-labelledby='nav-proximafecha-tab'>
+                    </div>
+                    <div class="tab-pane fade" id="nav-posiciones" role="tabpanel" aria-labelledby="nav-posiciones-tab">
+                        <?=$torneoAMostrar->imprimirTablaPosiciones();?>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -45,7 +45,7 @@ $torneo->actualizar();
                                         <td class="text-left equipos"><div class="nombre_equipo"><?= $partido->getVisitaNombre()?></div></td>
                                         <?php
 
-                                        if (isset($usuario) && $partido->esArbitro($usuario->getUsuarioID()) && $torneo->estaEnCurso() ){
+                                        if (isset($usuario) && $partido->esArbitro($usuario->getUsuarioID()) && $torneo->estaEnCurso() && !$partido->fueJugado() ){
                                             $label = "Actualizar Partido";
                                             $icon = "<i class='fas fa-edit'></i><span class='d-none'>editar</span>";
                                          } else {

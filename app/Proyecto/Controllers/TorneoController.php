@@ -458,7 +458,13 @@ class TorneoController
                 }
             }
         }
-        header('Location: ' . App::$urlPath . '/torneos/ver-fixture-completo');
+
+        if (Session::has('vinoDeFase') && Session::get('vinoDeFase') =="Y") {
+            Session::clearValue('vinoDeFase');
+            header('Location: ' . App::$urlPath . '/torneos/' . $partidoAFinalizar->getTorneoID()."/".$partidoAFinalizar->getFaseID());
+        }else {
+            header('Location: ' . App::$urlPath . '/torneos/ver-fixture-completo');
+        }
 
     }
 
