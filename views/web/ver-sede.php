@@ -75,17 +75,18 @@ if (Session::has("camposError")) {
                 <h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>
                 <?php if (isset($usuario) && $usuario->esDuenoDeSede($sedeAMostrar->getSedeID())) { ?>
                 <p>
-                    <a href="<?= App::$urlPath; ?>/sedes/editar-sede" class="naranjaFecha hoverVerde"><i
-                                class="far fa-edit"></i> Modificar Datos de la Sede</a>
+                    <a href="<?= App::$urlPath; ?>/sedes/editar-sede" class="naranjaFecha hoverVerde">
+                        <i class="far fa-edit"></i> Modificar Datos de la Sede</a>
                 </p>
                 <p>
-                    <a href="<?= App::$urlPath; ?>/sedes/editar-duenos" class="naranjaFecha hoverVerde"><i
-                            class="far fa-edit"></i> Administrar Dueños</a>
+                    <a href="<?= App::$urlPath; ?>/sedes/editar-duenos" class="naranjaFecha hoverVerde">
+                        <i class="far fa-edit"></i> Administrar Dueños
+                    </a>
                 </p>
                 <p>
-                    <button href="#" class="btn btn-link naranjaFecha hoverVerde" id="eliminar_sede"><i
-                            class="fas fa-times-circle"></i> Eliminar Sede
-                    </button>
+                    <a href="#" class="naranjaFecha hoverVerde" id="eliminar_sede">
+                        <i class="fas fa-times-circle"></i> Eliminar Sede
+                    </a>
                 </p>
                 <?php } ?>
             </div>
@@ -170,6 +171,59 @@ if (Session::has("camposError")) {
                     <button type="button" class="btn btn-secondary cancelar">Cancelar</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id='modal_agregar_cancha' tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+             <div class="modal-header fondoHeader2 text-white">
+                 <h5 class="modal-title">Agregar Cancha</h5>
+                 <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <form action="agregar-cancha" method="POST">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="modal-body my-3 pt-4 pb-5">
+                                <input type="hidden" name="sede_id" value="<?= $sedeAMostrar->getSedeID()?>" />
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control"  name="descripcion" id="nombre"   />
+                                    <?php
+                                    if (isset($camposError['descripcion'])) {
+                                        echo "<p class='rta-validacion text-danger'><small>" . $camposError['descripcion'] . "</small><p>";
+                                    }
+                                    ?>
+                                </div>
+                                <div class="form-group">
+                                    <label for="deporte">Deporte</label>
+                                    <select name="deporte" id="deporte" class="form-control"  >
+                                        <?=Deporte::printOptionsDeportes()?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio">Precio</label>
+                                    <input type="text" class="form-control" name="precio" id="precio"    />
+                                    <?php
+                                    if (isset($camposError['precio'])) {
+                                        echo "<p class='rta-validacion text-danger'><small>" . $camposError['precio'] . "</small><p>";
+                                    }
+                                    ?>
+                                </div>
+                                <button type="submit" class="btn btn-outline-success">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success">Buscar</button>
+                    <a type="button" class="btn btn-link cancelar">Cancelar</a>
+                </div>
+             </form>
         </div>
     </div>
 </div>

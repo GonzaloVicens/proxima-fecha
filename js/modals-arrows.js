@@ -91,4 +91,37 @@ $(document).ready(function(){
 
     });
 
+
+    //================
+    // Agregar Cancha
+    //================
+    $('#agregar_cancha').click(function () {
+
+        $('#modal_agregar_cancha').modal();
+
+    });
+
+    $('#modal_agregar_cancha .cancelar').click(function () {
+
+        $('#modal_agregar_cancha').modal('hide');
+
+    });
+
+
+
+    //================
+    // Eliminar Sede
+    //================
+    $('#eliminar_sede').click(function () {
+
+        $('#modal_eliminar_sede').modal();
+
+    });
+
+    $('#modal_eliminar_sede .cancelar').click(function () {
+
+        $('#modal_eliminar_sede').modal('hide');
+
+    });
+
 });
