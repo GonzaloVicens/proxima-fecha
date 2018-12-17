@@ -389,8 +389,13 @@ class TorneoController
                     Session::set("errorAgregarOrganizador", $organizador_id . " ya es un organizador del torneo");
                 } else {
                     if (Usuario::existeUsuario($organizador_id)) {
-                        $torneo->insertarOrganizador($organizador_id);
-                        Session::clearValue("errorAgregarOrganizador");
+                        $orga = new Usuario($organizador_id);
+                        if (!$orga->esUsuarioPro() && $orga->getTorneosPropios()> 1) {
+                            Session::set("errorAgregarOrganizador", $organizador_id . " no puede organizar mas de un torneo");
+                        } else {
+                            $torneo->insertarOrganizador($organizador_id);
+                            Session::clearValue("errorAgregarOrganizador");
+                        }
                     } else {
                         Session::set("errorAgregarOrganizador", $organizador_id . " no existe en el sistema");
                     }
