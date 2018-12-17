@@ -237,6 +237,8 @@
     right: 0;
     top: 30px;
     z-index: -99; }
+.fixture-torneo-completo .final .equipo_container {
+  position: relative; }
 .fixture-torneo-completo .dieciseisavos, .fixture-torneo-completo .octavos {
   position: relative;
   padding: 30px; }
