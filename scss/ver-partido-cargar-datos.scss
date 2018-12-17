@@ -80,6 +80,75 @@ section{
           &.versus {
             width: 16%;
           }
+
+          .datos_dos_equipos {
+
+            background-color: #ecf3ee;
+
+            .dato_un_equipo {
+              font-size: .9rem;
+
+              .dato_capitan {
+                &:before {
+                  content: '\f1f9';
+                  color: $col_gris4;
+                  display: inline-block;
+                  width: 15px;
+                  margin: 0 5px 0 0;
+                  font-family: 'FontAwesome';
+                }
+              }
+
+              .G_dato {
+                &:before {
+                  content: '\f1e3';
+                  color: $bgcol_verde;
+                  display: inline-block;
+                  width: 15px;
+                  margin: 0 5px 0 0;
+                  font-family: 'FontAwesome';
+                }
+              }
+
+              .X_dato {
+                &:before {
+                  content: '\f1e3';
+                  color: #D62D20;
+                  display: inline-block;
+                  width: 15px;
+                  margin: 0 5px 0 0;
+                  font-family: 'FontAwesome';
+                }
+              }
+
+              .A_dato {
+                &:before {
+                  content: ' ';
+                  background-color: #fbf33a;
+                  display: inline-block;
+                  width: 10px;
+                  padding-right: 5px;
+                  height: 14px;
+                  border-radius: 2px;
+                  margin: 0 5px 0 0;
+                }
+              }
+
+
+              .R_dato {
+                &:before {
+                  content: ' ';
+                  background-color: #D62D20;
+                  display: inline-block;
+                  width: 10px;
+                  padding-right: 5px;
+                  height: 14px;
+                  border-radius: 2px;
+                  margin: 0 5px 0 0;
+                }
+              }
+            }
+          }
         }
       }
     }

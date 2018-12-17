@@ -1345,6 +1345,49 @@ section.portada {
       width: 42%; }
     .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td.versus {
       width: 16%; }
+    .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td .datos_dos_equipos {
+      background-color: #ecf3ee; }
+      .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td .datos_dos_equipos .dato_un_equipo {
+        font-size: .9rem; }
+        .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td .datos_dos_equipos .dato_un_equipo .dato_capitan:before {
+          content: '\f1f9';
+          color: #666666;
+          display: inline-block;
+          width: 15px;
+          margin: 0 5px 0 0;
+          font-family: 'FontAwesome'; }
+        .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td .datos_dos_equipos .dato_un_equipo .G_dato:before {
+          content: '\f1e3';
+          color: #006B33;
+          display: inline-block;
+          width: 15px;
+          margin: 0 5px 0 0;
+          font-family: 'FontAwesome'; }
+        .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td .datos_dos_equipos .dato_un_equipo .X_dato:before {
+          content: '\f1e3';
+          color: #D62D20;
+          display: inline-block;
+          width: 15px;
+          margin: 0 5px 0 0;
+          font-family: 'FontAwesome'; }
+        .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td .datos_dos_equipos .dato_un_equipo .A_dato:before {
+          content: ' ';
+          background-color: #fbf33a;
+          display: inline-block;
+          width: 10px;
+          padding-right: 5px;
+          height: 14px;
+          border-radius: 2px;
+          margin: 0 5px 0 0; }
+        .ver-partido-cargar-datos .container_tabla_y_arbitro .table_container .jornada_table td .datos_dos_equipos .dato_un_equipo .R_dato:before {
+          content: ' ';
+          background-color: #D62D20;
+          display: inline-block;
+          width: 10px;
+          padding-right: 5px;
+          height: 14px;
+          border-radius: 2px;
+          margin: 0 5px 0 0; }
 .ver-partido-cargar-datos #cambiar_fotoportada {
   float: right;
   margin: 10px 20px 0 0;

@@ -3,8 +3,7 @@ Pendientes/Notas:
 
 1) Dar Estilo a Notificaciones
 2) Eliminar -> Equipos
-3) Cambiar los datos de las fichas para que aparezcan abajo del partido -> Falta diseñ
-4) Solicitar Inscribirse en un torneo <<--- !!!
+3) Solicitar Inscribirse en un torneo <<--- !!!
 
 Detalles a corregir
 ===================

@@ -69,6 +69,24 @@ $datosPartido = $partidoActual->getInfoPartido();
                                     <td class="versus"><?= $partidoActual->getPuntosLocal()?> - <?= $partidoActual->getPuntosVisita()?></td>
                                     <td class="text-left equipos"><div class="nombre_equipo"><?= $partidoActual->getVisitaNombre()?></div></td>
                                 </tr>
+                                <tr>
+                                    <!--table style="vertical-align:top"-->
+                                        <!--tr-->
+                                    <td colspan="3">
+                                        <div class="d-flex datos_dos_equipos text-muted">
+                                            <div class="p-2 dato_un_equipo w-50">
+                                                <?= $local->printEstadisticasEnPartido($partidoActual->getFichas(), true );
+                                                ?>
+                                            </div>
+                                            <div class="p-2 dato_un_equipo w-50">
+                                                <?= $visita->printEstadisticasEnPartido($partidoActual->getFichas(), false);
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </td>
+                                        <!--/tr-->
+                                    <!--/table-->
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -89,7 +107,7 @@ $datosPartido = $partidoActual->getInfoPartido();
             <div class="col-md-2">
             </div>
         </div>
-        <div class="row">
+        <!--div class="row">
             <div class="col-md-6">
                 <?= $local->printEstadisticasEnPartido($partidoActual->getFichas(), true );
                 ?>
@@ -98,7 +116,7 @@ $datosPartido = $partidoActual->getInfoPartido();
                 <?= $visita->printEstadisticasEnPartido($partidoActual->getFichas(), false);
                 ?>
             </div>
-        </div>
+        </div-->
         <div class="row">
             <div class="col-md-6">
                 <?= $local->printFormularioPartido($partidoActual);

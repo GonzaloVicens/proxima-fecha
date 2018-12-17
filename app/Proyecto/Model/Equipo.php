@@ -514,8 +514,8 @@ class Equipo
 
     public function printEstadisticasEnPartido($fichas, $esLocal)
     {
-        echo "<div class='container_lista_jugadores'>";
-        echo "<ul class='lista_jugadores list-group'>";
+        echo "<div class='container_datos_partido'>";
+        echo "<ul class='lista_datos_partido list-unstyled'>";
 
         $query = "SELECT A.JUGADOR_ID, B.NOMBRE , B.APELLIDO FROM JUGADORES A, USUARIOS B WHERE A.JUGADOR_ID = B.USUARIO_ID AND A.EQUIPO_ID = :equipo_id ";
         $stmt = DBConnection::getStatement($query);
@@ -527,9 +527,9 @@ class Equipo
 
             IF ($jugadorID  == $this->capitan_id) {
                 if ($esLocal){
-                    $liFichas  .= "<li class='li-listado-jugadores-img list-group-item'><span>C</span><span>Capitán del equipo: </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."</>";
+                    $liFichas  .= "<li class='li_dato_capitan'><span class='dato_capitan'></span><span>Capitán: </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."</li>";
                 } else {
-                    $liFichas  .= "<li class='li-listado-jugadores-img list-group-item'><span>Capitán del equipo: </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."<span>C</span></li>";
+                    $liFichas  .= "<li class='li_dato_capitan'><span class='dato_capitan'></span><span>Capitán: </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."</li>";
                 }
             }
 
@@ -538,9 +538,9 @@ class Equipo
                     switch ($ficha) {
                     }
                     if ($esLocal){
-                        $liFichas  .= "<li class='li-listado-jugadores-img list-group-item'><span>".$ficha->getTipoEstadisticaID()."</span><span>".$ficha->getTipoEstadisticaDescr().": </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."</li>";
+                        $liFichas  .= "<li class='".$ficha->getTipoEstadisticaID() . "_dato'><span class='".$ficha->getTipoEstadisticaID()."'></span><span>".$ficha->getTipoEstadisticaDescr().": </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."</li>";
                     } else {
-                        $liFichas  .= "<li class='li-listado-jugadores-img list-group-item'><span>".$ficha->getTipoEstadisticaDescr().": </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."<span>".$ficha->getTipoEstadisticaID()."</span></li>";
+                        $liFichas  .= "<li class='".$ficha->getTipoEstadisticaID() . "_dato'><span class='".$ficha->getTipoEstadisticaID()."'></span><span>".$ficha->getTipoEstadisticaDescr().": </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."</li>";
                     }
                 }
             }
