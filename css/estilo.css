@@ -1988,5 +1988,10 @@ section.portada {
   text-align: center; }
 .sedes.recuperar-pass {
   min-height: 450px; }
+.sedes .list-group.equipos_participan .list-group-item {
+  font-weight: 600;
+  color: #006B33; }
+  .sedes .list-group.equipos_participan .list-group-item ul {
+    list-style: none; }
 
 /*# sourceMappingURL=estilo.css.map */

@@ -4,10 +4,9 @@ Pendientes/Notas:
 1) Dar Estilo a Notificaciones
 2) Eliminar -> Sedes
 3) Eliminar -> Equipos
-4) Listar Sedes en menu header usuario "Mis Sedes" <<--- !!
 5) Cambiar los datos de las fichas para que aparezcan abajo del partido
 6) Solicitar Inscribirse en un torneo <<--- !!!
-7) Cuando vuelve el form de Editar Torneo, validado con un error, te lleva a Crear torneo, en vez de Editar Torneo
+7) Ver Editar Torneo -> Lleva a pantalla de Error
 
 Detalles a corregir
 ===================

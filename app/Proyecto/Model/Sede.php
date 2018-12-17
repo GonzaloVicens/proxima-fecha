@@ -391,15 +391,15 @@ class Sede
     public  function printCanchasEnLi($origen){
         foreach ($this->canchas as $canchaAMostrar) {
 
-            echo "<li class='list-group-item'>" . $canchaAMostrar->getNombre() ;
-            echo "<ul><li>Deporte: ".  $canchaAMostrar->getDeporteDescr() ."</li><li> Precio: $" . $canchaAMostrar->getPrecio() . "</li></ul>";
+            echo "<li class='list-group-item font-regular-bold pfgreen'>" . $canchaAMostrar->getNombre() ;
+            echo "<ul class='list-unstyled list-inline-item font-weight-normal text-muted'><li class='list-inline-item mx-3'>Deporte: ".  $canchaAMostrar->getDeporteDescr() ."</li><li class='list-inline-item mx-3'> Precio: $" . $canchaAMostrar->getPrecio() . "</li></ul>";
             if (Session::has('usuario')) {
                 $usuario = Session::get('usuario');
                 if ($this->tieneDueno($usuario->getUsuarioID()) ) {
-                    echo "<form style='display:inline' action='eliminar-cancha' method='POST'>";
+                    echo "<form style='display:inline' class='float-right' action='eliminar-cancha' method='POST'>";
                     echo "<input type='hidden' name='sede_id' value='" . $this->getSedeId() ."'/>";
                     echo "<input type='hidden' name='cancha_id' value='" . $canchaAMostrar->getCanchaId() ."'/>";
-                    echo "<input type='submit' value='Eliminar'/></form>";
+                    echo "<button type='submit' class='btn btn-link' /><i class='fas fa-trash-alt naranjaFecha'></i></button></form>";
                 }
             }
             echo "</li>";
