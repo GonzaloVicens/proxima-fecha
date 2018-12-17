@@ -25,20 +25,22 @@ $datosPartido = $partidoActual->getInfoPartido();
             </div>
 
             <?php
-            $botonVolver =   App::$urlPath . "/torneos/ver-fixture-completo";
+            $hrefBotonVolver =   App::$urlPath . "/torneos/ver-fixture-completo";
+            $etiquetaBotonVolver = "Volver";
             if (Torneo::GetEstadoIdPorTorneo($partidoActual->getTorneoID()) == 'C') {
                 if (Session::has('logueado')) {
                     $usuario = Session::get('usuario');
                     if ($usuario->getUsuarioID() == $partidoActual->getArbitroID()) {
                         Session::set('partidoAFinalizar',$partidoActual);
-                        $botonVolver =   App::$urlPath . "/torneos/finalizar-partido";
+                        $hrefBotonVolver  =   App::$urlPath . "/torneos/finalizar-partido";
+                        $etiquetaBotonVolver=   "Finalizar";
                     }
                 }
             };
             ?>
 
             <div class="col-md-2">
-                <a href='<?=$botonVolver?>' class='btn btn-outline-secondary' style='float:right'><i class='fas fa-chevron-left'></i> volver</a>
+                <a href='<?=$hrefBotonVolver ?>' class='btn btn-outline-secondary' style='float:right'><i class='fas fa-chevron-left'></i> <?= $etiquetaBotonVolver?></a>
             </div>
             <div class="col-md-12">
                 <h2 class="pfgreen mt-4 mb-2">
