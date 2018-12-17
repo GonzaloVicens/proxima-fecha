@@ -309,7 +309,7 @@ INSERT INTO ESTADOS_TORNEO VALUES ('C', 'En Curso');
 INSERT INTO ESTADOS_TORNEO VALUES ('F', 'Finalizado');
 
 INSERT INTO TORNEOS  VALUES (1, 'Torneo DaVinci', 1, 'L', 10, '2018-12-01', 2, 'I','2018-01-01');
-INSERT INTO TORNEOS  VALUES (2, 'Roland Garros', 4, 'C', 32,  '2016-12-01', 2, 'F','2018-01-01');
+INSERT INTO TORNEOS  VALUES (2, 'Roland Garros', 3, 'C', 32,  '2016-12-01', 2, 'F','2018-01-01');
 
 INSERT INTO USUARIOS  VALUES ('pf_admin',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', 'Admin', 'ProximaFecha', 'contacto@proximafecha.com', '1', '4655-1231',  '2016-10-01', '2018-01-01', 'Y',CURDATE());
 INSERT INTO USUARIOS  VALUES ('facundoS',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', 'Facundo', 'Salerno', 'facundo.salerno@davinci.edu.ar', '1', '4655-1231',  '2016-10-01', '2018-01-01', 'Y',CURDATE());
