@@ -2,6 +2,7 @@
 namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
+use Proyecto\Exceptions\EquipoNoGrabadoException;
 use Proyecto\Exceptions\TorneoNoGrabadoException;
 use Proyecto\Session\Session;
 use Proyecto\Core\App;
@@ -1139,7 +1140,7 @@ class Torneo
 
         $respuesta = [];
 
-        $query = "SELECT T.EQUIPO_ID EQUIPO_ID,  E.NOMBRE NOMBRE  , SUM(GANADOS * 3) + SUM(EMPATADOS) PUNTOS , SUM(JUGADOS) JUGADOS, SUM(GANADOS) GANADOS, SUM(EMPATADOS) EMPATADOS, SUM(PERDIDOS) PERDIDOS, SUM(GOLES_FAVOR) GOLES_FAVOR, SUM(GOLES_CONTRA) GOLES_CONTRA FROM TABLA_POSICIONES T , EQUIPOS E WHERE T.EQUIPO_ID = E.EQUIPO_ID AND T.TORNEO_ID = :torneo_id GROUP BY T.EQUIPO_ID, E.NOMBRE ORDER BY 3 DESC";
+        $query = "SELECT T.EQUIPO_ID EQUIPO_ID,  E.NOMBRE NOMBRE  , SUM(GANADOS * 3) + SUM(EMPATADOS) PUNTOS , SUM(JUGADOS) JUGADOS, SUM(GANADOS) GANADOS, SUM(EMPATADOS) EMPATADOS, SUM(PERDIDOS) PERDIDOS,SUM(GOLES_FAVOR - GOLES_CONTRA) DIFERENCIA, SUM(GOLES_FAVOR) GOLES_FAVOR, SUM(GOLES_CONTRA) GOLES_CONTRA FROM TABLA_POSICIONES T , EQUIPOS E WHERE T.EQUIPO_ID = E.EQUIPO_ID AND T.TORNEO_ID = :torneo_id GROUP BY T.EQUIPO_ID, E.NOMBRE ORDER BY 3 DESC, 8 DESC ,9  DESC";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute($param );
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -1153,7 +1154,7 @@ class Torneo
                 'PERDIDOS' => $datos['PERDIDOS'],
                 'GOLES_FAVOR' => $datos['GOLES_FAVOR'],
                 'GOLES_CONTRA' => $datos['GOLES_CONTRA'],
-                'DIFERENCIA' => $datos['GOLES_FAVOR'] - $datos['GOLES_CONTRA'],
+                'DIFERENCIA' => $datos['DIFERENCIA']
             ];
         }
 
@@ -1282,6 +1283,18 @@ class Torneo
         $stmt->execute(['torneo_id' => $torneo]);
         if (!$stmt->fetch(\PDO::FETCH_ASSOC)){
             Torneo::actualizarEstadoTorneo($torneo, "F");
+
+            $equipoCampeon = Torneo::getCampeon($torneo);
+            $nombreCampeon = $equipoCampeon['NOMBRE'];
+            $nombreTorneo = Torneo::getNombrePorID($torneo);
+            foreach( Equipo::GetJugadoresDelEquipo($equipoCampeon['EQUIPO_ID']) as $jugador){
+                $notificacion = ['usuario_id' => $jugador,
+                    'torneo_id' => $torneo,
+                    'mensaje' => "Tu equipo '" . $nombreCampeon . "' ha sido campeón del Torneo '" . $nombreTorneo ."'"];
+
+                Notificacion::CrearNotificacion($notificacion);
+            };
+
         }
     }
 
@@ -1312,8 +1325,8 @@ class Torneo
             $htmlPartido .= "<div class='torneo_equipo list-group-item'><span></span></div>";
         };
 
-        if (($partido->getLocalNombre() != "" ) && ( $partido->getVisitaNombre()!= "") && ($this->estaEnCurso())){
-            if (isset($usuario_ID) && $partido->esArbitro($usuario_ID) && $this->estaEnCurso() ){
+        if (($partido->getLocalNombre() != "" ) && ( $partido->getVisitaNombre()!= "") ){
+            if (isset($usuario_ID) && $partido->esArbitro($usuario_ID) && (!$partido->fueJugado()) ){
                 $label = "Actualizar Partido";
                 $icon = "<i class='fas fa-edit'></i><span class='d-none'>editar</span>";
             } else {
@@ -1389,6 +1402,42 @@ class Torneo
         }
 
         return $htmlFinal;
+    }
+
+
+    public static function getCampeon($torneo){
+
+        $param = [
+            'torneo_id' => $torneo
+        ];
+
+        $respuesta = [];
+
+        $query = "SELECT T.EQUIPO_ID EQUIPO_ID,  E.NOMBRE NOMBRE  , SUM(GANADOS * 3) + SUM(EMPATADOS) PUNTOS , SUM(JUGADOS) JUGADOS, SUM(GANADOS) GANADOS, SUM(EMPATADOS) EMPATADOS, SUM(PERDIDOS) PERDIDOS,SUM(GOLES_FAVOR - GOLES_CONTRA) DIFERENCIA, SUM(GOLES_FAVOR) GOLES_FAVOR, SUM(GOLES_CONTRA) GOLES_CONTRA FROM TABLA_POSICIONES T , EQUIPOS E WHERE T.EQUIPO_ID = E.EQUIPO_ID AND T.TORNEO_ID = :torneo_id GROUP BY T.EQUIPO_ID, E.NOMBRE ORDER BY 3 DESC, 8 DESC ,9  DESC";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($param );
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            return $datos;
+        }
+
+        return $respuesta;
+
+
+    }
+
+    public static function getNombrePorID($id)
+    {
+        $datos = [
+            'torneo_id' => $id
+        ];
+        $query = "SELECT NOMBRE FROM TORNEOS WHERE TORNEO_ID = :torneo_id";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute($datos);
+        $nombre = "";
+        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $nombre = $datos['NOMBRE'];
+        }
+        return $nombre;
     }
 
 

@@ -30,7 +30,7 @@ $datosPartido = $partidoActual->getInfoPartido();
             if (Torneo::GetEstadoIdPorTorneo($partidoActual->getTorneoID()) == 'C') {
                 if (Session::has('logueado')) {
                     $usuario = Session::get('usuario');
-                    if ($usuario->getUsuarioID() == $partidoActual->getArbitroID()) {
+                    if (($usuario->getUsuarioID() == $partidoActual->getArbitroID()) && (!$partidoActual->fueJugado())) {
                         Session::set('partidoAFinalizar',$partidoActual);
                         $hrefBotonVolver  =   App::$urlPath . "/torneos/finalizar-partido";
                         $etiquetaBotonVolver=   "Finalizar";

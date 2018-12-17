@@ -468,9 +468,11 @@ class Equipo
             $ulFichas .= "</ul>";
 
             if ($esLocal) {
-                echo "<li class='li-listado-jugadores-img list-group-item'>" . $ulFichas . "<a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
+            //    echo "<li class='li-listado-jugadores-img list-group-item'>" . $ulFichas . "<a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
+                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
             } else {
-                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a>" . $ulFichas . "</li>";
+              //  echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a>" . $ulFichas . "</li>";
+                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
             }
         }
         echo "</ul>";
