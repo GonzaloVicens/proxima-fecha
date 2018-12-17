@@ -28,7 +28,7 @@ $usuario->actualizar();
                  <h2 class="mt-5 mb-3 pfgreen"><i class="fas fa-crown"></i> Pasar a Cuenta Pro</h2>
                  <div class="">
                     <p>Para acceder a la función de organizar más de un torneo en simultáneo, es necesario que hagas <strong>un upgrade en tu cuenta</strong></p>
-                     <p>Accediendo al pago semestal de ARS $500 accederás a la posibilidad de organizar 2 o más torneos en simultáneo.</p>
+                     <p>Accediendo al pago semestal de ARS $500 tendrás la posibilidad de organizar 2 o más torneos en simultáneo.</p>
                      <p>Por el momento el único método de pago con el que contamos es el servicio de <a href="https://www.mercadopago.com.ar">mercadopago.com</a>. Para abonar, tendrás que tener una cuenta de usuario y crédito suficiente en la misma.</p>
                      <div class="text-center mt-4 pb-5">
                          <a mp-mode="dftl" href="https://www.mercadopago.com/mla/checkout/start?pref_id=386873980-1290f257-5ad6-4abd-9961-9c39e11d1cf2" name="MP-payButton" class='lightBlue-ar-l-rn-arall'>Pagar con Mercado Pago</a>
