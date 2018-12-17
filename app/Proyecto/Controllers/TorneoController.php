@@ -163,7 +163,7 @@ class TorneoController
             if (!empty($formValidator->getCamposError())) {
                 Session::set("camposError", $formValidator->getCamposError());
                 Session::set("campos", $formValidator->getCampos());
-                header('Location: ' . App::$urlPath . '/usuarios/actualizar-torneo');
+                header('Location: ' . App::$urlPath . '/torneos/editar-torneo');
 
             } else {
                 if (!isset($inputs['D']) &&
@@ -178,7 +178,7 @@ class TorneoController
                     $camposError = [];
                     $camposError ['dias'] = 'Debe elegir al menos un día';
                     Session::set("camposError", $camposError);
-                    header('Location: ' . App::$urlPath . '/usuarios/editar-torneo');
+                    header('Location: ' . App::$urlPath . '/torneos/editar-torneo');
                 } else {
                     Session::clearValue("camposError");
                     Session::clearValue("campos");

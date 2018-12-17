@@ -2,11 +2,9 @@ Pendientes/Notas:
 =================
 
 1) Dar Estilo a Notificaciones
-2) Eliminar -> Sedes
 3) Eliminar -> Equipos
-5) Cambiar los datos de las fichas para que aparezcan abajo del partido
+5) Cambiar los datos de las fichas para que aparezcan abajo del partido -> Falta diseñ
 6) Solicitar Inscribirse en un torneo <<--- !!!
-7) Ver Editar Torneo -> Lleva a pantalla de Error
 8) Un usuario puede agregar como organizador de su torneo a otro usuario standard que ya tiene un torneo!!!!!!!
 
 Detalles a corregir
