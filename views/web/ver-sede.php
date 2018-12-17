@@ -99,10 +99,10 @@ if (Session::has("camposError")) {
                     <input type="hidden" name="sede_id" value="<?= $sedeAMostrar->getSedeID()?>" />
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control"  name="nombre" id="nombre"   />
+                        <input type="text" class="form-control"  name="descripcion" id="nombre"   />
                         <?php
-                        if (isset($camposError['nombre'])) {
-                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['nombre'] . "</small><p>";
+                        if (isset($camposError['descripcion'])) {
+                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['descripcion'] . "</small><p>";
                         }
                         ?>
                     </div>

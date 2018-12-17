@@ -163,7 +163,7 @@ class TorneoController
             if (!empty($formValidator->getCamposError())) {
                 Session::set("camposError", $formValidator->getCamposError());
                 Session::set("campos", $formValidator->getCampos());
-                header('Location: ' . App::$urlPath . '/usuarios/crear-torneo');
+                header('Location: ' . App::$urlPath . '/usuarios/actualizar-torneo');
 
             } else {
                 if (!isset($inputs['D']) &&

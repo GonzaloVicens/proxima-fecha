@@ -253,14 +253,14 @@ class Sede
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 
-    public function insertarCancha($descripcion , $deporte, $precio){
-        $canchaCreada = Cancha::CrearCancha($this->sede_id, $descripcion , $deporte, $precio);
+    public function agregarCancha($inputs){
+        $canchaCreada = Cancha::CrearCancha($inputs);
 
         foreach($this->duenos as $dueno) {
-            $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
+            $notificacion = ['usuario_id' => $dueno,
                             'sede_id' => $this->sede_id,
                             'cancha_id' => $canchaCreada,
-                            'mensaje' =>   "Has creado la cancha '" . $descripcion . "' en la Sede '" . $this->nombre  . "'"];
+                            'mensaje' =>   "Has creado la cancha '" . $inputs['nombre']. "' en la Sede '" . $this->nombre  . "'"];
 
             Notificacion::CrearNotificacion($notificacion );
         }

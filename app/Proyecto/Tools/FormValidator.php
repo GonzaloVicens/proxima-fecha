@@ -139,6 +139,7 @@ class FormValidator
 
             case 'fechaInicio':
             case 'deporte':
+            case 'descripcion':
             case 'tipoTorneo':
             case 'mensaje':
                 if ($campo == "" ){

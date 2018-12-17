@@ -216,6 +216,7 @@ class Torneo
             $stmt = DBConnection::getStatement($script );
             if ($stmt->execute($organizador)) {
 
+                $inputs['torneo_id'] = $torneoID;
                 self::InsertarDiasTorneo($inputs);
 
                 $notificacion = ['usuario_id' => $organizador_id  ,
@@ -570,6 +571,14 @@ class Torneo
     public function generarFixture(){
         $this->eliminarFixture();
 
+        foreach($this->organizadores as $organizador) {
+            $notificacion = ['usuario_id' => $organizador  ,
+                'torneo_id' => $this->torneo_id,
+                'mensaje' =>   "Se ha generado el fixture del torneo '" . $this->nombre . "'"];
+            Notificacion::CrearNotificacion($notificacion );
+        }
+
+
         switch( $this->tipo_torneo_id){
             case "L":
                 $this->generarLiga();
@@ -583,12 +592,6 @@ class Torneo
         }
         $this-> actualizar();
 
-        foreach($this->organizadores as $organizador) {
-            $notificacion = ['usuario_id' => $organizador  ,
-                'torneo_id' => $this->torneo_id,
-                'mensaje' =>   "Se ha generado el fixture del torneo '" . $this->nombre . "'"];
-            Notificacion::CrearNotificacion($notificacion );
-        }
 
     }
 
