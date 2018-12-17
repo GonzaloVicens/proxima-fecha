@@ -74,7 +74,7 @@ class Cancha
         $cancha= [
             'sede_id' => $inputs['sede_id'],
             'cancha_id' => $nuevaCancha,
-            'decripcion' => $inputs['nombre'],
+            'decripcion' => $inputs['descripcion'],
             'deporte_id'   =>  $inputs['deporte'],
             'precio'   =>  $inputs['precio']
         ];
