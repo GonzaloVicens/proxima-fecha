@@ -160,9 +160,9 @@ class Sede
 
 
         foreach($this->duenos as $dueno) {
-            $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
+            $notificacion = ['usuario_id' => $dueno  ,
                 'sede_id' => $this->sede_id,
-                'mensaje' =>   "Se ha elimiando la Sede '" . $this->nombre  . "'"];
+                'mensaje' =>   "Se ha eliminado la Sede '" . $this->nombre  . "'"];
 
             Notificacion::CrearNotificacion($notificacion );
         }

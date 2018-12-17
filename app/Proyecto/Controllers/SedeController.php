@@ -23,6 +23,11 @@ class SedeController
         $routeParams = Route::getRouteParams();
         $sede_id = $routeParams['sede_id'];
         if (Sede::existeSede($sede_id)) {
+            if (Session::has('usuario')) {
+                $usuario = Session::get('usuario');
+                $usuario->actualizar();
+            }
+
             $sedeAMostrar = new Sede($sede_id);
             Session::set("sede",$sedeAMostrar);
             $duenosActivos= $sedeAMostrar->getDuenosActivos();
