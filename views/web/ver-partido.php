@@ -91,6 +91,16 @@ $datosPartido = $partidoActual->getInfoPartido();
         </div>
         <div class="row">
             <div class="col-md-6">
+                <?= $local->printEstadisticasEnPartido($partidoActual->getFichas(), true );
+                ?>
+            </div>
+            <div class="col-md-6">
+                <?= $visita->printEstadisticasEnPartido($partidoActual->getFichas(), false);
+                ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
                 <?= $local->printFormularioPartido($partidoActual);
                     $local->printJugadoresEnPartido($partidoActual->getFichas(), true );
                 ?>

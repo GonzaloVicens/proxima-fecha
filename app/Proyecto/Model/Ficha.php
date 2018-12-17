@@ -120,7 +120,7 @@ class Ficha
         $stmt->execute($param);
         if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $this->tipo_estadistica_id= $datos['TIPO_ESTADISTICA_ID'];
-            $this->descripcion= $datos['DESCRIPCION'];
+            $this->tipo_estadistica_descr= $datos['DESCRIPCION'];
             $this->equipo_id= $datos['EQUIPO_ID'];
             $this->jugador_id= $datos['JUGADOR_ID'];
         }

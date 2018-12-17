@@ -512,6 +512,45 @@ class Equipo
         }
     }
 
+    public function printEstadisticasEnPartido($fichas, $esLocal)
+    {
+        echo "<div class='container_lista_jugadores'>";
+        echo "<ul class='lista_jugadores list-group'>";
+
+        $query = "SELECT A.JUGADOR_ID, B.NOMBRE , B.APELLIDO FROM JUGADORES A, USUARIOS B WHERE A.JUGADOR_ID = B.USUARIO_ID AND A.EQUIPO_ID = :equipo_id ";
+        $stmt = DBConnection::getStatement($query);
+        $stmt->execute(['equipo_id' => $this->equipo_id]);
+
+        while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $liFichas = "";
+            $jugadorID = $datos['JUGADOR_ID'];
+
+            IF ($jugadorID  == $this->capitan_id) {
+                if ($esLocal){
+                    $liFichas  .= "<li class='li-listado-jugadores-img list-group-item'><span>C</span><span>Capitán del equipo: </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."</>";
+                } else {
+                    $liFichas  .= "<li class='li-listado-jugadores-img list-group-item'><span>Capitán del equipo: </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."<span>C</span></li>";
+                }
+            }
+
+            foreach ($fichas as $ficha) {
+                if ($ficha->getJugadorID() == $jugadorID) {
+                    switch ($ficha) {
+                    }
+                    if ($esLocal){
+                        $liFichas  .= "<li class='li-listado-jugadores-img list-group-item'><span>".$ficha->getTipoEstadisticaID()."</span><span>".$ficha->getTipoEstadisticaDescr().": </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."</li>";
+                    } else {
+                        $liFichas  .= "<li class='li-listado-jugadores-img list-group-item'><span>".$ficha->getTipoEstadisticaDescr().": </span>". $datos['NOMBRE'] . " " . $datos['APELLIDO']."<span>".$ficha->getTipoEstadisticaID()."</span></li>";
+                    }
+                }
+            }
+            echo $liFichas ;
+        }
+        echo "</ul>";
+        echo "</div>";
+    }
+
+
 
     public function getProximosPartidos(){
         $partidos= [];
