@@ -505,7 +505,7 @@ class Torneo
         foreach($this->organizadores as $organizador) {
             $notificacion = ['usuario_id' => $organizador  ,
                 'torneo_id' => $this->torneo_id,
-                'mensaje' =>   "Se ha agreado el equipo '". $nombreEquipo ."'' al torneo '" . $this->nombre. "'"];
+                'mensaje' =>   "Se ha agregado el equipo '". $nombreEquipo ."'' al torneo '" . $this->nombre. "'"];
             Notificacion::CrearNotificacion($notificacion );
         }
 
@@ -884,10 +884,13 @@ class Torneo
             switch ( $nuevoEstado) {
                 case "I":
                     $mensaje = "Se ha reiniciado el torneo '" . $nombre. "'";
+                    break;
                 case "C":
                     $mensaje = "Se ha comenzado el torneo '" . $nombre. "'";
+                    break;
                 case "F":
                     $mensaje = "Se ha finalizado el torneo '" . $nombre. "'";
+                    break;
             }
             foreach(Torneo::getOrganizadoresActivosDelTorneo($torneo) as $organizador) {
                 $notificacion = ['usuario_id' => $organizador  ,
@@ -1295,7 +1298,7 @@ class Torneo
     }
 
     protected function mostrarPartidoCopa($partido , $usuario_ID){
-        $htmlPartido = "<div class='equipo_container list-group '>";
+        $htmlPartido = "<div class='equipo_container list-group ' >";
 
         if ($partido->getLocalNombre() != "" ) {
             $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getLocalNombre() . ": <span>" . $partido->getPuntosLocal() . "</span></div>";
@@ -1305,19 +1308,16 @@ class Torneo
 
         if ($partido->getVisitaNombre() != "" ) {
             $htmlPartido .= "<div class='torneo_equipo list-group-item'>" . $partido->getVisitaNombre() . ": <span>" . $partido->getPuntosVisita() . "</span></div>";
-
-
-
         } else {
             $htmlPartido .= "<div class='torneo_equipo list-group-item'><span></span></div>";
         };
 
-        if (($partido->getLocalNombre() != "" ) && ( $partido->getVisitaNombre()!= "")){
+        if (($partido->getLocalNombre() != "" ) && ( $partido->getVisitaNombre()!= "") && ($this->estaEnCurso())){
             if (isset($usuario_ID) && $partido->esArbitro($usuario_ID) && $this->estaEnCurso() ){
                 $label = "Actualizar Partido";
                 $icon = "<i class='fas fa-edit'></i><span class='d-none'>editar</span>";
             } else {
-                $label = "Ver Partido" . $this->estaEnCurso();
+                $label = "Ver Partido" ;
                 $icon = "<i class='fas fa-eye'></i><span class='d-none'>ver</span>";
             }
             $htmlPartido .= "<div class='actualizar_ver'><a href='". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "' title=' $label '>$icon </a></div>";

@@ -47,6 +47,7 @@ Route::addRoute('POST', '/torneos/eliminar-equipo'                             ,
 Route::addRoute('POST', '/torneos/buscar-equipo'                               , 'TorneoController@buscarEquipo');
 Route::addRoute('POST', '/torneos/eliminar-torneo'                             , 'TorneoController@eliminar');
 Route::addRoute('GET' , '/torneos/comenzar-torneo'                             , 'TorneoController@comenzarTorneo');
+Route::addRoute('GET' , '/torneos/finalizar-partido'                           , 'TorneoController@finalizarPartido');
 Route::addRoute('GET' , '/torneos/finalizar-torneo'                            , 'TorneoController@finalizarTorneo');
 Route::addRoute('GET' , '/torneos/reiniciar-torneo'                            , 'TorneoController@reiniciarTorneo');
 Route::addRoute('GET' , '/torneos/generar-fixture'                             , 'TorneoController@generarFixture');

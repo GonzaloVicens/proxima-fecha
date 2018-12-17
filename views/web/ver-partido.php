@@ -23,8 +23,22 @@ $datosPartido = $partidoActual->getInfoPartido();
         <div class="row">
             <div class="col-md-10">
             </div>
+
+            <?php
+            $botonVolver =   App::$urlPath . "/torneos/ver-fixture-completo";
+            if (Torneo::GetEstadoIdPorTorneo($partidoActual->getTorneoID()) == 'C') {
+                if (Session::has('logueado')) {
+                    $usuario = Session::get('usuario');
+                    if ($usuario->getUsuarioID() == $partidoActual->getArbitroID()) {
+                        Session::set('partidoAFinalizar',$partidoActual);
+                        $botonVolver =   App::$urlPath . "/torneos/finalizar-partido";
+                    }
+                }
+            };
+            ?>
+
             <div class="col-md-2">
-                <a href="<?= App::$urlPath . '/torneos/ver-fixture-completo'  ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
+                <a href='<?=$botonVolver?>' class='btn btn-outline-secondary' style='float:right'><i class='fas fa-chevron-left'></i> volver</a>
             </div>
             <div class="col-md-12">
                 <h2 class="pfgreen mt-4 mb-2">

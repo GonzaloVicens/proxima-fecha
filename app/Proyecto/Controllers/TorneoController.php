@@ -285,7 +285,11 @@ class TorneoController
             Session::set('resultados',$resultados);
         }
 
-        header('Location: ' . App::$urlPath . '/torneos/agregar-equipos');
+        if ($torneo->getLugaresLibres() > 0) {
+            header('Location: ' . App::$urlPath . '/torneos/agregar-equipos');
+        } else {
+            header('Location: ' . App::$urlPath . '/torneos/' . $torneo->getTorneoID());
+        }
 
     }
 
@@ -434,6 +438,22 @@ class TorneoController
         header('Location: ' . App::$urlPath . '/torneos/editar-organizadores');
     }
 
+
+    public function finalizarPartido(){
+        $partidoAFinalizar = Session::get('partidoAFinalizar');
+        Session::clearValue('partidoAFinalizar');
+
+        if (Torneo::GetEstadoIdPorTorneo($partidoAFinalizar->getTorneoID()) == 'C') {
+            if (Session::has('logueado')) {
+                $usuario = Session::get('usuario');
+                if ($usuario->getUsuarioID() == $partidoAFinalizar->getArbitroID()) {
+                    $partidoAFinalizar->finalizarPartido();
+                }
+            }
+        }
+        header('Location: ' . App::$urlPath . '/torneos/ver-fixture-torneo-completo');
+
+    }
 
 
 
