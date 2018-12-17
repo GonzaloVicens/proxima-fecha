@@ -64,7 +64,7 @@ $torneoAMostrar->actualizar();
 
             </div>
             <div class="col-md-4">
-                <h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>
+                <!--<h3 class="mb-4 pfgreen fontSize1-6rem font-weight-normal">Acciones</h3>-->
                 <?php if (isset($usuario) && $usuario->esOrganizadorDeTorneo($torneoAMostrar->getTorneoID())) { ?>
                     <?php if ($torneoAMostrar->esNuevo()) { ?>
                     <p>
