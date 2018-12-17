@@ -1963,9 +1963,9 @@ section.portada {
   z-index: -999;
 }
 */
-.sedes .cancel {
+.sedes .cancelar {
   color: #ff8c00; }
-  .sedes .cancel:hover {
+  .sedes .cancelar:hover {
     color: #666666;
     transition: color .2s ease-in-out;
     text-decoration: none; }
@@ -1977,7 +1977,7 @@ section.portada {
 .sedes .rta-validacion {
   font-style: italic;
   margin-left: .5rem; }
-.sedes i.fas.fa-user:before, .sedes i.fas.fa-futbol:before, .sedes i.fas.fa-map-marker-alt:before, .sedes i.fas.fa-key:before {
+.sedes h2 i.fas.fa-futbol:before, .sedes h2 i.fas.fa-map-marker-alt:before, .sedes h2 i.fas.fa-key:before {
   font-size: 1.5rem;
   color: #ebebeb;
   padding: .5rem;
@@ -1990,10 +1990,22 @@ section.portada {
   text-align: center; }
 .sedes.recuperar-pass {
   min-height: 450px; }
-.sedes .list-group.equipos_participan .list-group-item {
-  font-weight: 600;
-  color: #006B33; }
-  .sedes .list-group.equipos_participan .list-group-item ul {
-    list-style: none; }
+.sedes .btn.btn-link.cancelar {
+  color: #ff8c00 !important;
+  display: none !important; }
+  .sedes .btn.btn-link.cancelar:hover {
+    color: #909090;
+    transition: color .2s ease-in-out; }
+.sedes .list-group.canchas_sede {
+  width: 80%; }
+  .sedes .list-group.canchas_sede .list-group-item {
+    font-weight: 600;
+    color: #006B33; }
+    .sedes .list-group.canchas_sede .list-group-item ul {
+      list-style: none; }
+
+@media (max-width: 991px) {
+  .sedes .list-group.canchas_sede {
+    width: 100%; } }
 
 /*# sourceMappingURL=estilo.css.map */

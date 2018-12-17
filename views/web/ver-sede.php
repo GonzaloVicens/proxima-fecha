@@ -27,7 +27,7 @@ if (Session::has("camposError")) {
 
 ?>
 
-<main class="py-4 mb-4 sede">
+<main class="py-4 mb-4 sedes">
     <div class="container">
         <div class="row">
             <div class="col-md-10">
@@ -66,7 +66,7 @@ if (Session::has("camposError")) {
                 </ul>
             <?php if ( $sedeAMostrar->tieneCanchas() ){ ?>
                 <h4 class="pfgreen mt-4">Canchas de la Sede</h4>
-                <ul class="list-group equipos_participan">
+                <ul class="list-group canchas_sede">
                     <?= $sedeAMostrar->printCanchasEnLi($sedeAMostrar->getSedeID()) ?>
                 </ul>
                 <?php } ?>
@@ -84,6 +84,11 @@ if (Session::has("camposError")) {
                     </a>
                 </p>
                 <p>
+                    <a href="#" class="naranjaFecha hoverVerde" id="agregar_cancha">
+                        <i class="far fa-futbol"></i> Agregar Cancha
+                    </a>
+                </p>
+                <p>
                     <a href="#" class="naranjaFecha hoverVerde" id="eliminar_sede">
                         <i class="fas fa-times-circle"></i> Eliminar Sede
                     </a>
@@ -95,7 +100,7 @@ if (Session::has("camposError")) {
             <div class="col-md-3">
             </div>
             <div class="col-md-6">
-                <h2 class="mb-4 pfgreen"><i class="fas fa-futbol"></i> Agregar Nueva Cancha</h2>
+                <!--h2 class="mb-4 pfgreen"><i class="fas fa-futbol"></i> Agregar Nueva Cancha</h2>
                 <form action="agregar-cancha" method="POST">
                     <input type="hidden" name="sede_id" value="<?= $sedeAMostrar->getSedeID()?>" />
                     <div class="form-group">
@@ -103,7 +108,7 @@ if (Session::has("camposError")) {
                         <input type="text" class="form-control"  name="descripcion" id="nombre"   />
                         <?php
                         if (isset($camposError['descripcion'])) {
-                            echo "<p class='rta-validacion text-danger'><small>" . $camposError['descripcion'] . "</small><p>";
+                            //echo "<p class='rta-validacion text-danger'><small>" . $camposError['descripcion'] . "</small><p>";
                         }
                         ?>
                     </div>
@@ -123,7 +128,7 @@ if (Session::has("camposError")) {
                         ?>
                     </div>
                     <button type="submit" class="btn btn-outline-success">Agregar</button>
-                </form>
+                </form-->
             </div>
             <div class="col-md-3">
                 <?php
@@ -188,7 +193,7 @@ if (Session::has("camposError")) {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="modal-body my-3 pt-4 pb-5">
+                            <div class="modal-body my-3 py-3">
                                 <input type="hidden" name="sede_id" value="<?= $sedeAMostrar->getSedeID()?>" />
                                 <div class="form-group">
                                     <label for="nombre">Nombre</label>
@@ -214,14 +219,14 @@ if (Session::has("camposError")) {
                                     }
                                     ?>
                                 </div>
-                                <button type="submit" class="btn btn-outline-success">Agregar</button>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-success">Buscar</button>
-                    <a type="button" class="btn btn-link cancelar">Cancelar</a>
+                    <button type="submit" class="btn btn-outline-success">Agregar</button>
+                    <a class="btn btn-link cancelar">Cancelar</a>
                 </div>
              </form>
         </div>

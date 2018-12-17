@@ -4,7 +4,7 @@
 
 .sedes {
 
-  .cancel {
+  .cancelar {
     color: $bgcol_naranja;
     &:hover {
       @include hover-txt($col_gris4);
@@ -26,15 +26,16 @@
     margin-left: .5rem;
   }
 
-  i{
-    &.fas {
-      &.fa-user,
-      &.fa-futbol,
-      &.fa-map-marker-alt,
-      &.fa-key {
+  h2 {
+   i{
+      &.fas {
+        &.fa-futbol,
+        &.fa-map-marker-alt,
+        &.fa-key {
 
-        &:before {
-          @include icon-in-circle($col_verde1, $col_gris6)
+          &:before {
+            @include icon-in-circle($col_verde1, $col_gris6)
+          }
         }
       }
     }
@@ -44,16 +45,28 @@
     min-height: 450px;
   }
 
+  .btn {
+    &.btn-link {
+      &.cancelar {
+        color: $bgcol_naranja !important;
+        display: none !important;
+
+        &:hover {
+          @include hover-txt($col_gris2); //
+        }
+      }
+    }
+  }
+
   .list-group {
-   &.equipos_participan {
+   &.canchas_sede {
+     width: 80%;
     .list-group-item {
       font-weight: $font-regular-bold;
       color: $bgcol_verde;
-
       ul {
         list-style: none;
         li {
-
         }
       }
     }
@@ -63,7 +76,13 @@
 }
 
 @media (max-width: 991px) {
-  //styles here
+   .sedes {
+     .list-group {
+       &.canchas_sede {
+         width: 100%;
+       }
+     }
+   }
 }
 
 @media (min-width: 992px) {

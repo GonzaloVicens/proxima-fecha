@@ -2,9 +2,9 @@ Pendientes/Notas:
 =================
 
 1) Dar Estilo a Notificaciones
-3) Eliminar -> Equipos
-5) Cambiar los datos de las fichas para que aparezcan abajo del partido -> Falta diseñ
-6) Solicitar Inscribirse en un torneo <<--- !!!
+2) Eliminar -> Equipos
+3) Cambiar los datos de las fichas para que aparezcan abajo del partido -> Falta diseñ
+4) Solicitar Inscribirse en un torneo <<--- !!!
 
 Detalles a corregir
 ===================
@@ -14,5 +14,6 @@ b) Cambiar "Torneo Ida y Vuelta" por "Liga Ida y Vuelta"
 c) Agregar Futbol 7 en opciones deportes
 d) Ver tema Deportes: Carga de Goles para Basquet / Voley / Rugby / Handball / Tenis / Paddle
 e) Cambiar que Cuando Ya Sos Pro aparezca mensaje "renovar Plazo Cuenta Pro" o similar
+f) Arreglar Canchas Sede, los espacios entre los datos --> que quede uniforme, quizás se pueda usar table
 
 
