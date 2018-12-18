@@ -25,7 +25,7 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
 <main class="py-4 mb-4 usuario">
     <div class="container">
         <div class="row border-bottom main-info">
-            <div class="col-md-4 p-3">
+            <div class="col-md-4 px-3 py-4">
                 <?php
                     $claseCamara = "";
                     if (isset($usuario) && ($usuarioAMostrar->getUsuarioID() == $usuario->getUsuarioID())) {
@@ -33,9 +33,9 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                     }
 
                     if(isset($usuarioAMostrar) and file_exists('img/usuarios/'. $usuarioAMostrar->getUsuarioId() . '.jpg')){
-                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='". $claseCamara ." rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/".$usuarioAMostrar->getUsuarioId() . ".jpg' alt='foto perfil' /></div></div>";
+                        echo "<div style='width: 220px' class='m-auto text-center rounded-circle border-verdepf p-1 overflowhidden'><div class='". $claseCamara ." rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/".$usuarioAMostrar->getUsuarioId() . ".jpg' alt='foto perfil' /></div></div>";
                     }else {
-                        echo "<div class='m-auto text-center rounded-circle w-75 border-verdepf p-2 overflowhidden'><div class='". $claseCamara ." rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' /></div></div>";
+                        echo "<div style='width: 220px' class='m-auto text-center rounded-circle w-75 border-verdepf p-1 overflowhidden'><div class='". $claseCamara ." rounded-circle border overflowhidden'><img class='w-100 rounded-circle' src='../img/usuarios/UserJugador.jpg' alt='foto perfil' /></div></div>";
                     }
 
                     if (Session::has('errorImagenNoJPG') ){
