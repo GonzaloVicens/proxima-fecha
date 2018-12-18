@@ -116,7 +116,7 @@ $('[data-toggle="tooltip"]').tooltip()
 <div class="modal fade bd-example-modal-lg" id='modal_eliminar_equipo' tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" action="<?= App::$urlPath ?>/eliminar-equipo" class="eliminar">
+            <form method="post" action="<?= App::$urlPath ?>/equipos/eliminar-equipo" class="eliminar">
                 <div class="modal-header fondoHeader2 text-white">
                     <h5 class="modal-title">Eliminar Equipo</h5>
                     <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">

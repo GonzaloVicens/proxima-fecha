@@ -34,6 +34,7 @@ Route::addRoute('POST', '/usuarios/recuperar-password'                         ,
 Route::addRoute('GET',  '/usuarios/pasar-a-cuenta-pro'                         , 'UsuarioController@cuentaPro');
 Route::addRoute('GET' , '/equipos/{equipo_id}'                                 , 'EquipoController@ver');
 Route::addRoute('POST', '/equipos/agregar-jugador'                             , 'EquipoController@agregarJugador');
+Route::addRoute('POST', '/equipos/eliminar-equipo'                             , 'EquipoController@eliminarEquipo');
 Route::addRoute('GET' , '/equipos'                                             , 'EquipoController@verEquipos');
 Route::addRoute('GET' , '/torneos/{torneo_id}'                                 , 'TorneoController@ver');
 Route::addRoute('GET' , '/torneos/editar-torneo'                               , 'TorneoController@editarTorneo');

@@ -143,4 +143,37 @@ class EquipoController
     }
 
 
+
+    /**
+     * Método que controla la eliminazión de un equipo
+     */
+    public function eliminarEquipo(){
+        echo "<pre>";
+            print_r (Request::getData());
+        echo "</pre>";
+        /*
+        if (Session::has("usuario")) {
+            $usuario = Session::get('usuario');
+            $usuario_id = $usuario->getUsuarioID();
+
+            $inputs = Request::getData();
+
+            $torneo_id = $inputs['torneo_id'];
+            $confirmar = $inputs['confirmar'];
+
+            if ($confirmar == "SI"){
+                $torneo = new Torneo($torneo_id);
+                $torneo->eliminarTorneo();
+                Session::clearValue('torneo');
+                $usuario->actualizar();
+                header('Location: ' . App::$urlPath . '/usuarios/'. $usuario_id);
+            } ELSE {
+                header('Location: ' . App::$urlPath . '/torneos/'. $torneo_id);
+            }
+
+        } else {
+            header('Location: ' . App::$urlPath . '/error404');
+        };
+        ¨*/
+    }
 }
