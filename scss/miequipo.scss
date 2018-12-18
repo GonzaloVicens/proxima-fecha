@@ -109,6 +109,12 @@ section{
       }
     }
 
+    //================================
+    //Esto pega tb en ver-torneo.php
+    //================================
+    #nav-posiciones,
+    #nav-proximafecha,
+    #nav-contact,
     #nav-posiciones{
       .posiciones_table {
         overflow: hidden;
@@ -154,6 +160,21 @@ section{
         }
       }
     }
+
+    #nav-contact,
+    #nav-proximafecha {
+      .posiciones_table.shadow-sm {
+        table {
+          tr.fondoHeader2.text-white {
+            th{
+              text-align: left;
+            }
+          }
+        }
+      }
+
+    }
+
   }
 }
 
