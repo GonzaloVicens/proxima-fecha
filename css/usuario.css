@@ -102,6 +102,14 @@
   .usuario .main-info ul li a:hover {
     color: #18C25D;
     transition: color .2s ease-in-out; }
+.usuario .main-info ul li .eliminar_equipo {
+  font-size: .85rem;
+  margin-left: 6px;
+  color: #BDBDBD;
+  cursor: pointer; }
+  .usuario .main-info ul li .eliminar_equipo:hover {
+    color: #FFCD5E;
+    transition: color .2s ease-in-out; }
 .usuario .main-info i.fas.fa-crown, .usuario .main-info i.fas.fa-info-circle {
   font-size: .9rem; }
 

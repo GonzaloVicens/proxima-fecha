@@ -2,6 +2,8 @@
 @import "fonts.scss";
 @import "mixins.scss";
 
+
+
 .usuario {
 
   .hover-camera{
@@ -140,6 +142,17 @@
 
           &:hover {
             @include hover-txt($col_verde1);
+          }
+        }
+
+        .eliminar_equipo {
+          font-size: .85rem;
+          margin-left: 6px;
+          color: $col_gris1;
+          cursor: pointer;
+
+          &:hover {
+            @include hover-txt($col_naranja1);
           }
         }
       }

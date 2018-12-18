@@ -57,7 +57,7 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                             <?php
                             if($usuarioAMostrar->tieneEquipo()){
                                 foreach ($usuarioAMostrar->getEquipos() as $equipo) {
-                                    echo "<li class='text-secondary'><a href='". App::$urlPath ."/equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a></li>";
+                                    echo "<li class='text-secondary'><a href='". App::$urlPath ."/equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a><i id='".$equipo->getEquipoID()."' class='fas fa-trash-alt eliminar_equipo' data-toggle='tooltip' data-placement='top' title='Eliminar equipo'></i></li>";
                                 }
                             }else{
                                 echo "<li class='text-secondary'>Todavía no sos parte de ningún equipo.</li>";

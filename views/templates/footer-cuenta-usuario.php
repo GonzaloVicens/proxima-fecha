@@ -82,7 +82,7 @@ $('[data-toggle="tooltip"]').tooltip()
 <div class="modal fade bd-example-modal-lg" id='modal_buscar' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form method="post" action="<?= App::$urlPath ?>/buscar">
                 <div class="modal-header fondoHeader2 text-white">
                     <h5 class="modal-title">Buscar Equipos, Torneos, Usuarios</h5>
                     <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">
@@ -95,7 +95,7 @@ $('[data-toggle="tooltip"]').tooltip()
                             <div class="modal-body my-3 pt-4 pb-5">
                                 <label for="InputBuscar">Nombre a buscar:</label>
                                 <div class="input-group">
-                                    <input class="form-control py-2 border-right-0 border" type="text" placeholder="Buscar" id="InputBuscar">
+                                    <input class="form-control py-2 border-right-0 border" type="text" placeholder="Buscar" id="InputBuscar" name="criterio">
                                     <span class="input-group-append">
                                         <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
                                     </span>
@@ -112,6 +112,38 @@ $('[data-toggle="tooltip"]').tooltip()
         </div>
     </div>
 </div>
+
+<div class="modal fade bd-example-modal-lg" id='modal_eliminar_equipo' tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="<?= App::$urlPath ?>/eliminar-equipo" class="eliminar">
+                <div class="modal-header fondoHeader2 text-white">
+                    <h5 class="modal-title">Eliminar Equipo</h5>
+                    <button type="button" class="close  text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="modal-body my-3 pt-4 pb-5">
+                                <div class="input-group">
+                                    <input type='hidden' name='idequipo' value='' class="form-control py-2 border-right-0 border">
+                                    <p class="text-muted">Estas a un paso de eliminar el Equipo <span id="nombre_del_equipo" class="font-regular-bold font-italic"></span>. Has click en "Eliminar" para confirmar la acción</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                    <button type="button" class="btn btn-outline-secondary cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal fade bd-example-modal-lg" id='modal_cambiar_fotoportada' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog">

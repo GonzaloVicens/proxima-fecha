@@ -124,4 +124,29 @@ $(document).ready(function(){
 
     });
 
+
+
+    //================
+    // Eliminar Equipo
+    //================
+    $('.eliminar_equipo').click(function () {
+
+        //alert($(this).attr('id'));
+
+        var idequipo = $(this).attr('id');
+        var nombreequipo = $(this).prev().text();
+
+        $('#modal_eliminar_equipo form.eliminar input.idequipo').attr('value', idequipo);
+        $('#modal_eliminar_equipo form.eliminar #nombre_del_equipo').text(nombreequipo);
+
+        $('#modal_eliminar_equipo').modal();
+
+    });
+
+    $('#modal_eliminar_equipo .cancelar').click(function () {
+
+        $('#modal_eliminar_equipo').modal('hide');
+
+    });
+
 });
