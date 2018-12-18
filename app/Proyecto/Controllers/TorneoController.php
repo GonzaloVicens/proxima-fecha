@@ -448,6 +448,7 @@ class TorneoController
 
     public function finalizarPartido(){
         $partidoAFinalizar = Session::get('partidoAFinalizar');
+        $partidoAFinalizar->actualizar();
         Session::clearValue('partidoAFinalizar');
 
         if (Torneo::GetEstadoIdPorTorneo($partidoAFinalizar->getTorneoID()) == 'C') {

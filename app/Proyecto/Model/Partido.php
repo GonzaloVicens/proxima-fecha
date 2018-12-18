@@ -541,7 +541,6 @@ class Partido
 
     public function actualizar(){
         $this->setPartido($this->torneo_id, $this->fase_id, $this->partido_id);
-        Session::set('partido', $this);
     }
 
 
@@ -636,60 +635,65 @@ class Partido
 
     public function finalizarPartido ()
     {
-        $datos = [
-            'torneo_id' => $this->torneo_id,
-            'fase_id' => $this->fase_id,
-            'partido_id' => $this->partido_id,
-        ];
+        $esCopa =   Torneo::esCopa($this->torneo_id) ;
+        if (($this->puntos_local == $this->puntos_visita) && $esCopa ) {
 
-        $script = "UPDATE PARTIDOS SET JUGADO = 'Y' WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
-        $stmt = DBConnection::getStatement($script);
-        if ($stmt->execute($datos)) {
-
-            $ganador = 0;
-            $mensajeLocal = "Has empatado el partido entre tu equipo '" . $this->getLocalNombre() . "' y el equipo '" . $this->getVisitaNombre()  . "' en el torneo '" . Torneo::GetNombreTorneoPorID( $this->torneo_id) . "'" ;
-            $mensajeVisita = "Has empatado el partido entre tu equipo '" . $this->getVisitaNombre() . "' y el equipo '" . $this->getLocalNombre()  . "' en el torneo '" . Torneo::GetNombreTorneoPorID( $this->torneo_id) . "'" ;
-
-            if ($this->puntos_local > $this->puntos_visita) {
-                $ganador = $this->local_id;
-                $mensajeLocal = "Has ganado el partido entre tu equipo '" . $this->getLocalNombre() . "' y el equipo '" . $this->getVisitaNombre()  . "' en el torneo '" . Torneo::GetNombreTorneoPorID( $this->torneo_id) . "'" ;
-                $mensajeVisita = "Has perdido el partido entre tu equipo '" . $this->getVisitaNombre() . "' y el equipo '" . $this->getLocalNombre()  . "' en el torneo '" . Torneo::GetNombreTorneoPorID( $this->torneo_id) . "'" ;
-            }
-            if ($this->puntos_local < $this->puntos_visita) {
-                $ganador = $this->visita_id;
-                $mensajeLocal = "Has perdido el partido entre tu equipo '" . $this->getLocalNombre() . "' y el equipo '" . $this->getVisitaNombre()  . "' en el torneo '" . Torneo::GetNombreTorneoPorID( $this->torneo_id) . "'" ;
-                $mensajeVisita = "Has ganado el partido entre tu equipo '" . $this->getVisitaNombre() . "' y el equipo '" . $this->getLocalNombre()  . "' en el torneo '" . Torneo::GetNombreTorneoPorID( $this->torneo_id) . "'" ;
-            }
-
-            foreach (Equipo::GetJugadoresDelEquipo($this->getLocalId()) as $jugador) {
-                $notificacion = ['usuario_id' => $jugador,
-                    'torneo_id' => $this->torneo_id,
-                    'fase_id' => $this->fase_id,
-                    'partido_id' => $this->partido_id,
-                    'mensaje' => $mensajeLocal
-                ];
-                Notificacion::CrearNotificacion($notificacion);
-            }
-
-            foreach (Equipo::GetJugadoresDelEquipo($this->getVisitaId()) as $jugador) {
-                $notificacion = ['usuario_id' => $jugador,
-                    'torneo_id' => $this->torneo_id,
-                    'fase_id' => $this->fase_id,
-                    'partido_id' => $this->partido_id,
-                    'mensaje' => $mensajeVisita
-                ];
-                Notificacion::CrearNotificacion($notificacion);
-            }
-
-
-            if (Torneo::esCopa($this->torneo_id)) {
-                Partido::ActualizarPartidoFase($this->torneo_id, $this->fase_id, $this->partido_id, $ganador);
-            }
-
-            Torneo::FinalizarTorneo($this->torneo_id);
         } else {
-            print_r($stmt->errorInfo());
-            throw new PartidoNoGrabadoException("Error al grabar el partido.");
+            $datos = [
+                'torneo_id' => $this->torneo_id,
+                'fase_id' => $this->fase_id,
+                'partido_id' => $this->partido_id,
+            ];
+
+            $script = "UPDATE PARTIDOS SET JUGADO = 'Y' WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";
+            $stmt = DBConnection::getStatement($script);
+            if ($stmt->execute($datos)) {
+
+                $ganador = 0;
+                $mensajeLocal = "Has empatado el partido entre tu equipo '" . $this->getLocalNombre() . "' y el equipo '" . $this->getVisitaNombre() . "' en el torneo '" . Torneo::GetNombreTorneoPorID($this->torneo_id) . "'";
+                $mensajeVisita = "Has empatado el partido entre tu equipo '" . $this->getVisitaNombre() . "' y el equipo '" . $this->getLocalNombre() . "' en el torneo '" . Torneo::GetNombreTorneoPorID($this->torneo_id) . "'";
+
+                if ($this->puntos_local > $this->puntos_visita) {
+                    $ganador = $this->local_id;
+                    $mensajeLocal = "Has ganado el partido entre tu equipo '" . $this->getLocalNombre() . "' y el equipo '" . $this->getVisitaNombre() . "' en el torneo '" . Torneo::GetNombreTorneoPorID($this->torneo_id) . "'";
+                    $mensajeVisita = "Has perdido el partido entre tu equipo '" . $this->getVisitaNombre() . "' y el equipo '" . $this->getLocalNombre() . "' en el torneo '" . Torneo::GetNombreTorneoPorID($this->torneo_id) . "'";
+                }
+                if ($this->puntos_local < $this->puntos_visita) {
+                    $ganador = $this->visita_id;
+                    $mensajeLocal = "Has perdido el partido entre tu equipo '" . $this->getLocalNombre() . "' y el equipo '" . $this->getVisitaNombre() . "' en el torneo '" . Torneo::GetNombreTorneoPorID($this->torneo_id) . "'";
+                    $mensajeVisita = "Has ganado el partido entre tu equipo '" . $this->getVisitaNombre() . "' y el equipo '" . $this->getLocalNombre() . "' en el torneo '" . Torneo::GetNombreTorneoPorID($this->torneo_id) . "'";
+                }
+
+                foreach (Equipo::GetJugadoresDelEquipo($this->getLocalId()) as $jugador) {
+                    $notificacion = ['usuario_id' => $jugador,
+                        'torneo_id' => $this->torneo_id,
+                        'fase_id' => $this->fase_id,
+                        'partido_id' => $this->partido_id,
+                        'mensaje' => $mensajeLocal
+                    ];
+                    Notificacion::CrearNotificacion($notificacion);
+                }
+
+                foreach (Equipo::GetJugadoresDelEquipo($this->getVisitaId()) as $jugador) {
+                    $notificacion = ['usuario_id' => $jugador,
+                        'torneo_id' => $this->torneo_id,
+                        'fase_id' => $this->fase_id,
+                        'partido_id' => $this->partido_id,
+                        'mensaje' => $mensajeVisita
+                    ];
+                    Notificacion::CrearNotificacion($notificacion);
+                }
+
+
+                if ($esCopa) {
+                    Partido::ActualizarPartidoFase($this->torneo_id, $this->fase_id, $this->partido_id, $ganador);
+                }
+
+                Torneo::FinalizarTorneo($this->torneo_id);
+            } else {
+                print_r($stmt->errorInfo());
+                throw new PartidoNoGrabadoException("Error al grabar el partido.");
+            }
         }
     }
 
@@ -697,11 +701,15 @@ class Partido
         $faseAActualizar = $fase +1 ;
         if ( Fase::ExisteFase($torneo , $faseAActualizar )) {
 
-            $resto = $partido + 1;
-            $resto = $resto % 2;
+
             $partidoFaseAActualizar = $partido + 1;
-            $partidoFaseAActualizar = $partidoFaseAActualizar / 1;
+
+            $resto = $partidoFaseAActualizar;
+            $resto = $resto % 2;
+
+
             $partidoFaseAActualizar  = $partidoFaseAActualizar  - $resto;
+            $partidoFaseAActualizar = $partidoFaseAActualizar / 2;
 
             $datos = [
                 'torneo_id' => $torneo,
@@ -710,6 +718,16 @@ class Partido
                 'equipo_id' => $equipo
             ];
 
+            echo "<pre>";
+            print_r (" - partido: ");
+            print_r ($partido);
+            print_r (" - equipo: ");
+            print_r ($equipo);
+            print_r (" - partidoFaseAActualizar: ");
+            print_r ($partidoFaseAActualizar);
+            print_r (" - resto: ");
+            print_r ($resto);
+            echo "</pre>";
 
             if (($partido % 2) == 1) {
                 $script = "UPDATE PARTIDOS SET LOCAL_ID = :equipo_id WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";

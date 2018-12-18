@@ -686,8 +686,8 @@ class Torneo
 
             // Primero genero la llave original
             $resto = $cantidadPartidos  % 2;
-            $cantidadPartidos =  $cantidadPartidos / 2 ;
             $cantidadPartidos  = $cantidadPartidos  - $resto;
+            $cantidadPartidos =  $cantidadPartidos / 2 ;
             switch ($cantidadPartidos){
                 case 1:
                     $nombre = "Final";
@@ -1488,8 +1488,8 @@ class Torneo
             // Primero genero la llave original
             $resto = $canPartidosEnFase % 2;
 
+            $canPartidosEnFase = $canPartidosEnFase- $resto ;
             $mitad = $canPartidosEnFase / 2 ;
-            $mitad = $mitad- $resto ;
 
             $partidosFase = $fase->getPartidos();
             $htmlFinal .= "<div class='item " . $clase . " llave_a'><span class='fase_torneo'> Llave A - " . $fase->getDescripcion() . "</span>";
