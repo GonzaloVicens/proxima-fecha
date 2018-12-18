@@ -590,24 +590,36 @@ class Partido
 
     public function agregarFicha($tipo_Ficha, $equipo_Ficha, $jugador_Ficha){
 
-        $nuevaFicha = Ficha::InsertarFicha($this->torneo_id , $this->fase_id, $this->partido_id, $tipo_Ficha, $equipo_Ficha, $jugador_Ficha);
-        $this->fichas[] = new Ficha($this->torneo_id , $this->fase_id, $this->partido_id, $nuevaFicha) ;
+        $seguir = true;
+        switch ($tipo_Ficha) {
+            case "A":
+            case "R":
+                if (Ficha::YaInsertoFicha($this->torneo_id , $this->fase_id, $this->partido_id, $tipo_Ficha, $jugador_Ficha)){
+                    $seguir= false;
+                }
+                break;
+        }
 
-        if ($tipo_Ficha == "G") {
-            if ($equipo_Ficha == $this->local_id) {
-                $this->SumarPunto($this->local_id);
-            } else {
-                $this->SumarPunto($this->visita_id);
-            }
-        };
-        if ($tipo_Ficha == "X") {
-            if ($equipo_Ficha == $this->local_id) {
-                $this->SumarPunto($this->visita_id);
-            } else {
-                $this->SumarPunto($this->local_id);
+        if ($seguir){
 
-            }
-        };
+            $nuevaFicha = Ficha::InsertarFicha($this->torneo_id , $this->fase_id, $this->partido_id, $tipo_Ficha, $equipo_Ficha, $jugador_Ficha);
+            $this->fichas[] = new Ficha($this->torneo_id , $this->fase_id, $this->partido_id, $nuevaFicha) ;
+
+            if ($tipo_Ficha == "G") {
+                if ($equipo_Ficha == $this->local_id) {
+                    $this->SumarPunto($this->local_id);
+                } else {
+                    $this->SumarPunto($this->visita_id);
+                }
+            };
+            if ($tipo_Ficha == "X") {
+                if ($equipo_Ficha == $this->local_id) {
+                    $this->SumarPunto($this->visita_id);
+                } else {
+                    $this->SumarPunto($this->local_id);
+                }
+            };
+        }
     }
 
     protected function SumarPunto($equipoASumar){
@@ -718,16 +730,6 @@ class Partido
                 'equipo_id' => $equipo
             ];
 
-            echo "<pre>";
-            print_r (" - partido: ");
-            print_r ($partido);
-            print_r (" - equipo: ");
-            print_r ($equipo);
-            print_r (" - partidoFaseAActualizar: ");
-            print_r ($partidoFaseAActualizar);
-            print_r (" - resto: ");
-            print_r ($resto);
-            echo "</pre>";
 
             if (($partido % 2) == 1) {
                 $script = "UPDATE PARTIDOS SET LOCAL_ID = :equipo_id WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID =  :partido_id ";

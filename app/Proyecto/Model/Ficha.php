@@ -140,6 +140,28 @@ class Ficha
         return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
     }
 
+
+    public static function YaInsertoFicha($torneo, $fase, $partido, $tipo, $jugador){
+        $query = "SELECT 'X' FROM FICHA_PARTIDO WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id AND PARTIDO_ID = :partido_id AND TIPO_ESTADISTICA_ID = :tipo_estadistica_id AND JUGADOR_ID = :jugador_id ";
+
+        $datos= [
+            'torneo_id' => $torneo,
+            'fase_id' => $fase,
+            'partido_id' => $partido,
+            'tipo_estadistica_id' => $tipo,
+            'jugador_id' => $jugador
+        ];
+        $stmt = DBConnection::getStatement($query);
+        if ($stmt->execute($datos)) {
+
+            return ($stmt->fetch(\PDO::FETCH_ASSOC)) ;
+        } else {
+            echo "<pre>";
+            print_r($datos);
+            echo "</pre>";
+        }
+    }
+
     /**
      * Inserta los datos de la fase en la base de datos en base
      * Si sale bien, devuelve el ID de la fase creada
