@@ -128,7 +128,7 @@ $('[data-toggle="tooltip"]').tooltip()
                         <div class="col-md-12">
                             <div class="modal-body my-3 pt-4 pb-5">
                                 <div class="input-group">
-                                    <input type='hidden' name='idequipo' value='' class="form-control py-2 border-right-0 border">
+                                    <input type='hidden' name='idequipo' id='idequipo' value='' class="form-control py-2 border-right-0 border">
                                     <p class="text-muted">Estas a un paso de eliminar el Equipo <span id="nombre_del_equipo" class="font-regular-bold font-italic"></span>. Has click en "Eliminar" para confirmar la acción</p>
                                 </div>
                             </div>

@@ -136,7 +136,7 @@ $(document).ready(function(){
         var idequipo = $(this).attr('id');
         var nombreequipo = $(this).prev().text();
 
-        $('#modal_eliminar_equipo form.eliminar input.idequipo').attr('value', idequipo);
+        $('#modal_eliminar_equipo form.eliminar input#idequipo').attr('value', idequipo);
         $('#modal_eliminar_equipo form.eliminar #nombre_del_equipo').text(nombreequipo);
 
         $('#modal_eliminar_equipo').modal();
