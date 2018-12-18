@@ -81,6 +81,16 @@ class Torneo
      */
     public function getCantidadEquipos()
     {
+        if ($this->cantidad_equipos == 0) {
+            $query = "SELECT CANTIDAD_EQUIPOS FROM TORNEOS WHERE TORNEO_ID = :torneo_id ";
+            $stmt = DBConnection::getStatement($query);
+            $stmt->execute(['torneo_id' => $this->torneo_id]);
+            if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $this->cantidad_equipos = $datos['CANTIDAD_EQUIPOS'];
+            } else {
+                $this->cantidad_equipos = 1;
+            }
+        }
         return $this->cantidad_equipos;
     }
 
@@ -603,6 +613,7 @@ class Torneo
                 $this->generarTorneoIdaYVuelta();
                 break;
         }
+        $this->comenzar();
         $this-> actualizar();
 
 
@@ -668,15 +679,15 @@ class Torneo
 
     public function generarCopa(){
         $this->actualizar();
-
         $faseACrear = 1;
-        $cantidadPartidos = $this->cantidad_equipos  ;
+        $cantidadPartidos = $this->getCantidadEquipos();
 
         while ($cantidadPartidos > 1) {
 
             // Primero genero la llave original
-            $cantidadPartidos = intdiv ( $cantidadPartidos , 2 );
-
+            $resto = $cantidadPartidos  % 2;
+            $cantidadPartidos =  $cantidadPartidos / 2 ;
+            $cantidadPartidos  = $cantidadPartidos  - $resto;
             switch ($cantidadPartidos){
                 case 1:
                     $nombre = "Final";
@@ -703,6 +714,7 @@ class Torneo
                     $nuevaFase->insertarPartido(0 , 0, $this->organizadores[$organizadorRandom], $nuevaFase->getFecha(), $this->sede_id);
                 }
             }
+
             $faseACrear++;
         }
     }
@@ -1474,7 +1486,11 @@ class Torneo
 
 
             // Primero genero la llave original
-            $mitad = intdiv ( $canPartidosEnFase , 2 );
+            $resto = $canPartidosEnFase % 2;
+
+            $mitad = $canPartidosEnFase / 2 ;
+            $mitad = $mitad- $resto ;
+
             $partidosFase = $fase->getPartidos();
             $htmlFinal .= "<div class='item " . $clase . " llave_a'><span class='fase_torneo'> Llave A - " . $fase->getDescripcion() . "</span>";
 

@@ -3,6 +3,7 @@ namespace Proyecto\Model;
 
 use Proyecto\DB\DBConnection;
 use Proyecto\Exceptions\FaseNoGrabadaException;
+use Proyecto\Exceptions\FichaNoGrabadaException;
 
 
 /**
@@ -120,18 +121,24 @@ class Fase
 
         $query = "SELECT DESCRIPCION, FECHA FROM FASES WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id ";
         $stmt = DBConnection::getStatement($query);
-        $stmt->execute($param);
-        if ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+        if ($stmt->execute($param)) {
+            $datos = $stmt->fetch(\PDO::FETCH_ASSOC);
             $this->descripcion= $datos['DESCRIPCION'];
             $this->fecha= $datos['FECHA'];
 
             $query = "SELECT PARTIDO_ID FROM PARTIDOS WHERE TORNEO_ID = :torneo_id AND FASE_ID = :fase_id ";
             $stmt = DBConnection::getStatement($query);
-            $stmt->execute($param);
-            while($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-                $this->partidos[] = new Partido($torneo, $fase, $datos['PARTIDO_ID']) ;
+            if ($stmt->execute($param)) {
+                while($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                    $this->partidos[] = new Partido($torneo, $fase, $datos['PARTIDO_ID']) ;
+                }
+            } else {
+                throw new FichaNoGrabadaException("Error al obtener los partidos de la FASE");
             }
 
+
+        } else {
+            throw new FichaNoGrabadaException("Error al obtener los datos de la FASE");
         }
     }
 

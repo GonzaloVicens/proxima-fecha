@@ -418,6 +418,9 @@ class Partido
 
         $nuevoPartido++;
 
+        if (!isset($sede_id)){
+            $sede_id = 1;
+        }
         if (!isset($cancha_id)){
             $cancha_id = 1;
         }
@@ -694,7 +697,11 @@ class Partido
         $faseAActualizar = $fase +1 ;
         if ( Fase::ExisteFase($torneo , $faseAActualizar )) {
 
-            $partidoFaseAActualizar = intdiv($partido + 1, 2);
+            $resto = $partido + 1;
+            $resto = $resto % 2;
+            $partidoFaseAActualizar = $partido + 1;
+            $partidoFaseAActualizar = $partidoFaseAActualizar / 1;
+            $partidoFaseAActualizar  = $partidoFaseAActualizar  - $resto;
 
             $datos = [
                 'torneo_id' => $torneo,
