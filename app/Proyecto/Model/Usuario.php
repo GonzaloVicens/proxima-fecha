@@ -162,7 +162,7 @@ class Usuario
 
     public function setEquipos(){
         $this->equipos = [];
-        $query = "SELECT EQUIPO_ID FROM JUGADORES WHERE JUGADOR_ID = :usuario_id ";
+        $query = "SELECT A.EQUIPO_ID FROM EQUIPOS A, JUGADORES B WHERE A.EQUIPO_ID = B.EQUIPO_ID AND A.ACTIVO = 1 AND B.JUGADOR_ID = :usuario_id ";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute(['usuario_id' => $this->usuario_id]);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -246,6 +246,7 @@ class Usuario
     }
 
     public function getEquipos(){
+        $this->setEquipos();
         return $this->equipos;
     }
 
