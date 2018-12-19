@@ -53,7 +53,17 @@ $datosPartido = $partidoActual->getInfoPartido();
                     <span class=""><?=$datosPartido['nombre']?></span>
                 </h2>
                 <a href='<?= App::$urlPath . '/torneos/ver-fixture-completo'  ?>' class="d-block ml-2 mb-5 colorGris1 hoverVerde"><i class="fas fa-shield-alt"></i> Ver Fixture Completo</a>
-                <h2 class="mt-3 mb-3 pfgreen h4"><i class="fas fa-edit"></i> Cargar Datos en Partido</h2>
+				    <?php $titulo = "<h2 class='mt-3 mb-3 pfgreen h4'><i class='fas fa-eye'></i> Ver Datos del Partido</h2>";
+					if (Torneo::GetEstadoIdPorTorneo($partidoActual->getTorneoID()) == 'C') {
+						if (Session::has('logueado')) {
+							$usuario = Session::get('usuario');
+							if (($usuario->getUsuarioID() == $partidoActual->getArbitroID()) && (!$partidoActual->fueJugado())) {
+								$titulo =  "<h2 class='mt-3 mb-3 pfgreen h4'><i class='fas fa-edit'></i> Cargar Datos en Partido</h2>";
+							};
+						}
+					};
+					echo $titulo;
+					?>
             </div>
         </div>
         <div class="row">

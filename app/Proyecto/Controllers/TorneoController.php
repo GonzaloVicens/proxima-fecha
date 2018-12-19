@@ -324,14 +324,15 @@ class TorneoController
 
     public function verFixtureCompleto()
     {
-        if (Session::has("torneo")) {
-            $torneo = Session::get('torneo');
-            $torneo ->actualizar();
+        $routeParams = Route::getRouteParams();
+        $torneo_id = $routeParams['torneo'];
+        if (Torneo::existeTorneo($torneo_id)){
+            $torneoAMostrar = New Torneo($torneo_id);
 
-            if ($torneo->getTipoTorneoId() == "C"){
-                View::render('web/ver-fixture-torneo-completo',compact('torneo'), 3);
+            if ($torneoAMostrar->getTipoTorneoId() == "C"){
+                View::render('web/ver-fixture-torneo-completo',compact('torneoAMostrar'), 3);
             } else {
-                View::render('web/ver-fixture-completo',compact('torneo'), 3);
+                View::render('web/ver-fixture-completo',compact('torneoAMostrar'), 3);
             }
 
         } else {
@@ -346,11 +347,11 @@ class TorneoController
             $usuario = Session::get('usuario');
         };
 
-        if (Session::has("torneo")) {
-            $torneo = Session::get('torneo');
-            $torneo ->actualizar();
-
-            View::render('web/ver-fixture-torneo-completo',compact('torneo'), 3);
+        $routeParams = Route::getRouteParams();
+        $torneo_id = $routeParams['torneo'];
+        if (Torneo::existeTorneo($torneo_id)){
+            $torneoAMostrar = New Torneo($torneo_id);
+            View::render('web/ver-fixture-torneo-completo',compact('torneoAMostrar'), 3);
 
         } else {
             header('Location: ' . App::$urlPath . '/error404');

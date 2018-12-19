@@ -139,7 +139,7 @@ class Usuario
                     $rta = "El usuario no se encuentra activo";
                 }
             } else {
-                $rta = "La password es errónea" ;
+                $rta = "La clave es errónea" ;
             }
         } else {
             $rta = "El usuario no existe";

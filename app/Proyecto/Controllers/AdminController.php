@@ -80,62 +80,92 @@ class AdminController //implements JsonSerializable
 
     public function verHome(){
         $admin = Session::get('admin');
-        View::render('admin/home',compact('admin'), 4);
+
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')== 'S'){
+            View::render('admin/home',compact('admin'), 4);
+        } else {
+            header('Location: ' . App::$urlPath .'/adminPF');
+        }
+
+
+
     }
 
     public function activarUsuario(){
-        $routeParams = Route::getRouteParams();
-        $usuario_id = $routeParams['usuario_id'];
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')== 'S'){
 
-        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
-            if(isset($usuario_id) && !empty($usuario_id)) {
-                Usuario::ActualizarEstado($usuario_id, "1");
+            $routeParams = Route::getRouteParams();
+            $usuario_id = $routeParams['usuario_id'];
+
+            if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
+                if(isset($usuario_id) && !empty($usuario_id)) {
+                    Usuario::ActualizarEstado($usuario_id, "1");
+                };
             };
-        };
-        Session::set('tab','usuarios');
-        header('Location: ' . App::$urlPath .'/adminPF/home');
+            Session::set('tab','usuarios');
+            header('Location: ' . App::$urlPath .'/adminPF/home');
+
+        } else {
+            header('Location: ' . App::$urlPath .'/adminPF');
+        }
+
 
     }
 
     public function desactivarUsuario(){
-        $routeParams = Route::getRouteParams();
-        $usuario_id = $routeParams['usuario_id'];
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')== 'S'){
 
-        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
-            if(isset($usuario_id) && !empty($usuario_id)) {
-                Usuario::ActualizarEstado($usuario_id, "0");
+            $routeParams = Route::getRouteParams();
+            $usuario_id = $routeParams['usuario_id'];
+
+            if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
+                if(isset($usuario_id) && !empty($usuario_id)) {
+                    Usuario::ActualizarEstado($usuario_id, "0");
+                };
             };
-        };
-        Session::set('tab','usuarios');
-        header('Location: ' . App::$urlPath .'/adminPF/home');
+            Session::set('tab','usuarios');
+            header('Location: ' . App::$urlPath .'/adminPF/home');
+        } else {
+            header('Location: ' . App::$urlPath .'/adminPF');
+        }
 
     }
 
     public function activarEquipo(){
-        $routeParams = Route::getRouteParams();
-        $equipo_id = $routeParams['equipo_id'];
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')== 'S'){
 
-        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
-            if(isset($equipo_id) && !empty($equipo_id)) {
-                Equipo::ActualizarEstado($equipo_id, "1");
+            $routeParams = Route::getRouteParams();
+            $equipo_id = $routeParams['equipo_id'];
+
+            if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
+                if(isset($equipo_id) && !empty($equipo_id)) {
+                    Equipo::ActualizarEstado($equipo_id, "1");
+                };
             };
-        };
-        Session::set('tab','equipos');
-        header('Location: ' . App::$urlPath .'/adminPF/home');
+            Session::set('tab','equipos');
+            header('Location: ' . App::$urlPath .'/adminPF/home');
+         } else {
+            header('Location: ' . App::$urlPath .'/adminPF');
+        }
 
-    }
+        }
 
     public function desactivarEquipo(){
-        $routeParams = Route::getRouteParams();
-        $equipo_id = $routeParams['equipo_id'];
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')== 'S'){
 
-        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
-            if(isset($equipo_id) && !empty($equipo_id)) {
-                Equipo::ActualizarEstado($equipo_id, "0");
+            $routeParams = Route::getRouteParams();
+            $equipo_id = $routeParams['equipo_id'];
+
+            if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')=='S') {
+                if(isset($equipo_id) && !empty($equipo_id)) {
+                    Equipo::ActualizarEstado($equipo_id, "0");
+                };
             };
-        };
-        Session::set('tab','equipos');
-        header('Location: ' . App::$urlPath .'/adminPF/home');
+            Session::set('tab','equipos');
+            header('Location: ' . App::$urlPath .'/adminPF/home');
+        } else {
+            header('Location: ' . App::$urlPath .'/adminPF');
+        }
 
     }
 
@@ -145,11 +175,15 @@ class AdminController //implements JsonSerializable
      */
     public function buscarEquipo()
     {
-        $inputs = Request::getData();
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')== 'S'){
+            $inputs = Request::getData();
+            $resultados = Equipo::BuscarEquipos($inputs );
+            Session::set('resultadosEquipo',$resultados);
+            header('Location: ' . App::$urlPath .'/adminPF/home');
+        } else {
+            header('Location: ' . App::$urlPath .'/adminPF');
+        }
 
-        $resultados = Equipo::BuscarEquipos($inputs );
-        Session::set('resultadosEquipo',$resultados);
-        header('Location: ' . App::$urlPath .'/adminPF/home');
     }
 
 
@@ -161,11 +195,17 @@ class AdminController //implements JsonSerializable
      */
     public function buscarUsuario()
     {
-        $inputs = Request::getData();
+        if (Session::has('logueadoAdmin') && Session::get('logueadoAdmin')== 'S'){
 
-        $resultados = Usuario::BuscarUsuariosEnAdmin($inputs);
-        Session::set('resultadosUsuario',$resultados);
-        header('Location: ' . App::$urlPath .'/adminPF/home');
+            $inputs = Request::getData();
+
+            $resultados = Usuario::BuscarUsuariosEnAdmin($inputs);
+            Session::set('resultadosUsuario',$resultados);
+            header('Location: ' . App::$urlPath .'/adminPF/home');
+        } else {
+            header('Location: ' . App::$urlPath .'/adminPF');
+        }
+
     }
 
 

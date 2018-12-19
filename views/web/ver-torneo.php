@@ -11,6 +11,9 @@ use Proyecto\Model\Torneo;
 use Proyecto\Session\Session;
 
 $torneoAMostrar->actualizar();
+
+Session::set('torneo',$torneoAMostrar);
+
 ?>
 
 <main class="py-4 mb-4 torneo">
@@ -115,7 +118,7 @@ $torneoAMostrar->actualizar();
             }
             if ($torneoAMostrar->tieneFixture()) { ?>
                 <p>
-                    <a href="ver-fixture-completo" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</a>
+                    <a href="ver-fixture-completo/<?=$torneoAMostrar->getTorneoID()?>" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde"><i class="fas fa-trophy"></i> Ver Fixture</a>
                 </p>
             <?php }
                 $equiposCapitan =  $usuario->getEquiposInscripcion($torneoAMostrar->getTorneoID());

@@ -115,7 +115,7 @@ if (Session::has("camposError")){
                                 </div>
                             </div>
                     </div>
-                    <button type="submit" class="btn btn-outline-success">Enviar</button>
+                    <button type="submit" class="btn btn-outline-success">Guardar</button>
                     <a href="<?=App::$urlPath . '/'?>" class="btn btn-link text-muted">Cancelar</a>
                 </form>
             </div>

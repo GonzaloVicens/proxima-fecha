@@ -217,7 +217,7 @@ class SedeController
                         $sede->editarDueno($dueno_id, $activo);
                         Session::clearValue("errorAgregarDueno");
                     } else {
-                        Session::set("errorAgregarDueno",  "No quedan duenos en el sede");
+                        Session::set("errorAgregarDueno",  "No quedan dueños en el sede");
                     }
                 };
             } else {

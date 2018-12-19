@@ -120,7 +120,7 @@ if (Session::has("camposError")){
                     <div class="form-group">
                         <textarea rows='5' name="detalles" id='detalles' class="form-control" placeholder="Detalles de la sede..."><?=$detalles?></textarea>
                     </div>
-                    <button type="submit" class="btn btn-outline-success">Actualizar</button>
+                    <button type="submit" class="btn btn-outline-success">Guardar</button>
                     <a href="<?=App::$urlPath . '/usuarios/'. $usuario->getUsuarioId()?>" class="btn btn-link cancel">Cancelar</a>
                 </form>
             </div>

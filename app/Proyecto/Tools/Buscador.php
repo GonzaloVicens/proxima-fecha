@@ -10,7 +10,7 @@ class Buscador
         $param = ['criterio' => $criterio];
         $resultados = [];
 
-        $query = "SELECT 'E' TIPO, EQUIPO_ID ID , NOMBRE FROM EQUIPOS  WHERE UPPER(NOMBRE) LIKE concat('%', UPPER(:criterio) , '%')  ORDER BY NOMBRE";
+        $query = "SELECT 'E' TIPO, EQUIPO_ID ID , NOMBRE FROM EQUIPOS  WHERE UPPER(NOMBRE) LIKE concat('%', UPPER(:criterio) , '%')   AND ACTIVO = '1' ORDER BY NOMBRE";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute($param);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -31,7 +31,7 @@ class Buscador
             $resultados [] = $datos;
         }
 
-        $query = "SELECT 'U' TIPO, USUARIO_ID ID , CONCAT(NOMBRE, ' ', APELLIDO) NOMBRE FROM USUARIOS WHERE UPPER(NOMBRE) LIKE concat('%', UPPER(:criterio) , '%') OR UPPER(APELLIDO) LIKE concat('%', UPPER(:criterio) , '%')  OR UPPER(USUARIO_ID) LIKE concat('%', UPPER(:criterio) , '%')  ORDER BY NOMBRE";
+        $query = "SELECT 'U' TIPO, USUARIO_ID ID , CONCAT(NOMBRE, ' ', APELLIDO) NOMBRE FROM USUARIOS WHERE  USUARIO_ID != 'pf_admin' AND UPPER(NOMBRE) LIKE concat('%', UPPER(:criterio) , '%') OR UPPER(APELLIDO) LIKE concat('%', UPPER(:criterio) , '%')  OR UPPER(USUARIO_ID) LIKE concat('%', UPPER(:criterio) , '%')   AND ACTIVO = '1' ORDER BY NOMBRE";
         $stmt = DBConnection::getStatement($query);
         $stmt->execute($param);
         while ($datos = $stmt->fetch(\PDO::FETCH_ASSOC)) {

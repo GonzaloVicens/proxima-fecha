@@ -212,7 +212,7 @@ if (Session::has("camposError")){
                     </div>
 
                     <div class="form-group my-4">
-                        <button type="submit" class="btn btn-outline-success">Editar Torneo</button>
+                        <button type="submit" class="btn btn-outline-success">Guardar</button>
                         <a href="<?=App::$urlPath . '/torneos/'. $torneo->getTorneoId()?>" class="btn btn-link colorGris2">Cancelar</a>
                     </div>
                 </form>

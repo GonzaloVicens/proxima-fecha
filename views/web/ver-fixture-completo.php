@@ -7,7 +7,7 @@
  */
 use Proyecto\Core\App;
 
-$torneo->actualizar();
+$torneoAMostrar->actualizar();
 ?>
 <main class="py-4 mb-4 fixture-completo">
     <div class="container">
@@ -15,18 +15,18 @@ $torneo->actualizar();
             <div class="col-md-10">
             </div>
             <div class="col-md-2">
-                <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
+                <a href="<?= App::$urlPath . '/torneos/' . $torneoAMostrar->getTorneoID() ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
             </div>
             <div class="col-md-12">
                 <h2 class="pfgreen mt-4 mb-2">
-                    <span class="d-block font-weight-normal colorGris2 h4 mb-2"><i class="fas fa-trophy"></i> <?= $torneo->getDescrTipoTorneo()?></span>
-                    <span class=""><?= $torneo->getNombre()?></span>
+                    <span class="d-block font-weight-normal colorGris2 h4 mb-2"><i class="fas fa-trophy"></i> <?= $torneoAMostrar->getDescrTipoTorneo()?></span>
+                    <span class=""><?= $torneoAMostrar->getNombre()?></span>
                 </h2>
                 <h4 class="mb-3 h3 naranjaFecha">Fixture Completo</h4>
             </div>
 
                 <?php
-                foreach ($torneo->getFases() as $fase) {
+                foreach ($torneoAMostrar->getFases() as $fase) {
                     ?>
                     <div class="col-md-6">
                     <div class="table_container shadow">
@@ -45,7 +45,7 @@ $torneo->actualizar();
                                         <td class="text-left equipos"><div class="nombre_equipo"><?= $partido->getVisitaNombre()?></div></td>
                                         <?php
 
-                                        if (isset($usuario) && $partido->esArbitro($usuario->getUsuarioID()) && $torneo->estaEnCurso() && !$partido->fueJugado() ){
+                                        if (isset($usuario) && $partido->esArbitro($usuario->getUsuarioID()) && $torneoAMostrar->estaEnCurso() && !$partido->fueJugado() ){
                                             $label = "Actualizar Partido";
                                             $icon = "<i class='fas fa-edit'></i><span class='d-none'>editar</span>";
                                          } else {

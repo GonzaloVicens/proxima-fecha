@@ -14,7 +14,7 @@ if (Session::has('usuario')) {
 }
 
 
-$torneo->actualizar();
+$torneoAMostrar->actualizar();
 ?>
 <main class="py-4 mb-4 fixture-torneo-completo">
     <div class="container">
@@ -22,12 +22,12 @@ $torneo->actualizar();
             <div class="col-md-10">
             </div>
             <div class="col-md-2">
-                <a href="<?= App::$urlPath . '/torneos/' . $torneo->getTorneoID() ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
+                <a href="<?= App::$urlPath . '/torneos/' . $torneoAMostrar->getTorneoID() ?>" class="btn btn-outline-secondary" style="float:right"><i class="fas fa-chevron-left"></i> volver</a>
             </div>
             <div class="col-md-12 mb-4">
                 <h2 class="pfgreen mt-4 mb-2">
-                    <span class="d-block font-weight-normal colorGris2 h4 mb-2"><i class="fas fa-trophy"></i> <?= $torneo->getDescrTipoTorneo()?></span>
-                    <span class=""><?= $torneo->getNombre()?></span>
+                    <span class="d-block font-weight-normal colorGris2 h4 mb-2"><i class="fas fa-trophy"></i> <?= $torneoAMostrar->getDescrTipoTorneo()?></span>
+                    <span class=""><?= $torneoAMostrar->getNombre()?></span>
                 </h2>
                 <h4 class="mb-3 h3 naranjaFecha">Fixture Completo</h4>
             </div>
@@ -36,7 +36,7 @@ $torneo->actualizar();
                     <div class="owl-stage-outer">
                         <div class="owl-stage">
                             <div class="owl-carousel">
-                                <?= $torneo->mostrarFixtureCopa(1, $usuarioID ) ?>
+                                <?= $torneoAMostrar->mostrarFixtureCopa(1, $usuarioID ) ?>
                             </div>
                         </div>
                     </div>

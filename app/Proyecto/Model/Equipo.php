@@ -464,10 +464,10 @@ class Equipo
 
             if ($esLocal) {
             //    echo "<li class='li-listado-jugadores-img list-group-item'>" . $ulFichas . "<a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
-                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
+                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='". App::$urlPath . "/usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
             } else {
               //  echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a>" . $ulFichas . "</li>";
-                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='../usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
+                echo "<li class='li-listado-jugadores-img list-group-item'><a class='li-listado-jugadores-a pfgreen hoverVerde' href='". App::$urlPath . "/usuarios/" . $jugadorID . "' title='Ver'><span class='nombre_apellido_jugador'>" . $datos['APELLIDO'] . ", " . $datos['NOMBRE'] . "</span></a></li>";
             }
         }
         echo "</ul>";
@@ -483,7 +483,7 @@ class Equipo
                     ?>
                     <div class="form-container-cargar-datos">
                         <form action='agregar-ficha-partido' method='POST'>
-                            <h4 class='mt-5 mb-4 pfgreen encabezado-cargar-datos'>Agregar Ficha Equipo</h4>
+                            <h4 class='mt-5 mb-4 pfgreen encabezado-cargar-datos'>Agregar Ficha al Equipo</h4>
                             <div class='form-group'>
                                 <select name='tipo' class='form-control'>
                                     <?= TipoEstadistica::printOptions() ?>
@@ -498,7 +498,7 @@ class Equipo
                             <input type="hidden" name="fase" value="<?= $partido->getFaseID() ?>">
                             <input type="hidden" name="partido" value="<?= $partido->getPartidoID() ?>">
                             <input type="hidden" name="equipo" value="<?= $this->equipo_id ?>">
-                            <button type='submit' class='btn btn-light'>Agregar Ficha Partido</button>
+                            <button type='submit' class='btn btn-light'>Agregar</button>
                         </form>
                     </div>
                     <?php
