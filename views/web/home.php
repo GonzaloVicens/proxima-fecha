@@ -81,7 +81,7 @@ use Proyecto\Session\Session;
             <div class='col-md-4 text-center p-3'>
                 <div class="rounded  shadow  p-5">
                     <img src="<?= App::$urlPath;?>/img/buscarligas.png" class='porcentaje60' alt="ícono buscar ligas">
-                    <p class="naranjaFecha  mt-4 h4">Inscríbete en <br>CAMPEONATOS </p>
+                    <p class="naranjaFecha  mt-4 h4">Inscríbete en <br>COPAS </p>
                 </div>
             </div>
 
@@ -121,7 +121,7 @@ use Proyecto\Session\Session;
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <a href="<?= App::$urlPath;?>/registrarse" type="button" class="btn btn-outline-success btn-lg btn-block alto70">CREA TU CAMPEONATO <b>AHORA</b></a>
+                <a href="<?= App::$urlPath;?>/registrarse" type="button" class="btn btn-outline-success btn-lg btn-block alto70">CREA TU TORNEO <b>AHORA</b></a>
             </div>
             <div class="col-md-4">
             </div>

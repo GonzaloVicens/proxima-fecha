@@ -84,7 +84,7 @@ Route::addRoute('GET' , '/registrarse'                                         ,
 Route::addRoute('GET' , '/recuperar-password'                                  , 'HomeController@verRecuperarPassword');
 Route::addRoute('GET' , '/error404'                                            , 'HomeController@error404');
 Route::addRoute('GET' , '/mensajes/{usuario_id}/{contacto_id}'                 , 'UsuarioController@mostrarMensajes');
-Route::addRoute('GET' , '/{sarasa}'                                            , 'HomeController@error404');
+Route::addRoute('GET' , '/{sarasa}'                                            , 'HomeController@index');
 Route::addRoute('GET' , '/{sarasa}/{sarasa}'                                   , 'HomeController@error404');
 Route::addRoute('GET' , '/{sarasa}/{sarasa}/{sarasa}'                          , 'HomeController@error404');
 
