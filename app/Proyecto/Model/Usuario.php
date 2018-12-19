@@ -529,7 +529,7 @@ class Usuario
     {
         echo"<table  class='table table-condensed'>";
         echo "<tr><th>USUARIO</th><th>NOMBRE</th><th>EMAIL</th><th>ESTADO</th><th>ACCIONES</th></tr>";
-        $query = "SELECT USUARIO_ID, NOMBRE, APELLIDO, EMAIL, ACTIVO, CASE ACTIVO WHEN 1  THEN 'Activo' ELSE 'Inactivo' END AS ACTIVOSTRING FROM USUARIOS ORDER BY USUARIO_ID";
+        $query = "SELECT USUARIO_ID, NOMBRE, APELLIDO, EMAIL, ACTIVO, CASE ACTIVO WHEN 1  THEN 'Activo' ELSE 'Inactivo' END AS ACTIVOSTRING FROM USUARIOS WHERE USUARIO_ID != 'pf_admin' ORDER BY USUARIO_ID";
         $stmt = DBConnection::getStatement($query);
 
         $stmt->execute();
@@ -676,7 +676,7 @@ class Usuario
     public static function BuscarUsuariosEnAdmin($inputs)
     {
 
-        $where = "WHERE 1 = 1 ";
+        $where = "WHERE USUARIO_ID != 'pf_admin' ";
 
         $datos = [];
         if ($inputs['id']) {

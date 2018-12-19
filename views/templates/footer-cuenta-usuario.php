@@ -105,7 +105,7 @@ $('[data-toggle="tooltip"]').tooltip()
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Buscar</button>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
                     <button type="button" class="btn btn-secondary cancelar">Cancelar</button>
                 </div>
             </form>

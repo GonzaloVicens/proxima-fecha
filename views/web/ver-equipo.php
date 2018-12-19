@@ -35,9 +35,9 @@ if(isset($equipoAMostrar)){
                         </div>
                         <h2 class='mt-5 ml-3 text-white'><?=$equipoAMostrar->getNombre()?></h2>
                     </div>
-                    <?php if ( (Session::has("usuario")) && ($equipoAMostrar->getCapitanID() == Session::get("usuario")->getUsuarioID())) {?>
+                    <?php if ( (Session::has("usuario")) && ($equipoAMostrar->getCapitanID() == Session::get("usuario")->getUsuarioID())) { /*?>
                         <div id='cambiar_fotoportada'><a href='#' title='actualizar portada' class='colorGris1 hoverVerde'><i class='fas fa-camera'></i> actualizar portada</a></div>
-                    <?php };?>
+                    <?php*/ };?>
                 </section>
                 <nav class="tabs_miequipo">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">

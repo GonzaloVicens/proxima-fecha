@@ -92,6 +92,7 @@ class AdminController //implements JsonSerializable
                 Usuario::ActualizarEstado($usuario_id, "1");
             };
         };
+        Session::set('tab','usuarios');
         header('Location: ' . App::$urlPath .'/adminPF/home');
 
     }
@@ -105,6 +106,7 @@ class AdminController //implements JsonSerializable
                 Usuario::ActualizarEstado($usuario_id, "0");
             };
         };
+        Session::set('tab','usuarios');
         header('Location: ' . App::$urlPath .'/adminPF/home');
 
     }
@@ -118,6 +120,7 @@ class AdminController //implements JsonSerializable
                 Equipo::ActualizarEstado($equipo_id, "1");
             };
         };
+        Session::set('tab','equipos');
         header('Location: ' . App::$urlPath .'/adminPF/home');
 
     }
@@ -131,6 +134,7 @@ class AdminController //implements JsonSerializable
                 Equipo::ActualizarEstado($equipo_id, "0");
             };
         };
+        Session::set('tab','equipos');
         header('Location: ' . App::$urlPath .'/adminPF/home');
 
     }
