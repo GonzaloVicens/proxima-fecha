@@ -40,8 +40,8 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
 
                     if (Session::has('errorImagenNoJPG') ){
                         if (Session::get('errorImagenNoJPG') == 'Y'){
-                            echo "<h1>HUBO UN ERROR EN EL FORMATO</h1>";
-                            echo "<h1>111" .Session::get('errorImagenNoJPG2') . "222</h1>" ;
+                            echo "<p class='text-center text-danger'><b>Formato de imagen no válido</b><br> sólo se permiten imágenes <em>.jpg</em></p>";
+                            echo "<p class='d-none'>111" .Session::get('errorImagenNoJPG2') . "222</p>" ;
                             Session::clearValue('errorImagenNoJPG') ;
                             Session::clearValue('errorImagenNoJPG2') ;
                         }

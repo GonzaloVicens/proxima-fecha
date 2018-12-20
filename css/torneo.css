@@ -12,6 +12,8 @@
   z-index: -999;
 }
 */
+.torneo .main_miequipo .col-md-9 #nav-tabContent {
+  min-height: 200px; }
 .torneo .eliminar-button {
   background: none;
   border: none;

@@ -26,6 +26,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
 <head>
     <title>proximafecha</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<?= App::$urlPath;?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= App::$urlPath;?>/css/estilo.css" rel="stylesheet">
 
@@ -52,6 +53,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
 </head>
 <body>
     <header class="shadow_bottom">
+        <h1 class="d-none fontsizecero">Proximafecha.com - Gestión Online de Torneos de Fútbol</h1>
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-white navbar-dark fondoHeader2">
             <!--a class="navbar-brand" href="#">Navbar</a-->
@@ -142,7 +144,7 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                 </ul>
                 <div class="form-buscar">
                     <form class="form-inline" action="<?= App::$urlPath ?>/buscar" method="post">
-                        <input class="form-control" name='criterio' type="text" placeholder="buscar" aria-label="Search">
+                        <input class="form-control" name='criterio' type="text" placeholder="Buscar..." aria-label="Search">
                         <!--button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button-->
                     </form>
                 </div>

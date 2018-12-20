@@ -123,7 +123,7 @@ Session::set('torneo',$torneoAMostrar);
             <?php }
                 $equiposCapitan =  $usuario->getEquiposInscripcion($torneoAMostrar->getTorneoID());
             if ($torneoAMostrar->estaInicial() && $usuario->esCapitanDeEquipo() && count($equiposCapitan) >0 ){ ?>
-                <form action="solicitar-inscripcion" method="POST" class="container">
+                <form action="solicitar-inscripcion" method="POST" class="container my-2">
                     <input type="hidden" name="torneo_id" value="<?=$torneoAMostrar->getTorneoID()?>" />
                     <label for="equipo_id">Mi Equipo</label>
                     <select name="equipo_id" id="equipo_id" class="form-control">
@@ -132,7 +132,7 @@ Session::set('torneo',$torneoAMostrar);
                         }
                         ?>
                     </select>
-                    <input type="submit" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde" value="Inscribirse en Torneo" />
+                    <input type="submit" class="naranjaFecha btn btn-lg btn-outline-warning hoverVerde my-3" value="Inscribirse en Torneo" />
                 </form>
             <?php } ?>
             </div>

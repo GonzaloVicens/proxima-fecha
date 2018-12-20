@@ -232,7 +232,7 @@ class Torneo
 
                 $notificacion = ['usuario_id' => $organizador_id  ,
                                 'torneo_id' => $torneoID,
-                                'mensaje' =>   "Se ha creado el torneo '" . $inputs['nombre'] . "'"];
+                                'mensaje' =>   "Se ha creado el torneo  <span class='verde3 font-regular-bold'>" . $inputs['nombre'] . "</span>"];
 
                 Notificacion::CrearNotificacion($notificacion );
             } else {
@@ -268,7 +268,7 @@ class Torneo
             foreach(Torneo::GetOrganizadoresActivosDelTorneo($inputs['torneo_id']) as $organizador) {
                 $notificacion = ['usuario_id' => $organizador  ,
                     'torneo_id' => $inputs['torneo_id'],
-                    'mensaje' =>   "Se ha actualizado el torneo '" . $inputs['nombre']. "'"];
+                    'mensaje' =>   "Se ha actualizado el torneo  <span class='verde3 font-regular-bold'>" . $inputs['nombre']. "</span>"];
                 Notificacion::CrearNotificacion($notificacion );
             }
         }else {
@@ -317,7 +317,7 @@ class Torneo
 
         foreach($this->organizadores as $organizador) {
             $notificacion = ['usuario_id' => $organizador  ,
-                'mensaje' =>   "Se ha eliminado el torneo '" . $this->nombre. "'"];
+                'mensaje' =>   "Se ha eliminado el torneo  <span class='verde3 font-regular-bold'>" . $this->nombre. "</span>"];
             Notificacion::CrearNotificacion($notificacion );
         }
 
@@ -516,14 +516,14 @@ class Torneo
         foreach($this->organizadores as $organizador) {
             $notificacion = ['usuario_id' => $organizador  ,
                 'torneo_id' => $this->torneo_id,
-                'mensaje' =>   "Se ha agregado el equipo '". $nombreEquipo ."' al torneo '" . $this->nombre. "'"];
+                'mensaje' =>   "Se ha agregado el equipo  <span class='verde3 font-regular-bold'>". $nombreEquipo ."</span> al torneo  <span class='verde3 font-regular-bold'>" . $this->nombre. "</span>"];
             Notificacion::CrearNotificacion($notificacion );
         }
 
         foreach(Equipo::GetJugadoresDelEquipo($equipo_id) as $jugador) {
             $notificacion = ['usuario_id' => $jugador  ,
                 'torneo_id' => $this->torneo_id,
-                'mensaje' =>   "Tu equipo '". $nombreEquipo ."' ha sido agregado al torneo '" . $this->nombre. "'"];
+                'mensaje' =>   "Tu equipo <span class='verde3 font-regular-bold'>". $nombreEquipo ."</span> ha sido agregado al torneo <span class='verde3 font-regular-bold'>" . $this->nombre. "</span>"];
             Notificacion::CrearNotificacion($notificacion );
         }
 
@@ -544,7 +544,7 @@ class Torneo
             foreach($this->organizadores as $organizador) {
                 $notificacion = ['usuario_id' => $organizador  ,
                     'torneo_id' => $this->torneo_id,
-                    'mensaje' =>   "Se ha eliminado el equipo '". $nombreEquipo ."' del torneo '" . $this->nombre. "'"];
+                    'mensaje' =>   "Se ha eliminado el equipo  <span class='verde3 font-regular-bold'>". $nombreEquipo ."</span> del torneo  <span class='verde3 font-regular-bold'>" . $this->nombre. "</span>"];
                 Notificacion::CrearNotificacion($notificacion );
             }
 
@@ -554,7 +554,7 @@ class Torneo
             foreach ($jugadores as $jugador) {
                 $notificacion = ['usuario_id' => $jugador,
                     'torneo_id' => $this->torneo_id,
-                    'mensaje' =>   "Tu equipo '". $nombreEquipo ."' ha sido eliminado del torneo '" . $this->nombre. "'"
+                    'mensaje' =>   "Tu equipo  <span class='verde3 font-regular-bold'>". $nombreEquipo ."</span> ha sido eliminado del torneo  <span class='verde3 font-regular-bold'>" . $this->nombre. "</span>"
                 ];
                 Notificacion::CrearNotificacion($notificacion);
             }
@@ -597,7 +597,7 @@ class Torneo
         foreach($this->organizadores as $organizador) {
             $notificacion = ['usuario_id' => $organizador  ,
                 'torneo_id' => $this->torneo_id,
-                'mensaje' =>   "Se ha generado el fixture del torneo '" . $this->nombre . "'"];
+                'mensaje' =>   "Se ha generado el fixture del torneo  <span class='verde3 font-regular-bold'>" . $this->nombre . "</span>"];
             Notificacion::CrearNotificacion($notificacion );
         }
 
@@ -822,10 +822,10 @@ class Torneo
 
         if ($activo) {
             $activo = '0';
-            $mensaje = "Se ha desactivado al organizador '" . $organizador_id . "' del torneo '" . $this->nombre . "'";
+            $mensaje = "Se ha desactivado al organizador  <span class='verde3 font-regular-bold'>" . $organizador_id . "</span> del torneo  <span class='verde3 font-regular-bold'>" . $this->nombre . "</span>";
         } else {
             $activo = '1';
-            $mensaje = "Se ha activado al organizador '" . $organizador_id . "' del torneo '" . $this->nombre . "'";
+            $mensaje = "Se ha activado al organizador  <span class='verde3 font-regular-bold'>" . $organizador_id . "</span> del torneo  <span class='verde3 font-regular-bold'>" . $this->nombre . "</span>";
         }
 
         $datos = ['torneo_id' => $this->torneo_id,
@@ -863,14 +863,14 @@ class Torneo
         if ( $stmt->execute($datos )) {
             $notificacion = ['usuario_id' => $organizador_id  ,
                 'torneo_id' => $this->torneo_id,
-                'mensaje' =>   "Has sido agregado como organizador del torneo '" . $this->nombre. "'"];
+                'mensaje' =>   "Has sido agregado como organizador del torneo <span class='verde3 font-regular-bold'>" . $this->nombre. "</span>"];
             Notificacion::CrearNotificacion($notificacion );
 
 
             foreach($this->organizadores as $organizador) {
                 $notificacion = ['usuario_id' => $organizador  ,
                     'torneo_id' => $this->torneo_id,
-                    'mensaje' =>   "Se ha agregado el organizador '". $organizador_id."' al torneo '" . $this->nombre. "'"];
+                    'mensaje' =>   "Se ha agregado el organizador <span class='verde3 font-regular-bold'>". $organizador_id."</span> al torneo <span class='pfgreen font-regular-bold'>" . $this->nombre. "</span>"];
                 Notificacion::CrearNotificacion($notificacion );
             }
 
@@ -908,13 +908,13 @@ class Torneo
 
             switch ( $nuevoEstado) {
                 case "I":
-                    $mensaje = "Se ha reiniciado el torneo '" . $nombre. "'";
+                    $mensaje = "Se ha reiniciado el torneo <span class='verde3 font-regular-bold'>" . $nombre. "</span>";
                     break;
                 case "C":
-                    $mensaje = "Se ha comenzado el torneo '" . $nombre. "'";
+                    $mensaje = "Se ha comenzado el torneo <span class='verde3 font-regular-bold'>" . $nombre. "</span>";
                     break;
                 case "F":
-                    $mensaje = "Se ha finalizado el torneo '" . $nombre. "'";
+                    $mensaje = "Se ha finalizado el torneo <span class='verde3 font-regular-bold'>" . $nombre. "</span>";
                     break;
             }
             foreach(Torneo::getOrganizadoresActivosDelTorneo($torneo) as $organizador) {
@@ -1396,7 +1396,7 @@ class Torneo
             foreach( Equipo::GetJugadoresDelEquipo($equipoCampeon['EQUIPO_ID']) as $jugador){
                 $notificacion = ['usuario_id' => $jugador,
                     'torneo_id' => $torneo,
-                    'mensaje' => "Tu equipo '" . $nombreCampeon . "' ha sido campeón del Torneo '" . $nombreTorneo ."'"];
+                    'mensaje' => "Tu equipo <span class='verde3 font-regular-bold'>" . $nombreCampeon . "</span> ha sido campeón del Torneo <span class='verde3 font-regular-bold'>" . $nombreTorneo ."</span>"];
 
                 Notificacion::CrearNotificacion($notificacion);
             };
@@ -1563,14 +1563,14 @@ class Torneo
         foreach( $organizadores  as $organizador) {
             $notificacion = ['usuario_id' => $organizador  ,
                 'torneo_id' => $datos['torneo_id'],
-                'mensaje' =>   "El equipo '". $nombreEquipo ."' ha solicitado inscribirse al torneo '" . $nombreTorneo . "'"];
+                'mensaje' =>   "El equipo <span class='verde3 font-regular-bold'>". $nombreEquipo ."</span> ha solicitado inscribirse al torneo <span class='verde3 font-regular-bold'>" . $nombreTorneo . "</span>"];
             Notificacion::CrearNotificacion($notificacion );
         }
 
         foreach(Equipo::GetJugadoresDelEquipo($datos['equipo_id']) as $jugador) {
             $notificacion = ['usuario_id' => $jugador  ,
                 'torneo_id' => $datos['torneo_id'],
-                'mensaje' =>   "Tu equipo '". $nombreEquipo ."' ha solicitado inscribirse al torneo '" .  $nombreTorneo . "'"];
+                'mensaje' =>   "Tu equipo <span class='verde3 font-regular-bold'>". $nombreEquipo ."</span> ha solicitado inscribirse al torneo <span class='verde3 font-regular-bold'>" .  $nombreTorneo . "</span>"];
             Notificacion::CrearNotificacion($notificacion );
         }
 

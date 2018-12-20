@@ -8,7 +8,6 @@ Detalles a corregir
 ===================
 
 a) Ver que cuando vuelve a Editar/Crear torneo con error, no trae la fecha que estaba
-d) Ver tema Deportes: Carga de Goles para Basquet / Voley / Rugby / Handball / Tenis / Paddle
 e) Cambiar que Cuando Ya Sos Pro aparezca mensaje "renovar Plazo Cuenta Pro" o similar
 f) Arreglar Canchas Sede, los espacios entre los datos --> que quede uniforme, quizás se pueda usar table
 

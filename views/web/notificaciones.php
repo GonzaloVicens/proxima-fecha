@@ -23,20 +23,20 @@ if (Session::has('logueado') && Session::get('logueado')=='S') {
                     <?php foreach($notificaciones as $notif) {
                         $boton ="";
                         IF (isset($notif['PARTIDO_ID']) && !empty($notif['PARTIDO_ID'])){
-                            $boton .= "<a href='../torneos/" . $notif['TORNEO_ID'] . "/" . $notif['FASE_ID'] . "/" . $notif['PARTIDO_ID'] .  "' alt='ver partido'> ver Partido </a>";
+                            $boton .= "<a class='pfgreen' href='../torneos/" . $notif['TORNEO_ID'] . "/" . $notif['FASE_ID'] . "/" . $notif['PARTIDO_ID'] .  "' alt='ver partido'>ver partido </a>";
                         } else {
                             if (isset($notif['TORNEO_ID']) && !empty($notif['TORNEO_ID'])){
-                                $boton .= "<a href='../torneos/" . $notif['TORNEO_ID'] . "' alt='ver torneo'> ver Torneo </a>";
+                                $boton .= "<a class='pfgreen' href='../torneos/" . $notif['TORNEO_ID'] . "' alt='ver torneo'> ver torneo </a>";
                             }
                         }
 
 
                         IF (isset($notif['EQUIPO_ID']) && !empty($notif['EQUIPO_ID'])){
-                            $boton .= "<a href='../equipos/" . $notif['EQUIPO_ID'] . "' alt='ver equipo'> ver Equipo </a>";
+                            $boton .= "<a class='pfgreen' href='../equipos/" . $notif['EQUIPO_ID'] . "' alt='ver equipo'> ver equipo </a>";
                         }
 
                         IF (isset($notif['SEDE_ID']) && !empty($notif['SEDE_ID'])){
-                            $boton .= "<a href='../sedes/" .  $notif['SEDE_ID'] .  "' alt='ver sede'> ver Sede </a>";
+                            $boton .= "<a class='pfgreen' href='../sedes/" .  $notif['SEDE_ID'] .  "' alt='ver sede'> ver sede </a>";
                         }
                         ?>
                         <li class="list-group-item">

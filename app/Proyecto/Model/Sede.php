@@ -111,7 +111,7 @@ class Sede
 
             $notificacion = ['usuario_id' => $duenio  ,
                 'sede_id' => $sede_id,
-                'mensaje' =>   "Has creado la sede '" . $inputs['nombre'] . "'"];
+                'mensaje' =>   "Has creado la sede  <span class='verde3 font-regular-bold'>" . $inputs['nombre'] . "</span>"];
 
             Notificacion::CrearNotificacion($notificacion );
 
@@ -162,7 +162,7 @@ class Sede
         foreach($this->duenos as $dueno) {
             $notificacion = ['usuario_id' => $dueno  ,
                 'sede_id' => $this->sede_id,
-                'mensaje' =>   "Se ha eliminado la Sede '" . $this->nombre  . "'"];
+                'mensaje' =>   "Se ha eliminado la Sede  <span class='verde3 font-regular-bold'>" . $this->nombre  . "</span>"];
 
             Notificacion::CrearNotificacion($notificacion );
         }
@@ -260,7 +260,7 @@ class Sede
             $notificacion = ['usuario_id' => $dueno,
                             'sede_id' => $this->sede_id,
                             'cancha_id' => $canchaCreada,
-                            'mensaje' =>   "Has creado la cancha '" . $inputs['nombre']. "' en la Sede '" . $this->nombre  . "'"];
+                            'mensaje' =>   "Has creado la cancha  <span class='verde3 font-regular-bold'>" . $inputs['nombre']. "</span> en la Sede  <span class='verde3 font-regular-bold'>" . $this->nombre  . "</span>"];
 
             Notificacion::CrearNotificacion($notificacion );
         }
@@ -446,10 +446,10 @@ class Sede
 
         if ($activo) {
             $activo = '0';
-            $mensaje = "Se ha inactivado el dueño '" . $dueno_id  . "'en la Sede '" . $this->nombre  . "'";
+            $mensaje = "Se ha inactivado el dueño  <span class='verde3 font-regular-bold'>" . $dueno_id  . "</span> en la Sede  <span class='verde3 font-regular-bold'>" . $this->nombre  . "</span>";
         } else {
             $activo = '1';
-            $mensaje = "Se ha activado el dueño '" . $dueno_id  . "' en la Sede '" . $this->nombre  . "'";
+            $mensaje = "Se ha activado el dueño  <span class='verde3 font-regular-bold'>" . $dueno_id  . "</span> en la Sede  <span class='verde3 font-regular-bold'>" . $this->nombre  . "</span>";
         }
 
         $datos = ['sede_id' => $this->sede_id,
@@ -482,7 +482,7 @@ class Sede
             foreach($this->duenos as $dueno) {
                 $notificacion = ['usuario_id' => $dueno  ,
                     'sede_id' => $this->sede_id,
-                    'mensaje' =>   "Se ha agregado al dueño '" . $dueno_id  . "' en la Sede '" . $this->nombre   . "'"];
+                    'mensaje' =>   "Se ha agregado al dueño  <span class='verde3 font-regular-bold'>" . $dueno_id  . "</span> en la Sede  <span class='verde3 font-regular-bold'>" . $this->nombre   . "</span>"];
                 Notificacion::CrearNotificacion($notificacion );
             }
         } else {
@@ -498,7 +498,7 @@ class Sede
             $notificacion = ['usuario_id' => $dueno->getUsuarioID()  ,
                 'sede_id' => $this->sede_id,
                 'cancha_id' => $inputs['cancha_id'],
-                'mensaje' =>   "Se ha eliminado la cancha '" . $inputs['cancha_id'] . "' de la Sede '" . $this->nombre   . "'"];
+                'mensaje' =>   "Se ha eliminado la cancha  <span class='verde3 font-regular-bold'>" . $inputs['cancha_id'] . "</span> de la Sede  <span class='verde3 font-regular-bold'>" . $this->nombre   . "</span>"];
             Notificacion::CrearNotificacion($notificacion );
         }
     }

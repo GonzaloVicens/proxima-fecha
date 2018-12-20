@@ -231,6 +231,7 @@ $('[data-toggle="tooltip"]').tooltip()
                     <div class="row">
                         <div class="col-md-12">
                             <div class="modal-body my-3 pt-4 pb-5">
+                                <p class="font-italic text-center">Sólo se permiten imágenes formato .jpg</p>
                                 <label for="BuscarImagen">Buscar imagen:</label>
                                 <div class="input-group">
                                     <input class="py-2" type="file" id="BuscarImagen" name="foto">
@@ -241,8 +242,8 @@ $('[data-toggle="tooltip"]').tooltip()
                 </div>
                 <div class="modal-footer">
                     <input type='hidden' name='usuario_id' value='<?php echo $usuario->getUsuarioId() ?>'/>
-                    <input type="submit" class="btn btn-primary" value="Guardar" />
-                    <button type="button" class="btn btn-secondary cancelar">Cancelar</button>
+                    <input type="submit" class="btn btn-outline-success" value="Guardar" />
+                    <button type="button" class="btn btn-outline-secondary cancelar">Cancelar</button>
                 </div>
             </form>
         </div>

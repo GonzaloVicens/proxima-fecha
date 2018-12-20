@@ -3,6 +3,16 @@
 
 .notificaciones {
 
+  .list-group.colorGris2 {
+
+    .list-group-item:nth-child(even){
+      background-color: $col_gris3;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+
   .fecha {
     color: $col_verde1;
     font-style: italic;

@@ -32,6 +32,16 @@
 * {
   font-family: 'Segoe UI', 'Helvetica', 'Roboto', Arial, sans-serif; }
 
+.fontsizecero {
+  font-size: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  color: transparent !important;
+  height: 0 !important;
+  width: 0 !important; }
+
 .logoHeader {
   height: 70px; }
 
@@ -219,6 +229,12 @@
 
 .fontSize5rem {
   font-size: 5rem; }
+
+.fontSize3rem {
+  font-size: 3rem; }
+
+.lineHeight2 {
+  line-height: 2rem; }
 
 .fontSize1-6rem {
   font-size: 1.6rem; }
@@ -1028,6 +1044,10 @@ nav {
   z-index: -999;
 }
 */
+.notificaciones .list-group.colorGris2 .list-group-item:nth-child(even) {
+  background-color: #eeeeee; }
+.notificaciones .list-group.colorGris2 a {
+  text-decoration: none; }
 .notificaciones .fecha {
   color: #18C25D;
   font-style: italic;
@@ -1608,6 +1628,8 @@ section.portada {
   z-index: -999;
 }
 */
+.torneo .main_miequipo .col-md-9 #nav-tabContent {
+  min-height: 200px; }
 .torneo .eliminar-button {
   background: none;
   border: none;
@@ -1663,6 +1685,28 @@ section.portada {
   z-index: -999;
 }
 */
+.fixture-torneo-completo .owl-carousel .owl-nav button {
+  /*font-size: 3rem !important;
+  height: 40px  !important;
+  width: 40px  !important;
+  display: block  !important;
+  color: $col_gris2;*/
+  /*
+  &.owl-prev {
+    &:after {
+      font-family: 'FontAwesome';
+      content: '\f104';
+    }
+  }
+  &.owl-next {
+    &:after {
+      font-family: 'FontAwesome';
+      content: '\f105';
+    }
+  }
+  */ }
+  .fixture-torneo-completo .owl-carousel .owl-nav button span {
+    display: none; }
 .fixture-torneo-completo .equipo_container {
   margin: 20px;
   width: 220px; }

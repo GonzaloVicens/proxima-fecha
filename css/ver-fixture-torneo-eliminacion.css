@@ -12,6 +12,28 @@
   z-index: -999;
 }
 */
+.fixture-torneo-completo .owl-carousel .owl-nav button {
+  /*font-size: 3rem !important;
+  height: 40px  !important;
+  width: 40px  !important;
+  display: block  !important;
+  color: $col_gris2;*/
+  /*
+  &.owl-prev {
+    &:after {
+      font-family: 'FontAwesome';
+      content: '\f104';
+    }
+  }
+  &.owl-next {
+    &:after {
+      font-family: 'FontAwesome';
+      content: '\f105';
+    }
+  }
+  */ }
+  .fixture-torneo-completo .owl-carousel .owl-nav button span {
+    display: none; }
 .fixture-torneo-completo .equipo_container {
   margin: 20px;
   width: 220px; }

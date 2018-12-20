@@ -11,7 +11,7 @@ use Proyecto\Session\Session;
 
 $resultado = "<ul class='list-group colorGris2 rounded shadow-sm'>";
 $finresultado = "</ul>";
-$sinresultados = "<div class='d-flex align-items-center justify-content-center sin_resultados text-center colorGris1 fontSize5rem border shadow-sm p-3'><i class='fas fa-search mx-5'></i><p class='h2 text-left'>No hubo coincidencias<br> con la búsqueda</p></div>";
+$sinresultados = "<div class='d-flex align-items-center justify-content-center sin_resultados text-center colorGris1 fontSize3rem border shadow-sm p-3'><i class='fas fa-search mx-5'></i><p class='fontSize1-6rem lineHeight2 text-left'>No hubo coincidencias<br> con la búsqueda</p></div>";
 $listado_user = "";
 $listado_torneos = "";
 $listado_sedes = "";

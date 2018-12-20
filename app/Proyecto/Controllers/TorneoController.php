@@ -608,7 +608,7 @@ class TorneoController
             foreach ($jugadores as $jugador) {
                 $notificacion = ['usuario_id' => $jugador,
                     'torneo_id' => $torneo_id,
-                    'mensaje' => "Tu inscripción al torneo '" . $nombreTorneo . "' con el equipo '" . $nombreEquipo . " ha sido rechazada."
+                    'mensaje' => "Tu inscripción al torneo <span class='verde3 font-regular-bold'>" . $nombreTorneo . "</span> con el equipo <span class='verde3 font-regular-bold'>" . $nombreEquipo . "</span> ha sido rechazada."
                 ];
                 Notificacion::CrearNotificacion($notificacion);
             }

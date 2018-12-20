@@ -4,6 +4,40 @@
 
 .fixture-torneo-completo {
 
+  owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+    ///display: none !important;
+  }
+
+  .owl-carousel {
+      .owl-nav {
+        button {
+            /*font-size: 3rem !important;
+            height: 40px  !important;
+            width: 40px  !important;
+            display: block  !important;
+            color: $col_gris2;*/
+
+            span {
+              display: none;
+            }
+            /*
+            &.owl-prev {
+              &:after {
+                font-family: 'FontAwesome';
+                content: '\f104';
+              }
+            }
+            &.owl-next {
+              &:after {
+                font-family: 'FontAwesome';
+                content: '\f105';
+              }
+            }
+            */
+        }
+      }
+  }
+
   .equipo_container {
     margin:20px;
     width:220px;}

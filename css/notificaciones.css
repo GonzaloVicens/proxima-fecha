@@ -12,6 +12,10 @@
   z-index: -999;
 }
 */
+.notificaciones .list-group.colorGris2 .list-group-item:nth-child(even) {
+  background-color: #eeeeee; }
+.notificaciones .list-group.colorGris2 a {
+  text-decoration: none; }
 .notificaciones .fecha {
   color: #18C25D;
   font-style: italic;
