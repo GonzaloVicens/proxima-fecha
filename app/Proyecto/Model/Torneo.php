@@ -1439,7 +1439,7 @@ class Torneo
                 $label = "Ver Partido" ;
                 $icon = "<i class='fas fa-eye'></i><span class='d-none'>ver</span>";
             }
-            $htmlPartido .= "<div class='actualizar_ver'><a href='". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "' title=' $label '>$icon </a></div>";
+            $htmlPartido .= "<div class='actualizar_ver'><a href='../". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "' title=' $label '>$icon </a></div>";
         }
 
         $htmlPartido.= "</div>";

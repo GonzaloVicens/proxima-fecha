@@ -40,6 +40,7 @@ Route::addRoute('GET' , '/torneos/{torneo_id}'                                 ,
 Route::addRoute('GET' , '/torneos/editar-torneo'                               , 'TorneoController@editarTorneo');
 Route::addRoute('POST', '/torneos/editar-torneo'                               , 'TorneoController@actualizarTorneo');
 Route::addRoute('GET' , '/torneos/editar-organizadores'                        , 'TorneoController@editarOrganizadores');
+Route::addRoute('POST' , '/torneos/editar-organizador'                          , 'TorneoController@editarOrganizador');
 Route::addRoute('POST', '/torneos/agregar-organizador'                         , 'TorneoController@agregarOrganizador');
 Route::addRoute('POST', '/torneos/solicitar-inscripcion'                       , 'TorneoController@solicitarInscripcion');
 Route::addRoute('POST', '/torneos/agregar-inscripcion'                         , 'TorneoController@agregarInscripcion');

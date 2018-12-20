@@ -25,7 +25,7 @@ $datosPartido = $partidoActual->getInfoPartido();
             </div>
 
             <?php
-            $hrefBotonVolver =   App::$urlPath . "/torneos/ver-fixture-completo";
+            $hrefBotonVolver =   App::$urlPath . "/torneos/ver-fixture-completo/".$partidoActual->getTorneoID();
             $etiquetaBotonVolver = "Volver";
             if (Torneo::GetEstadoIdPorTorneo($partidoActual->getTorneoID()) == 'C') {
                 if (Session::has('logueado')) {

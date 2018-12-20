@@ -52,7 +52,7 @@ $torneoAMostrar->actualizar();
                                             $label = "Ver Partido";
                                             $icon = "<i class='fas fa-eye'></i><span class='d-none'>ver</span>";
                                         }
-                                        echo "<td class='actualizar_ver'><a href='". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "' title=' $label '>$icon </a></td>";
+                                        echo "<td class='actualizar_ver'><a href='../". $partido->getTorneoID() . "/" . $partido->getFaseID() . "/" . $partido->getPartidoID() . "' title=' $label '>$icon </a></td>";
                                         ?>
                                     </tr>
                                 <?php }?>

@@ -319,7 +319,7 @@ class TorneoController
         $torneo->actualizar();
         $torneo->generarFixture();
         Session::set('torneo',$torneo);
-        header('Location: ' . App::$urlPath . '/torneos/ver-fixture-completo' );
+        header('Location: ' . App::$urlPath . '/torneos/ver-fixture-completo/' . $torneo->getTorneoID() );
     }
 
     public function verFixtureCompleto()
@@ -465,7 +465,7 @@ class TorneoController
             Session::clearValue('vinoDeFase');
             header('Location: ' . App::$urlPath . '/torneos/' . $partidoAFinalizar->getTorneoID()."/".$partidoAFinalizar->getFaseID());
         }else {
-            header('Location: ' . App::$urlPath . '/torneos/ver-fixture-completo');
+            header('Location: ' . App::$urlPath . '/torneos/ver-fixture-completo/' . $partidoAFinalizar->getTorneoID());
         }
 
     }
