@@ -299,12 +299,19 @@ INSERT INTO SEDES  VALUES (1, 'Sin Definir', 'ARG', 'BUE', 'N/A', 'Sin Definir',
 INSERT INTO SEDES  VALUES (2, 'La Popular', 'ARG', 'BUE', '1752', 'Costa Rica', 80, '4655-2212', NULL ,'2018-12-01');
 INSERT INTO SEDES  VALUES (3, 'Complejo Norte', 'ARG', 'BUE', '1222', 'Av Juan B Justo', 1101, '2344-5312', 'Entre Venezuela y Bolivar',CURDATE());
 
+INSERT INTO CANCHAS  VALUES (1, 1, 'Sin Definir', 1, 0);
+INSERT INTO CANCHAS  VALUES (2, 1, 'La Canchita', 1, 300);
+INSERT INTO CANCHAS  VALUES (2, 2, 'La Techada', 1, 300);
+INSERT INTO CANCHAS  VALUES (3, 1, 'Abajo Futbol 1', 1, 300);
+INSERT INTO CANCHAS  VALUES (3, 2, 'Abajo Futbol 2', 1, 300);
+INSERT INTO CANCHAS  VALUES (3, 3, 'Abajo ', 3, 250);
+INSERT INTO CANCHAS  VALUES (3, 4, 'Arriba ', 3, 250);
+
+
 INSERT INTO ESTADOS_TORNEO VALUES ('I', 'No Iniciado');
 INSERT INTO ESTADOS_TORNEO VALUES ('C', 'En Curso');
 INSERT INTO ESTADOS_TORNEO VALUES ('F', 'Finalizado');
 
-INSERT INTO TORNEOS  VALUES (1, 'Torneo DaVinci', 1, 'L', 10, '2018-12-01', 2, 'I','2018-01-01');
-INSERT INTO TORNEOS  VALUES (2, 'Roland Garros', 3, 'C', 32,  '2016-12-01', 2, 'F','2018-01-01');
 
 INSERT INTO USUARIOS  VALUES ('pf_admin',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', 'Admin', 'ProximaFecha', 'contacto@proximafecha.com', '1', '4655-1231',  '2016-10-01', '2018-01-01', 'Y',CURDATE());
 INSERT INTO USUARIOS  VALUES ('facundoS',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', 'Facundo', 'Salerno', 'facundo.salerno@davinci.edu.ar', '1', '4655-1231',  '2016-10-01', '2018-01-01', 'Y',CURDATE());
@@ -419,129 +426,127 @@ INSERT INTO USUARIOS  VALUES ('jugador78',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqki
 INSERT INTO USUARIOS  VALUES ('jugador79',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' José Antonio', 'Paradela', 'mailFalso79@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-01-01', 'Y','2018-01-01' );
 INSERT INTO USUARIOS  VALUES ('jugador80',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Patricio Iván', 'Monti', 'mailFalso80@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-01-01', 'Y','2018-01-01' );
 INSERT INTO USUARIOS  VALUES ('jugador81',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Leonardo Roque Albano', 'Gil', 'mailFalso81@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-01-01', 'Y','2018-01-01' );
-INSERT INTO USUARIOS  VALUES ('jugador82',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Joaquín Nicolás', 'Pereyra', 'mailFalso82@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-01-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador83',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Federico Gastón', 'Carrizo', 'mailFalso83@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador84',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Néstor Ezequiel', 'Ortigoza', 'mailFalso84@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador85',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' José Luis', 'Fernández', 'mailFalso85@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador86',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Hugo', 'Arismendi Ciaparetta', 'mailFalso86@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador87',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Washington Fernando', 'Camacho Martínez', 'mailFalso87@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador88',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Andrés', 'Lioi', 'mailFalso88@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador89',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Eugenio', 'Becker', 'mailFalso89@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador90',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Pedro Emmanuel', 'Ojeda', 'mailFalso90@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador91',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Hernán Darío', 'Bernardello', 'mailFalso91@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador92',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Braian Abel', 'Rivero', 'mailFalso92@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador93',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Brian Oscar', 'Sarmiento', 'mailFalso93@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador94',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Emanuel Joel', 'Amoroso', 'mailFalso94@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador95',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Victor Alberto', 'Figueroa', 'mailFalso95@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador96',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Joaquín', 'Torres', 'mailFalso96@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador97',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Julián', 'Marcioni', 'mailFalso97@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador98',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jerónimo', 'Cacciabue', 'mailFalso98@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador99',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Mauro Abel', 'Formica', 'mailFalso99@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador100',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Lisandro Joel', 'Alzugaray', 'mailFalso100@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador101',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Tomás', 'Moschión', 'mailFalso101@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador102',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Matías Lionel', 'Fritzler', 'mailFalso102@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador103',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jonatan Sebastián', 'Galván', 'mailFalso103@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador104',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Alan Nahuel', 'Ruiz', 'mailFalso104@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador105',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Tomás Alejandro', 'Chancalay', 'mailFalso105@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador106',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Adrián Jesús', 'Bastía ', 'mailFalso106@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador107',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Mariano Nicolás', 'González', 'mailFalso107@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador108',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Franco', 'Zuculini', 'mailFalso108@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador109',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Leonardo Matías', 'Heredia', 'mailFalso109@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador110',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Christian Oscar', 'Bernardi', 'mailFalso110@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador111',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Damián Alberto', 'Martínez', 'mailFalso111@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador112',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nelson Fernando', 'Acevedo', 'mailFalso112@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador113',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gabriel Carlos', 'Compagnucci', 'mailFalso113@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador114',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Rodrigo', 'Gómez', 'mailFalso114@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador115',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Martín', 'Zabala Morales', 'mailFalso115@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador116',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Walter Germán', 'Bracamonte', 'mailFalso116@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador117',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Matías Ignacio', 'García', 'mailFalso117@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador118',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Braian Gabriel', 'Álvarez', 'mailFalso118@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador119',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Santiago Nicolás', 'Lebus', 'mailFalso119@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador120',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Manuel Ignacio', 'De Iriondo', 'mailFalso120@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador121',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Wilson Iván', 'Altamirano', 'mailFalso121@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador122',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gastón Ignacio', 'Gil Romero', 'mailFalso122@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador123',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Federico Eduardo', 'Lértora', 'mailFalso123@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador124',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Juan Francisco', 'Brunetta', 'mailFalso124@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador125',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Rodrigo Gastón Alesis', 'Gómez', 'mailFalso125@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador126',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Martín Rodrigo', 'Rivero', 'mailFalso126@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador127',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gabriel Gustavo', 'Alanís', 'mailFalso127@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador128',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Denis', 'Rodríguez', 'mailFalso128@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador129',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Valentín', 'Barbero', 'mailFalso129@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador130',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nehemías Joaquín', 'Rikemberg', 'mailFalso130@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador131',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Javier Marcelo', 'Gandolfi', 'mailFalso131@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador132',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Pablo Horacio', 'Guiñazú ', 'mailFalso132@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador133',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Adrián Andrés', 'Cubas', 'mailFalso133@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador134',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gonzalo', 'Maroni', 'mailFalso134@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador135',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Aldo Andrés', 'Araujo', 'mailFalso135@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador136',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fernando', 'Juárez', 'mailFalso136@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y','2018-12-01' );
-INSERT INTO USUARIOS  VALUES ('jugador137',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Samuel Alejandro', 'Sosa Cordero', 'mailFalso137@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01', 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador138',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Luis', 'Valoyes Ruiz', 'mailFalso138@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador139',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Juan Edgardo', 'Ramírez', 'mailFalso139@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador140',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Joel', 'Soñora', 'mailFalso140@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador141',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Claudio Nicolás', 'Bravo', 'mailFalso141@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador142',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Emanuel Rodrigo', 'Cecchini', 'mailFalso142@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador143',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Adrián Daniel', 'Calello', 'mailFalso143@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador144',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nicolás Santiago', 'Bertolo', 'mailFalso144@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador145',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jesús Alberto', 'Dátolo', 'mailFalso145@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador146',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nicolás Hugo', 'Linares', 'mailFalso146@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador147',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Sebastián Martín', 'Benega', 'mailFalso147@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador148',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Giuliano', 'Galoppo', 'mailFalso148@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador149',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Enzo Maximiliano', 'Kalinski', 'mailFalso149@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador150',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Luciano Luis Romilio', 'Gómez', 'mailFalso150@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador151',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Leandro Isaac', 'Maciel', 'mailFalso151@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador152',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fernando Omar', 'Barrientos', 'mailFalso152@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador153',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Tomás', 'Belmonte', 'mailFalso153@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador154',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gastón Andrés', 'Lodico', 'mailFalso154@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador155',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Facundo Tomás', 'Quignon', 'mailFalso155@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador156',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nicolás', 'Pasquini', 'mailFalso156@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador157',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Lucas Andrés', 'Mugni', 'mailFalso157@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador158',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gabriel Darío', 'Carrasco', 'mailFalso158@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador159',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Pedro', 'De la Vega', 'mailFalso159@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador160',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Kevin Alexander', 'Cardozo', 'mailFalso160@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador161',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Francis Manuel', 'Mac Allister', 'mailFalso161@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador162',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Facundo Matías', 'Barboza', 'mailFalso162@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador163',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gastón', 'Machín', 'mailFalso163@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador164',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Oscar', 'Benítez', 'mailFalso164@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador165',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Alexis', 'Mac Allister', 'mailFalso165@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador166',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Juan Ignacio', 'Méndez Aveiro', 'mailFalso166@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador167',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fausto Mariano', 'Vera', 'mailFalso167@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador168',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Matías Alexis', 'Romero', 'mailFalso168@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador169',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fausto Emanuel', 'Montero', 'mailFalso169@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador170',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Matko Mijael', 'Miljevic', 'mailFalso170@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador171',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Agustín Ignacio', 'Aleo', 'mailFalso171@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador172',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Luciano Gastón', 'Pizarro', 'mailFalso172@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador173',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Ángel', 'González', 'mailFalso173@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador174',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jalil Juan José', 'Elías', 'mailFalso174@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador175',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Iván Rodrigo', 'Ramírez Segovia', 'mailFalso175@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador176',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Enzo Agustín', 'Manzur', 'mailFalso176@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador177',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Leandro Ezequiel', 'Lencinas', 'mailFalso177@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador178',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fabián Gastón', 'Henríquez', 'mailFalso178@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador179',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego', 'Sosa', 'mailFalso179@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador180',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fabrizio Germán', 'Angileri', 'mailFalso180@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador181',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Lucas Ariel', 'Menossi', 'mailFalso181@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador182',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Martín', 'Galmarini', 'mailFalso182@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador183',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Walter Damián', 'Montillo', 'mailFalso183@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador184',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Juan Ignacio', 'Cavallaro', 'mailFalso184@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador185',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Franco Ezequiel', 'Bustamante', 'mailFalso185@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador186',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Leonardo Sebastián', 'Prediger', 'mailFalso186@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador187',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jorge Alberto', 'Ortiz', 'mailFalso187@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador188',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Maximiliano David', 'González', 'mailFalso188@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador189',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Alejandro', 'Sosa', 'mailFalso189@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador190',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jorge Iván', 'Bolaño', 'mailFalso190@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador191',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fabián Andrés', 'Cubero ', 'mailFalso191@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador192',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Guido', 'Mainero', 'mailFalso192@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador193',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jesús David José', 'Méndez', 'mailFalso193@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador194',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Cristian David', 'Núñez Morales', 'mailFalso194@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador195',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Lucas Gastón', 'Robertone', 'mailFalso195@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador196',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Luis Antonio', 'Amarilla Lencina', 'mailFalso196@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador197',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Thiago', 'Almada', 'mailFalso197@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador198',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Martín Matías Ezequiel', 'Vargas', 'mailFalso198@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador199',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Pablo Ignacio', 'Galdames Millán', 'mailFalso199@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-INSERT INTO USUARIOS  VALUES ('jugador200',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nicolás Martín', 'Domínguez', 'mailFalso200@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(), 'Y',CURDATE() );
-
-
-
-
+INSERT INTO USUARIOS  VALUES ('jugador82',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Joaquín Nicolás', 'Pereyra', 'mailFalso82@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-01-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador83',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Federico Gastón', 'Carrizo', 'mailFalso83@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador84',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Néstor Ezequiel', 'Ortigoza', 'mailFalso84@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador85',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' José Luis', 'Fernández', 'mailFalso85@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador86',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Hugo', 'Arismendi Ciaparetta', 'mailFalso86@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador87',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Washington Fernando', 'Camacho Martínez', 'mailFalso87@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador88',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Andrés', 'Lioi', 'mailFalso88@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador89',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Eugenio', 'Becker', 'mailFalso89@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador90',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Pedro Emmanuel', 'Ojeda', 'mailFalso90@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador91',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Hernán Darío', 'Bernardello', 'mailFalso91@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador92',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Braian Abel', 'Rivero', 'mailFalso92@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador93',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Brian Oscar', 'Sarmiento', 'mailFalso93@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador94',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Emanuel Joel', 'Amoroso', 'mailFalso94@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador95',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Victor Alberto', 'Figueroa', 'mailFalso95@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador96',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Joaquín', 'Torres', 'mailFalso96@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador97',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Julián', 'Marcioni', 'mailFalso97@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador98',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jerónimo', 'Cacciabue', 'mailFalso98@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador99',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Mauro Abel', 'Formica', 'mailFalso99@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador100',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Lisandro Joel', 'Alzugaray', 'mailFalso100@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador101',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Tomás', 'Moschión', 'mailFalso101@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador102',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Matías Lionel', 'Fritzler', 'mailFalso102@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador103',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jonatan Sebastián', 'Galván', 'mailFalso103@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador104',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Alan Nahuel', 'Ruiz', 'mailFalso104@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador105',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Tomás Alejandro', 'Chancalay', 'mailFalso105@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador106',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Adrián Jesús', 'Bastía ', 'mailFalso106@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador107',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Mariano Nicolás', 'González', 'mailFalso107@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador108',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Franco', 'Zuculini', 'mailFalso108@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador109',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Leonardo Matías', 'Heredia', 'mailFalso109@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador110',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Christian Oscar', 'Bernardi', 'mailFalso110@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador111',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Damián Alberto', 'Martínez', 'mailFalso111@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador112',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nelson Fernando', 'Acevedo', 'mailFalso112@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador113',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gabriel Carlos', 'Compagnucci', 'mailFalso113@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador114',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Rodrigo', 'Gómez', 'mailFalso114@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador115',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Martín', 'Zabala Morales', 'mailFalso115@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador116',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Walter Germán', 'Bracamonte', 'mailFalso116@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador117',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Matías Ignacio', 'García', 'mailFalso117@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador118',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Braian Gabriel', 'Álvarez', 'mailFalso118@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador119',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Santiago Nicolás', 'Lebus', 'mailFalso119@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador120',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Manuel Ignacio', 'De Iriondo', 'mailFalso120@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador121',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Wilson Iván', 'Altamirano', 'mailFalso121@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador122',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gastón Ignacio', 'Gil Romero', 'mailFalso122@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador123',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Federico Eduardo', 'Lértora', 'mailFalso123@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador124',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Juan Francisco', 'Brunetta', 'mailFalso124@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador125',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Rodrigo Gastón Alesis', 'Gómez', 'mailFalso125@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador126',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Martín Rodrigo', 'Rivero', 'mailFalso126@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador127',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gabriel Gustavo', 'Alanís', 'mailFalso127@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador128',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Denis', 'Rodríguez', 'mailFalso128@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador129',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Valentín', 'Barbero', 'mailFalso129@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador130',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nehemías Joaquín', 'Rikemberg', 'mailFalso130@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador131',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Javier Marcelo', 'Gandolfi', 'mailFalso131@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador132',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Pablo Horacio', 'Guiñazú ', 'mailFalso132@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador133',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Adrián Andrés', 'Cubas', 'mailFalso133@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador134',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gonzalo', 'Maroni', 'mailFalso134@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador135',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Aldo Andrés', 'Araujo', 'mailFalso135@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador136',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fernando', 'Juárez', 'mailFalso136@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador137',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Samuel Alejandro', 'Sosa Cordero', 'mailFalso137@davinci.edu.ar', '1', null,  '2016-10-01' , '2018-12-01','Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador138',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Luis', 'Valoyes Ruiz', 'mailFalso138@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador139',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Juan Edgardo', 'Ramírez', 'mailFalso139@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador140',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Joel', 'Soñora', 'mailFalso140@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador141',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Claudio Nicolás', 'Bravo', 'mailFalso141@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador142',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Emanuel Rodrigo', 'Cecchini', 'mailFalso142@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador143',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Adrián Daniel', 'Calello', 'mailFalso143@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador144',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nicolás Santiago', 'Bertolo', 'mailFalso144@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador145',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jesús Alberto', 'Dátolo', 'mailFalso145@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador146',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nicolás Hugo', 'Linares', 'mailFalso146@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador147',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Sebastián Martín', 'Benega', 'mailFalso147@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador148',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Giuliano', 'Galoppo', 'mailFalso148@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador149',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Enzo Maximiliano', 'Kalinski', 'mailFalso149@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador150',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Luciano Luis Romilio', 'Gómez', 'mailFalso150@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador151',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Leandro Isaac', 'Maciel', 'mailFalso151@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador152',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fernando Omar', 'Barrientos', 'mailFalso152@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador153',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Tomás', 'Belmonte', 'mailFalso153@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador154',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gastón Andrés', 'Lodico', 'mailFalso154@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador155',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Facundo Tomás', 'Quignon', 'mailFalso155@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador156',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nicolás', 'Pasquini', 'mailFalso156@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador157',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Lucas Andrés', 'Mugni', 'mailFalso157@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador158',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gabriel Darío', 'Carrasco', 'mailFalso158@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador159',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Pedro', 'De la Vega', 'mailFalso159@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador160',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Kevin Alexander', 'Cardozo', 'mailFalso160@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador161',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Francis Manuel', 'Mac Allister', 'mailFalso161@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador162',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Facundo Matías', 'Barboza', 'mailFalso162@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador163',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Gastón', 'Machín', 'mailFalso163@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador164',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Oscar', 'Benítez', 'mailFalso164@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador165',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Alexis', 'Mac Allister', 'mailFalso165@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador166',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Juan Ignacio', 'Méndez Aveiro', 'mailFalso166@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador167',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fausto Mariano', 'Vera', 'mailFalso167@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador168',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Matías Alexis', 'Romero', 'mailFalso168@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador169',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fausto Emanuel', 'Montero', 'mailFalso169@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador170',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Matko Mijael', 'Miljevic', 'mailFalso170@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador171',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Agustín Ignacio', 'Aleo', 'mailFalso171@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador172',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Luciano Gastón', 'Pizarro', 'mailFalso172@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador173',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Ángel', 'González', 'mailFalso173@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador174',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jalil Juan José', 'Elías', 'mailFalso174@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador175',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Iván Rodrigo', 'Ramírez Segovia', 'mailFalso175@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador176',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Enzo Agustín', 'Manzur', 'mailFalso176@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador177',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Leandro Ezequiel', 'Lencinas', 'mailFalso177@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador178',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fabián Gastón', 'Henríquez', 'mailFalso178@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador179',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego', 'Sosa', 'mailFalso179@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador180',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fabrizio Germán', 'Angileri', 'mailFalso180@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador181',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Lucas Ariel', 'Menossi', 'mailFalso181@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador182',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Martín', 'Galmarini', 'mailFalso182@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador183',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Walter Damián', 'Montillo', 'mailFalso183@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador184',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Juan Ignacio', 'Cavallaro', 'mailFalso184@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador185',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Franco Ezequiel', 'Bustamante', 'mailFalso185@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador186',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Leonardo Sebastián', 'Prediger', 'mailFalso186@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador187',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jorge Alberto', 'Ortiz', 'mailFalso187@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador188',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Maximiliano David', 'González', 'mailFalso188@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador189',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Diego Alejandro', 'Sosa', 'mailFalso189@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador190',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jorge Iván', 'Bolaño', 'mailFalso190@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador191',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Fabián Andrés', 'Cubero ', 'mailFalso191@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador192',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Guido', 'Mainero', 'mailFalso192@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador193',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Jesús David José', 'Méndez', 'mailFalso193@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador194',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Cristian David', 'Núñez Morales', 'mailFalso194@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador195',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Lucas Gastón', 'Robertone', 'mailFalso195@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador196',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Luis Antonio', 'Amarilla Lencina', 'mailFalso196@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador197',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Thiago', 'Almada', 'mailFalso197@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador198',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Martín Matías Ezequiel', 'Vargas', 'mailFalso198@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador199',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Pablo Ignacio', 'Galdames Millán', 'mailFalso199@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('jugador200',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Nicolás Martín', 'Domínguez', 'mailFalso200@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('ricardoD'  ,  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Ricardo', 'Darín', 'mailFalso201@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
+INSERT INTO USUARIOS  VALUES ('guillermoF',  '$2y$10$tKq0LqypmBfGvw4DALD.Auj7tqkiNO7tBFrz4TDzfwt3yCiFAmGGm', ' Guillermo', 'Francella', 'mailFalso202@davinci.edu.ar', '1', null,  '2016-10-01' , CURDATE(),'Y', '2019-01-01');
 
 
 
@@ -575,33 +580,6 @@ INSERT INTO EQUIPOS  VALUES (27, 'Argentinos Juniors', 'jugador161', '1',CURDATE
 INSERT INTO EQUIPOS  VALUES (28, 'Godoy Cruz', 'jugador171', '1',CURDATE() );
 INSERT INTO EQUIPOS  VALUES (29, 'Tigre', 'jugador181', '1',CURDATE() );
 INSERT INTO EQUIPOS  VALUES (30, 'Velez', 'jugador191', '1',CURDATE() );
-
-INSERT INTO FASES VALUES (1, 1, 'Fecha 1', '2016-10-15');
-INSERT INTO FASES VALUES (1, 2, 'Fecha 2', '2016-10-15');
-INSERT INTO FASES VALUES (1, 3, 'Fecha 3', '2016-10-15');
-
-INSERT INTO DIAS_TORNEO  VALUES (1, 'S' );
-INSERT INTO DIAS_TORNEO  VALUES (2, 'D' );
-
-
-INSERT INTO CANCHAS  VALUES (1, 1, 'Sin Definir', 1, 0);
-INSERT INTO CANCHAS  VALUES (2, 1, 'La Canchita', 1, 300);
-INSERT INTO CANCHAS  VALUES (2, 2, 'La Techada', 1, 300);
-INSERT INTO CANCHAS  VALUES (3, 1, 'Abajo Futbol 1', 1, 300);
-INSERT INTO CANCHAS  VALUES (3, 2, 'Abajo Futbol 2', 1, 300);
-INSERT INTO CANCHAS  VALUES (3, 3, 'Abajo ', 3, 250);
-INSERT INTO CANCHAS  VALUES (3, 4, 'Arriba ', 3, 250);
-
-INSERT INTO PARTIDOS  VALUES (1, 1, 1, 1, 2, '2016-10-15', '21:00', NULL, 1, 2, 'Y', 'Y', 2, 1,'N');
-INSERT INTO PARTIDOS  VALUES (1, 1, 2, 3, 4, '2016-10-15', '21:00', NULL, 0, 0, 'Y', 'Y', 2, 2,'N');
-INSERT INTO PARTIDOS  VALUES (1, 2, 1, 1, 3, '2016-10-22', '19:00', 'mabelG', 2, 0, NULL, NULL, 2, 1,'N');
-INSERT INTO PARTIDOS  VALUES (1, 2, 2, 2, 4, '2016-10-22', '21:00', 'vanesaP', 1, 2, NULL, NULL, 2, 2,'N');
-INSERT INTO PARTIDOS  VALUES (1, 3, 1, 1, 4, '2016-10-29', '21:00', NULL, NULL, NULL, NULL, NULL, 2, 1,'N');
-INSERT INTO PARTIDOS  VALUES (1, 3, 2, 2, 3, '2016-10-29', '21:00', NULL, NULL, NULL, NULL, NULL, 2, 2,'N');
-
-INSERT INTO MENSAJES  VALUES (1, 'Hola, no podrías asignar un arbitro la prpoxima fecha?', 'facundoS', 'mabelG', 1, 1, 1,  '2016-10-16', '01:00','Y');
-INSERT INTO MENSAJES  VALUES (2, 'Jojooo como les ganamos', 'estebanI', NULL, 1, 1, 1,  '2016-10-16', '09:00','N');
-INSERT INTO MENSAJES  VALUES (3, 'Dale, no hay problema. Saludos', 'mabelG', 'facundoS', 1, 1, 1, '2016-10-16', '21:00','N');
 
 
 INSERT INTO JUGADORES  VALUES (1, 'facundoS');
@@ -835,10 +813,42 @@ INSERT INTO JUGADORES  VALUES (30, 'jugador199');
 INSERT INTO JUGADORES  VALUES (30, 'jugador200');
 
 
+INSERT INTO TORNEOS  VALUES (1, 'Torneo DaVinci', 1, 'L', 10, '2018-12-01', 2, 'I','2018-01-01');
+INSERT INTO TORNEOS  VALUES (2, 'Roland Garros', 3, 'C', 32,  '2016-12-01', 2, 'F','2018-01-01');
+INSERT INTO TORNEOS  VALUES (3, 'La SuperLiga', 3, 'L', 10,  '2016-12-01', 1, 'C','2018-12-01');
+INSERT INTO TORNEOS  VALUES (4, 'Copa Libertadores', 3, 'C', 16,  '2016-12-01', 1, 'C','2018-12-01');
+
+INSERT INTO FASES VALUES (1, 1, 'Fecha 1', '2016-10-15');
+INSERT INTO FASES VALUES (1, 2, 'Fecha 2', '2016-10-15');
+INSERT INTO FASES VALUES (1, 3, 'Fecha 3', '2016-10-15');
+INSERT INTO FASES VALUES (3 , 1 , 'Fecha 1' , '2016-12-04');
+INSERT INTO FASES VALUES (3 , 2 , 'Fecha 2' , '2016-12-11');
+INSERT INTO FASES VALUES (3 , 3 , 'Fecha 3' , '2016-12-18');
+INSERT INTO FASES VALUES (3 , 4 , 'Fecha 4' , '2016-12-25');
+INSERT INTO FASES VALUES (3 , 5 , 'Fecha 5' , '2017-01-01');
+INSERT INTO FASES VALUES (3 , 6 , 'Fecha 6' , '2017-01-08');
+INSERT INTO FASES VALUES (3 , 7 , 'Fecha 7' , '2017-01-15');
+INSERT INTO FASES VALUES (3 , 8 , 'Fecha 8' , '2017-01-22');
+INSERT INTO FASES VALUES (3 , 9 , 'Fecha 9' , '2017-01-29');
+INSERT INTO FASES VALUES (4 , 1 , '8avos' , '2016-12-04');
+INSERT INTO FASES VALUES (4 , 2 , '4avos' , '2016-12-06');
+INSERT INTO FASES VALUES (4 , 3 , 'Semifinal' , '2016-12-11');
+INSERT INTO FASES VALUES (4 , 4 , 'Final' , '2016-12-13');
+
+
+INSERT INTO DIAS_TORNEO  VALUES (1, 'S' );
+INSERT INTO DIAS_TORNEO  VALUES (2, 'D' );
+INSERT INTO DIAS_TORNEO  VALUES (3, 'D' );
+INSERT INTO DIAS_TORNEO  VALUES (4, 'M' );
+INSERT INTO DIAS_TORNEO  VALUES (4, 'D' );
 
 
 INSERT INTO ORGANIZADORES VALUES (1, 'mabelG', '1');
 INSERT INTO ORGANIZADORES VALUES (1, 'vanesaP', '1');
+INSERT INTO ORGANIZADORES VALUES (3, 'ricardoD', '1');
+INSERT INTO ORGANIZADORES VALUES (4, 'ricardoD', '1');
+
+
 
 INSERT INTO EQUIPOS_TORNEO  VALUES (1, 1);
 INSERT INTO EQUIPOS_TORNEO  VALUES (1, 2);
@@ -850,6 +860,33 @@ INSERT INTO EQUIPOS_TORNEO  VALUES (1, 7);
 INSERT INTO EQUIPOS_TORNEO  VALUES (1, 8);
 INSERT INTO EQUIPOS_TORNEO  VALUES (1, 9);
 INSERT INTO EQUIPOS_TORNEO  VALUES (1, 10);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 11);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 12);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 13);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 14);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 15);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 16);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 17);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 18);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 19);
+INSERT INTO EQUIPOS_TORNEO  VALUES (3, 20);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 11);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 12);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 13);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 14);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 15);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 16);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 17);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 18);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 19);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 20);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 21);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 22);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 23);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 24);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 25);
+INSERT INTO EQUIPOS_TORNEO  VALUES (4, 26);
+
 
 INSERT INTO DUENOS  VALUES (1, 'jeronimoB', '1');
 INSERT INTO DUENOS  VALUES (2, 'vanesaP', '1');
@@ -859,6 +896,233 @@ INSERT INTO TIPOS_ESTADISTICA VALUES ('X', 'Gol en Contra');
 INSERT INTO TIPOS_ESTADISTICA VALUES ('A', 'Tarjeta Amarilla');
 INSERT INTO TIPOS_ESTADISTICA VALUES ('R', 'Tarjeta Roja');
 INSERT INTO TIPOS_ESTADISTICA VALUES ('C', 'Capitán');
+
+
+INSERT INTO PARTIDOS  VALUES (1, 1, 1, 1, 2, '2016-10-15', '21:00', NULL, 1, 2, 'Y', 'Y', 2, 1,'N');
+INSERT INTO PARTIDOS  VALUES (1, 1, 2, 3, 4, '2016-10-15', '21:00', NULL, 0, 0, 'Y', 'Y', 2, 2,'N');
+INSERT INTO PARTIDOS  VALUES (1, 2, 1, 1, 3, '2016-10-22', '19:00', 'mabelG', 2, 0, NULL, NULL, 2, 1,'N');
+INSERT INTO PARTIDOS  VALUES (1, 2, 2, 2, 4, '2016-10-22', '21:00', 'vanesaP', 1, 2, NULL, NULL, 2, 2,'N');
+INSERT INTO PARTIDOS  VALUES (1, 3, 1, 1, 4, '2016-10-29', '21:00', NULL, NULL, NULL, NULL, NULL, 2, 1,'N');
+INSERT INTO PARTIDOS  VALUES (1, 3, 2, 2, 3, '2016-10-29', '21:00', NULL, NULL, NULL, NULL, NULL, 2, 2,'N');
+INSERT INTO PARTIDOS  VALUES (3, 1, 1, 11, 17, '2016-12-04', '21:00', 'ricardoD', 4, 2,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 1, 1, 'G', 11, 'jugador1');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 1, 2, 'G', 11, 'jugador1');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 1, 3, 'G', 11, 'jugador1');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 1, 4, 'G', 11, 'jugador2');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 1, 5, 'A', 11, 'jugador2');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 1, 6, 'G', 17, 'jugador61');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 1, 7, 'G', 17, 'jugador63');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 1, 8, 'A', 17, 'jugador61');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 1, 9, 'R', 17, 'jugador61');
+INSERT INTO PARTIDOS  VALUES (3, 2, 1, 11, 18, '2016-12-11', '21:00', 'ricardoD', 2, 2,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 1, 1, 'G', 11, 'jugador1');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 1, 2, 'G', 11, 'jugador2');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 1, 3, 'A', 11, 'jugador2');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 1, 4, 'G', 18, 'jugador71');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 1, 5, 'G', 18, 'jugador73');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 1, 6, 'A', 18, 'jugador71');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 1, 7, 'R', 18, 'jugador71');
+INSERT INTO PARTIDOS  VALUES (3, 3, 1, 11, 16, '2016-12-18', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 4, 1, 11, 13, '2016-12-25', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 5, 1, 11, 20, '2017-01-01', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 6, 1, 11, 14, '2017-01-08', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 7, 1, 11, 12, '2017-01-15', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 8, 1, 11, 19, '2017-01-22', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 9, 1, 11, 15, '2017-01-29', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 3, 2, 17, 18, '2016-12-18', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 4, 2, 17, 16, '2016-12-25', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 5, 2, 17, 13, '2017-01-01', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 6, 2, 17, 20, '2017-01-08', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 7, 2, 17, 14, '2017-01-15', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 8, 2, 17, 12, '2017-01-22', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 9, 2, 17, 19, '2017-01-29', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 2, 2, 17, 15, '2016-12-11', '21:00', 'ricardoD', 4, 1,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 2, 1, 'G', 17, 'jugador61');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 2, 2, 'G', 17, 'jugador61');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 2, 3, 'G', 17, 'jugador61');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 2, 4, 'G', 17, 'jugador62');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 2, 5, 'A', 17, 'jugador62');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 2, 6, 'G', 15, 'jugador42');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 2, 7, 'A', 15, 'jugador41');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 2, 8, 'R', 15, 'jugador41');
+
+INSERT INTO PARTIDOS  VALUES (3, 5, 3, 18, 16, '2017-01-01', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 6, 3, 18, 13, '2017-01-08', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 7, 3, 18, 20, '2017-01-15', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 8, 3, 18, 14, '2017-01-22', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 9, 3, 18, 12, '2017-01-29', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 1, 2, 18, 19, '2016-12-04', '21:00', 'ricardoD', 2, 3,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 2, 1, 'G', 19, 'jugador81');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 2, 2, 'G', 19, 'jugador81');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 2, 3, 'G', 19, 'jugador81');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 2, 4, 'G', 18, 'jugador72');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 2, 5, 'A', 18, 'jugador72');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 2, 6, 'G', 18, 'jugador72');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 2, 7, 'A', 18, 'jugador71');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 2, 8, 'R', 18, 'jugador71');
+
+INSERT INTO PARTIDOS  VALUES (3, 4, 3, 18, 15, '2016-12-25', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 7, 4, 16, 13, '2017-01-15', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 8, 4, 16, 20, '2017-01-22', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 9, 4, 16, 14, '2017-01-29', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 1, 3, 16, 12, '2016-12-04', '21:00', 'ricardoD', 0, 5,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 3, 1, 'G', 12, 'jugador11');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 3, 2, 'G', 12, 'jugador11');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 3, 3, 'G', 12, 'jugador11');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 3, 4, 'G', 12, 'jugador12');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 3, 5, 'A', 12, 'jugador12');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 3, 6, 'G', 12, 'jugador12');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 3, 7, 'A', 16, 'jugador51');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 3, 8, 'R', 16, 'jugador51');
+INSERT INTO PARTIDOS  VALUES (3, 2, 3, 16, 19, '2016-12-11', '21:00', 'ricardoD', 2, 2,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 3, 1, 'G', 16, 'jugador51');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 3, 2, 'G', 16, 'jugador51');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 3, 3, 'G', 19, 'jugador81');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 3, 4, 'G', 19, 'jugador82');
+INSERT INTO PARTIDOS  VALUES (3, 6, 4, 16, 15, '2017-01-08', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 9, 5, 13, 20, '2017-01-29', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 1, 4, 13, 14, '2016-12-04', '21:00', 'ricardoD', 3, 2,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 4, 1, 'G', 13, 'jugador21');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 4, 2, 'G', 13, 'jugador21');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 4, 3, 'G', 13, 'jugador21');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 4, 4, 'G', 14, 'jugador32');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 4, 5, 'A', 14, 'jugador32');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 4, 6, 'G', 14, 'jugador32');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 4, 7, 'A', 14, 'jugador31');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 4, 8, 'R', 14, 'jugador31');
+INSERT INTO PARTIDOS  VALUES (3, 2, 4, 13, 12, '2016-12-11', '21:00', 'ricardoD', 1, 2,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 4, 1, 'G', 12, 'jugador11');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 4, 2, 'G', 12, 'jugador11');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 4, 3, 'A', 13, 'jugador22');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 4, 4, 'G', 13, 'jugador22');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 4, 5, 'A', 13, 'jugador21');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 4, 6, 'R', 13, 'jugador21');
+INSERT INTO PARTIDOS  VALUES (3, 3, 3, 13, 19, '2016-12-18', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 8, 5, 13, 15, '2017-01-22', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 2, 5, 20, 14, '2016-12-11', '21:00', 'ricardoD', 4, 1,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 5, 1, 'G', 20, 'jugador91');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 5, 2, 'G', 20, 'jugador91');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 5, 3, 'G', 20, 'jugador91');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 5, 4, 'G', 20, 'jugador92');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 5, 5, 'A', 20, 'jugador92');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 5, 6, 'G', 14, 'jugador32');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 5, 7, 'A', 14, 'jugador31');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 2, 5, 8, 'R', 14, 'jugador31');
+INSERT INTO PARTIDOS  VALUES (3, 3, 4, 20, 12, '2016-12-18', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 4, 4, 20, 19, '2016-12-25', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 1, 5, 20, 15, '2016-12-04', '21:00', 'ricardoD', 1, 4,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 5, 1, 'G', 20, 'jugador91');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 5, 2, 'G', 15, 'jugador41');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 5, 3, 'G', 15, 'jugador41');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 5, 4, 'G', 15, 'jugador42');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 5, 5, 'A', 15, 'jugador42');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 5, 6, 'G', 15, 'jugador42');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 5, 7, 'A', 15, 'jugador41');
+INSERT INTO FICHA_PARTIDO  VALUES (3, 1, 5, 8, 'R', 15, 'jugador41');
+INSERT INTO PARTIDOS  VALUES (3, 4, 5, 14, 12, '2016-12-25', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 5, 4, 14, 19, '2017-01-01', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 3, 5, 14, 15, '2016-12-18', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 6, 5, 12, 19, '2017-01-08', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 5, 5, 12, 15, '2017-01-01', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (3, 7, 5, 19, 15, '2017-01-15', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+INSERT INTO PARTIDOS  VALUES (4, 1, 1, 25, 26, '2016-12-04', '21:00', 'ricardoD', 3, 0,' '  ,' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 1, 1, 'G', 25, 'jugador141');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 1, 2, 'G', 25, 'jugador141');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 1, 3, 'G', 25, 'jugador141');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 1, 4, 'A', 26, 'jugador151');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 1, 5, 'R', 26, 'jugador154');
+INSERT INTO PARTIDOS  VALUES (4, 1, 2, 23, 20, '2016-12-04', '21:00', 'ricardoD', 2, 1,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 2, 1, 'G', 23, 'jugador121');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 2, 2, 'G', 23, 'jugador121');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 2, 3, 'G', 20, 'jugador91');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 2, 4, 'A', 20, 'jugador91');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 2, 5, 'R', 20, 'jugador94');
+INSERT INTO PARTIDOS  VALUES (4, 1, 3, 11, 14, '2016-12-04', '21:00', 'ricardoD', 2, 1,' '  ,' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 3, 1, 'G', 11, 'jugador1');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 3, 2, 'G', 11, 'jugador1');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 3, 3, 'G', 14, 'jugador31');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 3, 4, 'A', 14, 'jugador31');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 3, 5, 'R', 11, 'jugador4');
+
+INSERT INTO PARTIDOS  VALUES (4, 1, 4, 21, 12, '2016-12-04', '21:00', 'ricardoD', 3, 0,' '  ,' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 4, 1, 'G', 21, 'jugador101');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 4, 2, 'G', 21, 'jugador101');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 4, 3, 'G', 21, 'jugador101');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 4, 4, 'A', 12, 'jugador11');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 4, 5, 'R', 12, 'jugador14');
+
+INSERT INTO PARTIDOS  VALUES (4, 1, 5, 17, 19, '2016-12-04', '21:00', 'ricardoD', 1, 2,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 5, 1, 'G', 17, 'jugador61');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 5, 2, 'G', 19, 'jugador81');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 5, 3, 'G', 19, 'jugador81');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 5, 4, 'A', 17, 'jugador61');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 5, 5, 'R', 17, 'jugador64');
+
+INSERT INTO PARTIDOS  VALUES (4, 1, 6, 18, 15, '2016-12-04', '21:00', 'ricardoD', 1, 0,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 6, 1, 'G', 18, 'jugador71');
+
+INSERT INTO PARTIDOS  VALUES (4, 1, 7, 16, 24, '2016-12-04', '21:00', 'ricardoD', 0, 1, ' ' ,' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 7, 1, 'G', 24, 'jugador131');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 7, 2, 'R', 24, 'jugador133');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 7, 3, 'A', 24, 'jugador133');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 7, 4, 'A', 16, 'jugador51');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 7, 5, 'R', 16, 'jugador54');
+
+
+INSERT INTO PARTIDOS  VALUES (4, 1, 8, 13, 22, '2016-12-04', '21:00', 'ricardoD', 0, 3,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 8, 1, 'G', 22, 'jugador111');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 8, 2, 'G', 22, 'jugador111');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 8, 3, 'G', 22, 'jugador111');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 8, 4, 'A', 22, 'jugador111');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 1, 8, 5, 'R', 22, 'jugador114');
+
+
+INSERT INTO PARTIDOS  VALUES (4, 2, 1, 25, 23, '2016-12-06', '21:00', 'ricardoD', 0, 3,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 1, 1, 'G', 23, 'jugador121');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 1, 2, 'G', 23, 'jugador121');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 1, 3, 'G', 23, 'jugador121');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 1, 4, 'A', 23, 'jugador121');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 1, 5, 'R', 23, 'jugador124');
+
+INSERT INTO PARTIDOS  VALUES (4, 2, 2, 11, 21, '2016-12-06', '21:00', 'ricardoD', 0, 1,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 2, 1, 'A', 11, 'jugador1');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 2, 2, 'R', 11, 'jugador4');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 2, 3, 'G', 21, 'jugador101');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 2, 4, 'A', 21, 'jugador101');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 2, 5, 'R', 21, 'jugador104');
+
+INSERT INTO PARTIDOS  VALUES (4, 2, 3, 19, 18, '2016-12-06', '21:00', 'ricardoD', 1, 2,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 3, 1, 'G', 18, 'jugador71');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 3, 2, 'G', 18, 'jugador74');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 3, 3, 'G', 19, 'jugador81');
+
+INSERT INTO PARTIDOS  VALUES (4, 2, 4, 24, 22, '2016-12-06', '21:00', 'ricardoD', 0, 2,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 4, 1, 'G', 22, 'jugador111');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 4, 2, 'A', 22, 'jugador111');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 4, 3, 'G', 22, 'jugador111');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 4, 4, 'A', 24, 'jugador131');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 2, 4, 5, 'R', 24, 'jugador134');
+
+
+
+INSERT INTO PARTIDOS  VALUES (4, 3, 1, 23, 21, '2016-12-11', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+
+
+INSERT INTO PARTIDOS  VALUES (4, 3, 2, 18, 22, '2016-12-11', '21:00', 'ricardoD', 0, 1,  ' ', ' '  , 1, 1, 'Y');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 3, 2, 1, 'G', 22, 'jugador111');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 3, 2, 2, 'A', 18, 'jugador71');
+INSERT INTO FICHA_PARTIDO  VALUES (4, 3, 2, 3, 'A', 18, 'jugador74');
+
+INSERT INTO PARTIDOS  VALUES (4, 4, 1, 0, 22, '2016-12-13', '21:00', 'ricardoD', 0, 0,  ' ', ' '  , 1, 1, 'N');
+
+
+
+
+INSERT INTO MENSAJES  VALUES (1, 'Hola, no podrías asignar un arbitro la prpoxima fecha?', 'facundoS', 'mabelG', 1, 1, 1,  '2016-10-16', '01:00','Y');
+INSERT INTO MENSAJES  VALUES (2, 'Jojooo como les ganamos', 'estebanI', NULL, 1, 1, 1,  '2016-10-16', '09:00','N');
+INSERT INTO MENSAJES  VALUES (3, 'Dale, no hay problema. Saludos', 'mabelG', 'facundoS', 1, 1, 1, '2016-10-16', '21:00','N');
+INSERT INTO MENSAJES  VALUES (4, 'Me ayudas a organizar el Torneo?', 'ricardoD', 'guillermoF', 1, 1, 1, '2016-10-16', '21:00','N');
+
 
 INSERT INTO FICHA_PARTIDO  VALUES (1, 1, 1, 1, 'G', 1, 'claudioS');
 INSERT INTO FICHA_PARTIDO  VALUES (1, 1, 1, 2, 'A', 2, 'estebanI');

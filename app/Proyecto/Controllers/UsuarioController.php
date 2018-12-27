@@ -410,7 +410,7 @@ class UsuarioController
                     $alto = imagesy( $original );
 
                     $alto_max= 200;
-                    //$ancho_max = round( $ancho *  $alto_max / $alto );
+                  //  $ancho_max = round( $ancho *  $alto_max / $alto );
                     $ancho_max = 200;
 
                     $copia = imagecreatetruecolor( $ancho_max, $alto_max );

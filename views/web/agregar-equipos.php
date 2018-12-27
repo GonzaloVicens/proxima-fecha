@@ -8,6 +8,9 @@
 use Proyecto\Core\App;
 use Proyecto\Session\Session;
 
+if (Session::has('torneo')){
+    $torneo = Session::get('torneo');
+}
 $torneo->actualizar();
 
 ?>

@@ -10,7 +10,7 @@ class Mail{
         $mail->IsSMTP();
         $mail->SMTPAuth = true; // True para que verifique autentificación de la cuenta o de lo contrario False
         $mail->Username = "no-reply@proximafecha.com"; // Tu cuenta de e-mail
-        $mail->Password = "p4ssw0rdPF"; // El Password de tu casilla de correos
+        $mail->Password = "G0nz4l1t0V1c3ns"; // El Password de tu casilla de correos
 
 
         //$mail->Host = "localhost";

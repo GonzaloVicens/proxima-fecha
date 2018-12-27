@@ -57,7 +57,13 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                             <?php
                             if($usuarioAMostrar->tieneEquipo()){
                                 foreach ($usuarioAMostrar->getEquipos() as $equipo) {
-                                    echo "<li class='text-secondary'><a href='". App::$urlPath ."/equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a><i id='".$equipo->getEquipoID()."' class='fas fa-trash-alt eliminar_equipo' data-toggle='tooltip' data-placement='top' title='Eliminar equipo'></i></li>";
+                                    echo "<li class='text-secondary'><a href='". App::$urlPath ."/equipos/".$equipo->getEquipoID()."' title='Ver Equipo'>" . $equipo->getNombre() ."</a>";
+                                    if (isset($usuario) && ($usuarioAMostrar->getUsuarioID() == $usuario->getUsuarioID())) {
+                                       if (!$equipo->estaJugandoTorneo()){
+                                            echo "<i id = '".$equipo->getEquipoID()."' class='fas fa-trash-alt eliminar_equipo' data - toggle = 'tooltip' data - placement = 'top' title = 'Eliminar equipo' >";
+                                       }
+                                    };
+                                    echo "</i></li>";
                                 }
                             }else{
                                 echo "<li class='text-secondary'>Todavía no sos parte de ningún equipo.</li>";
@@ -78,7 +84,7 @@ if (Usuario::existeUsuario($usuarioAMostrar->getUsuarioID())) {
                             ?>
                         </ul>
                     </li>
-                    <li><span class='font-weight-bold text-dark'>Torneos que organizas</span>
+                    <li><span class='font-weight-bold text-dark'>Torneos que organiza</span>
                         <ul class="list-unstyled">
                             <?php
                             if($usuarioAMostrar->tieneTorneosPropios()){

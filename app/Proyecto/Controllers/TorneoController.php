@@ -130,6 +130,7 @@ class TorneoController
                 $inputsBusqueda['nombre']= "";
                 $inputsBusqueda['id']= "";
             }
+
             View::render('web/agregar-equipos',compact('usuario','torneo','resultados','inputsBusqueda' ), 3);
         } else {
             header('Location: ' . App::$urlPath . '/error404');

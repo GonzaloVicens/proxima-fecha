@@ -36,7 +36,6 @@ Route::addRoute('GET' , '/equipos/{equipo_id}'                                 ,
 Route::addRoute('POST', '/equipos/agregar-jugador'                             , 'EquipoController@agregarJugador');
 Route::addRoute('POST', '/equipos/eliminar-equipo'                             , 'EquipoController@eliminarEquipo');
 Route::addRoute('GET' , '/equipos'                                             , 'EquipoController@verEquipos');
-Route::addRoute('GET' , '/torneos/{torneo_id}'                                 , 'TorneoController@ver');
 Route::addRoute('GET' , '/torneos/editar-torneo'                               , 'TorneoController@editarTorneo');
 Route::addRoute('POST', '/torneos/editar-torneo'                               , 'TorneoController@actualizarTorneo');
 Route::addRoute('GET' , '/torneos/editar-organizadores'                        , 'TorneoController@editarOrganizadores');
@@ -57,6 +56,7 @@ Route::addRoute('GET' , '/torneos/reiniciar-torneo'                            ,
 Route::addRoute('GET' , '/torneos/generar-fixture'                             , 'TorneoController@generarFixture');
 Route::addRoute('GET' , '/torneos/ver-fixture-completo/{torneo}'               , 'TorneoController@verFixtureCompleto');
 Route::addRoute('GET' , '/torneos/ver-fixture-torneo-completo'                 , 'TorneoController@verFixtureTorneoCompleto');
+Route::addRoute('GET' , '/torneos/{torneo_id}'                                 , 'TorneoController@ver');
 Route::addRoute('POST', '/torneos/{torneo}/{fase}/agregar-ficha-partido'       , 'TorneoController@agregarFichaPartido');
 Route::addRoute('GET' , '/torneos/{torneo}/{fase}/{partido}'                   , 'TorneoController@verPartido');
 Route::addRoute('GET' , '/torneos/{torneo}/{fase}'                             , 'TorneoController@verFase');

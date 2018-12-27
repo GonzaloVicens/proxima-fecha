@@ -134,12 +134,28 @@ $datosPartido = $partidoActual->getInfoPartido();
         </div-->
         <div class="row">
             <div class="col-md-6">
-                <?= $local->printFormularioPartido($partidoActual);
+                <?php
+                if (Torneo::GetEstadoIdPorTorneo($partidoActual->getTorneoID()) == 'C') {
+                    if (Session::has('logueado')) {
+                        $usuario = Session::get('usuario');
+                        if (($usuario->getUsuarioID() == $partidoActual->getArbitroID()) && (!$partidoActual->fueJugado())) {
+                            $local->printFormularioPartido($partidoActual);
+                        }
+                    }
+                };
                     $local->printJugadoresEnPartido($partidoActual->getFichas(), true );
                 ?>
             </div>
             <div class="col-md-6">
-                <?= $visita->printFormularioPartido($partidoActual);
+                <?php
+                if (Torneo::GetEstadoIdPorTorneo($partidoActual->getTorneoID()) == 'C') {
+                    if (Session::has('logueado')) {
+                        $usuario = Session::get('usuario');
+                        if (($usuario->getUsuarioID() == $partidoActual->getArbitroID()) && (!$partidoActual->fueJugado())) {
+                            $visita->printFormularioPartido($partidoActual);
+                        }
+                    }
+                };
                     $visita->printJugadoresEnPartido($partidoActual->getFichas(), false);
                 ?>
 

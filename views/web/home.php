@@ -121,7 +121,7 @@ use Proyecto\Session\Session;
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <a href="<?= App::$urlPath;?>/registrarse" type="button" class="btn btn-outline-success btn-lg btn-block alto70">CREA TU TORNEO <b>AHORA</b></a>
+                <a href="<?= App::$urlPath;?>/registrarse"  class="btn btn-outline-success btn-lg btn-block py-3">CREA TU TORNEO <b>AHORA</b></a>
             </div>
             <div class="col-md-4">
             </div>
